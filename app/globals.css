@@ -1,6 +1,7 @@
 @import "tailwindcss";
 /* Swiper Styles - Imported globally for better performance */
 @import 'swiper/css';
+@import 'swiper/css/effect-coverflow';
 @import 'swiper/css/pagination';
 @import 'swiper/css/navigation';
 
@@ -94,4 +95,18 @@ body {
 
 .tech-swiper .swiper-wrapper {
   transition-timing-function: linear !important;
+}
+
+/* Coverflow Effect Styles */
+.swiper-coverflow .swiper-slide {
+  transition-property: transform, opacity !important;
+}
+
+.swiper-coverflow .swiper-slide-shadow-left,
+.swiper-coverflow .swiper-slide-shadow-right {
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.3),
+    rgba(0, 0, 0, 0)
+  );
 }
