@@ -4,45 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { fadeInLeft, fadeInRight } from '@/app/lib/animations';
 import FAQItem from './FAQItem';
-
-const faqs = [
-  {
-    id: '1',
-    question: 'What services does Technogetic offer?',
-    answer: 'We provide end-to-end digital solutions including web development, mobile app development, UI/UX design, digital marketing, and custom software tailored to your business needs.',
-  },
-  {
-    id: '2',
-    question: 'How do you approach a new project?',
-    answer: 'We follow a structured approach: discovery and requirements gathering, planning and strategy, design and development, testing and quality assurance, and deployment with ongoing support.',
-  },
-  {
-    id: '3',
-    question: 'How do you approach a new project?',
-    answer: 'Our process involves deep collaboration to ensure we understand your specific goals and deliver a solution that fits perfectly.',
-  },
-  {
-    id: '4',
-    question: 'How do you approach a new project?',
-    answer: 'We prioritize agile methodologies, ensuring flexibility and rapid delivery while maintaining high quality standards.',
-  },
-  {
-    id: '5',
-    question: 'How do you approach a new project?',
-    answer: 'Communication is key. We keep you updated at every stage of the project lifecycle to ensure total transparency.',
-  },
-  {
-    id: '6',
-    question: 'How do you approach a new project?',
-    answer: 'Post-launch support is part of our commitment to ensuring your long-term success.',
-  },
-  {
-    id: '7',
-    question: 'How do you approach a new project?',
-    answer: 'We provide detailed documentation and training to ensure your team can effectively manage the new solution.',
-  },
-
-];
+import { faqs } from '@/app/lib/data/faqs';
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0); 

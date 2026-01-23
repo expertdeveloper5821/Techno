@@ -55,7 +55,9 @@ export default function Footer() {
                     src={social.icon} 
                     alt={social.name} 
                     width={18} 
-                    height={18} 
+                    height={18}
+                    sizes="18px"
+                    loading="lazy"
                   />
                 </Link>
               ))}
@@ -102,7 +104,7 @@ export default function Footer() {
             <ul className="space-y-6">
               <li className="flex items-start gap-4">
                 <div className="shrink-0 mt-1">
-                  <Image src="footer/location.png" alt="Location" width={20} height={20} />
+                  <Image src="footer/location.png" alt="Location" width={20} height={20} sizes="20px" loading="lazy" />
                 </div>
                 <span className="text-gray-400 text-sm leading-relaxed">
                   1st floor, Nexa Square, C-209/B, Phase BB, Sec 74, Mohali, Punjab.
@@ -110,7 +112,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-4">
                 <div className="shrink-0">
-                  <Image src="footer/mail.png" alt="Email" width={20} height={20} />
+                  <Image src="footer/mail.png" alt="Email" width={20} height={20} sizes="20px" loading="lazy" />
                 </div>
                 <a href="mailto:info@technogetic.com" className="text-gray-400 hover:text-white transition-colors text-sm">
                   info@technogetic.com
@@ -118,7 +120,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-4">
                 <div className="shrink-0">
-                  <Image src="footer/call.png" alt="Phone" width={20} height={20} />
+                  <Image src="footer/call.png" alt="Phone" width={20} height={20} sizes="20px" loading="lazy" />
                 </div>
                 <a href="tel:+919779992829" className="text-gray-400 hover:text-white transition-colors text-sm">
                   +91-9779992829

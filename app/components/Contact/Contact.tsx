@@ -68,7 +68,8 @@ export default function Contact() {
               alt="Contact us"
               fill
               className="object-cover grayscale"
-              priority
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              loading="lazy"
             />
           </motion.div>
 

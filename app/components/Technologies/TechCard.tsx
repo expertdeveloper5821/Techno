@@ -12,6 +12,8 @@ export default function TechCard({ tech }: { tech: { name: string; logo: string;
           width={32} 
           height={32} 
           className="w-8 h-8 object-contain"
+          sizes="32px"
+          loading="lazy"
         />
       </div>
       

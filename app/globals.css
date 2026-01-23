@@ -1,4 +1,8 @@
 @import "tailwindcss";
+/* Swiper Styles - Imported globally for better performance */
+@import 'swiper/css';
+@import 'swiper/css/pagination';
+@import 'swiper/css/navigation';
 
 :root {
   --background: #ffffff;
@@ -57,4 +61,37 @@ body {
 
 .animate-shimmer {
   animation: shimmer 2s infinite;
+}
+
+/* Swiper Custom Styles */
+.swiper-pagination {
+  position: relative !important;
+  margin-top: 20px;
+}
+
+.swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background-color: rgba(156, 163, 175, 1);
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+  width: 32px;
+  border-radius: 999px;
+  background-color: #008AC9;
+}
+
+.swiper-wrapper {
+  align-items: center;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+}
+
+.tech-swiper .swiper-wrapper {
+  transition-timing-function: linear !important;
 }

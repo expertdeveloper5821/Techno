@@ -94,7 +94,8 @@ export default function About() {
               width={800}
               height={600}
               className="w-full h-auto rounded-2xl object-contain"
-              priority
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              loading="lazy"
             />
           </motion.div>
 

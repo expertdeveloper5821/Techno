@@ -32,6 +32,7 @@ export default function Header() {
                 height={40}
                 className="h-8 md:h-10 w-auto"
                 priority
+                sizes="140px"
               />
             </a>
           </motion.div>

@@ -4,69 +4,12 @@ import { motion } from 'framer-motion';
 import { fadeInUp } from '@/app/lib/animations';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
-import 'swiper/css';
 import TechCard from './TechCard';
-
-// Row 1 Data
-const row1 = [
-  {
-    id: '1',
-    name: 'GitLab',
-    logo: '/tech/gitlab.svg',
-    description: 'Support more Multiple repositories to one or more channels.',
-  },
-  {
-    id: '2',
-    name: 'OVHcloud',
-    logo: '/tech/ovhcloud.svg',
-    description: 'OVH legally OVH groupe SAS, is a French cloud compute company.',
-  },
-  {
-    id: '3',
-    name: 'ChatGPT',
-    logo: '/tech/chatgpt.svg',
-    description: 'Offering assistance with answering frequently asked questions.',
-  },
-  {
-    id: '4',
-    name: 'Notion',
-    logo: '/tech/notion.svg',
-    description: 'You can create rich-text document customizable formatting, images.',
-  },
-  
-];
-
-// Row 2 Data
-const row2 = [
-  {
-    id: '5',
-    name: 'Dropbox',
-    logo: '/tech/dropbox.svg',
-    description: 'Dropbox provides cloud storage where users can securely store.',
-  },
-  {
-    id: '6',
-    name: 'ClickUp',
-    logo: '/tech/clickup.svg',
-    description: 'ClickUp is a productivity platform for our task management.',
-  },
-  {
-    id: '7',
-    name: 'Slack',
-    logo: '/tech/slack.svg',
-    description: 'Slack usesd channels to organize communication around topics.',
-  },
-  {
-    id: '8',
-    name: 'Zoom',
-    logo: '/tech/zoom.svg',
-    description: 'For Video conferencing platform used for virtual meeting.',
-  },
-];
+import { technologiesRow1, technologiesRow2 } from '@/app/lib/data/technologies';
 
 // Duplicate data to ensure seamless looping on wide screens
-const row1Extended = [...row1, ...row1, ...row1];
-const row2Extended = [...row2, ...row2, ...row2];
+const row1Extended = [...technologiesRow1, ...technologiesRow1, ...technologiesRow1];
+const row2Extended = [...technologiesRow2, ...technologiesRow2, ...technologiesRow2];
 
 export default function Technologies() {
   return (
@@ -136,13 +79,6 @@ export default function Technologies() {
           </Swiper>
         </div>
       </div>
-
-      {/* Global Styles for linear animation */}
-      <style jsx global>{`
-        .tech-swiper .swiper-wrapper {
-          transition-timing-function: linear !important;
-        }
-      `}</style>
     </section>
   );
 }

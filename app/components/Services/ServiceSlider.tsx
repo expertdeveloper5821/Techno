@@ -4,22 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay, Navigation } from 'swiper/modules';
-
-import 'swiper/css';
-import 'swiper/css/pagination';
-
-const services = [
-  { title: 'Digital Marketing', image: '/services/digital-marketing.jpg' },
-  { title: 'Web Development', image: '/services/web-development.jpg' },
-  { title: 'Mobile App Development', image: '/services/mobile-app.jpg' },
-  { title: 'UI/UX Designing', image: '/services/ui-ux.jpg' },
-  { title: 'Cloud Computing', image: '/services/cloud-computing.jpg' },
-  { title: 'Digital Marketing', image: '/services/digital-marketing.jpg' },
-  { title: 'Web Development', image: '/services/web-development.jpg' },
-  { title: 'Mobile App Development', image: '/services/mobile-app.jpg' },
-  { title: 'UI/UX Designing', image: '/services/ui-ux.jpg' },
-  { title: 'Cloud Computing', image: '/services/cloud-computing.jpg' },
-];
+import { services } from '@/app/lib/data/services';
 
 interface ServiceSliderProps {
   theme?: 'dark' | 'light';
@@ -118,7 +103,7 @@ export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
         className={`w-full py-12 pb-20 transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
       >
         {services.map((service, index) => (
-          <SwiperSlide key={index} className="w-[260px]! md:w-[320px]! lg:w-[380px]! h-auto my-auto transition-all duration-300">
+          <SwiperSlide key={`${service.title}-${index}`} className="w-[260px]! md:w-[320px]! lg:w-[380px]! h-auto my-auto transition-all duration-300">
             {({ isActive }) => (
               <div
                 className={`
@@ -137,7 +122,9 @@ export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
                     src={service.image}
                     alt={service.title}
                     fill
+                    sizes="(max-width: 768px) 260px, (max-width: 1024px) 320px, 380px"
                     className={`object-cover transition-transform duration-700 ${isActive ? 'scale-110' : 'scale-100'}`}
+                    loading="lazy"
                   />
                   <div className={`absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent transition-opacity duration-300 ${isActive ? 'opacity-80' : 'opacity-60'}`} />
                 </div>
@@ -155,28 +142,8 @@ export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
       </Swiper>
 
       <style jsx global>{`
-        .swiper-pagination {
-          position: relative !important;
-          margin-top: 20px;
-        }
         .swiper-pagination-bullet {
-          width: 10px;
-          height: 10px;
           background-color: ${isDark ? 'rgba(255,255,255,0.3)' : '#9ca3af'};
-          opacity: 1;
-          transition: all 0.3s ease;
-        }
-        .swiper-pagination-bullet-active {
-          width: 32px;
-          border-radius: 999px;
-          background-color: #008AC9;
-        }
-        .swiper-wrapper {
-          align-items: center;
-        }
-        .swiper-slide {
-          display: flex;
-          justify-content: center;
         }
         
         @keyframes shimmer {
