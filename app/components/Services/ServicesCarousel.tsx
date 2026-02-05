@@ -11,10 +11,7 @@ const CARD_WIDTH_NARROW = 193;
 const CARD_WIDTH_EXPANDED = 420;
 const EXTEND_DURATION_MS = 500;
 const TEXT_APPEAR_DELAY_MS = 150;
-const SM_BREAKPOINT = 640; // Tailwind sm: below = 1 slide only
-
-// Duplicate slides so Swiper loop has enough slides (needs slides.length >= slidesPerView + loopedSlides)
-const loopSlides = [...services, ...services];
+const SM_BREAKPOINT = 640; // Below sm = 1 slide only
 
 export default function ServicesCarousel() {
   const swiperRef = useRef<SwiperType | null>(null);
@@ -73,7 +70,7 @@ export default function ServicesCarousel() {
       {/* Service cards slider - centered viewport, 6 cards on laptop */}
       <div className="w-full relative mt-6 flex justify-center px-4 sm:px-6">
         {/* Centered viewport: exact width for 2/3/4/6 cards so slider stays centered */}
-        <div className="w-full max-w-[402px] sm:max-w-[615px] md:max-w-[832px] lg:max-w-[1278px] overflow-hidden">
+        <div className="w-full max-w-full sm:max-w-[615px] md:max-w-[832px] lg:max-w-[1278px] overflow-hidden">
           <Swiper
             onSwiper={(swiper) => {
               swiperRef.current = swiper;
@@ -85,8 +82,6 @@ export default function ServicesCarousel() {
             loop={true}
             loopAdditionalSlides={2}
             speed={500}
-            observer={true}
-            observeParents={true}
             autoplay={{ delay: 4000, disableOnInteraction: false }}
             breakpoints={{
               320: { slidesPerView: 1, spaceBetween: 16, centeredSlides: true },
@@ -96,9 +91,8 @@ export default function ServicesCarousel() {
             }}
             className="overflow-hidden! pb-4"
           >
-            {loopSlides.map((service, index) => {
-              const realIndex = index % services.length;
-              const isHovered = !isBelow640 && hoveredIndex === realIndex;
+            {services.map((service, index) => {
+              const isHovered = !isBelow640 && hoveredIndex === index;
               const slideWidth = isBelow640 ? '100%' : (isHovered ? CARD_WIDTH_EXPANDED : CARD_WIDTH_NARROW);
               const showDescription = isBelow640 || isHovered;
               return (
@@ -109,19 +103,19 @@ export default function ServicesCarousel() {
                     width: slideWidth,
                     transition: `width ${EXTEND_DURATION_MS}ms ease-out`,
                   }}
-                  onMouseEnter={() => !isBelow640 && setHoveredIndex(realIndex)}
+                  onMouseEnter={() => !isBelow640 && setHoveredIndex(index)}
                   onMouseLeave={() => setHoveredIndex(null)}
                 >
                   {/* Card aligned left so it only extends to the right */}
                   <article
-                    className="relative h-[499px] rounded-[30px] overflow-hidden group shrink-0 origin-left"
+                    className="relative h-[420px] sm:h-[499px] rounded-[24px] sm:rounded-[30px] overflow-hidden group shrink-0 origin-left"
                     style={{
                       width: slideWidth,
                       transition: `width ${EXTEND_DURATION_MS}ms ease-out`,
                     }}
                   >
                     {/* Blue glow / border effect */}
-                    <div className="absolute inset-0 rounded-[30px] ring-2 ring-white/20 ring-inset shadow-[0_0_30px_rgba(0,138,201,0.25)] group-hover:shadow-[0_0_40px_rgba(0,138,201,0.35)] transition-shadow duration-500 z-10 pointer-events-none" />
+                    <div className="absolute inset-0 rounded-[24px] sm:rounded-[30px] ring-2 ring-white/20 ring-inset shadow-[0_0_30px_rgba(0,138,201,0.25)] group-hover:shadow-[0_0_40px_rgba(0,138,201,0.35)] transition-shadow duration-500 z-10 pointer-events-none" />
                     <div className="absolute inset-0 bg-sky-900/90 z-1">
                       <Image
                         src={service.image}
