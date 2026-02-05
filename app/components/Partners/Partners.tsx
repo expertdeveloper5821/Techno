@@ -44,7 +44,7 @@ export default function Partners() {
                   alt={`${partner.name} grayscale`}
                   width={150}
                   height={80}
-                  className="object-contain w-auto h-full max-h-12 grayscale opacity-60"
+                  className="object-contain w-auto h-full max-h-12 grayscale opacity-60  "
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
                   loading="lazy"
                 />
