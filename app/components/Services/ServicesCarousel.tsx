@@ -13,6 +13,9 @@ const EXTEND_DURATION_MS = 500;
 const TEXT_APPEAR_DELAY_MS = 150;
 const SM_BREAKPOINT = 640; // Below sm = 1 slide only
 
+// Duplicate slides so loop works both left and right (Swiper needs enough slides)
+const loopSlides = [...services, ...services];
+
 export default function ServicesCarousel() {
   const swiperRef = useRef<SwiperType | null>(null);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -80,7 +83,9 @@ export default function ServicesCarousel() {
             slidesPerView={isBelow640 ? 1 : 'auto'}
             centeredSlides={isBelow640}
             loop={true}
-            loopAdditionalSlides={2}
+            loopAdditionalSlides={0}
+            observer={true}
+            observeParents={true}
             speed={500}
             autoplay={{ delay: 4000, disableOnInteraction: false }}
             breakpoints={{
@@ -91,8 +96,9 @@ export default function ServicesCarousel() {
             }}
             className="overflow-hidden! pb-4"
           >
-            {services.map((service, index) => {
-              const isHovered = !isBelow640 && hoveredIndex === index;
+            {loopSlides.map((service, index) => {
+              const realIndex = index % services.length;
+              const isHovered = !isBelow640 && hoveredIndex === realIndex;
               const slideWidth = isBelow640 ? '100%' : (isHovered ? CARD_WIDTH_EXPANDED : CARD_WIDTH_NARROW);
               const showDescription = isBelow640 || isHovered;
               return (
@@ -103,7 +109,7 @@ export default function ServicesCarousel() {
                     width: slideWidth,
                     transition: `width ${EXTEND_DURATION_MS}ms ease-out`,
                   }}
-                  onMouseEnter={() => !isBelow640 && setHoveredIndex(index)}
+                  onMouseEnter={() => !isBelow640 && setHoveredIndex(realIndex)}
                   onMouseLeave={() => setHoveredIndex(null)}
                 >
                   {/* Card aligned left so it only extends to the right */}
