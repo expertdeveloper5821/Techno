@@ -7,7 +7,7 @@ import { partners } from '@/app/lib/data/partners';
 
 export default function Partners() {
   return (
-    <section className="py-24 bg-[#e5e5e5]">
+    <section className="py-24 bg-[#0181EC]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
@@ -18,7 +18,7 @@ export default function Partners() {
           variants={fadeInUp}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1a1a1a] max-w-5xl mx-auto leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#ffffff] max-w-5xl mx-auto leading-tight">
             Trusted by Our Partners Who Share Our Vision for Digital Innovation and Long-Term Growth
           </h2>
         </motion.div>

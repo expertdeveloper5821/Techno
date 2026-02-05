@@ -1,6 +1,7 @@
 export interface Service {
   title: string;
   image: string;
+  description?: string;
 }
 
 export interface Product {

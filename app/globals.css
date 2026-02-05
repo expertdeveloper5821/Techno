@@ -29,6 +29,7 @@
   --color-light-gray: var(--light-gray);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-inter: var(--font-inter), ui-sans-serif, sans-serif;
 }
 
 html {
@@ -39,6 +40,11 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+/* FAQ typography: Inter */
+.font-inter {
+  font-family: var(--font-inter), ui-sans-serif, sans-serif;
 }
 
 /* Swiper Custom Styles */
@@ -91,6 +97,7 @@ body {
 .swiper-slide {
   display: flex;
   justify-content: center;
+  
 }
 
 .tech-swiper .swiper-wrapper {
@@ -110,3 +117,17 @@ body {
     rgba(0, 0, 0, 0)
   );
 }
+
+
+.footer-input{
+  font-size:16px;
+}
+
+@media screen and (max-width: 768px) {
+  
+  .footer-input::placeholder{
+   font-size:12px;
+  }
+}
+
+

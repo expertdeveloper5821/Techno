@@ -16,7 +16,7 @@ export default function Hero() {
             animate="visible"
             variants={fadeInUp}
             // Adjusted sizing: starts at 4xl, grows to 5xl/6xl/7xl on larger screens
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight tracking-tight"
+            className="text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight tracking-tight"
           >
             More Growth, Less work
             <br />
