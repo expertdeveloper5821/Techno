@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper/modules';
@@ -11,7 +11,6 @@ const CARD_WIDTH_NARROW = 193;
 const CARD_WIDTH_EXPANDED = 420;
 const EXTEND_DURATION_MS = 500;
 const TEXT_APPEAR_DELAY_MS = 150;
-const SM_BREAKPOINT = 640; // Below sm = 1 slide only
 
 // Duplicate slides so loop works both left and right (Swiper needs enough slides)
 const loopSlides = [...services, ...services];
@@ -19,14 +18,6 @@ const loopSlides = [...services, ...services];
 export default function ServicesCarousel() {
   const swiperRef = useRef<SwiperType | null>(null);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [isBelow640, setIsBelow640] = useState(false);
-
-  useEffect(() => {
-    const check = () => setIsBelow640(window.innerWidth < SM_BREAKPOINT);
-    check();
-    window.addEventListener('resize', check);
-    return () => window.removeEventListener('resize', check);
-  }, []);
 
   return (
     <section className="relative py-24 overflow-hidden min-h-[900px] flex flex-col justify-center bg-linear-to-b from-[#0c4a6e] via-[#0369a1] to-[#0c4a6e]">
@@ -73,15 +64,15 @@ export default function ServicesCarousel() {
       {/* Service cards slider - centered viewport, 6 cards on laptop */}
       <div className="w-full relative mt-6 flex justify-center px-4 sm:px-6">
         {/* Centered viewport: exact width for 2/3/4/6 cards so slider stays centered */}
-        <div className="w-full max-w-full sm:max-w-[615px] md:max-w-[832px] lg:max-w-[1278px] overflow-hidden">
+        <div className="w-full max-w-[402px] sm:max-w-[615px] md:max-w-[832px] lg:max-w-[1278px] overflow-hidden">
           <Swiper
             onSwiper={(swiper) => {
               swiperRef.current = swiper;
             }}
-            modules={[Navigation, Autoplay]}
-            spaceBetween={isBelow640 ? 16 : 24}
-            slidesPerView={isBelow640 ? 1 : 'auto'}
-            centeredSlides={isBelow640}
+            modules={[Navigation , Autoplay]}
+            spaceBetween={24}
+            slidesPerView="auto"
+            centeredSlides={false}
             loop={true}
             loopAdditionalSlides={0}
             observer={true}
@@ -89,8 +80,8 @@ export default function ServicesCarousel() {
             speed={500}
             autoplay={{ delay: 4000, disableOnInteraction: false }}
             breakpoints={{
-              320: { slidesPerView: 1, spaceBetween: 16, centeredSlides: true },
-              640: { slidesPerView: 'auto', spaceBetween: 18, centeredSlides: false },
+              320: { spaceBetween: 16 },
+              640: { spaceBetween: 18 },
               768: { spaceBetween: 20 },
               1024: { spaceBetween: 24 },
             }}
@@ -98,30 +89,28 @@ export default function ServicesCarousel() {
           >
             {loopSlides.map((service, index) => {
               const realIndex = index % services.length;
-              const isHovered = !isBelow640 && hoveredIndex === realIndex;
-              const slideWidth = isBelow640 ? '100%' : (isHovered ? CARD_WIDTH_EXPANDED : CARD_WIDTH_NARROW);
-              const showDescription = isBelow640 || isHovered;
+              const isHovered = hoveredIndex === realIndex;
               return (
                 <SwiperSlide
                   key={`${service.title}-${index}`}
                   className="shrink-0! flex justify-start"
                   style={{
-                    width: slideWidth,
+                    width: isHovered ? CARD_WIDTH_EXPANDED : CARD_WIDTH_NARROW,
                     transition: `width ${EXTEND_DURATION_MS}ms ease-out`,
                   }}
-                  onMouseEnter={() => !isBelow640 && setHoveredIndex(realIndex)}
+                  onMouseEnter={() => setHoveredIndex(realIndex)}
                   onMouseLeave={() => setHoveredIndex(null)}
                 >
                   {/* Card aligned left so it only extends to the right */}
                   <article
-                    className="relative h-[420px] sm:h-[499px] rounded-[24px] sm:rounded-[30px] overflow-hidden group shrink-0 origin-left"
+                    className="relative h-[499px] rounded-[30px] overflow-hidden group shrink-0 origin-left"
                     style={{
-                      width: slideWidth,
+                      width: isHovered ? CARD_WIDTH_EXPANDED : CARD_WIDTH_NARROW,
                       transition: `width ${EXTEND_DURATION_MS}ms ease-out`,
                     }}
                   >
                     {/* Blue glow / border effect */}
-                    <div className="absolute inset-0 rounded-[24px] sm:rounded-[30px] ring-2 ring-white/20 ring-inset shadow-[0_0_30px_rgba(0,138,201,0.25)] group-hover:shadow-[0_0_40px_rgba(0,138,201,0.35)] transition-shadow duration-500 z-10 pointer-events-none" />
+                    <div className="absolute inset-0 rounded-[30px] ring-2 ring-white/20 ring-inset shadow-[0_0_30px_rgba(0,138,201,0.25)] group-hover:shadow-[0_0_40px_rgba(0,138,201,0.35)] transition-shadow duration-500 z-10 pointer-events-none" />
                     <div className="absolute inset-0 bg-sky-900/90 z-1">
                       <Image
                         src={service.image}
@@ -150,11 +139,11 @@ export default function ServicesCarousel() {
                     <div
                       className="absolute bottom-0 left-0 right-0 z-2 bg-linear-to-t from-black/85 via-black/50 to-transparent pt-16 pb-6 px-6"
                       style={{
-                        opacity: showDescription && service.description ? 1 : 0,
-                        transform: showDescription && service.description ? 'translateY(0)' : 'translateY(12px)',
+                        opacity: isHovered && service.description ? 1 : 0,
+                        transform: isHovered && service.description ? 'translateY(0)' : 'translateY(12px)',
                         transition: `opacity ${EXTEND_DURATION_MS}ms ease-out ${TEXT_APPEAR_DELAY_MS}ms, transform ${EXTEND_DURATION_MS}ms ease-out ${TEXT_APPEAR_DELAY_MS}ms`,
                       }}
-                      aria-hidden={!showDescription}
+                      aria-hidden={!isHovered}
                     >
                       <p className="text-white text-sm leading-relaxed line-clamp-4">
                         {service.description}
