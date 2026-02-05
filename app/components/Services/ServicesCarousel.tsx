@@ -1,16 +1,18 @@
 'use client';
 
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
 import { services } from '@/app/lib/data/services';
+import ServiceSlider from './ServiceSlider';
 
 const CARD_WIDTH_NARROW = 193;
 const CARD_WIDTH_EXPANDED = 420;
 const EXTEND_DURATION_MS = 500;
 const TEXT_APPEAR_DELAY_MS = 150;
+const SM_BREAKPOINT = 640;
 
 // Duplicate slides so loop works both left and right (Swiper needs enough slides)
 const loopSlides = [...services, ...services];
@@ -18,6 +20,14 @@ const loopSlides = [...services, ...services];
 export default function ServicesCarousel() {
   const swiperRef = useRef<SwiperType | null>(null);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [isBelow640, setIsBelow640] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsBelow640(window.innerWidth < SM_BREAKPOINT);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   return (
     <section className="relative py-24 overflow-hidden min-h-[900px] flex flex-col justify-center bg-linear-to-b from-[#0c4a6e] via-[#0369a1] to-[#0c4a6e]">
@@ -40,7 +50,7 @@ export default function ServicesCarousel() {
           <p className="text-lg text-white/90 leading-relaxed flex-1">
             At Technogetic, we are at the forefront of technological innovation, dedicated to delivering cutting-edge IT solutions that drive business success. Founded in 2018, our mission is to redefine the digital landscape by providing reliable and scalable technology solutions.
           </p>
-          <div className="flex items-center gap-2 shrink-0">
+          <div className={`flex items-center gap-2 shrink-0 ${isBelow640 ? 'hidden' : ''}`}>
             <button
               type="button"
               aria-label="Previous slide"
@@ -61,9 +71,13 @@ export default function ServicesCarousel() {
         </div>
       </div>
 
-      {/* Service cards slider - centered viewport, 6 cards on laptop */}
+      {/* Slider only: ServiceSlider below sm, carousel on sm+ */}
       <div className="w-full relative mt-6 flex justify-center px-4 sm:px-6">
-        {/* Centered viewport: exact width for 2/3/4/6 cards so slider stays centered */}
+        {isBelow640 ? (
+          <div className="w-full max-w-full">
+            <ServiceSlider theme="dark" />
+          </div>
+        ) : (
         <div className="w-full max-w-[402px] sm:max-w-[615px] md:max-w-[832px] lg:max-w-[1278px] overflow-hidden">
           <Swiper
             onSwiper={(swiper) => {
@@ -155,6 +169,7 @@ export default function ServicesCarousel() {
             })}
           </Swiper>
         </div>
+        )}
       </div>
     </section>
   );

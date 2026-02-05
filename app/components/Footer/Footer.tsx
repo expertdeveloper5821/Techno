@@ -65,7 +65,7 @@ export default function Footer() {
       <div className="container mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* Logo & Description */}
         <div>
-          <Image src="/tg-logo-white.png" alt="Technogetic Logo" width={120} height={40} className="mb-4" />
+          <Image src="/footer/tg-logo.png" alt="Technogetic Logo" width={120} height={40} className="mb-4" />
           <p className="text-sm leading-relaxed">
             Technogetic simplifies technology, transforming complexity into seamless solutions to drive innovation, efficiency, and digital success
           </p>
