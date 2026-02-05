@@ -30,29 +30,51 @@ export default function FAQItem({
         ${isOpen ? 'bg-[linear-gradient(193.06deg,#52BBEF_5.92%,#0181EC_89.21%)]' : 'bg-[#0a0a0a]'}
       `}
     >
-      {/* Horizontal flow: [Number + Question] — 100px gap — [Answer] — [Icon]; height hug 96px when collapsed */}
+      {/* Small: one row [number + question + icon], answer below. Md: [number+question] [answer] [icon] in one row */}
       <button
         type="button"
         onClick={onToggle}
-        className={`w-full flex md:flex-row flex-col items-start gap-[15px] text-left px-6 transition-[padding] duration-300 ease-out ${
+        className={`w-full flex flex-col md:flex-row md:items-start text-left px-6 transition-[padding] duration-300 ease-out gap-[15px] ${
           isOpen ? 'min-h-0 py-4' : 'min-h-[96px] py-[31px]'
         }`}
       >
-        {/* Left: number + question */}
-        <div  className=" text-white font-inter font-medium text-[20px] leading-[34px] tracking-[0.01em] flex gap-[5px] items-center  ">
+        {/* Block 1: number + question; on small screen icon is inside this row so it stays aligned with question */}
+        <div className="flex items-center gap-2 w-full min-h-[34px] md:w-auto md:flex-initial">
+          <div className="flex gap-[5px] items-center min-w-0 flex-1 md:flex-initial text-white font-inter font-medium text-[20px] leading-[34px] tracking-[0.01em]">
+            <span
+              className="font-inter font-semibold tracking-normal inline-flex items-center justify-center shrink-0 w-[21px] h-[13px] text-[16px]"
+              style={{ lineHeight: 1 }}
+            >
+              {numberLabel}
+            </span>
+            <span className="font-inter font-medium md:text-[16px] text-base leading-[34px] tracking-[0.01em]">
+              {question}
+            </span>
+          </div>
+          {/* + / − on same line as question on small screens only */}
           <span
-            className="  font-inter font-semibold tracking-normal inline-flex items-center justify-center shrink-0 w-[21px] h-[13px] text-[16px]"
-            style={{ lineHeight: 1 }}
+            className="relative shrink-0 w-8 h-8 flex items-center justify-center text-white text-xl font-light leading-none md:hidden"
+            aria-hidden
           >
-            {numberLabel} 
-          </span>
-          <span className="  md:w-[274px] w-full font-inter font-medium md:text-[16px] text-base leading-[34px] tracking-[0.01em] ">
-          {question}
+            <span
+              className={`absolute inset-0 flex items-center justify-center transition-opacity duration-200 ease-out ${
+                isOpen ? 'opacity-0' : 'opacity-100'
+              }`}
+            >
+              +
+            </span>
+            <span
+              className={`absolute inset-0 flex items-center justify-center transition-opacity duration-200 ease-out ${
+                isOpen ? 'opacity-100' : 'opacity-0'
+              }`}
+            >
+              −
+            </span>
           </span>
         </div>
 
-        {/* Middle: answer (same line as title when expanded), flex-1 when collapsed so icon stays right */}
-        <span className="flex-1 min-w-0 text-left">
+        {/* Block 2: answer (below on small, inline on md) */}
+        <span className="flex-1 min-w-0 text-left w-full md:w-auto">
           <AnimatePresence initial={false}>
             {isOpen ? (
               <motion.p
@@ -60,7 +82,7 @@ export default function FAQItem({
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.25, ease: 'easeOut' }}
-                className="text-white font-inter font-normal sm:text-base text-sm "
+                className="text-white font-inter font-normal sm:text-base text-sm leading-relaxed"
               >
                 {answer}
               </motion.p>
@@ -68,11 +90,9 @@ export default function FAQItem({
           </AnimatePresence>
         </span>
 
-        {/* Right: + / − in the same place */}
-        <span
-          className="relative shrink-0 w-8 h-8 flex items-center justify-center text-white text-xl font-light leading-none"
-          aria-hidden
-        >
+        {/* + / − visible on md only (end of row) */}
+        <span className="hidden md:inline-flex shrink-0" aria-hidden>
+          <span className="relative w-8 h-8 flex items-center justify-center text-white text-xl font-light leading-none">
           <span
             className={`absolute inset-0 flex items-center justify-center transition-opacity duration-200 ease-out ${
               isOpen ? 'opacity-0' : 'opacity-100'
@@ -86,6 +106,7 @@ export default function FAQItem({
             }`}
           >
             −
+          </span>
           </span>
         </span>
       </button>
