@@ -25,7 +25,7 @@ const stats = [
 
 export default function About() {
   return (
-    <section id="about" className="py-24 bg-[#0a0a0a] text-white">
+    <section id="about" className="pt-24 pb-10 bg-[#0a0a0a] text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* --- Top Row: Heading & Description --- */}
@@ -100,7 +100,7 @@ export default function About() {
           </motion.div>
 
           {/* Right: Stats Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 h-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 items-end end gap-6  h-full">
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
@@ -111,8 +111,8 @@ export default function About() {
                 transition={{ delay: 0.2 + (index * 0.1) }}
                 className="
                   bg-transparent border border-white/20 rounded-2xl p-8 
-                  flex flex-col justify-start
-                  hover:bg-white/5 transition-colors duration-300
+                  flex flex-col justify-between
+                  hover:bg-white/5 transition-colors duration-300 h-[80%]
                 "
               >
                 <div className="text-6xl font-bold text-white mb-6">

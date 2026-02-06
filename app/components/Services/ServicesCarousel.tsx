@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper/modules';
@@ -14,9 +14,16 @@ const ChevronRightIcon = ChevronRightIconImport as React.FC<IconProps>;
 
 const CARD_WIDTH_NARROW = 193;
 const CARD_WIDTH_EXPANDED = 420;
-const EXTEND_DURATION_MS = 500;
-const TEXT_APPEAR_DELAY_MS = 150;
+const EXTEND_DURATION_MS = 600;
+const TEXT_APPEAR_DELAY_MS = 120;
 const SM_BREAKPOINT = 640;
+/** Smooth ease-out for expand, text, and visual transitions */
+const EASE_SMOOTH = 'cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+const RESIZE_DEBOUNCE_MS = 150;
+/** Delay before clearing hover when leaving a slide - prevents flicker when cursor is at slide edges */
+const HOVER_LEAVE_DELAY_MS = 220;
+/** Delay before setting hover when entering a slide - ignores quick grazes at edges */
+const HOVER_ENTER_DELAY_MS = 50;
 
 // Duplicate slides so loop works both left and right (Swiper needs enough slides)
 const loopSlides = [...services, ...services];
@@ -25,12 +32,84 @@ export default function ServicesCarousel() {
   const swiperRef = useRef<SwiperType | null>(null);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [isBelow640, setIsBelow640] = useState(false);
+  const updateTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const leaveTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const enterTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Debounce resize so we don't flicker when crossing breakpoint
+  useEffect(() => {
+    let timeoutId: ReturnType<typeof setTimeout>;
+    const check = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        setIsBelow640(window.innerWidth < SM_BREAKPOINT);
+      }, RESIZE_DEBOUNCE_MS);
+    };
+    setIsBelow640(window.innerWidth < SM_BREAKPOINT);
+    window.addEventListener('resize', check);
+    return () => {
+      window.removeEventListener('resize', check);
+      clearTimeout(timeoutId);
+    };
+  }, []);
+
+  // Schedule Swiper layout update after expand/collapse transition
+  const scheduleSwiperUpdate = useCallback(() => {
+    if (updateTimeoutRef.current) clearTimeout(updateTimeoutRef.current);
+    updateTimeoutRef.current = setTimeout(() => {
+      updateTimeoutRef.current = null;
+      swiperRef.current?.update();
+    }, EXTEND_DURATION_MS + 50);
+  }, []);
+
+  // Enter: set hover after short delay (cancels pending leave) – avoids edge flicker and quick grazes
+  const handleSlideEnter = useCallback((realIndex: number) => {
+    if (leaveTimeoutRef.current) {
+      clearTimeout(leaveTimeoutRef.current);
+      leaveTimeoutRef.current = null;
+    }
+    if (enterTimeoutRef.current) clearTimeout(enterTimeoutRef.current);
+    enterTimeoutRef.current = setTimeout(() => {
+      enterTimeoutRef.current = null;
+      setHoveredIndex(realIndex);
+      scheduleSwiperUpdate();
+    }, HOVER_ENTER_DELAY_MS);
+  }, [scheduleSwiperUpdate]);
+
+  // Leave: clear hover only after delay so moving to adjacent slide doesn’t briefly clear and flicker
+  const handleSlideLeave = useCallback(() => {
+    if (enterTimeoutRef.current) {
+      clearTimeout(enterTimeoutRef.current);
+      enterTimeoutRef.current = null;
+    }
+    if (leaveTimeoutRef.current) clearTimeout(leaveTimeoutRef.current);
+    leaveTimeoutRef.current = setTimeout(() => {
+      leaveTimeoutRef.current = null;
+      setHoveredIndex(null);
+      scheduleSwiperUpdate();
+    }, HOVER_LEAVE_DELAY_MS);
+  }, [scheduleSwiperUpdate]);
+
+  // When cursor leaves the carousel area entirely, clear hover and all pending timeouts
+  const handleCarouselLeave = useCallback(() => {
+    if (enterTimeoutRef.current) {
+      clearTimeout(enterTimeoutRef.current);
+      enterTimeoutRef.current = null;
+    }
+    if (leaveTimeoutRef.current) {
+      clearTimeout(leaveTimeoutRef.current);
+      leaveTimeoutRef.current = null;
+    }
+    setHoveredIndex(null);
+    scheduleSwiperUpdate();
+  }, [scheduleSwiperUpdate]);
 
   useEffect(() => {
-    const check = () => setIsBelow640(window.innerWidth < SM_BREAKPOINT);
-    check();
-    window.addEventListener('resize', check);
-    return () => window.removeEventListener('resize', check);
+    return () => {
+      if (updateTimeoutRef.current) clearTimeout(updateTimeoutRef.current);
+      if (leaveTimeoutRef.current) clearTimeout(leaveTimeoutRef.current);
+      if (enterTimeoutRef.current) clearTimeout(enterTimeoutRef.current);
+    };
   }, []);
 
   return (
@@ -87,21 +166,24 @@ export default function ServicesCarousel() {
             <ServiceSlider theme="dark" />
           </div>
         ) : (
-        <div className="w-full max-w-[402px] sm:max-w-[615px] md:max-w-[832px] lg:max-w-[1278px] overflow-hidden">
+        <div
+          className="w-full max-w-[402px] sm:max-w-[615px] md:max-w-[832px] lg:max-w-[1278px] overflow-hidden"
+          onMouseLeave={handleCarouselLeave}
+        >
           <Swiper
             onSwiper={(swiper) => {
               swiperRef.current = swiper;
             }}
-            modules={[Navigation , Autoplay]}
+            modules={[Navigation, Autoplay]}
             spaceBetween={24}
             slidesPerView="auto"
             centeredSlides={false}
             loop={true}
-            loopAdditionalSlides={0}
-            observer={true}
-            observeParents={true}
-            speed={500}
-            autoplay={{ delay: 4000, disableOnInteraction: false }}
+            loopAdditionalSlides={3}
+            observer={false}
+            observeParents={false}
+            speed={600}
+            autoplay={{ delay: 4500, disableOnInteraction: false }}
             breakpoints={{
               320: { spaceBetween: 16 },
               640: { spaceBetween: 18 },
@@ -119,28 +201,38 @@ export default function ServicesCarousel() {
                   className="shrink-0! flex justify-start"
                   style={{
                     width: isHovered ? CARD_WIDTH_EXPANDED : CARD_WIDTH_NARROW,
-                    transition: `width ${EXTEND_DURATION_MS}ms ease-out`,
+                    transition: `width ${EXTEND_DURATION_MS}ms ${EASE_SMOOTH}`,
                   }}
-                  onMouseEnter={() => setHoveredIndex(realIndex)}
-                  onMouseLeave={() => setHoveredIndex(null)}
+                  onMouseEnter={() => handleSlideEnter(realIndex)}
+                  onMouseLeave={handleSlideLeave}
                 >
                   {/* Card aligned left so it only extends to the right */}
                   <article
                     className="relative h-[499px] rounded-[30px] overflow-hidden group shrink-0 origin-left"
                     style={{
                       width: isHovered ? CARD_WIDTH_EXPANDED : CARD_WIDTH_NARROW,
-                      transition: `width ${EXTEND_DURATION_MS}ms ease-out`,
+                      transition: `width ${EXTEND_DURATION_MS}ms ${EASE_SMOOTH}`,
                     }}
                   >
                     {/* Blue glow / border effect */}
-                    <div className="absolute inset-0 rounded-[30px] ring-2 ring-white/20 ring-inset shadow-[0_0_30px_rgba(0,138,201,0.25)] group-hover:shadow-[0_0_40px_rgba(0,138,201,0.35)] transition-shadow duration-500 z-10 pointer-events-none" />
+                    <div
+                      className="absolute inset-0 rounded-[30px] ring-2 ring-white/20 ring-inset z-10 pointer-events-none"
+                      style={{
+                        boxShadow: isHovered ? '0 0 40px rgba(0,138,201,0.35)' : '0 0 30px rgba(0,138,201,0.25)',
+                        transition: `box-shadow ${EXTEND_DURATION_MS}ms ${EASE_SMOOTH}`,
+                      }}
+                    />
                     <div className="absolute inset-0 bg-sky-900/90 z-1">
                       <Image
                         src={service.image}
                         alt={service.title}
                         fill
                         sizes="(max-width: 1024px) 33vw, 420px"
-                        className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                        className="object-cover object-center"
+                        style={{
+                          transform: isHovered ? 'scale(1.05)' : 'scale(1)',
+                          transition: `transform ${EXTEND_DURATION_MS}ms ${EASE_SMOOTH}`,
+                        }}
                         loading="lazy"
                       />
                     </div>
@@ -158,13 +250,13 @@ export default function ServicesCarousel() {
                         {service.title}
                       </h2>
                     </div>
-                    {/* Bottom gradient + description: fades and slides up slowly after expand */}
+                    {/* Bottom gradient + description: fades and slides up smoothly after expand */}
                     <div
                       className="absolute bottom-0 left-0 right-0 z-2 bg-linear-to-t from-black/85 via-black/50 to-transparent pt-16 pb-6 px-6"
                       style={{
                         opacity: isHovered && service.description ? 1 : 0,
-                        transform: isHovered && service.description ? 'translateY(0)' : 'translateY(12px)',
-                        transition: `opacity ${EXTEND_DURATION_MS}ms ease-out ${TEXT_APPEAR_DELAY_MS}ms, transform ${EXTEND_DURATION_MS}ms ease-out ${TEXT_APPEAR_DELAY_MS}ms`,
+                        transform: isHovered && service.description ? 'translateY(0)' : 'translateY(10px)',
+                        transition: `opacity ${EXTEND_DURATION_MS}ms ${EASE_SMOOTH} ${TEXT_APPEAR_DELAY_MS}ms, transform ${EXTEND_DURATION_MS}ms ${EASE_SMOOTH} ${TEXT_APPEAR_DELAY_MS}ms`,
                       }}
                       aria-hidden={!isHovered}
                     >

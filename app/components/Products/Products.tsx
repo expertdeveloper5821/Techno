@@ -62,12 +62,12 @@ export default function Products() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeInRight}
-            className="space-y-4"
+            className=""
           >
             {products.map((product) => (
               <div 
                 key={product.id}
-                className="group p-8 rounded-2xl bg-[#222] border border-white/5 hover:bg-[#0094DB] transition-all duration-300 cursor-pointer"
+                className="group p-8  bg-[#222] border-b border-white/50 hover:bg-[#0094DB] transition-all duration-300 cursor-pointer"
               >
                 <div className="flex justify-between items-start mb-4">
                   <h3 className="text-xl font-bold text-white group-hover:text-white transition-colors">
