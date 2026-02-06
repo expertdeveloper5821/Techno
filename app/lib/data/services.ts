@@ -3,25 +3,25 @@ import { Service } from '../types';
 export const services: Service[] = [
   {
     title: 'Custom Software Development',
-    image: '/services/digital-marketing.jpg',
+    image: '/services/SLIDE1.png',
     description:
       'We build tailored software solutions that align with your business goals, from enterprise applications to workflow automation and integrations.',
   },
   {
     title: 'Web & Mobile Applications',
-    image: '/services/web-development.jpg',
+    image: '/services/SLIDE2.png',
     description:
       'From responsive web apps to native and cross-platform mobile applications, we deliver user-centric solutions that perform at scale.',
   },
   {
     title: 'Dedicated Development Teams',
-    image: '/services/mobile-app.jpg',
+    image: '/services/SLIDE3.png',
     description:
       'Our dedicated development teams work as an extension of your business, providing skilled professionals, clear communication, and flexible collaboration to deliver reliable results.',
   },
   {
     title: 'Product Design & UX',
-    image: '/services/ui-ux.jpg',
+    image: '/services/SLIDE4.png',
     description:
       'Human-centered design and research-driven UX to create intuitive, accessible products that users love and that drive business outcomes.',
   },
@@ -39,7 +39,7 @@ export const services: Service[] = [
   },
   {
     title: 'Web Development',
-    image: '/services/web-development.jpg',
+    image: '/services/SLIDE5.png',
     description:
       'Modern web development with cutting-edge technologies for fast, secure, and maintainable applications.',
   },
@@ -57,7 +57,7 @@ export const services: Service[] = [
   },
   {
     title: 'Cloud Computing',
-    image: '/services/cloud-computing.jpg',
+    image: '/services/SLIDE5.png',
     description:
       'Cloud migration, architecture, and optimization to reduce costs and improve performance.',
   },

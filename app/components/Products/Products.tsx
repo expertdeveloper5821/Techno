@@ -1,11 +1,14 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { fadeInUp, fadeInRight } from '@/app/lib/animations';
 import Image from 'next/image';
 import { products } from '@/app/lib/data/products';
 
 export default function Products() {
+  const [activeProduct, setActiveProduct] = useState(products[0]);
+
   return (
     <section id="products" className="py-24 bg-[#0000] text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -39,13 +42,13 @@ export default function Products() {
               transition={{ delay: 0.2 }}
               className="relative w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-white"
             >
-              {/* Image showing the top part as requested */}
               <Image
-                src="/blocktech.png"
-                alt="Product Preview"
+                key={activeProduct.id}
+                src={activeProduct.image}
+                alt={activeProduct.title}
                 width={800}
                 height={600}
-                className="w-full h-auto object-cover object-top"
+                className="w-full h-auto object-cover object-top transition-opacity duration-300"
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 loading="lazy"
               />
@@ -67,6 +70,7 @@ export default function Products() {
             {products.map((product) => (
               <div 
                 key={product.id}
+                onMouseEnter={() => setActiveProduct(product)}
                 className="group p-8  bg-[#222] border-b border-white/50 hover:bg-[#0094DB] transition-all duration-300 cursor-pointer"
               >
                 <div className="flex justify-between items-start mb-4">
