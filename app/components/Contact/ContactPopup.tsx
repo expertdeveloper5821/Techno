@@ -91,7 +91,7 @@ export default function ContactPopup() {
 
   return (
     <div
-      className="  fixed  inset-0 z-100 flex items-center justify-center p-4 bg-red-500"
+      className="  fixed  inset-0 z-100 flex items-center justify-center p-4 "
       role="dialog"
       aria-modal="true"
       aria-labelledby="contact-popup-title"
