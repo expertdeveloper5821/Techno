@@ -13,7 +13,7 @@ const row2Extended = [...technologiesRow2, ...technologiesRow2, ...technologiesR
 
 export default function Technologies() {
   return (
-    <section className="py-24 bg-[#0a0a0a] overflow-hidden">
+    <section className="py-20 bg-[#0a0a0a] overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-16">
         <motion.div
           initial="hidden"
@@ -29,7 +29,7 @@ export default function Technologies() {
         </motion.div>
       </div>
 
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-8 px-14">
         {/* --- Row 1 Slider (Left Scroll) --- */}
         <div className="w-full">
           <Swiper

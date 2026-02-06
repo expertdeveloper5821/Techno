@@ -33,7 +33,7 @@ export default function Home() {
         Unified Hero Section Wrapper 
         - This creates the continuous Blue-to-Black gradient behind Header, Text, and Services
       */}
-      <div className="relative bg-linear-to-b from-[#0073a8] via-[#004b75] to-[#0a0a0a]">
+      <div className="relative bg-[linear-gradient(180deg,#0094DB_0%,#00549A_70.41%,#030303_94.02%)]">
         <Header />
         <Hero />
       </div>

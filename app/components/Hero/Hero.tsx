@@ -1,8 +1,13 @@
 'use client';
 
+import React from 'react';
 import { motion } from 'framer-motion';
 import { fadeInUp } from '@/app/lib/animations';
 import ServiceSlider from '../Services/ServiceSlider'; // Import the slider
+import ChevronRightIconImport from '@/app/lib/icon/icon';
+
+type IconProps = React.SVGProps<SVGSVGElement> & { width?: number; height?: number; color?: string };
+const ChevronRightIcon = ChevronRightIconImport as React.FC<IconProps>;
 
 export default function Hero() {
   return (
@@ -16,11 +21,11 @@ export default function Hero() {
             animate="visible"
             variants={fadeInUp}
             // Adjusted sizing: starts at 4xl, grows to 5xl/6xl/7xl on larger screens
-            className="text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight tracking-tight"
+            className="font-inter font-bold text-[58px] leading-[70px] tracking-[0.03em] text-white " style={{
+              
+            }}
           >
-            More Growth, Less work
-            <br />
-            <span className="block mt-2">Get your time back</span>
+          Software Built To Scale Your Business, Not Slow It Down
           </motion.h1>
 
           <motion.p
@@ -28,10 +33,9 @@ export default function Hero() {
             animate="visible"
             variants={fadeInUp}
             transition={{ delay: 0.2 }}
-            className="text-white/80 text-lg sm:text-xl max-w-3xl mx-auto mb-10 leading-relaxed font-light"
+            className="text-white text-lg sm:text-xl max-w-3xl mx-auto mb-10 leading-relaxed  md:pt-10"
           >
-            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has.
-          </motion.p>
+We build custom applications and provide dedicated development teams that work as your team—no vendor games, just reliable engineering.          </motion.p>
 
           <motion.div
             initial="hidden"
@@ -43,24 +47,10 @@ export default function Hero() {
               href="#contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              // White pill button with blue text matching the design
-              className="inline-flex items-center bg-white text-[#028cd1] px-7 py-4 rounded-full text-lg font-bold hover:bg-gray-100 transition-colors shadow-lg"
+              className="group inline-flex gap-2 items-center bg-white text-[#028cd1] px-7 py-4 rounded-full text-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg"
             >
-              Get Started
-              <svg
-                className="w-4 h-4 ml-2"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M5 12h14M13 6l6 6-6 6"
-                />
-              </svg>
+              Start Your Project
+              <ChevronRightIcon width={7} height={11} color="#028cd1" className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-0.5" />
             </motion.a>
           </motion.div>
         </div>

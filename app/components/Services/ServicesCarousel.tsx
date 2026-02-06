@@ -7,6 +7,10 @@ import { Navigation, Autoplay } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
 import { services } from '@/app/lib/data/services';
 import ServiceSlider from './ServiceSlider';
+import ChevronRightIconImport from '@/app/lib/icon/icon';
+
+type IconProps = React.SVGProps<SVGSVGElement> & { width?: number; height?: number; color?: string };
+const ChevronRightIcon = ChevronRightIconImport as React.FC<IconProps>;
 
 const CARD_WIDTH_NARROW = 193;
 const CARD_WIDTH_EXPANDED = 420;
@@ -30,8 +34,13 @@ export default function ServicesCarousel() {
   }, []);
 
   return (
-    <section className="relative py-24 overflow-hidden min-h-[900px] flex flex-col justify-center bg-linear-to-b from-[#0c4a6e] via-[#0369a1] to-[#0c4a6e]">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-10">
+    <section
+      className="relative overflow-hidden min-h-screen flex flex-col justify-start pt-16 pb-24"
+      style={{
+        background: 'linear-gradient(180deg, #027EBA 0%, rgba(2, 126, 186, 0.6) 25%, #00549A 55%, #030303 94%, #000000 80%)',
+      }}
+    >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-8">
         {/* Header: Title + CTA */}
         <div className="flex flex-col lg:flex-row justify-between items-start gap-6 lg:gap-8">
           <h2 className="text-4xl md:text-5xl lg:text-5xl font-bold text-white leading-[1.1] tracking-tight max-w-4xl">
@@ -39,9 +48,9 @@ export default function ServicesCarousel() {
           </h2>
           <a
             href="#services"
-            className="shrink-0 inline-flex items-center justify-center px-8 py-3.5 text-base font-bold text-[#008AC9] bg-white rounded-full hover:bg-white/95 transition-all duration-200 shadow-lg whitespace-nowrap"
+            className="group shrink-0 inline-flex items-center justify-center gap-2 px-8 py-3.5 text-base font-bold text-[#000000] bg-white rounded-full hover:bg-white/95 transition-all duration-200 shadow-lg whitespace-nowrap"
           >
-            Explore Services &gt;
+            Explore Services <ChevronRightIcon width={7} height={11} color="#000000" className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-0.5" />
           </a>
         </div>
 
@@ -71,8 +80,8 @@ export default function ServicesCarousel() {
         </div>
       </div>
 
-      {/* Slider only: ServiceSlider below sm, carousel on sm+ */}
-      <div className="w-full relative mt-6 flex justify-center px-4 sm:px-6">
+      {/* Slider at top: ServiceSlider below sm, carousel on sm+ */}
+      <div className="w-full relative mt-4 flex justify-center px-4 sm:px-6">
         {isBelow640 ? (
           <div className="w-full max-w-full">
             <ServiceSlider theme="dark" />
@@ -131,7 +140,7 @@ export default function ServicesCarousel() {
                         alt={service.title}
                         fill
                         sizes="(max-width: 1024px) 33vw, 420px"
-                        className="object-cover object-left group-hover:scale-105 transition-transform duration-700 ease-out"
+                        className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                         loading="lazy"
                       />
                     </div>

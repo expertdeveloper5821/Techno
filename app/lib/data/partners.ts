@@ -12,5 +12,6 @@ export const partners: Partner[] = [
   { id: '9', name: 'SYNERGY', logoGray: '/partners/synergy.png', logoColor: '/partners/synergy-color.png' },
   { id: '10', name: 'TECHVED', logoGray: '/partners/techved.png', logoColor: '/partners/techved-color.png' },
   { id: '11', name: 'beast', logoGray: '/partners/beast.png', logoColor: '/partners/beast-gray.png' },
+  { id: '12', name: 'Sourcebae', logoGray: '/partners/sourcebae.png', logoColor: '/partners/sourcebae-color.png' },
 ];
 

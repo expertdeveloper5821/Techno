@@ -1,9 +1,16 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import Navigation from './Navigation';
+import { IoChevronForwardOutline } from "react-icons/io5";
+import { FaChevronRight } from "react-icons/fa6";
+import ChevronRightIconImport from '@/app/lib/icon/icon';
+
+/** Props type for the icon so className and other SVG props are accepted */
+type IconProps = React.SVGProps<SVGSVGElement> & { width?: number; height?: number; color?: string };
+const ChevronRightIcon = ChevronRightIconImport as React.FC<IconProps>;
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -42,15 +49,15 @@ export default function Header() {
             <Navigation />
           </div>
 
-          {/* Desktop CTA Button */}
+          {/* Desktop CTA Button — pill-shaped, vibrant blue, "Contact us >" */}
           <div className="hidden lg:block pr-2">
             <motion.a
               href="#contact"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-[#008AC9] text-white px-8 py-2.5 rounded-full font-semibold hover:bg-[#007bb3] transition-colors"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.98 }}
+              className="group inline-flex items-center justify-center gap-1.5 bg-[#0099DD] text-white px-8 py-3.5 rounded-full font-semibold text-base hover:bg-[#0088c4] transition-colors shadow-md"
             >
-              Contact us &gt;
+              Contact us <ChevronRightIcon width={7} height={11} color="#fff" className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-0.5" />
             </motion.a>
           </div>
 
@@ -60,9 +67,10 @@ export default function Header() {
             className="lg:hidden text-dark-bg p-2"
             aria-label="Toggle menu"
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={isMobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
-            </svg>
+            <FaChevronRight  
+            className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"/>
+              {/* <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={isMobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
+            </svg> */}
           </button>
         </div>
 

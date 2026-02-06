@@ -98,7 +98,7 @@ export default function Contact() {
     <section id="contact" className="py-16 sm:pb-20  pt-5 bg-[#161616] relative z-10 ">
       <div className= "bg-[#0a0a0a] h-30 w-full   absolute top-0 left-0 right-0 z-[-1] " ></div>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1068px]">
-        <div className="rounded-2xl overflow-hidden bg-[linear-gradient(193.06deg,#52BBEF_5.92%,#0181EC_89.21%)] p-8 sm:p-10 lg:p-12 static -top-24 z-10">
+        <div className="rounded-2xl overflow-hidden bg-[#0094DB] p-8 sm:p-10 lg:p-12 static -top-24 z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
             {/* Left – Contact form */}
             <div>

@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import type { Swiper as SwiperType } from 'swiper';
 import { Pagination, Autoplay, Navigation, EffectCoverflow } from 'swiper/modules';
 import { services } from '@/app/lib/data/services';
 
@@ -13,6 +14,12 @@ interface ServiceSliderProps {
 export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
   const isDark = theme === 'dark';
   const [isLoaded, setIsLoaded] = useState(false);
+  const swiperRef = useRef<SwiperType | null>(null);
+
+  /** Slide to the clicked slide so it moves to center */
+  const handleSlideClick = useCallback((index: number) => {
+    swiperRef.current?.slideToLoop(index, 500);
+  }, []);
 
   const activeShadow = isDark 
     ? 'shadow-[0_0_50px_rgba(0,138,201,0.5)]' 
@@ -84,6 +91,7 @@ export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
         autoplay={{ delay: 3000, disableOnInteraction: false }}
         pagination={{ clickable: true, dynamicBullets: true }}
         modules={[EffectCoverflow, Pagination, Autoplay, Navigation]}
+        onSwiper={(swiper) => { swiperRef.current = swiper; }}
         onInit={() => setIsLoaded(true)}
         className={`w-full py-12 pb-20 transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
       >
@@ -91,9 +99,19 @@ export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
           <SwiperSlide key={`${service.title}-${index}`} className="w-[260px]! md:w-[320px]! lg:w-[380px]!">
             {({ isActive }) => (
               <div
+                role="button"
+                tabIndex={0}
+                onClick={() => handleSlideClick(index)}
+                onFocus={() => handleSlideClick(index)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    handleSlideClick(index);
+                  }
+                }}
                 className={`
                   relative h-[400px] md:h-[520px] w-full 
-                  rounded-[32px] overflow-hidden
+                  rounded-[32px] overflow-hidden cursor-pointer
                   transition-all duration-500 ease-out
                   ${isActive 
                     ? `${activeShadow} opacity-100 z-10` 

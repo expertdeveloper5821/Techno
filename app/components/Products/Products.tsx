@@ -7,7 +7,7 @@ import { products } from '@/app/lib/data/products';
 
 export default function Products() {
   return (
-    <section id="products" className="py-24 bg-[#1a1a1a] text-white">
+    <section id="products" className="py-24 bg-[#0000] text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* The Grid container defines the scroll area */}
@@ -18,7 +18,7 @@ export default function Products() {
               sticky + top-32 makes this side stay on screen 
               while the right side moves as you scroll the page.
           */}
-          <div className="lg:sticky lg:top-32 h-fit">
+          <div className="lg:sticky lg:top-5 h-fit">
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -26,9 +26,8 @@ export default function Products() {
               variants={fadeInUp}
               className="mb-10"
             >
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight mb-6">
-                Discover How We <br/> Transform Ideas Into <br/>
-                <span className="text-gray-400">Impactful Products</span>
+              <h2 className="text-4xl sm:text-5xl lg:text-[44px] font-semibold leading-tight tracking-tight mb-6">
+                Discover How We Transform Ideas Into Impactful digital Products
               </h2>
             </motion.div>
 
@@ -68,20 +67,20 @@ export default function Products() {
             {products.map((product) => (
               <div 
                 key={product.id}
-                className="group p-8 rounded-2xl bg-[#222] border border-white/5 hover:bg-[#2a2a2a] transition-all duration-300 cursor-pointer"
+                className="group p-8 rounded-2xl bg-[#222] border border-white/5 hover:bg-[#0094DB] transition-all duration-300 cursor-pointer"
               >
                 <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-xl font-bold text-white group-hover:text-[#008AC9] transition-colors">
+                  <h3 className="text-xl font-bold text-white group-hover:text-white transition-colors">
                     {product.title}
                   </h3>
                   {/* Arrow Icon */}
-                  <span className="text-gray-500 group-hover:text-[#008AC9] transition-colors transform group-hover:translate-x-1 duration-300">
+                  <span className="text-gray-500 group-hover:text-white transition-colors transform group-hover:translate-x-1 duration-300">
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                     </svg>
                   </span>
                 </div>
-                <p className="text-gray-400 text-sm leading-relaxed">
+                <p className="text-gray-400 group-hover:text-white text-sm leading-relaxed transition-colors duration-300">
                   {product.description}
                 </p>
               </div>
