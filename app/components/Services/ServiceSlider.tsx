@@ -11,9 +11,13 @@ interface ServiceSliderProps {
   theme?: 'dark' | 'light';
 }
 
+const DETAIL_TRANSITION_MS = 450;
+const EASE_SLIDE = 'cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+
 export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
   const isDark = theme === 'dark';
   const [isLoaded, setIsLoaded] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const swiperRef = useRef<SwiperType | null>(null);
 
   /** Slide to the clicked slide so it moves to center */
@@ -97,48 +101,98 @@ export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
       >
         {services.map((service, index) => (
           <SwiperSlide key={`${service.title}-${index}`} className="w-[260px]! md:w-[320px]! lg:w-[380px]!">
-            {({ isActive }) => (
-              <div
-                role="button"
-                tabIndex={0}
-                onClick={() => handleSlideClick(index)}
-                onFocus={() => handleSlideClick(index)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    handleSlideClick(index);
-                  }
-                }}
-                className={`
-                  relative h-[400px] md:h-[520px] w-full 
-                  rounded-[32px] overflow-hidden cursor-pointer
-                  transition-all duration-500 ease-out
-                  ${isActive 
-                    ? `${activeShadow} opacity-100 z-10` 
-                    : `opacity-60 hover:opacity-80 z-0`
-                  }
-                `}
-              >
-                <div className="absolute inset-0 w-full h-full bg-gray-900">
-                  <Image
-                    src={service.image}
-                    alt={service.title}
-                    fill
-                    sizes="(max-width: 768px) 260px, (max-width: 1024px) 320px, 380px"
-                    className={`object-cover transition-transform duration-700 ${isActive ? 'scale-110' : 'scale-100'}`}
-                    loading="lazy"
-                  />
-                  <div className={`absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent transition-opacity duration-300 ${isActive ? 'opacity-80' : 'opacity-60'}`} />
-                </div>
+            {({ isActive }) => {
+              const showDetails = hoveredIndex === index;
+              return (
+                <div
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => handleSlideClick(index)}
+                  onFocus={() => handleSlideClick(index)}
+                  onMouseEnter={() => setHoveredIndex(index)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      handleSlideClick(index);
+                    }
+                  }}
+                  className={`
+                    relative h-[400px] md:h-[520px] w-full 
+                    rounded-[32px] overflow-hidden cursor-pointer
+                    transition-all duration-500 ease-out
+                    ${isActive 
+                      ? `${activeShadow} opacity-100 z-10` 
+                      : `opacity-60 hover:opacity-80 z-0`
+                    }
+                  `}
+                >
+                  {/* Image layer */}
+                  <div className="absolute inset-0 w-full h-full bg-gray-900">
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      sizes="(max-width: 768px) 260px, (max-width: 1024px) 320px, 380px"
+                      className={`object-cover transition-transform duration-700 ${showDetails ? 'scale-105' : 'scale-100'}`}
+                      loading="lazy"
+                    />
+                    <div 
+                      className="absolute inset-0 transition-opacity duration-300"
+                      style={{
+                        background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, transparent 100%)',
+                        opacity: showDetails ? 0.5 : 0.7,
+                      }}
+                    />
+                  </div>
 
-                <div className="absolute bottom-0 left-0 w-full p-6 md:p-8 text-center">
-                  <h3 className={`font-bold text-white tracking-wide transition-all duration-300 drop-shadow-md ${isActive ? 'text-2xl md:text-3xl translate-y-0' : 'text-lg translate-y-2'}`}>
-                    {service.title}
-                  </h3>
-                  <div className={`h-1.5 bg-[#008AC9] mx-auto rounded-full mt-4 transition-all duration-500 ${isActive ? 'w-16 opacity-100' : 'w-0 opacity-0'}`} />
+                  {/* Default title bar – visible when details are hidden */}
+                  <div 
+                    className="absolute bottom-0 left-0 w-full p-6 md:p-8 text-center transition-opacity duration-300"
+                    style={{ opacity: showDetails ? 0 : 1 }}
+                    aria-hidden={showDetails}
+                  >
+                    <h3 className="font-bold text-white tracking-wide text-lg md:text-xl drop-shadow-md">
+                      {service.title}
+                    </h3>
+                    <div className="h-1.5 bg-[#008AC9] w-12 mx-auto rounded-full mt-3" />
+                  </div>
+
+                  {/* Sliding details panel – slides up from bottom on hover/active */}
+                  <div
+                    className="absolute left-0 right-0 bottom-0 w-full flex flex-col justify-end rounded-b-[32px] overflow-hidden pointer-events-none opacity-70"
+                    style={{
+                      height: '58%',
+                      transform: showDetails ? 'translateY(0)' : 'translateY(100%)',
+                      transition: `transform ${DETAIL_TRANSITION_MS}ms ${EASE_SLIDE}`,
+                    }}
+                    aria-hidden={!showDetails}
+                  >
+                    <div 
+                      className="flex flex-col justify-end flex-1 min-h-0 p-6 md:p-8 pb-7 text-center text-white"
+                      style={{
+                        background: isDark 
+                          ? 'linear-gradient(180deg, transparent 0%, rgba(0, 82, 154, 0.97) 18%, rgba(0, 138, 201, 0.98) 100%)'
+                          : 'linear-gradient(180deg, transparent 0%, rgba(0, 99, 221, 0.96) 18%, rgba(0, 136, 201, 0.98) 100%)',
+                      }}
+                    >
+                      <h3 className="font-bold text-xl md:text-2xl lg:text-3xl tracking-wide drop-shadow-sm mb-3">
+                        {service.title}
+                      </h3>
+                      {service.description && (
+                        <p className="text-white/95 text-sm md:text-base leading-relaxed line-clamp-3 mb-5">
+                          {service.description}
+                        </p>
+                      )}
+                      <span className="inline-flex items-center justify-center gap-1 text-sm md:text-base font-semibold text-white/95 hover:text-white">
+                        Read more
+                        <span className="inline-block" aria-hidden>&gt;&gt;</span>
+                      </span>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            )}
+              );
+            }}
           </SwiperSlide>
         ))}
       </Swiper>
