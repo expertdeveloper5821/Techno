@@ -7,7 +7,7 @@ import { Navigation, Autoplay } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
 import { services } from '@/app/lib/data/services';
 import ServiceSlider from './ServiceSlider';
-import ChevronRightIconImport from '@/app/lib/icon/icon';
+import ChevronRightIconImport from '@/app/lib/icon/Icon';
 
 type IconProps = React.SVGProps<SVGSVGElement> & { width?: number; height?: number; color?: string };
 const ChevronRightIcon = ChevronRightIconImport as React.FC<IconProps>;

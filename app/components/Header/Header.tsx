@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Navigation from './Navigation';
 import { IoChevronForwardOutline } from "react-icons/io5";
 import { FaChevronRight } from "react-icons/fa6";
-import ChevronRightIconImport from '@/app/lib/icon/icon';
+import ChevronRightIconImport from '@/app/lib/icon/Icon';
 
 /** Props type for the icon so className and other SVG props are accepted */
 type IconProps = React.SVGProps<SVGSVGElement> & { width?: number; height?: number; color?: string };
