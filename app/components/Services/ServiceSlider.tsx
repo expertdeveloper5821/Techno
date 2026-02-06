@@ -92,7 +92,11 @@ export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
           modifier: 1,
           slideShadows: true,
         }}
-        autoplay={{ delay: 3000, disableOnInteraction: false }}
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        }}
         pagination={{ clickable: true, dynamicBullets: true }}
         modules={[EffectCoverflow, Pagination, Autoplay, Navigation]}
         onSwiper={(swiper) => { swiperRef.current = swiper; }}

@@ -38,7 +38,7 @@ export default function FAQItem({
       <button
         type="button"
         onClick={onToggle}
-        className={`w-full flex flex-col md:flex-row md:items-start text-left px-6 gap-[65px] ${
+        className={`w-full flex flex-col md:flex-row md:items-start text-left px-6 md:gap-[65px] gap-[20] ${
           isOpen ? 'min-h-0 py-4' : 'min-h-[96px] py-[31px]'
         }`}
         style={{ transition: `padding ${ACCORDION_DURATION}s cubic-bezier(${ACCORDION_EASE.join(',')}), min-height ${ACCORDION_DURATION}s cubic-bezier(${ACCORDION_EASE.join(',')})` }}

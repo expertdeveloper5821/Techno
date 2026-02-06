@@ -91,7 +91,7 @@ export default function ContactPopup() {
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+      className="  fixed  inset-0 z-100 flex items-center justify-center p-4 bg-red-500"
       role="dialog"
       aria-modal="true"
       aria-labelledby="contact-popup-title"
@@ -120,9 +120,7 @@ export default function ContactPopup() {
         <h2 id="contact-popup-title" className="text-2xl font-bold text-white mb-1 pr-10">
           Get in touch
         </h2>
-        <p className="text-white/90 text-sm mb-6">
-          We&apos;d love to hear from you. Fill out the form below.
-        </p>
+       
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -137,7 +135,7 @@ export default function ContactPopup() {
                 value={formData.firstName}
                 onChange={handleChange}
                 placeholder="First name"
-                className="w-full px-4 py-3 rounded-lg bg-[#0ea5e9]/20 border border-white/40 text-white placeholder-gray-300 focus:border-white focus:outline-none focus:ring-1 focus:ring-white/50 transition-colors"
+                className="w-full px-4 py-2 rounded-lg bg-[#0ea5e9]/20 border border-white/40 text-white placeholder-gray-300 focus:border-white focus:outline-none focus:ring-1 focus:ring-white/50 transition-colors"
               />
             </div>
             <div>
@@ -151,7 +149,7 @@ export default function ContactPopup() {
                 value={formData.lastName}
                 onChange={handleChange}
                 placeholder="Last name"
-                className="w-full px-4 py-3 rounded-lg bg-[#0ea5e9]/20 border border-white/40 text-white placeholder-gray-300 focus:border-white focus:outline-none focus:ring-1 focus:ring-white/50 transition-colors"
+                className="w-full px-4 py-2 rounded-lg bg-[#0ea5e9]/20 border border-white/40 text-white placeholder-gray-300 focus:border-white focus:outline-none focus:ring-1 focus:ring-white/50 transition-colors"
               />
             </div>
           </div>
@@ -167,7 +165,7 @@ export default function ContactPopup() {
               value={formData.email}
               onChange={handleChange}
               placeholder="you@company.com"
-              className="w-full px-4 py-3 rounded-lg bg-[#0ea5e9]/20 border border-white/40 text-white placeholder-gray-300 focus:border-white focus:outline-none focus:ring-1 focus:ring-white/50 transition-colors"
+              className="w-full px-4 py-2 rounded-lg bg-[#0ea5e9]/20 border border-white/40 text-white placeholder-gray-300 focus:border-white focus:outline-none focus:ring-1 focus:ring-white/50 transition-colors"
             />
           </div>
 
@@ -179,7 +177,7 @@ export default function ContactPopup() {
               <select
                 name="countryCode"
                 aria-label="Country code"
-                className="px-3 py-3 bg-transparent text-white text-sm border-r border-white/40 focus:outline-none"
+                className="px-3 py-2 bg-transparent text-white text-sm border-r border-white/40 focus:outline-none"
               >
                 <option value="IN" className="bg-[#004b75] text-white">IN</option>
                 <option value="US" className="bg-[#004b75] text-white">US</option>
@@ -192,7 +190,7 @@ export default function ContactPopup() {
                 value={formData.phone}
                 onChange={handleChange}
                 placeholder="+91000-0000"
-                className="flex-1 min-w-0 px-4 py-3 bg-transparent text-white placeholder-gray-300 focus:outline-none"
+                className="flex-1 min-w-0 px-4 py-2 bg-transparent text-white placeholder-gray-300 focus:outline-none"
               />
             </div>
           </div>
@@ -208,7 +206,7 @@ export default function ContactPopup() {
               onChange={handleChange}
               placeholder="Leave us a message..."
               rows={3}
-              className="w-full px-4 py-3 rounded-lg bg-[#0ea5e9]/20 border border-white/40 text-white placeholder-gray-300 focus:border-white focus:outline-none focus:ring-1 focus:ring-white/50 transition-colors resize-none"
+              className="w-full px-4 py-2 rounded-lg bg-[#0ea5e9]/20 border border-white/40 text-white placeholder-gray-300 focus:border-white focus:outline-none focus:ring-1 focus:ring-white/50 transition-colors resize-none"
             />
           </div>
 

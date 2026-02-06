@@ -28,7 +28,7 @@ export default function Technologies() {
         </motion.div>
       </div>
 
-      <div className="flex flex-col gap-8 px-14">
+      <div className="flex flex-col gap-8 md:px-14 px-4">
         {/* --- Row 1 Slider (Left Scroll) --- */}
         <div className="w-full">
           <Swiper

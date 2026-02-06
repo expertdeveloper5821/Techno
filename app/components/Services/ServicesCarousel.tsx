@@ -113,6 +113,17 @@ export default function ServicesCarousel() {
     };
   }, []);
 
+  // Pause autoplay when hovering on a slide, resume when leaving
+  useEffect(() => {
+    const swiper = swiperRef.current;
+    if (!swiper?.autoplay) return;
+    if (hoveredIndex !== null) {
+      swiper.autoplay.stop();
+    } else {
+      swiper.autoplay.start();
+    }
+  }, [hoveredIndex]);
+
   return (
     <section
       className="relative overflow-hidden min-h-screen flex flex-col justify-start pt-16 pb-24"
