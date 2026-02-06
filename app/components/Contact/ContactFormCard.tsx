@@ -68,7 +68,7 @@ export default function ContactFormCard({
   const id = (name: string) => `${idPrefix}-${name}`;
 
   return (
-    <div className="rounded-2xl overflow-hidden bg-[#0094DB] p-8 sm:p-10 lg:p-12 relative">
+    <div className="rounded-2xl overflow-hidden bg-[#0094DB] p-8 sm:p-10 lg:p-8 relative">
       {onClose && (
         <button
           type="button"
@@ -81,13 +81,11 @@ export default function ContactFormCard({
           </svg>
         </button>
       )}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-12">
         {/* Left – Contact form */}
         <div>
           <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">Get in touch</h2>
-          <p className="text-white/90 text-sm sm:text-base mb-6">
-            We&apos;d love to hear from you. Please fill out this form.
-          </p>
+         
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -102,7 +100,7 @@ export default function ContactFormCard({
                   value={formData.firstName}
                   onChange={handleChange}
                   placeholder="First name"
-                  className="w-full px-4 py-3 rounded-lg bg-[#0ea5e9]/20 border border-white/40 text-white placeholder-gray-300 focus:border-white focus:outline-none focus:ring-1 focus:ring-white/50 transition-colors"
+                  className="w-full px-4 py-2 rounded-lg bg-[#0ea5e9]/20 border border-white/40 text-white placeholder-gray-300 focus:border-white focus:outline-none focus:ring-1 focus:ring-white/50 transition-colors"
                 />
               </div>
               <div>
@@ -116,7 +114,7 @@ export default function ContactFormCard({
                   value={formData.lastName}
                   onChange={handleChange}
                   placeholder="Last name"
-                  className="w-full px-4 py-3 rounded-lg bg-[#0ea5e9]/20 border border-white/40 text-white placeholder-gray-300 focus:border-white focus:outline-none focus:ring-1 focus:ring-white/50 transition-colors"
+                  className="w-full px-4 py-2 rounded-lg bg-[#0ea5e9]/20 border border-white/40 text-white placeholder-gray-300 focus:border-white focus:outline-none focus:ring-1 focus:ring-white/50 transition-colors"
                 />
               </div>
             </div>
@@ -132,7 +130,7 @@ export default function ContactFormCard({
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="you@company.com"
-                className="w-full px-4 py-3 rounded-lg bg-[#0ea5e9]/20 border border-white/40 text-white placeholder-gray-300 focus:border-white focus:outline-none focus:ring-1 focus:ring-white/50 transition-colors"
+                className="w-full px-4 py-2 rounded-lg bg-[#0ea5e9]/20 border border-white/40 text-white placeholder-gray-300 focus:border-white focus:outline-none focus:ring-1 focus:ring-white/50 transition-colors"
               />
             </div>
 
@@ -144,7 +142,7 @@ export default function ContactFormCard({
                 <select
                   name="countryCode"
                   aria-label="Country code"
-                  className="px-3 py-3 bg-transparent text-white text-sm border-r border-white/40 focus:outline-none"
+                  className="px-3 py-2 bg-transparent text-white text-sm border-r border-white/40 focus:outline-none"
                 >
                   <option value="IN" className="bg-[#004b75] text-white">IN</option>
                   <option value="US" className="bg-[#004b75] text-white">US</option>
@@ -157,7 +155,7 @@ export default function ContactFormCard({
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="+91000-0000"
-                  className="flex-1 min-w-0 px-4 py-3 bg-transparent text-white placeholder-gray-300 focus:outline-none"
+                  className="flex-1 min-w-0 px-4 py-2 bg-transparent text-white placeholder-gray-300 focus:outline-none"
                 />
               </div>
             </div>
@@ -173,7 +171,7 @@ export default function ContactFormCard({
                 onChange={handleChange}
                 placeholder="Leave us a message..."
                 rows={4}
-                className="w-full px-4 py-3 rounded-lg bg-[#0ea5e9]/20 border border-white/40 text-white placeholder-gray-300 focus:border-white focus:outline-none focus:ring-1 focus:ring-white/50 transition-colors resize-none"
+                className="w-full h-20 px-4 py-2 rounded-lg bg-[#0ea5e9]/20 border border-white/40 text-white placeholder-gray-300 focus:border-white focus:outline-none focus:ring-1 focus:ring-white/50 transition-colors resize-none"
               />
             </div>
 
