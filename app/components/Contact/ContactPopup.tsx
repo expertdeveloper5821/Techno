@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
+import { sendContactForm } from '@/app/lib/contact-api';
 
 const STORAGE_KEY = 'technogetic_contact_popup_shown';
 
@@ -64,17 +65,21 @@ export default function ContactPopup() {
     }
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      setSubmitStatus('success');
-      setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        message: '',
-        agreePrivacy: false,
-      });
-      setTimeout(closePopup, 1500);
+      const result = await sendContactForm(formData);
+      if (result.ok) {
+        setSubmitStatus('success');
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          message: '',
+          agreePrivacy: false,
+        });
+        setTimeout(closePopup, 1500);
+      } else {
+        setSubmitStatus('error');
+      }
     } catch {
       setSubmitStatus('error');
     } finally {

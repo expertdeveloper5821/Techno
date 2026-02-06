@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { sendContactForm } from '@/app/lib/contact-api';
 
 const contactBlocks = [
   {
@@ -77,16 +78,20 @@ export default function Contact() {
     }
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      setSubmitStatus('success');
-      setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        message: '',
-        agreePrivacy: false,
-      });
+      const result = await sendContactForm(formData);
+      if (result.ok) {
+        setSubmitStatus('success');
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          message: '',
+          agreePrivacy: false,
+        });
+      } else {
+        setSubmitStatus('error');
+      }
     } catch {
       setSubmitStatus('error');
     } finally {

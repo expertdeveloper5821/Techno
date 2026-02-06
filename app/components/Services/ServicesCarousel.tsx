@@ -8,6 +8,7 @@ import type { Swiper as SwiperType } from 'swiper';
 import { services } from '@/app/lib/data/services';
 import ServiceSlider from './ServiceSlider';
 import ChevronRightIconImport from '@/app/lib/icon/chevron-right-icon';
+import ChevronLeftIcon from '@/app/lib/icon/chevron-left-icon';
 
 type IconProps = React.SVGProps<SVGSVGElement> & { width?: number; height?: number; color?: string };
 const ChevronRightIcon = ChevronRightIconImport as React.FC<IconProps>;
@@ -145,7 +146,7 @@ export default function ServicesCarousel() {
               onClick={() => swiperRef.current?.slidePrev()}
               className="w-12 h-12 rounded-full  text-white flex items-center justify-center hover:bg-white/10 hover:border-white transition-colors"
             >
-              <span className="text-xl font-medium">&lt;</span>
+              <ChevronLeftIcon width={7} height={11} color="#ffffff"/>
             </button>
             <button
               type="button"
@@ -153,7 +154,7 @@ export default function ServicesCarousel() {
               onClick={() => swiperRef.current?.slideNext()}
               className="w-12 h-12 rounded-full   text-white flex items-center justify-center hover:bg-white/10 hover:border-white transition-colors"
             >
-              <span className="text-xl font-medium">&gt;</span>
+             <ChevronRightIcon width={7} height={11} color="#FFFFFF"/>
             </button>
           </div>
         </div>
