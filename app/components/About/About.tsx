@@ -29,7 +29,7 @@ export default function About() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* --- Top Row: Heading & Description --- */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-5 items-start">
           
           {/* Left: Main Heading */}
           <motion.h2 
@@ -52,9 +52,9 @@ export default function About() {
             className="space-y-10 mt-2"
           >
             <p className="text-gray-300 text-lg leading-relaxed">
-              At Technogetic, we are at the forefront of technological innovation, dedicated to delivering cutting-edge IT solutions that drive business success. Founded in 2018, our mission is to redefine the digital landscape by providing reliable and scalable technology solutions.
-            </p>
+            Since 2018, we've helped startups and enterprises build software that actually works. No buzzwords, no vendor lock-in—just senior engineers who deliver working code on predictable timelines.            </p>
             
+            <p>We don't treat you like a ticket number. Our teams embed directly into yours—same Slack channels, same sprint cycles, same goals.</p>
             <div className="space-y-4">
               {features.map((feature, index) => (
                 <div key={index} className="flex items-center space-x-3">

@@ -1,10 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { sendContactForm } from '@/app/lib/contact-api';
 import ContactFormCard from './ContactFormCard';
 
-export default function Contact() {
+const STORAGE_KEY = 'technogetic_contact_popup_shown';
+
+export default function ContactPopupDesktop() {
+  const [isOpen, setIsOpen] = useState(true);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -15,6 +18,26 @@ export default function Contact() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  const closePopup = useCallback(() => {
+    setIsOpen(false);
+    if (typeof window !== 'undefined') {
+      try {
+        sessionStorage.setItem(STORAGE_KEY, 'true');
+      } catch {
+        // ignore
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || !isOpen) return;
+    try {
+      sessionStorage.setItem(STORAGE_KEY, 'true');
+    } catch {
+      // ignore
+    }
+  }, [isOpen]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -53,6 +76,7 @@ export default function Contact() {
           message: '',
           agreePrivacy: false,
         });
+        setTimeout(closePopup, 1500);
       } else {
         setSubmitStatus('error');
       }
@@ -63,21 +87,32 @@ export default function Contact() {
     }
   };
 
+  if (!isOpen) return null;
+
   return (
-    <section id="contact" className="py-6 sm:pb-20  pt-5 bg-[#161616] relative z-10 ">
-      <div className="bg-[#0a0a0a] h-30 w-full absolute top-0 left-0 right-0 z-[-1]" />
-      <div className="container mx-auto px-4 sm:px-6 lg:px-4 max-w-[1168px]">
-        <div className="static -top-24 z-10">
-          <ContactFormCard
-            formData={formData}
-            handleChange={handleChange}
-            handleSubmit={handleSubmit}
-            isSubmitting={isSubmitting}
-            submitStatus={submitStatus}
-            idPrefix="contact"
-          />
-        </div>
+    <div
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="contact-desktop-popup-title"
+    >
+      <button
+        type="button"
+        onClick={closePopup}
+        className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
+        aria-label="Close"
+      />
+      <div className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+        <ContactFormCard
+          formData={formData}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          isSubmitting={isSubmitting}
+          submitStatus={submitStatus}
+          onClose={closePopup}
+          idPrefix="desktop-popup"
+        />
       </div>
-    </section>
+    </div>
   );
 }
