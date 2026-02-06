@@ -4,7 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { fadeInUp } from '@/app/lib/animations';
 import ServiceSlider from '../Services/ServiceSlider'; // Import the slider
-import ChevronRightIconImport from '@/app/lib/icon/Icon';
+import ChevronRightIconImport from '@/app/lib/icon/chevron-right-icon';
 
 type IconProps = React.SVGProps<SVGSVGElement> & { width?: number; height?: number; color?: string };
 const ChevronRightIcon = ChevronRightIconImport as React.FC<IconProps>;

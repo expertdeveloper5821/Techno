@@ -1,14 +1,12 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import Navigation from './Navigation';
-import { IoChevronForwardOutline } from "react-icons/io5";
-import { FaChevronRight } from "react-icons/fa6";
-import ChevronRightIconImport from '@/app/lib/icon/Icon';
+import {FaChevronRight } from 'react-icons/fa6';
+import ChevronRightIconImport from '@/app/lib/icon/chevron-right-icon';
 
-/** Props type for the icon so className and other SVG props are accepted */
 type IconProps = React.SVGProps<SVGSVGElement> & { width?: number; height?: number; color?: string };
 const ChevronRightIcon = ChevronRightIconImport as React.FC<IconProps>;
 
