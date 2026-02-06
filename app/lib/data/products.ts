@@ -17,7 +17,7 @@ export const products: Product[] = [
     id: '3',
     title: 'NFTtrace',
     description: 'A user-friendly health and fitness app that helps users track daily activities and monitor progress. With intelligent reports and engaging design, it encourages healthier habits and long-term user retention.',
-    image: '/produced/NFTTrace.png',
+    image: '/produced/NFTrace.png',
   },
   {
     id: '4',
