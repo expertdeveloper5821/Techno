@@ -97,7 +97,7 @@ export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
         modules={[EffectCoverflow, Pagination, Autoplay, Navigation]}
         onSwiper={(swiper) => { swiperRef.current = swiper; }}
         onInit={() => setIsLoaded(true)}
-        className={`w-full py-12 pb-20 transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+        className={`w-full  py-12 pb-20 transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
       >
         {services.map((service, index) => (
           <SwiperSlide key={`${service.title}-${index}`} className="w-[260px]! md:w-[320px]! lg:w-[380px]!">

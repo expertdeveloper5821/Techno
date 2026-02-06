@@ -24,6 +24,7 @@ const FAQ = dynamic(() => import('./components/FAQ/FAQ'), {
 const Contact = dynamic(() => import('./components/Contact/Contact'), {
   loading: () => <div className="h-[600px] bg-[#e5e5e5]" />,
 });
+import ContactPopupLoader from './components/Contact/ContactPopupLoader';
 const Footer = dynamic(() => import('./components/Footer/Footer'));
 
 export default function Home() {
@@ -46,6 +47,7 @@ export default function Home() {
       <Partners />
       <FAQ />
       <Contact />
+      <ContactPopupLoader />
       <Footer />
     </main>
   );
