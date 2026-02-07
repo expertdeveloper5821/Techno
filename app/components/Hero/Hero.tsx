@@ -56,8 +56,8 @@ We build custom applications and provide dedicated development teams that work a
         </div>
       </div>
 
-      {/* Added the Service Cards Slider here */}
-      <div className="w-full mt-4">
+      {/* Service slider: hidden on mobile, visible from md up */}
+      <div className="w-full mt-4 hidden md:block">
         <ServiceSlider theme="dark" />
       </div>
 
