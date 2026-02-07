@@ -248,7 +248,16 @@ export default function ServicesCarousel() {
                         loading="lazy"
                       />
                     </div>
-                    <div className="absolute top-0 left-0 right-0 p-6 z-2">
+                    {/* Top black gradient overlay (like screenshot) - dark at top, fades down */}
+                    <div
+                      className="absolute top-0 left-0 right-0 z-2 pointer-events-none rounded-t-[30px]"
+                      style={{
+                        height: '50%',
+                        background: 'linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 50%, transparent 100%)',
+                      }}
+                      aria-hidden
+                    />
+                    <div className="absolute top-0 left-0 right-0 p-6 z-3">
                       <h2
                         className="text-white drop-shadow-md"
                         style={{
