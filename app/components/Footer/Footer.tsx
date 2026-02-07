@@ -23,11 +23,11 @@ const services = [
 ];
  
 const socialLinks = [
-  { name: 'Facebook', icon: 'footer/fb.png' },
-  { name: 'Twitter', icon: 'footer/tw.png' },
-  { name: 'Instagram', icon: 'footer/inst.png' },
-  { name: 'LinkedIn', icon: 'footer/in.png' },
-  { name: 'YouTube', icon: 'footer/yt.png' },
+  { name: 'Facebook', icon: '/footer/fb.png' },
+  { name: 'Twitter', icon: '/footer/tw.png' },
+  { name: 'Instagram', icon: '/footer/inst.png' },
+  { name: 'LinkedIn', icon: '/footer/in.png' },
+  { name: 'YouTube', icon: '/footer/yt.png' },
 ];
  
  
@@ -98,13 +98,13 @@ export default function Footer() {
           <h3 className="font-semibold mb-3">Contact Us</h3>
           <div className="flex items-start gap-2 mb-2">
                             <div className="shrink-0">
-                  <Image src="footer/location.png" alt="Location" width={20} height={20} sizes="20px" loading="lazy" />
+                  <Image src="/footer/location.png" alt="Location" width={20} height={20} sizes="20px" loading="lazy" />
                 </div>
             <span className="text-sm">1<sup>st</sup> floor, Nexa Square, C-209/B, Phase 8B, Sec 74, Mohali, Punjab.</span>
           </div>
           <div className="flex items-center gap-2 mb-4">
                             <div className="shrink-0">
-                  <Image src="footer/mail.png" alt="Email" width={20} height={20} sizes="20px" loading="lazy" />
+                  <Image src="/footer/mail.png" alt="Email" width={20} height={20} sizes="20px" loading="lazy" />
                 </div>
             <a href="mailto:info@technogetic.com" className="text-sm hover:text-gray-400">info@technogetic.com</a>
           </div>
