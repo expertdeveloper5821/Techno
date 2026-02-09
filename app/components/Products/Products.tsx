@@ -35,12 +35,12 @@ export default function Products() {
             </motion.div>
 
             <motion.div
-              initial="hidden"
+              initial="hidden "
               whileInView="visible"
               viewport={{ once: true }}
               variants={fadeInUp}
-              transition={{ delay: 0.2 }}
-              className="relative w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-white"
+              transition={{ delay: 0 }}
+              className="relative w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-white hidden md:block "
             >
               <Image
                 key={activeProduct.id}

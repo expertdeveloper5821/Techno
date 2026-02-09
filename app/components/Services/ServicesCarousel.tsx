@@ -9,7 +9,7 @@ import { services } from '@/app/lib/data/services';
 import ServiceSlider from './ServiceSlider';
 import ChevronRightIconImport from '@/app/lib/icon/chevron-right-icon';
 import ChevronLeftIcon from '@/app/lib/icon/chevron-left-icon';
-
+import ReadMoreIcon from '@/app/lib/icon/readmore-icon';
 type IconProps = React.SVGProps<SVGSVGElement> & { width?: number; height?: number; color?: string };
 const ChevronRightIcon = ChevronRightIconImport as React.FC<IconProps>;
 
@@ -201,6 +201,8 @@ export default function ServicesCarousel() {
               640: { spaceBetween: 18 },
               768: { spaceBetween: 20 },
               1024: { spaceBetween: 24 },
+              1280: { spaceBetween: 26 },
+              1440: { spaceBetween: 28 },
             }}
             className="overflow-hidden! pb-4"
           >
@@ -282,7 +284,8 @@ export default function ServicesCarousel() {
                       aria-hidden={!isHovered}
                     >
                       <p className="text-white text-sm leading-relaxed line-clamp-4">
-                        {service.description}
+                        <div>{service.description}</div>
+                        <button className="text-white text-sm leading-relaxed line-clamp-4 inline-flex items-center gap-1.5">Read more <ReadMoreIcon width={13} height={13} color="#F8F8F8" className="inline-block" /> </button>
                       </p>
                     </div>
                   </article>
