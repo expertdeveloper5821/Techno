@@ -1,6 +1,8 @@
 'use client';
 
 import React from 'react';
+import { motion } from 'framer-motion';
+import { parallaxVariants } from '@/app/lib/animations';
 
 const contactBlocks = [
   {
@@ -68,7 +70,14 @@ export default function ContactFormCard({
   const id = (name: string) => `${idPrefix}-${name}`;
 
   return (
-    <div className="rounded-2xl overflow-hidden bg-[#0094DB] p-8 sm:p-10 lg:p-8 relative">
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.15 }}
+      transition={{ duration: 1, ease: [0.6, -0.05, 0.01, 0.99] }}
+      variants={parallaxVariants}
+      className="rounded-2xl overflow-hidden bg-[#0094DB] p-8 sm:p-10 lg:p-16 relative"
+    >
       {onClose && (
         <button
           type="button"
@@ -81,7 +90,7 @@ export default function ContactFormCard({
           </svg>
         </button>
       )}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-12">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
         {/* Left – Contact form */}
         <div>
           <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">Get in touch</h2>
@@ -239,6 +248,6 @@ export default function ContactFormCard({
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

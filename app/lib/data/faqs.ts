@@ -3,33 +3,32 @@ import { FAQ } from '../types';
 export const faqs: FAQ[] = [
   {
     id: '1',
-    question: 'What services do you offer?',
+    question: 'How long does a typical project take?',
     answer:
-      'We offer end-to-end digital solutions to help businesses grow online, including UI/UX design, website and mobile app development, branding, and performance-driven digital solutions. From planning to launch, we ensure every project is user-friendly, scalable, and aligned with your business goals.',
+      'Most MVPs launch in 8-12 weeks. Larger projects break into phases, so you see working software every two weeks, not after months.',
   },
   {
     id: '2',
-    question: 'Can I update my site on my own?',
+    question: 'Do you work alongside our existing team?',
     answer:
-      'Yes. We build content management systems (CMS) and admin panels so you can update content, add pages, and manage your site without code. We also provide training and documentation.',
+      'Yes. We integrate directly - same tools, same standups, same accountability. Think of us as an extension, not a vendor.',
   },
   {
     id: '3',
-    question: 'Can I update my site on my own?',
+    question: 'What if requirements change during development?',
     answer:
-      'Yes. We build content management systems (CMS) and admin panels so you can update content, add pages, and manage your site without code. We also provide training and documentation.',
+      'We adapt. Priorities shift, and we understand that. We\'ll re-scope, update timelines, and keep you informed on any cost impacts.',
   },
   {
     id: '4',
-    question: 'Can I update my site on my own?',
+    question: 'Can we see examples of your work?',
     answer:
-      'Yes. We build content management systems (CMS) and admin panels so you can update content, add pages, and manage your site without code. We also provide training and documentation.',
+      'Absolutely. We share relevant case studies in our first call. Some are under NDA, but we have plenty.',
   },
   {
     id: '5',
-    question: 'Can I update my site on my own?',
+    question: 'Who owns the source code?',
     answer:
-      'Yes. We build content management systems (CMS) and admin panels so you can update content, add pages, and manage your site without code. We also provide training and documentation.',
+      'You own everything - code, infrastructure, intellectual property. No licensing fees, no strings.',
   },
 ];
-
