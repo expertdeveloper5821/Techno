@@ -1,17 +1,17 @@
 import { Partner } from '../types';
 
 export const partners: Partner[] = [
-  { id: '1', name: 'Akasa Air', logoGray: '/partners/Mask group.png', logoColor: '/partners/akasa-air.png' },
-  { id: '2', name: 'CuddlyNest', logoGray: '/partners/culldy.png', logoColor: '/partners/cuddlynest.png' },
-  { id: '3', name: 'Deborah Henning', logoGray: '/partners/DEBORAH HENNING.png', logoColor: '/partners/deborah.png' },
-  { id: '4', name: 'HeyOye', logoGray: '/partners/Property 1=akasa-air-1 1.png', logoColor: '/partners/heyoye.png' },
-  { id: '5', name: 'inadev', logoGray: '/partners/inadev.png', logoColor: '/partners/inadev-color.png' },
-  { id: '6', name: 'intellectyx', logoGray: '/partners/intellectyx-gray.png', logoColor: '/partners/inellectyx-color.png' },
-  { id: '7', name: 'OBORTECH', logoGray: '/partners/abortech.png', logoColor: '/partners/obortech.png' },
-  { id: '8', name: 'Sourcebae', logoGray: '/partners/sourcebae.png', logoColor: '/partners/sourcebae-color.png' },
-  { id: '9', name: 'SYNERGY', logoGray: '/partners/synergy.png', logoColor: '/partners/synergy-color.png' },
-  { id: '10', name: 'TECHVED', logoGray: '/partners/Mask group-gray.png', logoColor: '/partners/techved-color.png' },
-  { id: '11', name: 'beast', logoGray: '/partners/beast.png', logoColor: '/partners/beast-color.png' },
-  { id: '12', name: 'Sourcebae', logoGray: '/partners/sourcebae.png', logoColor: '/partners/sourcebae-color.png' },
+  { id: '1', name: 'Akasa Air', logoGray: '/partners/alska.svg', logoColor: '/partners/akasa-air.svg' },
+  { id: '2', name: 'CuddlyNest', logoGray: '/partners/cuddlynest.svg', logoColor: '/partners/cuddlynest-color.svg' },
+  { id: '3', name: 'Deborah Henning', logoGray: '/partners/DEBORAH HENNING-gray.svg', logoColor: '/partners/DEBORAH HENNING-color.svg' },
+  { id: '4', name: 'HeyOye', logoGray: '/partners/heyoye-gray.svg', logoColor: '/partners/heyoye-color.svg' },
+  { id: '5', name: 'inadev', logoGray: '/partners/inadev-color.svg', logoColor: '/partners/inadev-color.svg' },
+  { id: '6', name: 'intellectyx', logoGray: '/partners/intellectyx-gray.svg', logoColor: '/partners/intellectyx-color.svg' },
+  { id: '7', name: 'OBORTECH', logoGray: '/partners/obortech-gray.svg', logoColor: '/partners/obortech-color.svg' },
+  { id: '8', name: 'Sourcebae', logoGray: '/partners/sourcebae-gray.svg', logoColor: '/partners/sourcebae-color.svg' },
+  { id: '9', name: 'TECHVED', logoGray: '/partners/techved-gray.svg', logoColor: '/partners/techved-color.svg' },
+  { id: '10', name: 'SYNERGY', logoGray: '/partners/synergy-gray.svg', logoColor: '/partners/synergy-color.svg' },
+  { id: '11', name: 'beast', logoGray: '/partners/beast-gray.svg', logoColor: '/partners/beast-color.svg' },
+  { id: '12', name: 'Sourcebae', logoGray: '/partners/sourcebae-gray.svg', logoColor: '/partners/sourcebae-color.svg' },
 ];
 

@@ -40,8 +40,8 @@ export default function Partners() {
               {/* 1. White/light logo (visible by default) */}
               <div className="absolute inset-0 flex items-center justify-center transition-all duration-300 opacity-100 group-hover:opacity-0 group-hover:scale-95">
                 <Image
-                  src={partner.logoGray} 
-                  alt={`${partner.name}`}
+                  src={partner.logoGray}
+                  alt={partner.name}
                   width={280}
                   height={140}
                   className="object-contain w-auto h-full max-h-[72px] sm:max-h-[88px] md:max-h-[100px] grayscale brightness-0 invert opacity-90"
@@ -54,7 +54,7 @@ export default function Partners() {
               <div className="absolute inset-0 flex items-center justify-center transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:scale-105">
                 <Image
                   src={partner.logoColor}
-                  alt={`${partner.name}`}
+                  alt={partner.name}
                   width={280}
                   height={140}
                   className="object-contain w-auto h-full max-h-[72px] sm:max-h-[88px] md:max-h-[100px]"
