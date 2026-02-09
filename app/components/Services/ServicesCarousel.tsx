@@ -179,7 +179,7 @@ export default function ServicesCarousel() {
           </div>
         ) : (
         <div
-          className="w-full max-w-[402px] sm:max-w-[615px] md:max-w-[832px] lg:max-w-[1278px] overflow-hidden"
+          className="w-full  overflow-hidden"
           onMouseLeave={handleCarouselLeave}
         >
           <Swiper
@@ -203,6 +203,7 @@ export default function ServicesCarousel() {
               1024: { spaceBetween: 24 },
               1280: { spaceBetween: 26 },
               1440: { spaceBetween: 28 },
+              
             }}
             className="overflow-hidden! pb-4"
           >
