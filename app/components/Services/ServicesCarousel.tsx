@@ -126,10 +126,8 @@ export default function ServicesCarousel() {
 
   return (
     <section
-      className="relative overflow-hidden min-h-screen flex flex-col justify-start pt-16 pb-24"
-      style={{
-        background: 'linear-gradient(180deg, #027EBA 0%, rgba(2, 126, 186, 0.6) 25%, #00549A 55%, #030303 94%, #000000 80%)',
-      }}
+      className="relative overflow-hidden min-h-screen flex flex-col justify-start pt-16 pb-24 bg-[linear-gradient(to_bottom,#0094DB_0%,#0094DB_85%,#003a5c_95%,#000000_100%)] "
+     
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-8">
         {/* Header: Title + CTA */}

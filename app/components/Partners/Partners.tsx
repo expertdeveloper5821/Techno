@@ -7,7 +7,7 @@ import { partners } from '@/app/lib/data/partners';
 
 export default function Partners() {
   return (
-    <section className="py-24 bg-[#0094DB]">
+    <section className="py-24 bg-[linear-gradient(to_bottom,#0094DB_0%,#0094DB_85%,#003a5c_95%,#000000_100%)] relative ">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
@@ -64,9 +64,11 @@ export default function Partners() {
               </div>
             </motion.div>
           ))}
+          
         </motion.div>
 
       </div>
+      {/* <div className='w-full h-25 absolute bottom-0 left-0 bg-[linear-gradient(0deg,#000000_7.1%,rgba(0,148,219,0.3)_88.18%)] opacity-80 border-none'></div> */}
     </section>
   );
 }

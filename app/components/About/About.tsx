@@ -112,7 +112,7 @@ export default function About() {
                 className="
                   bg-transparent border border-white/20 rounded-2xl p-8 
                   flex flex-col justify-between
-                  hover:bg-white/5 transition-colors duration-300 md:h-[80%]
+                  hover:bg-white/5 transition-colors duration-300 xl:h-[80%]
                 "
               >
                 <div className="text-6xl font-bold text-white mb-6">
