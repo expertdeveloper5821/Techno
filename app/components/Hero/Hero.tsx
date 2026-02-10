@@ -33,7 +33,7 @@ export default function Hero() {
             animate="visible"
             variants={fadeInUp}
             transition={{ delay: 0.2 }}
-            className="text-white text-lg sm:text-xl max-w-3xl mx-auto mb-10 leading-relaxed  md:pt-10"
+            className="text-white font-normal font-inter  text-lg sm:text-xl max-w-4xl mx-auto mb-10 leading-relaxed  md:pt-10 tracking-[0.03em] "
           >
 We build custom applications and provide dedicated development teams that work as your team—no vendor games, just reliable engineering.          </motion.p>
 

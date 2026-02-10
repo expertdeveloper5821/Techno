@@ -38,21 +38,21 @@ export default function FAQItem({
       <button
         type="button"
         onClick={onToggle}
-        className={`w-full flex flex-col md:flex-row md:items-start text-left px-6 md:gap-[65px] gap-[20] ${
+        className={`w-full flex flex-col md:flex-row md:items-start text-left px-2 sm:px-6 md:gap-[65px] gap-[20] ${
           isOpen ? 'min-h-0 py-4' : 'min-h-[96px] py-[31px]'
         }`}
         style={{ transition: `padding ${ACCORDION_DURATION}s cubic-bezier(${ACCORDION_EASE.join(',')}), min-height ${ACCORDION_DURATION}s cubic-bezier(${ACCORDION_EASE.join(',')})` }}
       >
         {/* Block 1: number + question; on small screen icon is inside this row so it stays aligned with question */}
         <div className="flex items-center gap-4 w-full min-h-[34px] md:w-auto md:flex-initial">
-          <div className="flex gap-[5px] items-center min-w-0 flex-1 md:flex-initial text-white font-inter font-medium text-[20px] leading-[34px] tracking-[0.01em]">
+          <div className="flex sm:gap-[5px]  items-start sm:items-center gap-2  min-w-0 flex-1 md:flex-initial text-white font-inter font-medium text-[20px] leading-[34px] tracking-[0.01em]">
             <span
-              className="font-inter font-semibold tracking-tight inline-flex items-center justify-center shrink-0 w-[21px] h-[13px] text-[16px]"
+              className="font-inter font-semibold mt-3 sm:mt-0 tracking-tight inline-flex items-center justify-center shrink-0  text-[16px]"
               style={{ lineHeight: 1 }}
             >
               {numberLabel}
             </span>
-            <span className="font-inter font-medium md:text-[16px] text-base leading-[28px] tracking-[0.01em]">
+            <span className="font-inter  font-medium md:text-[20px] text-base leading-[34px] tracking-[0.01em]">
               {question}
             </span>
           </div>
@@ -94,7 +94,7 @@ export default function FAQItem({
             }}
             className="overflow-hidden"
           >
-            <p className="text-white font-inter font-normal sm:text-base text-sm leading-[28px] pt-0.5">
+            <p className="text-white font-inter font-normal sm:text-base text-sm leading-[24px] tracking-[0.01em] pt-0.5">
               {answer}
             </p>
           </motion.div>

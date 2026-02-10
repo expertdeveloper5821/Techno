@@ -17,8 +17,9 @@ export default function Navigation({ mobile = false }: NavigationProps) {
   ];
 
   const baseClasses = mobile
-    ? 'flex flex-col space-y-4'
-    : 'flex items-center space-x-6 xl:space-x-8';
+    ? 'flex flex-col space-y-4 font-[20px] font-light font-inter text-[#040404]'
+    : 'flex items-center space-x-6 xl:space-x-8 text-[20px] font-light font-inter text-[#040404]';
+;
 
   return (
     <ul className={baseClasses}>
@@ -28,7 +29,7 @@ export default function Navigation({ mobile = false }: NavigationProps) {
             href={item.href}
             className={`${
               mobile ? 'text-dark-bg' : 'text-dark-bg'
-            } hover:text-primary-blue transition-colors font-medium`}
+            } hover:text-primary-blue transition-colors font-normal`}
           >
             {item.label}
           </Link>

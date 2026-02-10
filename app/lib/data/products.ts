@@ -4,39 +4,45 @@ export const products: Product[] = [
   {
     id: '1',
     title: 'Blocktech Platform',
-    description: 'A powerful CRM platform designed to manage leads, automate sales workflows, and improve customer relationships. It helps teams work smarter with real-time insights, secure data handling, and scalable performance built for growing businesses.',
+    description: 'Enterprise CRM handling 50K+ leads monthly. Built custom workflow automation that cut manual data entry by 70%. Deployed on AWS with auto-scaling infrastructure.',
     image: '/blocktech.png',
+    TechStack: 'React, Node.js, PostgreSQL, AWS'
   },
   {
     id: '2',
     title: 'Akasa Air',
-    description: 'A modern e-commerce application built to deliver seamless shopping experiences across devices. It includes secure payment integration, smart product management, and performance optimization to increase conversions.',
+    description: 'We contributed to a high-traffic airline booking and scheduling ecosystem, where system reliability, uptime, and performance were business-critical.',
     image: '/produced/Akasa Air.png',
+    TechStack: 'React.js, Node.js, PostgreSQL, Redis'
   },
   {
     id: '3',
     title: 'NFTtrace',
-    description: 'A user-friendly health and fitness app that helps users track daily activities and monitor progress. With intelligent reports and engaging design, it encourages healthier habits and long-term user retention.',
+    description: 'NFTtrace is a blockchain platform focused on traceability, transparency, and data integrity. Our role emphasized secure infrastructure and deployment reliability.',
     image: '/produced/NFTtrace.png',
+    TechStack: 'React.js, Node.js, PostgreSQL, Redis'
   },
   {
     id: '4',
     title: 'Dun & Bradstreet India',
-    description: 'An interactive online learning platform developed for courses, video lessons, and assessments. Designed with accessibility and intuitive navigation, it delivers a smooth and engaging learning experience.',
+    description: 'For Dun & Bradstreet India, we worked on enterprise-grade integrations supporting strict compliance, performance, and data governance requirements.',
     image: '/produced/DunBradstreetIndia.png',
+    TechStack: 'Java / Node.js, Oracle, PostgreSQL'
   },
 
   {
     id: '6',
     title: 'Trukky',
-    description: 'A fast and reliable food delivery application with real-time order tracking and easy checkout. Designed for performance and usability, it ensures smooth ordering experiences for customers.',
+    description: 'Trukky is a real-time logistics and transport booking platform connecting customers with transport providers.',
     image: '/produced/Trukky.png',
+    TechStack: 'c'
   },
   {
     id: '7',
     title: 'Transporteca',
-    description: 'A corporate website designed for finance and consulting businesses to showcase services and expertise. Built to establish trust and credibility, it strengthens brand presence and customer confidence.',
+    description: 'Transporteca is a multi-vendor freight marketplace enabling seamless collaboration between shippers and logistics providers.',
     image: '/produced/Transporteca.png',
+    TechStack: 'React.js,React Native,PostgreSQL'
   },
 
 ];

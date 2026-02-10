@@ -19,10 +19,10 @@ export default function TechCard({ tech }: { tech: { name: string; logo: string;
       
       {/* Content */}
       <div className="flex flex-col">
-        <h3 className="text-white font-bold text-lg mb-2 group-hover:text-blue-400 transition-colors">
+        <h3 className="text-[#F6F7F7] font-Manrope font-[200] text-xl mb-2 group-hover:text-blue-400 transition-colors">
           {tech.name}
         </h3>
-        <p className="text-gray-400 text-sm leading-relaxed">
+        <p className=" font-inter text-[#BCBDB9] text-base leading-relaxed">
           {tech.description}
         </p>
       </div>

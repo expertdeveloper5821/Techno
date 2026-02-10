@@ -82,13 +82,13 @@ export default function ContactFormCard({
 
 
       {/* <!-- Right bottom strong white --> */}
-  {/* <div className ="absolute inset-0 bg-[radial-gradient(circle_at_100%_100%,rgba(255,255,255,0.28)_0%,rgba(255,255,255,0.18)_20%,rgba(255,255,255,0.08)_40%,rgba(255,255,255,0)_60%)]"></div> */}
+  <div className ="absolute -z-10 inset-0 bg-[radial-gradient(circle_at_100%_100%,rgba(255,255,255,0.28)_0%,rgba(255,255,255,0.18)_20%,rgba(255,255,255,0.08)_40%,rgba(255,255,255,0)_60%)]"></div>
 
   {/* <!-- Top center medium white --> */}
-  {/* <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_10%,rgba(255,255,255,0.22)_0%,rgba(255,255,255,0.12)_25%,rgba(255,255,255,0.05)_45%,rgba(255,255,255,0)_65%)]"></div> */}
+  <div className="absolute -z-10 inset-0 bg-[radial-gradient(circle_at_50%_10%,rgba(255,255,255,0.22)_0%,rgba(255,255,255,0.12)_25%,rgba(255,255,255,0.05)_45%,rgba(255,255,255,0)_65%)]"></div>
 
   {/* <!-- Left bottom subtle white --> */}
-  {/* <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_80%,rgba(255,255,255,0.14)_0%,rgba(255,255,255,0.08)_30%,rgba(255,255,255,0.03)_50%,rgba(255,255,255,0)_70%)]"></div> */}
+  <div className="absolute -z-10 inset-0 bg-[radial-gradient(circle_at_15%_80%,rgba(255,255,255,0.14)_0%,rgba(255,255,255,0.08)_30%,rgba(255,255,255,0.03)_50%,rgba(255,255,255,0)_70%)]"></div>
 
       {onClose && (
         <button
@@ -106,10 +106,11 @@ export default function ContactFormCard({
         
         {/* Left – Contact form */}
         <div>
-          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">Get in touch</h2>
+          <h2 className=" font-inter text-2xl sm:text-4xl font-medium text-[#ffffff] mb-4">Get in touch</h2>
+
          
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4 z-100 ">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label htmlFor={id('firstName')} className="block text-white text-sm font-medium mb-1.5">
@@ -229,10 +230,10 @@ export default function ContactFormCard({
 
         {/* Right – Contact info */}
         <div>
-          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+          <h2 className=" font-inter text-2xl sm:text-4xl font-medium text-[#ffffff] mb-4">
             We&apos;d love to hear from you
           </h2>
-          <p className="text-white/90 text-sm sm:text-base mb-8">
+          <p className="text-[#ffffff] font-inter font-normal mb-8 text-[20px] leading-6 tracking-[0.01em]">
             Need something cleared up? Here are our most frequently asked questions.
           </p>
 

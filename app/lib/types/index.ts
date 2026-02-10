@@ -9,6 +9,7 @@ export interface Product {
   title: string;
   description: string;
   image: string;
+  TechStack: string;
 }
 
 export interface Partner {

@@ -10,6 +10,8 @@ import ServiceSlider from './ServiceSlider';
 import ChevronRightIconImport from '@/app/lib/icon/chevron-right-icon';
 import ChevronLeftIcon from '@/app/lib/icon/chevron-left-icon';
 import ReadMoreIcon from '@/app/lib/icon/readmore-icon';
+import arrowl from '@/app/lib/icon/arrow.svg';
+import arrowr from '@/app/lib/icon/arrowr.svg';
 type IconProps = React.SVGProps<SVGSVGElement> & { width?: number; height?: number; color?: string };
 const ChevronRightIcon = ChevronRightIconImport as React.FC<IconProps>;
 
@@ -31,7 +33,7 @@ const loopSlides = [...services, ...services];
 
 export default function ServicesCarousel() {
   const swiperRef = useRef<SwiperType | null>(null);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(0);
   const [isBelow640, setIsBelow640] = useState(false);
   const updateTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const leaveTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -86,7 +88,7 @@ export default function ServicesCarousel() {
     if (leaveTimeoutRef.current) clearTimeout(leaveTimeoutRef.current);
     leaveTimeoutRef.current = setTimeout(() => {
       leaveTimeoutRef.current = null;
-      setHoveredIndex(null);
+      setHoveredIndex(0);
       scheduleSwiperUpdate();
     }, HOVER_LEAVE_DELAY_MS);
   }, [scheduleSwiperUpdate]);
@@ -101,7 +103,7 @@ export default function ServicesCarousel() {
       clearTimeout(leaveTimeoutRef.current);
       leaveTimeoutRef.current = null;
     }
-    setHoveredIndex(null);
+    setHoveredIndex(0);
     scheduleSwiperUpdate();
   }, [scheduleSwiperUpdate]);
 
@@ -132,7 +134,7 @@ export default function ServicesCarousel() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-8">
         {/* Header: Title + CTA */}
         <div className="flex flex-col lg:flex-row justify-between items-start gap-6 lg:gap-8">
-          <h2 className="text-4xl md:text-5xl lg:text-5xl font-bold text-white leading-[1.1] tracking-tight max-w-4xl">
+          <h2 className="text-4xl md:text-5xl lg:text-[44px] font-semibold font-inter text-white leading-[60px]  max-w-4xl">
             Full-stack Development From Discovery To Deployment
           </h2>
           <a
@@ -144,8 +146,8 @@ export default function ServicesCarousel() {
         </div>
 
         {/* Description + Navigation arrows */}
-        <div className="mt-8 flex flex-col sm:flex-row sm:items-start gap-6 max-w-6xl">
-          <p className="text-lg text-white/90 leading-relaxed flex-1">
+        <div className="mt-8 flex flex-col sm:flex-row sm:items-start gap-6 max-w-7xl">
+          <p className="text-lg font-inter font-normal text-white/90 leading-relaxed flex-1">
             At Technogetic, we are at the forefront of technological innovation, dedicated to delivering cutting-edge IT solutions that drive business success. Founded in 2018, our mission is to redefine the digital landscape by providing reliable and scalable technology solutions.
           </p>
           <div className={`flex items-center gap-2 shrink-0 ${isBelow640 ? 'hidden' : ''}`}>
@@ -155,15 +157,19 @@ export default function ServicesCarousel() {
               onClick={() => swiperRef.current?.slidePrev()}
               className="w-12 h-12 rounded-full  text-white flex items-center justify-center hover:bg-white/10 hover:border-white transition-colors"
             >
-              <ChevronLeftIcon width={7} height={11} color="#ffffff"/>
+              {/* <ChevronLeftIcon width={10} height={11} color="#ffffff"/> */}
+              <Image src={arrowl} alt="arrow" width={20} height={20} className="w-10 h-10" />
+              
             </button>
             <button
               type="button"
-              aria-label="Next slide"
-              onClick={() => swiperRef.current?.slideNext()}
-              className="w-12 h-12 rounded-full   text-white flex items-center justify-center hover:bg-white/10 hover:border-white transition-colors"
+              aria-label="Previous slide"
+              onClick={() => swiperRef.current?.slidePrev()}
+              className="w-12 h-12 rounded-full [perspective:1000px] text-white flex items-center justify-center hover:bg-white/10 hover:border-white transition-colors"
             >
-             <ChevronRightIcon width={7} height={11} color="#FFFFFF"/>
+              {/* <ChevronLeftIcon width={10} height={11} color="#ffffff"/> */}
+              <Image src={arrowl} alt="arrow" width={20} height={20} className="w-10 h-10 [transform:rotateY(180deg)]" />
+              
             </button>
           </div>
         </div>

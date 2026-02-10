@@ -11,7 +11,7 @@ export default function Products() {
 
   return (
     <section id="products" className="py-24 bg-[#0000] text-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-0">
         
         {/* The Grid container defines the scroll area */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
@@ -29,7 +29,7 @@ export default function Products() {
               variants={fadeInUp}
               className="mb-10"
             >
-              <h2 className="text-4xl sm:text-5xl lg:text-[44px] font-semibold leading-tight tracking-tight mb-6">
+              <h2 className=" font-inter text-4xl sm:text-5xl lg:text-[44px] font-semibold leading-tight tracking-tight mb-6">
                 Discover How We Transform Ideas Into Impactful digital Products
               </h2>
             </motion.div>
@@ -71,10 +71,10 @@ export default function Products() {
               <div 
                 key={product.id}
                 onMouseEnter={() => setActiveProduct(product)}
-                className="group p-8  bg-[#222] border-b border-white/50 hover:bg-[#0094DB] transition-all duration-300 cursor-pointer"
+                className="group p-6  bg-[#222] border-b border-white/50 hover:bg-[#0094DB] transition-all duration-300 cursor-pointer"
               >
                 <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-xl font-bold text-white group-hover:text-white transition-colors">
+                  <h3 className="text-xl font-inter font-semibold text-white group-hover:text-white transition-colors">
                     {product.title}
                   </h3>
                   {/* Arrow Icon */}
@@ -84,8 +84,11 @@ export default function Products() {
                     </svg>
                   </span>
                 </div>
-                <p className="text-gray-400 group-hover:text-white text-sm leading-relaxed transition-colors duration-300">
+                <p className="text-gray-400 font-inter group-hover:text-white text-sm leading-relaxed transition-colors duration-300">
                   {product.description}
+                </p>
+                <p className="text-gray-400 font-inter group-hover:text-white text-sm leading-relaxed transition-colors duration-300 mt-2 ">
+                  <span className="font-bold">Tech Stack:</span> {product.TechStack}
                 </p>
               </div>
             ))}

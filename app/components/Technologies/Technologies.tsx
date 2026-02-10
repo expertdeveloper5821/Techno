@@ -22,13 +22,13 @@ export default function Technologies() {
           variants={fadeInUp}
           className="text-center"
         >
-          <p className="text-gray-400 text-sm uppercase tracking-wider mb-3">Our Technologies</p>
-          <h2 className="text-3xl sm:text-4xl md:text-4xl font-semibold text-white">
-          Technology we use and integrate          </h2>
+          <p className="text-gray-400  text-sm font-inter sm:text-[22px] uppercase tracking-wider mb-3">Our Technologies</p>
+          <h2 className=" font-inter text-3xl sm:text-[44px] md:text-4xl font-semibold text-white leading-tight tracking-tight ">
+          Technology we use and integrate </h2>
         </motion.div>
       </div>
 
-      <div className="flex flex-col gap-8 md:px-14 px-4">
+      <div className="flex flex-col gap-8 md:px-10 px-4">
         {/* --- Row 1 Slider (Left Scroll) --- */}
         <div className="w-full">
           <Swiper

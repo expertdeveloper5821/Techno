@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import type { Swiper as SwiperType } from 'swiper';
 import { Pagination, Autoplay, Navigation, EffectCoverflow } from 'swiper/modules';
 import { services } from '@/app/lib/data/services';
+import ReadMoreIcon from '@/app/lib/icon/readmore-icon';
 
 interface ServiceSliderProps {
   theme?: 'dark' | 'light';
@@ -97,7 +98,7 @@ export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
           disableOnInteraction: false,
           pauseOnMouseEnter: true,
         }}
-        pagination={{ clickable: true, dynamicBullets: true }}
+        // pagination={{ clickable: true, dynamicBullets: true }}
         modules={[EffectCoverflow, Pagination, Autoplay, Navigation]}
         onSwiper={(swiper) => { swiperRef.current = swiper; }}
         onInit={() => setIsLoaded(true)}
@@ -122,7 +123,7 @@ export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
                     }
                   }}
                   className={`
-                    relative h-[400px] md:h-[520px] w-full 
+                    relative h-[400px] md:h-[470px] w-full 
                     rounded-[32px] overflow-hidden cursor-pointer
                     transition-all duration-500 ease-out
                     ${isActive 
@@ -159,12 +160,12 @@ export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
                     <h3 className="font-bold text-white tracking-wide text-lg md:text-xl drop-shadow-md">
                       {service.title}
                     </h3>
-                    <div className="h-1.5 bg-[#008AC9] w-12 mx-auto rounded-full mt-3" />
+                    {/* <div className="h-1.5 bg-[#008AC9] w-12 mx-auto rounded-full mt-3" /> */}
                   </div>
 
                   {/* Sliding details panel – slides up from bottom on hover/active */}
                   <div
-                    className="absolute left-0 right-0 bottom-0 w-full flex flex-col justify-end rounded-b-[32px] overflow-hidden pointer-events-none opacity-70"
+                    className="absolute left-0 right-0 bottom-0 w-full flex flex-col justify-end rounded-b-[32px] overflow-hidden pointer-events-none opacity-90 bg-[linear-gradient(176.17deg,rgba(0,139,206,0)_2.91%,#018BCE_47.68%,#018BCD_89.79%)] "
                     style={{
                       height: '58%',
                       transform: showDetails ? 'translateY(0)' : 'translateY(100%)',
@@ -173,24 +174,24 @@ export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
                     aria-hidden={!showDetails}
                   >
                     <div 
-                      className="flex flex-col justify-end flex-1 min-h-0 p-6 md:p-8 pb-7 text-center text-white"
+                      className="flex flex-col gap-4 justify-end flex-1 min-h-0 p-6 md:p-8 pb-7 text-center text-white"
                       style={{
                         background: isDark 
                           ? 'linear-gradient(180deg, transparent 0%, rgba(0, 82, 154, 0.97) 18%, rgba(0, 138, 201, 0.98) 100%)'
                           : 'linear-gradient(180deg, transparent 0%, rgba(0, 99, 221, 0.96) 18%, rgba(0, 136, 201, 0.98) 100%)',
                       }}
                     >
-                      <h3 className="font-bold text-xl md:text-2xl lg:text-3xl tracking-wide drop-shadow-sm mb-3">
+                      <h3 className="font-semibold text-xl md:text-xl lg:text-xl tracking-wide drop-shadow-sm mb-3 leading-[1%]">
                         {service.title}
                       </h3>
                       {service.description && (
-                        <p className="text-white/95 text-sm md:text-base leading-relaxed line-clamp-3 mb-5">
+                        <p className="text-white/95 text-sm md:text-base font-normal leading-relaxed line-clamp-3 ">
                           {service.description}
                         </p>
                       )}
-                      <span className="inline-flex items-center justify-center gap-1 text-sm md:text-base font-semibold text-white/95 hover:text-white">
+                      <span className="inline-flex items-center justify-center gap-1 text-sm md:text-base font-[500px] font-inter text-white/95 hover:text-white p-0! m-0!">
                         Read more
-                        <span className="inline-block" aria-hidden>&gt;&gt;</span>
+                       <ReadMoreIcon width={13} height={13} color="#F8F8F8" className="inline-block" />
                       </span>
                     </div>
                   </div>

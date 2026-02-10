@@ -3,7 +3,9 @@
 import { useState } from 'react';
 import FAQItem from './FAQItem';
 import { faqs } from '@/app/lib/data/faqs';
-
+import RightArrowIcon from '@/app/lib/icon/chevron-right-icon';
+import { motion } from 'framer-motion';
+import { fadeInUp } from '@/app/lib/animations';
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
@@ -17,12 +19,12 @@ export default function FAQ() {
         {/* Header */}
         <div className="text-center mb-12 sm:mb-14">
           <h2
-            className="text-white mb-4 font-inter font-medium text-[20px] leading-[34px] tracking-[0.01em]"
+            className="text-white mb-6 font-inter font-semibold text-[20px] sm:text-[44px] leading-[34px] tracking-[0.01em]"
           >
             Common questions from CTOs and founders
           </h2>
           <p
-            className="text-gray-400 font-inter font-normal text-base leading-6 tracking-[0.01em]"
+            className="text-[#F5F5F5] font-inter font-normal text-[20px] leading-6 tracking-[0.01em]"
           >
             Don&apos;t see your question? Book a 15-minute call—no pitch, just
             answers.
@@ -46,15 +48,23 @@ export default function FAQ() {
 
         {/* Read More CTA */}
         <div className="flex justify-center mt-10">
-          <button
-            type="button"
-            className="bg-[linear-gradient(193.06deg,#52BBEF_5.92%,#0181EC_89.21%)] text-white font-semibold px-8 py-3.5 rounded-lg hover:opacity-95 transition-all duration-300 ease-out flex items-center gap-2"
+        <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={fadeInUp}
+            transition={{ delay: 0.4 }}
           >
+            <motion.a
+              href="#contact"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="group inline-flex gap-2 items-center rounded-xl bg-[linear-gradient(206.67deg,#45B3F1_-0.38%,#0088FF_81.83%)] text-[#ffffff] px-3 md:px-7  py-2  md:py-4  text-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg"
+            >
             Read More
-            <span className="text-lg leading-none" aria-hidden>
-              &gt;
-            </span>
-          </button>
+           <RightArrowIcon width={7} height={11} color="#ffffff" className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-0.5" />
+           </motion.a>
+          </motion.div>
+        
         </div>
       </div>
     </section>

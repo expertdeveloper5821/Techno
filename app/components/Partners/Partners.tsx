@@ -8,7 +8,7 @@ import { partners } from '@/app/lib/data/partners';
 export default function Partners() {
   return (
     <section className="py-24 bg-[linear-gradient(to_bottom,#0094DB_0%,#0094DB_85%,#003a5c_95%,#000000_100%)] relative ">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-0">
         
         {/* Header */}
         <motion.div
@@ -16,9 +16,9 @@ export default function Partners() {
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeInUp}
-          className="text-start mb-16"
+          className="text-start mb-8"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-[46px] font-semibold text-[#ffffff]  leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-[46px] font-semibold text-[#ffffff]  leading-tight font-inter">
             Trusted by Our Partners Who Share Our Vision for Digital Innovation and Long-Term Growth
           </h2>
         </motion.div>
@@ -29,7 +29,7 @@ export default function Partners() {
           whileInView="visible"
           viewport={{ once: true }}
           variants={staggerContainer}
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-12 gap-y-16 sm:gap-x-16 sm:gap-y-20 md:gap-x-12 md:gap-y-12 items-center justify-items-center"
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-12 gap-y-16 sm:gap-x-16 sm:gap-y-20 md:gap-x-8 md:gap-y-8 items-center justify-items-center"
         >
           {partners.map((partner) => (
             <motion.div 
@@ -44,7 +44,7 @@ export default function Partners() {
                   alt={partner.name}
                   width={280}
                   height={140}
-                  className="object-contain w-auto h-full max-h-[72px] sm:max-h-[88px] md:max-h-[100px] grayscale brightness-0 invert opacity-90"
+                  className="object-contain w-auto h-full max-h-[72px] sm:max-h-[88px] md:max-h-[70px] grayscale brightness-0 invert opacity-90"
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 280px"
                   loading="lazy"
                 />
@@ -57,7 +57,7 @@ export default function Partners() {
                   alt={partner.name}
                   width={280}
                   height={140}
-                  className="object-contain w-auto h-full max-h-[72px] sm:max-h-[88px] md:max-h-[100px]"
+                  className="object-contain w-auto h-full max-h-[72px] sm:max-h-[88px] md:max-h-[70px]"
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 280px"
                   loading="lazy"
                 />
