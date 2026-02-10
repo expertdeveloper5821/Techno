@@ -76,19 +76,19 @@ export default function ContactFormCard({
       viewport={{ once: false, amount: 0.15 }}
       transition={{ duration: 1, ease: [0.6, -0.05, 0.01, 0.99] }}
       variants={parallaxVariants}
-      className="rounded-2xl overflow-hidden bg-[#0094DB] p-8 sm:p-10 lg:p-16 relative  "
+      className="rounded-2xl overflow-hidden bg-[#0094DB] p-8 sm:p-10 lg:p-6 relative  "
     >
       {/* <div className='absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_65%_45%,rgba(255,255,255,0.25)_0%,rgba(255,255,255,0.15)_25%,rgba(255,255,255,0.05)_45%,rgba(255,255,255,0)_60%)]  z-10'></div> */}
 
 
       {/* <!-- Right bottom strong white --> */}
-  <div className ="absolute inset-0 bg-[radial-gradient(circle_at_100%_100%,rgba(255,255,255,0.28)_0%,rgba(255,255,255,0.18)_20%,rgba(255,255,255,0.08)_40%,rgba(255,255,255,0)_60%)]"></div>
+  {/* <div className ="absolute inset-0 bg-[radial-gradient(circle_at_100%_100%,rgba(255,255,255,0.28)_0%,rgba(255,255,255,0.18)_20%,rgba(255,255,255,0.08)_40%,rgba(255,255,255,0)_60%)]"></div> */}
 
   {/* <!-- Top center medium white --> */}
-  <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_10%,rgba(255,255,255,0.22)_0%,rgba(255,255,255,0.12)_25%,rgba(255,255,255,0.05)_45%,rgba(255,255,255,0)_65%)]"></div>
+  {/* <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_10%,rgba(255,255,255,0.22)_0%,rgba(255,255,255,0.12)_25%,rgba(255,255,255,0.05)_45%,rgba(255,255,255,0)_65%)]"></div> */}
 
   {/* <!-- Left bottom subtle white --> */}
-  <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_80%,rgba(255,255,255,0.14)_0%,rgba(255,255,255,0.08)_30%,rgba(255,255,255,0.03)_50%,rgba(255,255,255,0)_70%)]"></div>
+  {/* <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_80%,rgba(255,255,255,0.14)_0%,rgba(255,255,255,0.08)_30%,rgba(255,255,255,0.03)_50%,rgba(255,255,255,0)_70%)]"></div> */}
 
       {onClose && (
         <button
