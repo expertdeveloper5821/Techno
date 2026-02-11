@@ -3,7 +3,10 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
- 
+import facebookLogo from '@/app/lib/icon/facebooklogo.svg';
+import instagramLogo from '@/app/lib/icon/instalogo.svg';
+import figmaLogo from '@/app/lib/icon/figma.svg';
+import telegramLogo from '@/app/lib/icon/telegramlogo.svg';
 const helpfulLinks = [
   { href: '#about', label: 'About Us' },
   { href: '#contact', label: 'Contact Us' },
@@ -23,11 +26,11 @@ const services = [
 ];
  
 const socialLinks = [
-  { name: 'Facebook', icon: '/footer/fb.png' },
-  { name: 'Twitter', icon: '/footer/tw.png' },
-  { name: 'Instagram', icon: '/footer/inst.png' },
-  { name: 'LinkedIn', icon: '/footer/in.png' },
-  { name: 'YouTube', icon: '/footer/yt.png' },
+  { name: 'Facebook', icon: facebookLogo },
+  { name: 'figma', icon: figmaLogo },
+  { name: 'Instagram', icon: instagramLogo },
+  // { name: 'LinkedIn', icon: '/footer/ },
+  { name: 'telegram', icon: telegramLogo },
 ];
  
  

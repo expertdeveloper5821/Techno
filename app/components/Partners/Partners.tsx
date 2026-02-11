@@ -8,7 +8,7 @@ import { partners } from '@/app/lib/data/partners';
 export default function Partners() {
   return (
     <section className="py-24 bg-[linear-gradient(to_bottom,#0094DB_0%,#0094DB_85%,#003a5c_95%,#000000_100%)] relative ">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-0">
+      <div className=" w-full mx-auto px-4 sm:px-6 lg:px-6">
         
         {/* Header */}
         <motion.div
@@ -35,10 +35,10 @@ export default function Partners() {
             <motion.div 
               key={partner.id} 
               variants={fadeInUp}
-              className="group relative w-full max-w-[200px] sm:max-w-[240px] md:max-w-[280px] h-[100px] sm:h-[120px] md:h-[140px] flex items-center justify-center cursor-pointer"
+              className="group relative w-full  h-[100px] sm:h-[120px] md:h-[140px] flex items-center justify-center cursor-pointer"
             >
               {/* 1. White/light logo (visible by default) */}
-              <div className="absolute inset-0 flex items-center justify-center transition-all duration-300 opacity-100 group-hover:opacity-0 group-hover:scale-95">
+              <div className="absolute w-full h-full inset-0 flex items-center justify-center transition-all duration-300 opacity-100 group-hover:opacity-0 group-hover:scale-95">
                 <Image
                   src={partner.logoGray}
                   alt={partner.name}
@@ -51,7 +51,7 @@ export default function Partners() {
               </div>
 
               {/* 2. Color logo (on hover) */}
-              <div className="absolute inset-0 flex items-center justify-center transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:scale-105">
+              <div className="absolute w-full h-full inset-0 flex items-center justify-center transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:scale-105">
                 <Image
                   src={partner.logoColor}
                   alt={partner.name}

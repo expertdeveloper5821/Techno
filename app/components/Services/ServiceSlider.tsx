@@ -52,7 +52,7 @@ export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
   );
 
   return (
-    <div className="w-full relative mx-auto overflow-hidden">
+    <div className="w-full relative mx-auto overflow-hidden px-4 sm:px-6 lg:px-6">
       
       {/* ---------------- SKELETON LOADER ---------------- */}
       {!isLoaded && (
@@ -87,25 +87,25 @@ export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
         initialSlide={2}
         speed={600}
         coverflowEffect={{
-          rotate: 50,
+          rotate: 35,
           stretch: 0,
-          depth: 100,
+          depth: 50,
           modifier: 1,
-          slideShadows: true,
+          slideShadows: false,
         }}
         autoplay={{
           delay: 3000,
           disableOnInteraction: false,
           pauseOnMouseEnter: true,
         }}
-        // pagination={{ clickable: true, dynamicBullets: true }}
+        pagination={{ clickable: true, dynamicBullets: true }}
         modules={[EffectCoverflow, Pagination, Autoplay, Navigation]}
         onSwiper={(swiper) => { swiperRef.current = swiper; }}
         onInit={() => setIsLoaded(true)}
         className={`w-full  py-12 pb-20 transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
       >
         {services.map((service, index) => (
-          <SwiperSlide key={`${service.title}-${index}`} className="w-[260px]! md:w-[320px]! lg:w-[380px]!">
+          <SwiperSlide key={`${service.title}-${index}`} className="w-[260px]! md:w-[320px]! lg:w-[300px]!">
             {({ isActive }) => {
               const showDetails = hoveredIndex === index;
               return (
@@ -128,22 +128,22 @@ export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
                     transition-all duration-500 ease-out
                     ${isActive 
                       ? `${activeShadow} opacity-100 z-10` 
-                      : `opacity-60 hover:opacity-80 z-0`
+                      : `opacity-100 hover:opacity-80 z-0`
                     }
                   `}
                 >
                   {/* Image layer */}
-                  <div className="absolute inset-0 w-full h-full bg-gray-900">
+                  <div className="absolute inset-0 w-full h-full bg-gray-900 overflow-hidden rounded-2xl ">
                     <Image
                       src={service.image}
                       alt={service.title}
                       fill
                       sizes="(max-width: 768px) 260px, (max-width: 1024px) 320px, 380px"
-                      className={`object-cover transition-transform duration-700 ${showDetails ? 'scale-105' : 'scale-100'}`}
+                      className={`object-cover transition-transform duration-700  rounded-[32px] overflow-hidden ${showDetails ? 'scale-105' : 'scale-100'}`}
                       loading="lazy"
                     />
                     <div 
-                      className="absolute inset-0 transition-opacity duration-300"
+                      className="absolute inset-0 transition-opacity duration-300 overflow-hidden rounded-[32px]"
                       style={{
                         background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, transparent 100%)',
                         opacity: showDetails ? 0.5 : 0.7,

@@ -15,7 +15,7 @@ export default function FAQ() {
 
   return (
     <section id="faq" className="py-20 sm:py-24 bg-[#0000]">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-2 w-full max-w-[1068px]">
+      <div className=" mx-auto px-4 sm:px-6 lg:px-2 w-full max-w-[1068px]">
         {/* Header */}
         <div className="text-center mb-12 sm:mb-14">
           <h2

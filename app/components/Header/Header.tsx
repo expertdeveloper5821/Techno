@@ -23,9 +23,9 @@ export default function Header() {
       transition={{ duration: 0.5 }}
       className="absolute top-0 left-0 right-0 z-50 pt-6" // Absolute positioning to sit ON TOP of the gradient
     >
-      <nav className="container mx-auto px-4 sm:px-6 lg:px-4">
+      <nav className=" w-full mx-auto px-4 sm:px-6 lg:px-6">
         {/* White pill-shaped container - Matches the design exactly */}
-        <div className="bg-white rounded-xl px-4 py-3 md:py-4 flex items-center justify-between shadow-lg">
+        <div className="bg-white  rounded-xl px-4 py-3 md:py-4 flex items-center justify-between shadow-lg">
           
           {/* Logo */}
           <motion.div whileHover={{ scale: 1.05 }} className="flex items-center pl-2">

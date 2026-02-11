@@ -25,8 +25,8 @@ const stats = [
 
 export default function About() {
   return (
-    <section id="about" className="pt-24 pb-10 bg-[#0a0a0a] text-white sm:px-6 px-4">
-      <div className="container mx-auto ">
+    <section id="about" className="pt-24 pb-24 bg-[#0a0a0a] text-white w-full mx-auto px-4 sm:px-6 lg:px-6">
+      <div className=" ">
         
         {/* --- Top Row: Heading & Description --- */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-5 items-start">

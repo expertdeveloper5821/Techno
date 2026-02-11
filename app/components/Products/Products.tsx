@@ -10,8 +10,8 @@ export default function Products() {
   const [activeProduct, setActiveProduct] = useState(products[0]);
 
   return (
-    <section id="products" className="py-24 bg-[#0000] text-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-0">
+    <section id="products" className="py-24 bg-[#0000] text-white ">
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-6">
         
         {/* The Grid container defines the scroll area */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">

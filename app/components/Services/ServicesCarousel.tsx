@@ -131,7 +131,7 @@ export default function ServicesCarousel() {
       className="relative overflow-hidden min-h-screen flex flex-col justify-start pt-16 pb-24 bg-[linear-gradient(to_bottom,#0094DB_0%,#0094DB_85%,#003a5c_95%,#000000_100%)] "
      
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-8">
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-6 mb-8">
         {/* Header: Title + CTA */}
         <div className="flex flex-col lg:flex-row justify-between items-start gap-6 lg:gap-8">
           <h2 className="text-4xl md:text-5xl lg:text-[44px] font-semibold font-inter text-white leading-[60px]  max-w-4xl">
@@ -164,7 +164,7 @@ export default function ServicesCarousel() {
             <button
               type="button"
               aria-label="Previous slide"
-              onClick={() => swiperRef.current?.slidePrev()}
+              onClick={() => swiperRef.current?.slideNext()}
               className="w-12 h-12 rounded-full [perspective:1000px] text-white flex items-center justify-center hover:bg-white/10 hover:border-white transition-colors"
             >
               {/* <ChevronLeftIcon width={10} height={11} color="#ffffff"/> */}
