@@ -15,11 +15,19 @@ import arrowr from '@/app/lib/icon/arrowr.svg';
 type IconProps = React.SVGProps<SVGSVGElement> & { width?: number; height?: number; color?: string };
 const ChevronRightIcon = ChevronRightIconImport as React.FC<IconProps>;
 
+// Mobile-first responsive card widths
+const CARD_WIDTH_MOBILE = '100%'; // Mobile: full width
 const CARD_WIDTH_NARROW = 193;
 const CARD_WIDTH_EXPANDED = 420;
+// Responsive card heights
+const CARD_HEIGHT_MOBILE = 350; // Mobile height
+const CARD_HEIGHT_TABLET = 380; // Tablet height
+const CARD_HEIGHT_DESKTOP = 499; // Desktop height
 const EXTEND_DURATION_MS = 600;
 const TEXT_APPEAR_DELAY_MS = 120;
 const SM_BREAKPOINT = 640;
+const MD_BREAKPOINT = 768;
+const LG_BREAKPOINT = 1024;
 /** Smooth ease-out for expand, text, and visual transitions */
 const EASE_SMOOTH = 'cubic-bezier(0.25, 0.46, 0.45, 0.94)';
 const RESIZE_DEBOUNCE_MS = 150;
@@ -35,9 +43,18 @@ export default function ServicesCarousel() {
   const swiperRef = useRef<SwiperType | null>(null);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [isBelow640, setIsBelow640] = useState(false);
+  const [windowSize, setWindowSize] = useState<'mobile' | 'tablet' | 'desktop'>('mobile');
+  const [mobileActiveIndex, setMobileActiveIndex] = useState<number>(0); // Track active card on mobile
   const updateTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const leaveTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const enterTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Function to get card height based on screen size
+  const getCardHeight = (): number => {
+    if (windowSize === 'mobile') return CARD_HEIGHT_MOBILE;
+    if (windowSize === 'tablet') return CARD_HEIGHT_TABLET;
+    return CARD_HEIGHT_DESKTOP;
+  };
 
   // Debounce resize so we don't flicker when crossing breakpoint
   useEffect(() => {
@@ -45,10 +62,19 @@ export default function ServicesCarousel() {
     const check = () => {
       clearTimeout(timeoutId);
       timeoutId = setTimeout(() => {
-        setIsBelow640(window.innerWidth < SM_BREAKPOINT);
+        const width = window.innerWidth;
+        setIsBelow640(width < SM_BREAKPOINT);
+        // Update window size category
+        if (width < SM_BREAKPOINT) {
+          setWindowSize('mobile');
+        } else if (width < LG_BREAKPOINT) {
+          setWindowSize('tablet');
+        } else {
+          setWindowSize('desktop');
+        }
       }, RESIZE_DEBOUNCE_MS);
     };
-    setIsBelow640(window.innerWidth < SM_BREAKPOINT);
+    check();
     window.addEventListener('resize', check);
     return () => {
       window.removeEventListener('resize', check);
@@ -67,6 +93,8 @@ export default function ServicesCarousel() {
 
   // Enter: set hover after short delay (cancels pending leave) – avoids edge flicker and quick grazes
   const handleSlideEnter = useCallback((realIndex: number) => {
+    if (isBelow640) return; // Mobile: always extended, no hover required
+    
     if (leaveTimeoutRef.current) {
       clearTimeout(leaveTimeoutRef.current);
       leaveTimeoutRef.current = null;
@@ -77,10 +105,12 @@ export default function ServicesCarousel() {
       setHoveredIndex(realIndex);
       scheduleSwiperUpdate();
     }, HOVER_ENTER_DELAY_MS);
-  }, [scheduleSwiperUpdate]);
+  }, [scheduleSwiperUpdate, isBelow640]);
 
-  // Leave: clear hover only after delay so moving to adjacent slide doesn’t briefly clear and flicker
+  // Leave: clear hover only after delay so moving to adjacent slide doesn't briefly clear and flicker
   const handleSlideLeave = useCallback(() => {
+    if (isBelow640) return; // Mobile: always extended, no hover required
+    
     if (enterTimeoutRef.current) {
       clearTimeout(enterTimeoutRef.current);
       enterTimeoutRef.current = null;
@@ -91,7 +121,7 @@ export default function ServicesCarousel() {
       setHoveredIndex(null);
       scheduleSwiperUpdate();
     }, HOVER_LEAVE_DELAY_MS);
-  }, [scheduleSwiperUpdate]);
+  }, [scheduleSwiperUpdate, isBelow640]);
 
   // When cursor leaves the carousel area entirely, clear hover and all pending timeouts
   const handleCarouselLeave = useCallback(() => {
@@ -106,6 +136,13 @@ export default function ServicesCarousel() {
     setHoveredIndex(null);
     scheduleSwiperUpdate();
   }, [scheduleSwiperUpdate]);
+
+  // Mobile card click handler for accordion behavior
+  const handleMobileCardClick = useCallback((realIndex: number) => {
+    if (!isBelow640) return; // Only for mobile
+    setMobileActiveIndex(realIndex);
+    scheduleSwiperUpdate();
+  }, [isBelow640, scheduleSwiperUpdate]);
 
   useEffect(() => {
     return () => {
@@ -188,50 +225,58 @@ export default function ServicesCarousel() {
             }}
             modules={[Navigation, Autoplay]}
             spaceBetween={24}
-            
+
             centeredSlides={false}
             loop={true}
             loopAdditionalSlides={3}
-            observer={false}
-            observeParents={false}
+            observer={true}
+            observeParents={true}
+            watchSlidesProgress={true}
             speed={600}
             autoplay={{
               delay: 3000,
               disableOnInteraction: false,
               pauseOnMouseEnter: true,
             }}
-            slidesPerView={1}
+            slidesPerView="auto"
             breakpoints={{
-              320: { spaceBetween: 16  ,slidesPerView: 1 },
-              640: { spaceBetween: 18 ,slidesPerView: 2 },
-              768: { spaceBetween: 20 ,slidesPerView: 3},
-              1024: { spaceBetween: 24 ,slidesPerView: 4 },
-              1280: { spaceBetween: 26 ,slidesPerView: 5 },
-              1440: { spaceBetween: 28 ,slidesPerView: 6 },
-              
+              320: { spaceBetween: 16 },
+              640: { spaceBetween: 18 },
+              768: { spaceBetween: 20 },
+              1024: { spaceBetween: 24 },
+              1280: { spaceBetween: 26 },
+              1440: { spaceBetween: 28 },
+
             }}
             className="overflow-hidden! pb-4"
           >
             {loopSlides.map((service, index) => {
               const realIndex = index % services.length;
-              const isHovered = hoveredIndex === realIndex;
+              // On mobile, only the active card is expanded (accordion behavior)
+              // On desktop, hovered card is expanded
+              const isHovered = isBelow640 ? (mobileActiveIndex === realIndex) : (hoveredIndex === realIndex);
+              // On mobile, card fills available width; on desktop, it's standard widths
+              const cardWidth = isBelow640 ? CARD_WIDTH_MOBILE : (isHovered ? CARD_WIDTH_EXPANDED : CARD_WIDTH_NARROW);
+              const cardHeight = getCardHeight();
+              
               return (
                 <SwiperSlide
                   key={`${service.title}-${index}`}
                   className="shrink-0! flex justify-start"
                   style={{
-                    width: isHovered ? CARD_WIDTH_EXPANDED : CARD_WIDTH_NARROW,
+                    width: cardWidth,
                     transition: `width ${EXTEND_DURATION_MS}ms ${EASE_SMOOTH}`,
                   }}
                   onMouseEnter={() => handleSlideEnter(realIndex)}
                   onMouseLeave={handleSlideLeave}
+                  onClick={() => handleMobileCardClick(realIndex)}
                 >
-                  {/* Card aligned left so it only extends to the right */}
+                  {/* Card expands to the right, pushing other cards */}
                   <article
-                    className="relative h-[499px] rounded-[30px] overflow-hidden group shrink-0 origin-left"
+                    className="relative rounded-[30px] overflow-hidden group shrink-0 origin-left cursor-pointer w-full"
                     style={{
-                      width: isHovered ? CARD_WIDTH_EXPANDED : CARD_WIDTH_NARROW,
-                      transition: `width ${EXTEND_DURATION_MS}ms ${EASE_SMOOTH}`,
+                      height: `${cardHeight}px`,
+                      transition: `all ${EXTEND_DURATION_MS}ms ${EASE_SMOOTH}`,
                     }}
                   >
                     {/* Blue glow / border effect */}
@@ -265,33 +310,37 @@ export default function ServicesCarousel() {
                       }}
                       aria-hidden
                     />
-                    <div className="absolute top-0 left-0 right-0 p-6 z-3">
+                    <div className="absolute top-0 left-0 right-0 z-3" style={{ padding: isBelow640 ? '12px' : '24px' }}>
                       <h2
                         className="text-white drop-shadow-md"
                         style={{
                           fontFamily: 'Inter, sans-serif',
                           fontWeight: 500,
-                          fontSize: '22px',
-                          lineHeight: '30px',
+                          fontSize: isBelow640 ? '16px' : '22px',
+                          lineHeight: isBelow640 ? '22px' : '30px',
                           letterSpacing: '0.01em',
                         }}
                       >
                         {service.title}
                       </h2>
                     </div>
-                    {/* Bottom gradient + description: fades and slides up smoothly after expand */}
+                    {/* Bottom gradient + description: always visible on mobile, shows on hover on desktop */}
                     <div
-                      className="absolute bottom-0 left-0 right-0 z-2 bg-linear-to-t from-black/85 via-black/50 to-transparent pt-16 pb-6 px-6"
+                      className="absolute bottom-0 left-0 right-0 z-2 bg-linear-to-t from-black/85 via-black/50 to-transparent"
                       style={{
+                        padding: isBelow640 ? '12px' : '24px',
+                        paddingTop: isBelow640 ? '16px' : '32px',
+                        paddingBottom: isBelow640 ? '12px' : '24px',
                         opacity: isHovered && service.description ? 1 : 0,
                         transform: isHovered && service.description ? 'translateY(0)' : 'translateY(10px)',
-                        transition: `opacity ${EXTEND_DURATION_MS}ms ${EASE_SMOOTH} ${TEXT_APPEAR_DELAY_MS}ms, transform ${EXTEND_DURATION_MS}ms ${EASE_SMOOTH} ${TEXT_APPEAR_DELAY_MS}ms`,
+                        transition: `opacity ${EXTEND_DURATION_MS}ms ${EASE_SMOOTH} ${isBelow640 ? 0 : TEXT_APPEAR_DELAY_MS}ms, transform ${EXTEND_DURATION_MS}ms ${EASE_SMOOTH} ${isBelow640 ? 0 : TEXT_APPEAR_DELAY_MS}ms`,
+                        pointerEvents: isHovered ? 'auto' : 'none',
                       }}
                       aria-hidden={!isHovered}
                     >
-                      <p className="text-white text-sm leading-relaxed line-clamp-4">
+                      <p className="text-white leading-relaxed line-clamp-4" style={{ fontSize: isBelow640 ? '12px' : '14px' }}>
                         <div>{service.description}</div>
-                        <button className="text-white text-sm leading-relaxed line-clamp-4 inline-flex items-center gap-1.5">Read more <ReadMoreIcon width={13} height={13} color="#F8F8F8" className="inline-block" /> </button>
+                        <button className="text-white inline-flex items-center gap-1.5 mt-2" style={{ fontSize: isBelow640 ? '12px' : '14px' }}>Read more <ReadMoreIcon width={13} height={13} color="#F8F8F8" className="inline-block" /> </button>
                       </p>
                     </div>
                   </article>
