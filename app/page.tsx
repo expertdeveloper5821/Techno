@@ -29,7 +29,7 @@ const Footer = dynamic(() => import('./components/Footer/Footer'));
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#0a0a0a] overflow-x-hidden">
+    <main className="min-h-screen bg-[#0a0a0a] ">
       {/* 
         Unified Hero Section Wrapper 
         - This creates the continuous Blue-to-Black gradient behind Header, Text, and Services
