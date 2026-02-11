@@ -33,7 +33,7 @@ const loopSlides = [...services, ...services];
 
 export default function ServicesCarousel() {
   const swiperRef = useRef<SwiperType | null>(null);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(0);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [isBelow640, setIsBelow640] = useState(false);
   const updateTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const leaveTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -88,7 +88,7 @@ export default function ServicesCarousel() {
     if (leaveTimeoutRef.current) clearTimeout(leaveTimeoutRef.current);
     leaveTimeoutRef.current = setTimeout(() => {
       leaveTimeoutRef.current = null;
-      setHoveredIndex(0);
+      setHoveredIndex(null);
       scheduleSwiperUpdate();
     }, HOVER_LEAVE_DELAY_MS);
   }, [scheduleSwiperUpdate]);
@@ -119,7 +119,7 @@ export default function ServicesCarousel() {
   useEffect(() => {
     const swiper = swiperRef.current;
     if (!swiper?.autoplay) return;
-    if (hoveredIndex !== 0) {
+    if (hoveredIndex !== null) {
       swiper.autoplay.stop();
     } else {
       swiper.autoplay.start();
@@ -177,11 +177,7 @@ export default function ServicesCarousel() {
 
       {/* Slider at top: ServiceSlider below sm, carousel on sm+ */}
       <div className="w-full relative mt-4 flex justify-center px-4 sm:px-6">
-        {isBelow640 ? (
-          <div className="w-full max-w-full">
-            <ServiceSlider theme="dark" />
-          </div>
-        ) : (
+       
         <div
           className="w-full  overflow-hidden"
           onMouseLeave={handleCarouselLeave}
@@ -192,7 +188,7 @@ export default function ServicesCarousel() {
             }}
             modules={[Navigation, Autoplay]}
             spaceBetween={24}
-            slidesPerView="auto"
+            
             centeredSlides={false}
             loop={true}
             loopAdditionalSlides={3}
@@ -204,13 +200,14 @@ export default function ServicesCarousel() {
               disableOnInteraction: false,
               pauseOnMouseEnter: true,
             }}
+            slidesPerView={1}
             breakpoints={{
-              320: { spaceBetween: 16 },
-              640: { spaceBetween: 18 },
-              768: { spaceBetween: 20 },
-              1024: { spaceBetween: 24 },
-              1280: { spaceBetween: 26 },
-              1440: { spaceBetween: 28 },
+              320: { spaceBetween: 16  ,slidesPerView: 1 },
+              640: { spaceBetween: 18 ,slidesPerView: 2 },
+              768: { spaceBetween: 20 ,slidesPerView: 3},
+              1024: { spaceBetween: 24 ,slidesPerView: 4 },
+              1280: { spaceBetween: 26 ,slidesPerView: 5 },
+              1440: { spaceBetween: 28 ,slidesPerView: 6 },
               
             }}
             className="overflow-hidden! pb-4"
@@ -303,7 +300,7 @@ export default function ServicesCarousel() {
             })}
           </Swiper>
         </div>
-        )}
+        
       </div>
     </section>
   );
