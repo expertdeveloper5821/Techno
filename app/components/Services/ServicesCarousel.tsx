@@ -103,7 +103,7 @@ export default function ServicesCarousel() {
       clearTimeout(leaveTimeoutRef.current);
       leaveTimeoutRef.current = null;
     }
-    setHoveredIndex(0);
+    setHoveredIndex(null);
     scheduleSwiperUpdate();
   }, [scheduleSwiperUpdate]);
 

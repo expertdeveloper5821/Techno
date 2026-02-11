@@ -23,7 +23,7 @@ export default function Technologies() {
           className="text-center"
         >
           <p className="text-gray-400  text-sm font-inter sm:text-[22px]  tracking-wider mb-3">Our Technologies</p>
-          <h2 className=" font-inter text-[25px] sm:text-[44px] md:text-4xl font-semibold text-white sm:leading-tight leading-[35px] tracking-tight ">
+          <h2 className=" font-inter text-[25px] sm:text-xl md:text-4xl lg:text-[44px] font-semibold text-white sm:leading-tight lg:leading-[60px] md:leading-[50px] leading-[35px] tracking-tight ">
           Technology we use and integrate </h2>
         </motion.div>
       </div>

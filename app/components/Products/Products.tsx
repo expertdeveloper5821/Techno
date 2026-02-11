@@ -14,7 +14,7 @@ export default function Products() {
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-6">
         
         {/* The Grid container defines the scroll area */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-12 lg:gap-20 items-start">
           
           {/* --- Left Column: STICKY --- */}
           {/* 

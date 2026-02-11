@@ -111,14 +111,14 @@ export default function About() {
                 className="
                   bg-transparent border border-white/20 rounded-2xl p-6 
                   flex flex-col  justify-between font-inter
-                  hover:bg-white/5 transition-colors duration-300   h-[100%]  xl:h-[80%] xl:h-[80%]
+                  hover:bg-white/5 transition-colors duration-300   h-full  xl:h-[80%] 
                 "
               >
                 <div className="   font-medium text-[32px]  text-white leading-[40px]  tracking-[1%] ">
                   {stat.number}
                 </div>
                 <div className='  flex flex-col  justify-between h-[70%]'>
-                  <h3 className=" text-[32px] font-normal text-white  h-[40%]  flex items-end ">
+                  <h3 className=" md:text-[32px] text-xl  font-normal text-white  h-[40%]  flex items-end ">
                     {stat.label}
                   </h3>
                   <p className=" text-lg leading-relaxed font-inter tracking-[1%] ">
