@@ -51,9 +51,9 @@ export default function About() {
             transition={{ delay: 0.2 }}
             className="space-y-10 mt-2"
           >
-            <p className="text-[#FFFFFF] text-lg  leading-[28.8px] font-inters tracking-[1%] mb-0!sm:mb-2 ">
+            <p className="text-[#FFFFFF] text-lg  leading-[28.8px] font-inters tracking-[1%] mb-0! sm:mb-2 ">
             Since 2018, we've helped startups and enterprises build software that actually works. No buzzwords, no vendor lock-in—just senior engineers who deliver working code on predictable timelines.            </p>
-            <p>We don't treat you like a ticket number. Our teams embed directly into yours—same Slack channels, same sprint cycles, same goals.</p>
+            <p className=''>We don't treat you like a ticket number. Our teams embed directly into yours—same Slack channels, same sprint cycles, same goals.</p>
             <div className="space-y-4">
               {features.map((feature, index) => (
                 <div key={index} className="flex items-center space-x-3">

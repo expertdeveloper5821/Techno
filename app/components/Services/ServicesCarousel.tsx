@@ -192,44 +192,45 @@ export default function ServicesCarousel() {
       className="relative overflow-hidden min-h-screen flex flex-col justify-start lg:pt-24 lg:pb-24 md:pt-15 md:pb-15 pt-10 pb-10 bg-[linear-gradient(to_bottom,#0094DB_0%,#0094DB_85%,#003a5c_95%,#000000_100%)] "
      
     >
-      <div className="w-full mx-auto px-4 sm:px-6 lg:px-6 mb-8">
+      <div className="w-full flex lg:flex-row flex-col lg:gap-0 gap-8   mx-auto  px-4 sm:px-6 lg:px-6 mb-8">
         {/* Header: Title + CTA */}
-        <div className="flex flex-col lg:flex-row justify-between items-start gap-6 lg:gap-8">
+        <div className="flex flex-col lg:flex-col justify-between items-start gap-2 lg:gap-2">
           <h2 className="text-[25px]  sm:text-xl md:text-4xl lg:text-[44px] font-semibold font-inter text-white lg:leading-[60px] md:leading-[50px] leading-[35px]  max-w-4xl">
             Full-stack Development From Discovery To Deployment
           </h2>
-          <a
-            href="#services"
-            className="group shrink-0 inline-flex items-center justify-center gap-2 px-8 py-3.5 text-base font-bold text-[#000000] bg-white rounded-full hover:bg-white/95 transition-all duration-200 shadow-lg whitespace-nowrap"
-          >
-            Explore Services <ChevronRightIcon width={7} height={11} color="#000000" className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-0.5" />
-          </a>
-        </div>
-
-        {/* Description + Navigation arrows */}
-        <div className="mt-8 flex flex-col sm:flex-row sm:items-start gap-6 ">
           <p className="text-base md:text-lg font-inter font-normal text-white/90 md:leading-relaxed leading-[25px] flex-1">
             At Technogetic, we are at the forefront of technological innovation, dedicated to delivering cutting-edge IT solutions that drive business success. Founded in 2018, our mission is to redefine the digital landscape by providing reliable and scalable technology solutions.
           </p>
-          <div className={`flex items-center gap-2 shrink-0 ${isBelow640 ? 'hidden' : ''}`}>
+        </div>
+
+        {/* Description + Navigation arrows */}
+        <div className=" flex lg:justify-center sm:justify-between sm:gap-20 justify-between sm:items-end items-center flex-row  lg:flex-col   ">
+          
+          <a
+            href="#services"
+            className="group shrink-0 inline-flex items-center justify-center gap-2 sm:px-8  sm:py-3.5 px-4 py-2 text-base font-semibold text-[#000000] bg-white rounded-full hover:bg-white/95 transition-all duration-200 shadow-lg whitespace-nowrap mt-0"
+          >
+            Explore Services <ChevronRightIcon width={7} height={11} color="#000000" className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-0.5" />
+          </a>
+          <div className={`flex items-center gap-2 shrink-0 ${isBelow640 ? '' : ''}`}>
             <button
               type="button"
               aria-label="Previous slide"
               onClick={() => swiperRef.current?.slidePrev()}
-              className="w-12 h-12 rounded-full  text-white flex items-center justify-center hover:bg-white/10 hover:border-white transition-colors"
+              className="sm:w-12 sm:h-12 w-6 h-6 rounded-full  text-white flex items-center justify-center hover:bg-white/10 hover:border-white transition-colors"
             >
               {/* <ChevronLeftIcon width={10} height={11} color="#ffffff"/> */}
-              <Image src={arrowl} alt="arrow" width={20} height={20} className="w-10 h-10" />
+              <Image src={arrowl} alt="arrow" width={20} height={20} className="sm:w-10 sm:h-10 w-6 h-6 " />
               
             </button>
             <button
               type="button"
               aria-label="Previous slide"
               onClick={() => swiperRef.current?.slideNext()}
-              className="w-12 h-12 rounded-full [perspective:1000px] text-white flex items-center justify-center hover:bg-white/10 hover:border-white transition-colors"
+              className="sm:w-12 sm:h-12 w-6 h-6 rounded-full [perspective:1000px] text-white flex items-center justify-center hover:bg-white/10 hover:border-white transition-colors"
             >
               {/* <ChevronLeftIcon width={10} height={11} color="#ffffff"/> */}
-              <Image src={arrowl} alt="arrow" width={20} height={20} className="w-10 h-10 [transform:rotateY(180deg)]" />
+              <Image src={arrowl} alt="arrow" width={20} height={20} className="w-10 h-10 sm:w-10 sm:h-10 w-6 h-6 [transform:rotateY(180deg)]" />
               
             </button>
           </div>
@@ -251,7 +252,7 @@ export default function ServicesCarousel() {
             spaceBetween={24}
             // Center active slide so when it expands (especially the last one)
             // it stays fully visible on screen.
-            centeredSlides={true}
+            centeredSlides={false}
             loop={true}
             loopAdditionalSlides={3}
             observer={true}
