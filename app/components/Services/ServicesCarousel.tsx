@@ -119,7 +119,7 @@ export default function ServicesCarousel() {
   useEffect(() => {
     const swiper = swiperRef.current;
     if (!swiper?.autoplay) return;
-    if (hoveredIndex !== null) {
+    if (hoveredIndex !== 0) {
       swiper.autoplay.stop();
     } else {
       swiper.autoplay.start();
@@ -128,13 +128,13 @@ export default function ServicesCarousel() {
 
   return (
     <section
-      className="relative overflow-hidden min-h-screen flex flex-col justify-start pt-16 pb-24 bg-[linear-gradient(to_bottom,#0094DB_0%,#0094DB_85%,#003a5c_95%,#000000_100%)] "
+      className="relative overflow-hidden min-h-screen flex flex-col justify-start lg:pt-24 lg:pb-24 md:pt-15 md:pb-15 pt-10 pb-10 bg-[linear-gradient(to_bottom,#0094DB_0%,#0094DB_85%,#003a5c_95%,#000000_100%)] "
      
     >
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-6 mb-8">
         {/* Header: Title + CTA */}
         <div className="flex flex-col lg:flex-row justify-between items-start gap-6 lg:gap-8">
-          <h2 className="text-4xl md:text-5xl lg:text-[44px] font-semibold font-inter text-white leading-[60px]  max-w-4xl">
+          <h2 className="text-[25px]  sm:text-xl md:text-4xl lg:text-[44px] font-semibold font-inter text-white lg:leading-[60px] md:leading-[50px] leading-[35px]  max-w-4xl">
             Full-stack Development From Discovery To Deployment
           </h2>
           <a
@@ -147,7 +147,7 @@ export default function ServicesCarousel() {
 
         {/* Description + Navigation arrows */}
         <div className="mt-8 flex flex-col sm:flex-row sm:items-start gap-6 max-w-7xl">
-          <p className="text-lg font-inter font-normal text-white/90 leading-relaxed flex-1">
+          <p className="text-base md:text-lg font-inter font-normal text-white/90 md:leading-relaxed leading-[25px] flex-1">
             At Technogetic, we are at the forefront of technological innovation, dedicated to delivering cutting-edge IT solutions that drive business success. Founded in 2018, our mission is to redefine the digital landscape by providing reliable and scalable technology solutions.
           </p>
           <div className={`flex items-center gap-2 shrink-0 ${isBelow640 ? 'hidden' : ''}`}>
@@ -199,7 +199,11 @@ export default function ServicesCarousel() {
             observer={false}
             observeParents={false}
             speed={600}
-            autoplay={{ delay: 4500, disableOnInteraction: false }}
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            }}
             breakpoints={{
               320: { spaceBetween: 16 },
               640: { spaceBetween: 18 },

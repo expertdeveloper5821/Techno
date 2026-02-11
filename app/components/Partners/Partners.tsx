@@ -7,7 +7,7 @@ import { partners } from '@/app/lib/data/partners';
 
 export default function Partners() {
   return (
-    <section className="py-24 bg-[linear-gradient(to_bottom,#0094DB_0%,#0094DB_85%,#003a5c_95%,#000000_100%)] relative ">
+    <section className="lg:py-24 md:py-15 py-10 bg-[linear-gradient(to_bottom,#0094DB_0%,#0094DB_85%,#003a5c_95%,#000000_100%)] relative ">
       <div className=" w-full mx-auto px-4 sm:px-6 lg:px-6">
         
         {/* Header */}
@@ -16,9 +16,9 @@ export default function Partners() {
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeInUp}
-          className="text-start mb-8"
+          className="text-start md:mb-8 mb-5"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-[46px] font-semibold text-[#ffffff]  leading-tight font-inter">
+          <h2 className="text-[25px] sm:text-xl  md:text-4xl lg:text-[46px] font-semibold text-[#ffffff]  sm:leading-tight lg:leading-[60px] md:leading-[50px] leading-[35px] font-inter">
             Trusted by Our Partners Who Share Our Vision for Digital Innovation and Long-Term Growth
           </h2>
         </motion.div>
@@ -29,7 +29,7 @@ export default function Partners() {
           whileInView="visible"
           viewport={{ once: true }}
           variants={staggerContainer}
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-12 gap-y-16 sm:gap-x-16 sm:gap-y-20 md:gap-x-8 md:gap-y-8 items-center justify-items-center"
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-10 gap-y-0 sm:gap-x-16 sm:gap-y-10  md:gap-y-8 items-center justify-items-center"
         >
           {partners.map((partner) => (
             <motion.div 

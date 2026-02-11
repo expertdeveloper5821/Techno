@@ -13,8 +13,8 @@ const row2Extended = [...technologiesRow2, ...technologiesRow2, ...technologiesR
 
 export default function Technologies() {
   return (
-    <section className="py-20 bg-[#0a0a0a] overflow-hidden">
-      <div className="w-full mx-auto px-4 sm:px-6 lg:px-6 mb-16">
+    <section className="lg:py-24 md:py-15 py-10 bg-[#0a0a0a] overflow-hidden">
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-6 md:mb-16 mb-5">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -22,8 +22,8 @@ export default function Technologies() {
           variants={fadeInUp}
           className="text-center"
         >
-          <p className="text-gray-400  text-sm font-inter sm:text-[22px] uppercase tracking-wider mb-3">Our Technologies</p>
-          <h2 className=" font-inter text-3xl sm:text-[44px] md:text-4xl font-semibold text-white leading-tight tracking-tight ">
+          <p className="text-gray-400  text-sm font-inter sm:text-[22px]  tracking-wider mb-3">Our Technologies</p>
+          <h2 className=" font-inter text-[25px] sm:text-[44px] md:text-4xl font-semibold text-white sm:leading-tight leading-[35px] tracking-tight ">
           Technology we use and integrate </h2>
         </motion.div>
       </div>

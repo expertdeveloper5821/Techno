@@ -181,7 +181,7 @@ export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
                           : 'linear-gradient(180deg, transparent 0%, rgba(0, 99, 221, 0.96) 18%, rgba(0, 136, 201, 0.98) 100%)',
                       }}
                     >
-                      <h3 className="font-semibold text-xl md:text-xl lg:text-xl tracking-wide drop-shadow-sm mb-3 leading-[1%]">
+                      <h3 className="font-semibold text-xl md:text-xl lg:text-xl tracking-wide drop-shadow-sm mb-3 leading-[1.2]">
                         {service.title}
                       </h3>
                       {service.description && (

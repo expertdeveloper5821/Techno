@@ -25,11 +25,11 @@ const stats = [
 
 export default function About() {
   return (
-    <section id="about" className="pt-24 pb-24 bg-[#0a0a0a] text-white w-full mx-auto px-4 sm:px-6 lg:px-6">
+    <section id="about" className="lg:pt-24 lg:pb-24 md:pt-15 md:pb-15  pt-10 pb-10 bg-[#0a0a0a] text-white w-full mx-auto px-4 sm:px-6 lg:px-6">
       <div className=" ">
         
         {/* --- Top Row: Heading & Description --- */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-5 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-20 mb-5 items-start">
           
           {/* Left: Main Heading */}
           <motion.h2 
@@ -37,7 +37,7 @@ export default function About() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeInUp}
-            className="font-inter text-4xl sm:text-xl md:text-4xl font-semibold  leading-[60px]"
+            className="font-inter text-[25px] sm:text-xl md:text-4xl font-semibold   lg:leading-[60px] md:leading-[50px] leading-[38px] "
           >
             We deliver exceptional value through innovative, tailored solutions.
           </motion.h2>
@@ -51,9 +51,8 @@ export default function About() {
             transition={{ delay: 0.2 }}
             className="space-y-10 mt-2"
           >
-            <p className="text-[#FFFFFF] text-lg  leading-[28.8px] font-inters tracking-[1%] ">
+            <p className="text-[#FFFFFF] text-lg  leading-[28.8px] font-inters tracking-[1%] mb-0!sm:mb-2 ">
             Since 2018, we've helped startups and enterprises build software that actually works. No buzzwords, no vendor lock-in—just senior engineers who deliver working code on predictable timelines.            </p>
-            
             <p>We don't treat you like a ticket number. Our teams embed directly into yours—same Slack channels, same sprint cycles, same goals.</p>
             <div className="space-y-4">
               {features.map((feature, index) => (
@@ -112,7 +111,7 @@ export default function About() {
                 className="
                   bg-transparent border border-white/20 rounded-2xl p-6 
                   flex flex-col  justify-between font-inter
-                  hover:bg-white/5 transition-colors duration-300 xl:h-[80%]
+                  hover:bg-white/5 transition-colors duration-300   h-[100%]  xl:h-[80%] xl:h-[80%]
                 "
               >
                 <div className="   font-medium text-[32px]  text-white leading-[40px]  tracking-[1%] ">

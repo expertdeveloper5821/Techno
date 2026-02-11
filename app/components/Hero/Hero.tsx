@@ -12,7 +12,7 @@ const ChevronRightIcon = ChevronRightIconImport as React.FC<IconProps>;
 export default function Hero() {
   return (
     // Removed background styles, just padding for spacing
-    <section className="relative pt-40 pb-12 sm:pt-48 sm:pb-16 flex flex-col items-center justify-center overflow-hidden z-10">
+    <section className="relative pt-40 pb-10 sm:pt-48 sm:pb-16 flex flex-col items-center justify-center overflow-hidden z-10">
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mb-10">
         <div className="max-w-5xl mx-auto text-center">
@@ -21,7 +21,7 @@ export default function Hero() {
             animate="visible"
             variants={fadeInUp}
             // Adjusted sizing: starts at 4xl, grows to 5xl/6xl/7xl on larger screens
-            className="font-inter font-bold text-[28px] md:text-[58px] leading-[38px] md:leading-[70px] tracking-[0.03em] text-white " style={{
+            className="font-inter font-bold text-[28px] md:text-[40px] lg:text-[58px] leading-[38px] lg:leading-[70px] md:leading-[50px] tracking-[0.03em] text-white " style={{
               
             }}
           >
@@ -33,7 +33,7 @@ export default function Hero() {
             animate="visible"
             variants={fadeInUp}
             transition={{ delay: 0.2 }}
-            className="text-white font-normal font-inter  text-lg sm:text-xl max-w-4xl mx-auto mb-10 leading-relaxed  md:pt-10 tracking-[0.03em] "
+            className="text-white font-normal font-inter  text-base sm:text-xl max-w-4xl mx-auto mb-10 leading-relaxed  md:pt-10 tracking-[0.03em] "
           >
 We build custom applications and provide dedicated development teams that work as your team—no vendor games, just reliable engineering.          </motion.p>
 

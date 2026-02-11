@@ -38,7 +38,7 @@ export default function FAQItem({
       <button
         type="button"
         onClick={onToggle}
-        className={`w-full flex flex-col md:flex-row md:items-start text-left px-2 sm:px-6 md:gap-[65px] gap-[20] ${
+        className={`w-full flex flex-col lg:flex-row md:items-start text-left px-2 sm:px-6 lg:gap-[65px] gap-[10] ${
           isOpen ? 'min-h-0 py-4' : 'min-h-[96px] py-[31px]'
         }`}
         style={{ transition: `padding ${ACCORDION_DURATION}s cubic-bezier(${ACCORDION_EASE.join(',')}), min-height ${ACCORDION_DURATION}s cubic-bezier(${ACCORDION_EASE.join(',')})` }}
@@ -52,7 +52,7 @@ export default function FAQItem({
             >
               {numberLabel}
             </span>
-            <span className="font-inter  font-medium md:text-[20px] text-base leading-[34px] tracking-[0.01em]">
+            <span className="font-inter  font-medium md:text-[20px] text-lg leading-[34px] tracking-[0.01em]">
               {question}
             </span>
           </div>
@@ -94,7 +94,7 @@ export default function FAQItem({
             }}
             className="overflow-hidden"
           >
-            <p className="text-white font-inter font-normal sm:text-base text-sm leading-[24px] tracking-[0.01em] pt-0.5">
+            <p className="text-white font-inter font-normal sm:text-base text-base leading-[24px] tracking-[0.01em] pt-0.5">
               {answer}
             </p>
           </motion.div>

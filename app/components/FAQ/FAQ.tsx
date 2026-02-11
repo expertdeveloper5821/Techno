@@ -14,17 +14,17 @@ export default function FAQ() {
   };
 
   return (
-    <section id="faq" className="py-20 sm:py-24 bg-[#0000]">
-      <div className=" mx-auto px-4 sm:px-6 lg:px-2 w-full max-w-[1068px]">
+    <section id="faq" className="lg:py-24 md:py-15 py-10 bg-[#0000]">
+      <div className=" mx-auto px-4 sm:px-6 lg:px-6 w-full max-w-[1068px]">
         {/* Header */}
-        <div className="text-center mb-12 sm:mb-14">
+        <div className="text-center mb-5 sm:mb-14">
           <h2
-            className="text-white mb-6 font-inter font-semibold text-[20px] sm:text-[44px] leading-[34px] tracking-[0.01em]"
+            className="text-white mb-6 font-inter font-semibold text-start sm:text-center text-[25px] lg:text-[44px] sm:text-xl md:text-4xl sm:leading-[34px] lg:leading-[60px] md:leading-[50px] leading-[35px] tracking-[0.01em]"
           >
             Common questions from CTOs and founders
           </h2>
           <p
-            className="text-[#F5F5F5] font-inter font-normal text-[20px] leading-6 tracking-[0.01em]"
+            className="text-[#F5F5F5] font-inter font-normal text-base sm:text-[20px] sm:leading-6 leading-[25px] text-start sm:text-center tracking-[0.01em]"
           >
             Don&apos;t see your question? Book a 15-minute call—no pitch, just
             answers.

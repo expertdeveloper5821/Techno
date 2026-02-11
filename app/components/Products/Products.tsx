@@ -10,7 +10,7 @@ export default function Products() {
   const [activeProduct, setActiveProduct] = useState(products[0]);
 
   return (
-    <section id="products" className="py-24 bg-[#0000] text-white ">
+    <section id="products" className="lg:py-24 md:py-15 py-10 bg-[#0000] text-white ">
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-6">
         
         {/* The Grid container defines the scroll area */}
@@ -27,9 +27,9 @@ export default function Products() {
               whileInView="visible"
               viewport={{ once: true }}
               variants={fadeInUp}
-              className="mb-10"
+              className="lg:mb-10 md:mb-5 mb-5"
             >
-              <h2 className=" font-inter text-4xl sm:text-5xl lg:text-[44px] font-semibold leading-tight tracking-tight mb-6">
+              <h2 className=" font-inter text-[25px] sm:text-xl md:text-4xl lg:text-[44px] font-semibold lg:leading-tight md:leading-[50px] leading-[35px] tracking-tight mb-0 sm:mb-6">
                 Discover How We Transform Ideas Into Impactful digital Products
               </h2>
             </motion.div>
@@ -40,7 +40,7 @@ export default function Products() {
               viewport={{ once: true }}
               variants={fadeInUp}
               transition={{ delay: 0 }}
-              className="relative w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-white hidden md:block "
+              className="relative w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-white hidden lg:block "
             >
               <Image
                 key={activeProduct.id}
@@ -65,7 +65,7 @@ export default function Products() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeInRight}
-            className=""
+            className="  "
           >
             {products.map((product) => (
               <div 
