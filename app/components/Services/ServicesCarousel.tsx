@@ -16,11 +16,12 @@ type IconProps = React.SVGProps<SVGSVGElement> & { width?: number; height?: numb
 const ChevronRightIcon = ChevronRightIconImport as React.FC<IconProps>;
 
 // Mobile-first responsive card widths
-const CARD_WIDTH_MOBILE = '100%'; // Mobile: full width
-const CARD_WIDTH_NARROW = 193;
-const CARD_WIDTH_EXPANDED = 420;
+const CARD_WIDTH_MOBILE_NARROW = 140; // Mobile: collapsed card
+const CARD_WIDTH_MOBILE_EXPANDED = 280; // Mobile: expanded card
+const CARD_WIDTH_NARROW = 193; // Desktop: collapsed card
+const CARD_WIDTH_EXPANDED = 420; // Desktop: expanded card
 // Responsive card heights
-const CARD_HEIGHT_MOBILE = 350; // Mobile height
+const CARD_HEIGHT_MOBILE = 320; // Mobile height (more compact)
 const CARD_HEIGHT_TABLET = 380; // Tablet height
 const CARD_HEIGHT_DESKTOP = 499; // Desktop height
 const EXTEND_DURATION_MS = 600;
@@ -255,8 +256,10 @@ export default function ServicesCarousel() {
               // On mobile, only the active card is expanded (accordion behavior)
               // On desktop, hovered card is expanded
               const isHovered = isBelow640 ? (mobileActiveIndex === realIndex) : (hoveredIndex === realIndex);
-              // On mobile, card fills available width; on desktop, it's standard widths
-              const cardWidth = isBelow640 ? CARD_WIDTH_MOBILE : (isHovered ? CARD_WIDTH_EXPANDED : CARD_WIDTH_NARROW);
+              // Responsive card widths: mobile has its own sizes, desktop has different sizes
+              const cardWidth = isBelow640
+                ? (isHovered ? CARD_WIDTH_MOBILE_EXPANDED : CARD_WIDTH_MOBILE_NARROW)
+                : (isHovered ? CARD_WIDTH_EXPANDED : CARD_WIDTH_NARROW);
               const cardHeight = getCardHeight();
               
               return (
@@ -310,14 +313,14 @@ export default function ServicesCarousel() {
                       }}
                       aria-hidden
                     />
-                    <div className="absolute top-0 left-0 right-0 z-3" style={{ padding: isBelow640 ? '12px' : '24px' }}>
+                    <div className="absolute top-0 left-0 right-0 z-3" style={{ padding: isBelow640 ? '10px' : '24px' }}>
                       <h2
                         className="text-white drop-shadow-md"
                         style={{
                           fontFamily: 'Inter, sans-serif',
                           fontWeight: 500,
-                          fontSize: isBelow640 ? '16px' : '22px',
-                          lineHeight: isBelow640 ? '22px' : '30px',
+                          fontSize: isBelow640 ? '13px' : '22px',
+                          lineHeight: isBelow640 ? '18px' : '30px',
                           letterSpacing: '0.01em',
                         }}
                       >
@@ -328,9 +331,9 @@ export default function ServicesCarousel() {
                     <div
                       className="absolute bottom-0 left-0 right-0 z-2 bg-linear-to-t from-black/85 via-black/50 to-transparent"
                       style={{
-                        padding: isBelow640 ? '12px' : '24px',
-                        paddingTop: isBelow640 ? '16px' : '32px',
-                        paddingBottom: isBelow640 ? '12px' : '24px',
+                        padding: isBelow640 ? '10px' : '24px',
+                        paddingTop: isBelow640 ? '12px' : '32px',
+                        paddingBottom: isBelow640 ? '10px' : '24px',
                         opacity: isHovered && service.description ? 1 : 0,
                         transform: isHovered && service.description ? 'translateY(0)' : 'translateY(10px)',
                         transition: `opacity ${EXTEND_DURATION_MS}ms ${EASE_SMOOTH} ${isBelow640 ? 0 : TEXT_APPEAR_DELAY_MS}ms, transform ${EXTEND_DURATION_MS}ms ${EASE_SMOOTH} ${isBelow640 ? 0 : TEXT_APPEAR_DELAY_MS}ms`,
@@ -338,9 +341,11 @@ export default function ServicesCarousel() {
                       }}
                       aria-hidden={!isHovered}
                     >
-                      <p className="text-white leading-relaxed line-clamp-4" style={{ fontSize: isBelow640 ? '12px' : '14px' }}>
+                      <p className="text-white leading-snug line-clamp-4" style={{ fontSize: isBelow640 ? '11px' : '14px', lineHeight: isBelow640 ? '16px' : '22px' }}>
                         <div>{service.description}</div>
-                        <button className="text-white inline-flex items-center gap-1.5 mt-2" style={{ fontSize: isBelow640 ? '12px' : '14px' }}>Read more <ReadMoreIcon width={13} height={13} color="#F8F8F8" className="inline-block" /> </button>
+                        <button className="text-white inline-flex items-center gap-1 mt-2" style={{ fontSize: isBelow640 ? '11px' : '14px' }}>
+                          Read more <ReadMoreIcon width={isBelow640 ? 10 : 13} height={isBelow640 ? 10 : 13} color="#F8F8F8" className="inline-block" />
+                        </button>
                       </p>
                     </div>
                   </article>
