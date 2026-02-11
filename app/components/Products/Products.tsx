@@ -56,16 +56,12 @@ export default function Products() {
           </div>
 
           {/* --- Right Column: FLOWING LIST --- */}
-          {/* 
-              Removed the fixed height and internal overflow.
-              Now, when you scroll the entire section, these cards move.
-          */}
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeInRight}
-            className="  "
+            className="space-y-2 lg:space-y-3 pb-10"
           >
             {products.map((product) => (
               <div 
@@ -84,7 +80,7 @@ export default function Products() {
                     </svg>
                   </span>
                 </div>
-                <p className="text-gray-400 font-inter group-hover:text-white text-sm leading-relaxed transition-colors duration-300">
+                <p className="text-gray-400 font-inter group-hover:text-white text-base leading-relaxed transition-colors duration-300">
                   {product.description}
                 </p>
                 <p className="text-gray-400 font-inter group-hover:text-white text-sm leading-relaxed transition-colors duration-300 mt-2 ">

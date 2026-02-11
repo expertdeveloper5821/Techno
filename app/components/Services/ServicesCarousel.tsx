@@ -42,7 +42,7 @@ const loopSlides = [...services, ...services];
 
 export default function ServicesCarousel() {
   const swiperRef = useRef<SwiperType | null>(null);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(0);
   const [isBelow640, setIsBelow640] = useState(false);
   const [windowSize, setWindowSize] = useState<'mobile' | 'tablet' | 'desktop'>('mobile');
   const [mobileActiveIndex, setMobileActiveIndex] = useState<number>(0); // Track active card on mobile
@@ -119,7 +119,7 @@ export default function ServicesCarousel() {
     if (leaveTimeoutRef.current) clearTimeout(leaveTimeoutRef.current);
     leaveTimeoutRef.current = setTimeout(() => {
       leaveTimeoutRef.current = null;
-      setHoveredIndex(null);
+      setHoveredIndex(0);
       scheduleSwiperUpdate();
     }, HOVER_LEAVE_DELAY_MS);
   }, [scheduleSwiperUpdate, isBelow640]);

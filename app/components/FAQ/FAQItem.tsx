@@ -94,7 +94,7 @@ export default function FAQItem({
             }}
             className="overflow-hidden"
           >
-            <p className="text-white font-inter font-normal sm:text-base text-base leading-[24px] tracking-[0.01em] pt-0.5">
+            <p className="text-white font-inter font-normal sm:text-base text-base leading-[24px] tracking-[0.01em] pt-0.5 sm:p-0 p-5 ">
               {answer}
             </p>
           </motion.div>
