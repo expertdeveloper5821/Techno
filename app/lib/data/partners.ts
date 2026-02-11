@@ -5,7 +5,7 @@ export const partners: Partner[] = [
   { id: '2', name: 'CuddlyNest', logoGray: '/partners/cuddlynest.svg', logoColor: '/partners/cuddlynest-color.svg' },
   { id: '3', name: 'Deborah Henning', logoGray: '/partners/DEBORAH HENNING-gray.svg', logoColor: '/partners/DEBORAH HENNING-color.svg' },
   { id: '4', name: 'HeyOye', logoGray: '/partners/heyoye-gray.svg', logoColor: '/partners/heyoye-color.svg' },
-  { id: '5', name: 'inadev', logoGray: '/partners/newindev.svg', logoColor: '/partners/inadev-color.svg' },
+  { id: '5', name: 'inadev', logoGray: '/partners/inadev-gray.svg', logoColor: '/partners/inadev-color.svg' },
   { id: '6', name: 'intellectyx', logoGray: '/partners/intellectyx-gray.svg', logoColor: '/partners/intellectyx-color.svg' },
   { id: '7', name: 'OBORTECH', logoGray: '/partners/obortech-gray.svg', logoColor: '/partners/obortech-color.svg' },
   { id: '8', name: 'Sourcebae', logoGray: '/partners/sourcebae-gray.svg', logoColor: '/partners/sourcebae-color.svg' },

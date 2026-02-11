@@ -44,7 +44,7 @@ export default function FAQItem({
         style={{ transition: `padding ${ACCORDION_DURATION}s cubic-bezier(${ACCORDION_EASE.join(',')}), min-height ${ACCORDION_DURATION}s cubic-bezier(${ACCORDION_EASE.join(',')})` }}
       >
         {/* Block 1: number + question; on small screen icon is inside this row so it stays aligned with question */}
-        <div className="flex items-center gap-4 w-full min-h-[34px] md:w-auto md:flex-initial">
+        <div className="flex items-center justify-between gap-4 w-full min-h-[34px]  lg:w-auto md:flex-initial">
           <div className="flex sm:gap-[5px]  items-start sm:items-center gap-2  min-w-0 flex-1 md:flex-initial text-white font-inter font-medium text-[20px] leading-[34px] tracking-[0.01em]">
             <span
               className="font-inter font-semibold mt-3 sm:mt-0 tracking-tight inline-flex items-center justify-center shrink-0  text-[16px]"
@@ -58,7 +58,7 @@ export default function FAQItem({
           </div>
           {/* + / − on same line as question on small screens only */}
           <span
-            className="relative shrink-0 w-8 h-8 flex items-center justify-center text-white text-xl font-light leading-none md:hidden"
+            className="relative shrink-0 w-8 h-8 flex items-center justify-center text-white text-xl font-light leading-none lg:hidden"
             aria-hidden
           >
           <span
@@ -101,7 +101,7 @@ export default function FAQItem({
         </span>
 
         {/* + / − visible on md only (end of row) */}
-        <span className="hidden md:inline-flex shrink-0" aria-hidden>
+        <span className="hidden lg:inline-flex shrink-0" aria-hidden>
           <span className="relative w-8 h-8 flex items-center justify-center text-white text-xl font-light leading-none">
           <span
             className={`absolute inset-0 flex items-center justify-center ${isOpen ? 'opacity-0' : 'opacity-100'}`}

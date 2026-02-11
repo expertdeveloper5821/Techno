@@ -40,7 +40,7 @@ export default function Products() {
               viewport={{ once: true }}
               variants={fadeInUp}
               transition={{ delay: 0 }}
-              className="relative w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-white hidden lg:block "
+              className="relative w-full rounded-2xl  border border-white/10 shadow-2xl bg-white hidden lg:block "
             >
               <Image
                 key={activeProduct.id}

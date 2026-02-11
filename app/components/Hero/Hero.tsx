@@ -21,7 +21,7 @@ export default function Hero() {
             animate="visible"
             variants={fadeInUp}
             // Adjusted sizing: starts at 4xl, grows to 5xl/6xl/7xl on larger screens
-            className="font-inter font-bold text-[28px] md:text-[40px] lg:text-[58px] leading-[38px] lg:leading-[70px] md:leading-[50px] tracking-[0.03em] text-white " style={{
+            className="font-inter mb-[20px] sm:mb-0 font-bold text-[24px] md:text-[40px] lg:text-[58px] leading-[30px] lg:leading-[70px] md:leading-[50px] tracking-[0.03em] text-white " style={{
               
             }}
           >

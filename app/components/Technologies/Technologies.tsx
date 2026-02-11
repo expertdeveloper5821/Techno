@@ -71,7 +71,7 @@ export default function Technologies() {
             className="tech-swiper"
           >
             {row2Extended.map((tech, index) => (
-              <SwiperSlide key={`${tech.id}-${index}`} className="w-[230px]! md:w-[320px]!">
+              <SwiperSlide key={`${tech.id}-${index}`} className="w-[280px]! md:w-[320px]!">
                 <TechCard tech={tech} />
               </SwiperSlide>
             ))}

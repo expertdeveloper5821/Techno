@@ -7,6 +7,8 @@ import facebookLogo from '@/app/lib/icon/facebooklogo.svg';
 import instagramLogo from '@/app/lib/icon/instalogo.svg';
 import figmaLogo from '@/app/lib/icon/figma.svg';
 import telegramLogo from '@/app/lib/icon/telegramlogo.svg';
+import twitterLogo from '@/app/lib/icon/twitter.svg';
+import linkedinLogo from '@/app/lib/icon/linkdin.svg';
 const helpfulLinks = [
   { href: '#about', label: 'About Us' },
   { href: '#contact', label: 'Contact Us' },
@@ -27,10 +29,10 @@ const services = [
  
 const socialLinks = [
   { name: 'Facebook', icon: facebookLogo },
-  { name: 'figma', icon: figmaLogo },
+  { name: 'Twitter', icon: twitterLogo },
   { name: 'Instagram', icon: instagramLogo },
   // { name: 'LinkedIn', icon: '/footer/ },
-  { name: 'telegram', icon: telegramLogo },
+  { name: 'LinkedIn', icon: linkedinLogo },
 ];
  
  

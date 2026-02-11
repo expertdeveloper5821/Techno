@@ -118,7 +118,7 @@ export default function About() {
                   {stat.number}
                 </div>
                 <div className='  flex flex-col  justify-between h-[70%]'>
-                  <h3 className=" md:text-[32px] text-xl  font-normal text-white  h-[40%]  flex items-end ">
+                  <h3 className=" md:text-[32px] text-2xl sm:m-0 mb-2 sm:mb-0 font-normal text-white  h-[40%]  flex items-end ">
                     {stat.label}
                   </h3>
                   <p className=" text-lg leading-relaxed font-inter tracking-[1%] ">

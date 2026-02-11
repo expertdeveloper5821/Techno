@@ -313,13 +313,13 @@ export default function ServicesCarousel() {
                       }}
                       aria-hidden
                     />
-                    <div className="absolute top-0 left-0 right-0 z-3" style={{ padding: isBelow640 ? '10px' : '24px' }}>
+                    <div className="absolute top-0 left-0 right-0 z-3" style={{ padding: isBelow640 ? '15px' : '24px' }}>
                       <h2
                         className="text-white drop-shadow-md"
                         style={{
                           fontFamily: 'Inter, sans-serif',
                           fontWeight: 500,
-                          fontSize: isBelow640 ? '13px' : '22px',
+                          fontSize: isBelow640 ? '18px' : '22px',
                           lineHeight: isBelow640 ? '18px' : '30px',
                           letterSpacing: '0.01em',
                         }}
@@ -341,7 +341,7 @@ export default function ServicesCarousel() {
                       }}
                       aria-hidden={!isHovered}
                     >
-                      <p className="text-white leading-snug line-clamp-4" style={{ fontSize: isBelow640 ? '11px' : '14px', lineHeight: isBelow640 ? '16px' : '22px' }}>
+                      <p className="text-white leading-snug " style={{ fontSize: isBelow640 ? '12px' : '14px', lineHeight: isBelow640 ? '14px' : '22px' }}>
                         <div>{service.description}</div>
                         <button className="text-white inline-flex items-center gap-1 mt-2" style={{ fontSize: isBelow640 ? '11px' : '14px' }}>
                           Read more <ReadMoreIcon width={isBelow640 ? 10 : 13} height={isBelow640 ? 10 : 13} color="#F8F8F8" className="inline-block" />

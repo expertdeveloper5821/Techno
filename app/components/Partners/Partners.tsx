@@ -29,7 +29,7 @@ export default function Partners() {
           whileInView="visible"
           viewport={{ once: true }}
           variants={staggerContainer}
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-10 gap-y-0 sm:gap-x-16 sm:gap-y-10  md:gap-y-8 items-center justify-items-center"
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-10 gap-y-0 sm:gap-x-16 sm:gap-y-10  md:gap-y-0 items-center justify-items-center"
         >
           {partners.map((partner) => (
             <motion.div 
