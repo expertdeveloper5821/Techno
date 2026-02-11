@@ -104,6 +104,8 @@ export default function ServicesCarousel() {
     enterTimeoutRef.current = setTimeout(() => {
       enterTimeoutRef.current = null;
       setHoveredIndex(realIndex);
+      // On desktop/tablet we only expand the card; we do NOT slide here
+      // to avoid weird reverse looping behavior at the ends.
       scheduleSwiperUpdate();
     }, HOVER_ENTER_DELAY_MS);
   }, [scheduleSwiperUpdate, isBelow640]);
@@ -138,12 +140,33 @@ export default function ServicesCarousel() {
     scheduleSwiperUpdate();
   }, [scheduleSwiperUpdate]);
 
-  // Mobile card click handler for accordion behavior
-  const handleMobileCardClick = useCallback((realIndex: number) => {
-    if (!isBelow640) return; // Only for mobile
-    setMobileActiveIndex(realIndex);
-    scheduleSwiperUpdate();
-  }, [isBelow640, scheduleSwiperUpdate]);
+  // Click handler: on mobile it behaves like an accordion and scrolls to keep card visible;
+  // on tablet/desktop it opens (sets hovered) and also scrolls so the expanded card stays on-screen.
+  const handleSlideClick = useCallback(
+    (realIndex: number) => {
+      if (isBelow640) {
+        // Mobile: toggle active card + scroll
+        setMobileActiveIndex(realIndex);
+
+        if (swiperRef.current) {
+          // On mobile we use slideToLoop so tapping any card brings it into view,
+          // but only here to avoid confusing reverse loops on desktop.
+          swiperRef.current.slideToLoop(realIndex, 500);
+        }
+      } else {
+        // Desktop/tablet: treat click like an "intentional hover"
+        setHoveredIndex(realIndex);
+
+        // Also scroll so the expanded slide is fully visible (especially for last slides)
+        if (swiperRef.current) {
+          swiperRef.current.slideToLoop(realIndex, 500);
+        }
+      }
+
+      scheduleSwiperUpdate();
+    },
+    [isBelow640, scheduleSwiperUpdate]
+  );
 
   useEffect(() => {
     return () => {
@@ -184,7 +207,7 @@ export default function ServicesCarousel() {
         </div>
 
         {/* Description + Navigation arrows */}
-        <div className="mt-8 flex flex-col sm:flex-row sm:items-start gap-6 max-w-7xl">
+        <div className="mt-8 flex flex-col sm:flex-row sm:items-start gap-6 ">
           <p className="text-base md:text-lg font-inter font-normal text-white/90 md:leading-relaxed leading-[25px] flex-1">
             At Technogetic, we are at the forefront of technological innovation, dedicated to delivering cutting-edge IT solutions that drive business success. Founded in 2018, our mission is to redefine the digital landscape by providing reliable and scalable technology solutions.
           </p>
@@ -226,8 +249,9 @@ export default function ServicesCarousel() {
             }}
             modules={[Navigation, Autoplay]}
             spaceBetween={24}
-
-            centeredSlides={false}
+            // Center active slide so when it expands (especially the last one)
+            // it stays fully visible on screen.
+            centeredSlides={true}
             loop={true}
             loopAdditionalSlides={3}
             observer={true}
@@ -265,14 +289,14 @@ export default function ServicesCarousel() {
               return (
                 <SwiperSlide
                   key={`${service.title}-${index}`}
-                  className="shrink-0! flex justify-start"
+                  className="shrink-0! flex justify-end sm:justify-start"
                   style={{
                     width: cardWidth,
                     transition: `width ${EXTEND_DURATION_MS}ms ${EASE_SMOOTH}`,
                   }}
                   onMouseEnter={() => handleSlideEnter(realIndex)}
                   onMouseLeave={handleSlideLeave}
-                  onClick={() => handleMobileCardClick(realIndex)}
+                  onClick={() => handleSlideClick(realIndex)}
                 >
                   {/* Card expands to the right, pushing other cards */}
                   <article

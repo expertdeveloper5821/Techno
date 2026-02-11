@@ -7,6 +7,7 @@ import type { Swiper as SwiperType } from 'swiper';
 import { Pagination, Autoplay, Navigation, EffectCoverflow } from 'swiper/modules';
 import { services } from '@/app/lib/data/services';
 import ReadMoreIcon from '@/app/lib/icon/readmore-icon';
+import { redirect } from 'next/dist/server/api-utils';
 
 interface ServiceSliderProps {
   theme?: 'dark' | 'light';
@@ -93,19 +94,22 @@ export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
           modifier: 1,
           slideShadows: false,
         }}
-        autoplay={{
-          delay: 3000,
-          disableOnInteraction: false,
-          pauseOnMouseEnter: true,
-        }}
+        // autoplay={{
+        //   delay: 3000,
+        //   disableOnInteraction: false,
+        //   pauseOnMouseEnter: true,
+        // }}
         pagination={{ clickable: true, dynamicBullets: true }}
-        modules={[EffectCoverflow, Pagination, Autoplay, Navigation]}
+        modules={[EffectCoverflow, Pagination, Navigation]}
         onSwiper={(swiper) => { swiperRef.current = swiper; }}
         onInit={() => setIsLoaded(true)}
         className={`w-full  py-12 pb-20 transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
       >
         {services.map((service, index) => (
-          <SwiperSlide key={`${service.title}-${index}`} className="w-[260px]! md:w-[320px]! lg:w-[300px]!">
+          <SwiperSlide key={`${service.title}-${index}`} className="w-[260px]! md:w-[320px]! lg:w-[300px]! " style={{
+            border:'2px solid #7A7A7A',
+            borderRadius:'34px',
+          }}>
             {({ isActive }) => {
               const showDetails = hoveredIndex === index;
               return (
@@ -153,7 +157,7 @@ export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
 
                   {/* Default title bar – visible when details are hidden */}
                   <div 
-                    className="absolute bottom-0 left-0 w-full p-6 md:p-8 text-center transition-opacity duration-300"
+                    className="absolute bottom-0 left-0 w-full p-6 md:p-8 text-center  transition-opacity duration-300 opacity-80   slider-tittle bg-[linear-gradient(176.17deg,rgba(0,139,206,0)_2.91%,#018BCE_90.68%,#018BCD_80.79%)] "
                     style={{ opacity: showDetails ? 0 : 1 }}
                     aria-hidden={showDetails}
                   >

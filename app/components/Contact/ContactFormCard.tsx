@@ -76,7 +76,7 @@ export default function ContactFormCard({
       viewport={{ once: false, amount: 0.15 }}
       transition={{ duration: 1, ease: [0.6, -0.05, 0.01, 0.99] }}
       variants={parallaxVariants}
-      className="rounded-2xl overflow-hidden bg-[#0094DB] p-8 sm:p-10 lg:p-6 relative  "
+      className="contact-main rounded-2xl overflow-hidden bg-[#0094DB] p-8 sm:p-10 lg:p-6 relative  "
     >
       {/* <div className='absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_65%_45%,rgba(255,255,255,0.25)_0%,rgba(255,255,255,0.15)_25%,rgba(255,255,255,0.05)_45%,rgba(255,255,255,0)_60%)]  z-10'></div> */}
 

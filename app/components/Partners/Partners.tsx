@@ -29,7 +29,7 @@ export default function Partners() {
           whileInView="visible"
           viewport={{ once: true }}
           variants={staggerContainer}
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-10 gap-y-0 sm:gap-x-16 sm:gap-y-10  md:gap-y-0 items-center justify-items-center"
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-10 gap-y-0 sm:gap-x-22 sm:gap-y-10  md:gap-y-0 items-center justify-items-center px-[20px] "
         >
           {partners.map((partner) => (
             <motion.div 
@@ -44,10 +44,11 @@ export default function Partners() {
                   alt={partner.name}
                   width={280}
                   height={140}
-                  className="object-contain w-auto h-full max-h-[72px] sm:max-h-[88px] md:max-h-[70px] grayscale brightness-0 invert opacity-90"
+                  className="object-contain w-auto h-auto  grayscale brightness-0 invert opacity-90"
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 280px"
                   loading="lazy"
                 />
+                
               </div>
 
               {/* 2. Color logo (on hover) */}

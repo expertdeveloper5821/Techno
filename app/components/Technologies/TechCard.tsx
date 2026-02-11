@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export default function TechCard({ tech }: { tech: { name: string; logo: string; description: string } }) {
   return (
-    <div className="bg-[#151515]   md:w-[500px] w-[500px] border border-white/5 p-6 rounded-lg flex items-start gap-5 hover:border-white/10 hover:bg-[#1a1a1a] transition-all duration-300 h-full group cursor-pointer">
+    <div className="bg-[#151515]   md:w-[500px] w-[500px] border border-white/5 p-4 rounded-lg flex items-start gap-5 hover:border-white/10 hover:bg-[#1a1a1a] transition-all duration-300 h-full group cursor-pointer">
       {/* Logo Box */}
       <div className="w-14 h-14  bg-[#222] rounded-lg flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300">
         <Image 

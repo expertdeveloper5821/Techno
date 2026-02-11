@@ -10,7 +10,7 @@ export default function Products() {
   const [activeProduct, setActiveProduct] = useState(products[0]);
 
   return (
-    <section id="products" className="lg:py-24 md:py-15 py-10 bg-[#0000] text-white ">
+    <section id="products" className="lg:py-24 md:py-15 py-10 bg-[#0000] text-white " style={{ overflow:'clip'}}>
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-6">
         
         {/* The Grid container defines the scroll area */}

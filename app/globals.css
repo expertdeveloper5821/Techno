@@ -62,6 +62,11 @@ body {
   transition-timing-function: linear !important;
 }
 
+#contact .contact-main{
+padding: 45px 30px!important;
+}
+
+
 /* Shimmer animation for skeleton loaders */
 @keyframes shimmer {
   0% {
