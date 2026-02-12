@@ -239,7 +239,7 @@ export default function ContactFormCard({
 
           <div className="space-y-6 flex flex-row sm:flex-col flex-wrap gap-4">
             {contactBlocks.map((block) => (
-              <div key={block.title} className="flex lg:flex-col flex-row  gap-4 ">
+              <div key={block.title} className="flex lg:flex-row flex-row  gap-4 ">
                 <div className="shrink-0 w-10 h-10 rounded-lg border border-white/40 bg-[#0ea5e9]/20 flex items-center justify-center text-white">
                   {block.icon}
                 </div>
