@@ -61,7 +61,7 @@ export default function Products() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeInRight}
-            className="space-y-2 lg:space-y-3 pb-10"
+            className=" pb-10"
           >
             {products.map((product) => (
               <div 
