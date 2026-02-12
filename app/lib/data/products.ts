@@ -26,7 +26,7 @@ export const products: Product[] = [
     id: '4',
     title: 'Dun & Bradstreet India',
     description: 'For Dun & Bradstreet India, we worked on enterprise-grade integrations supporting strict compliance, performance, and data governance requirements.',
-    image: '/produced/DunBradstreetIndia.svg',
+    image: '/produced/DunBradstreetindia.svg',
     TechStack: 'Java / Node.js, Oracle, PostgreSQL'
   },
 
