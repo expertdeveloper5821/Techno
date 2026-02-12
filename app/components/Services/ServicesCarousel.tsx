@@ -206,12 +206,12 @@ export default function ServicesCarousel() {
         {/* Description + Navigation arrows */}
         <div className=" flex lg:justify-center sm:justify-between sm:gap-20 justify-between sm:items-end items-center flex-row  lg:flex-col   ">
           
-          <a
+          {/* <a
             href="#services"
             className="group shrink-0 inline-flex items-center justify-center gap-2 sm:px-8  sm:py-3.5 px-4 py-2 text-base font-semibold text-[#000000] bg-white rounded-full hover:bg-white/95 transition-all duration-200 shadow-lg whitespace-nowrap mt-0"
           >
             Explore Services <ChevronRightIcon width={7} height={11} color="#000000" className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-0.5" />
-          </a>
+          </a> */}
           <div className={`flex items-center gap-2 shrink-0 ${isBelow640 ? '' : ''}`}>
             <button
               type="button"

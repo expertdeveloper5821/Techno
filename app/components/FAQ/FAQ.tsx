@@ -363,7 +363,7 @@ export default function FAQ() {
             return (
               <li
                 key={item.id}
-                className={`group relative overflow-hidden rounded-3xl border backdrop-blur-xl transition-all duration-500 hover:-translate-y-0.5 focus-within:-translate-y-0.5 ${palette.border} ${palette.panel} ${palette.shadow}`}
+                className={`group relative overflow-hidden rounded-3xl border backdrop-blur-xl transition-all duration-500 hover:-translate-y-0.5 focus-within:-translate-y-0.5 ${palette.border} ${palette.panel} ${palette.shadow} ${open ? 'border-1 border-[#0183C1]! ' : ''}`}
                 onMouseMove={setCardGlow}
                 onMouseLeave={clearCardGlow}
               >
@@ -388,19 +388,19 @@ export default function FAQ() {
                         ? 'rgba(255,255,255,0.35)'
                         : 'rgba(255,255,255,0.35)',
                   } as React.CSSProperties}
-                  className="relative flex w-full items-start gap-6 px-8 py-7 text-left transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--faq-outline)]"
+                  className="relative flex w-full items-start gap-6 px-8 py-7 text-left transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--faq-outline)]  "
                 >
                   <span
-                    className={`relative flex h-12 w-12 shrink-0 items-center justify-center rounded-full border transition-all duration-500 group-hover:scale-105 ${palette.iconRing} ${palette.iconSurface}`}
+                    className={`relative flex h-12 w-12 shrink-0 items-center justify-center rounded-full border transition-all duration-500 group-hover:scale-105 ${palette.iconRing} ${palette.iconSurface} `}
                   >
                     <span
                       className={`pointer-events-none absolute inset-0 rounded-full border opacity-30 ${
                         palette.iconRing
-                      } ${open ? 'animate-ping' : ''}`}
+                      }`}
                     />
                     <svg
                       className={`relative h-5 w-5 transition-transform duration-500 ${palette.icon} ${
-                        open ? 'rotate-45' : ''
+                        open ? 'rotate-45 text-[#0183C1]!  ' : ''
                       }`}
                       viewBox="0 0 24 24"
                       fill="none"

@@ -74,11 +74,11 @@ export default function Products() {
                     {product.title}
                   </h3>
                   {/* Arrow Icon */}
-                  <span className="text-gray-500 group-hover:text-white transition-colors transform group-hover:translate-x-1 duration-300">
+                  {/* <span className="text-gray-500 group-hover:text-white transition-colors transform group-hover:translate-x-1 duration-300">
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                     </svg>
-                  </span>
+                  </span> */}
                 </div>
                 <p className="text-gray-400 font-inter group-hover:text-white text-base leading-relaxed transition-colors duration-300">
                   {product.description}

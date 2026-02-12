@@ -196,10 +196,10 @@ const pagination = [1,2,3];
                           {service.description}
                         </p>
                       )}
-                      <span className="inline-flex items-center justify-center gap-1 text-sm md:text-base font-[500px] font-inter text-white/95 hover:text-white p-0! m-0!">
+                      {/* <span className="inline-flex items-center justify-center gap-1 text-sm md:text-base font-[500px] font-inter text-white/95 hover:text-white p-0! m-0!">
                         Read more
                        <ReadMoreIcon width={13} height={13} color="#F8F8F8" className="inline-block" />
-                      </span>
+                      </span> */}
                     </div>
                   </div>
                 </div>
