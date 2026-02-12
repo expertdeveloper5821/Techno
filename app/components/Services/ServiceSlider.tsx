@@ -97,7 +97,7 @@ const pagination = [1,2,3];
           slideShadows: false,
         }}
         autoplay={{
-          delay: 3000,
+          delay: 2000,
           disableOnInteraction: false,
           pauseOnMouseEnter: true,
         }}
