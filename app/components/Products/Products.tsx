@@ -48,7 +48,7 @@ export default function Products() {
                 alt={activeProduct.title}
                 width={800}
                 height={600}
-                className="w-full h-auto object-cover object-top transition-opacity duration-300"
+                className="w-full h-auto object-cover object-top transition-opacity duration-300 rounded-2xl"
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 loading="lazy"
               />

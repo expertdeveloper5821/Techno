@@ -35,7 +35,7 @@ export const products: Product[] = [
     title: 'Trukky',
     description: 'Trukky is a real-time logistics and transport booking platform connecting customers with transport providers.',
     image: '/produced/Trukky.svg',
-    TechStack: 'c'
+    TechStack: 'React.js, Node.js, PostgreSQL,MongoDB'
   },
   {
     id: '7',
