@@ -38,7 +38,7 @@ export default function FAQItem({
       <button
         type="button"
         onClick={onToggle}
-        className={`w-full flex flex-col lg:flex-row md:items-start text-left px-2 sm:px-6 lg:gap-[65px] gap-[10] ${
+        className={`w-full flex flex-col  md:items-start text-left px-2 sm:px-6 lg:gap-[20px] gap-[10] ${
           isOpen ? 'min-h-0 py-4' : 'min-h-[96px] py-[31px]'
         }`}
         style={{ transition: `padding ${ACCORDION_DURATION}s cubic-bezier(${ACCORDION_EASE.join(',')}), min-height ${ACCORDION_DURATION}s cubic-bezier(${ACCORDION_EASE.join(',')})` }}
@@ -58,7 +58,7 @@ export default function FAQItem({
           </div>
           {/* + / − on same line as question on small screens only */}
           <span
-            className="relative shrink-0 w-8 h-8 flex items-center justify-center text-white text-xl font-light leading-none lg:hidden"
+            className="relative shrink-0 w-8 h-8 flex items-center justify-center text-white text-xl font-light leading-none"
             aria-hidden
           >
           <span
@@ -101,7 +101,7 @@ export default function FAQItem({
         </span>
 
         {/* + / − visible on md only (end of row) */}
-        <span className="hidden lg:inline-flex shrink-0" aria-hidden>
+        <span className="hidden  shrink-0" aria-hidden>
           <span className="relative w-8 h-8 flex items-center justify-center text-white text-xl font-light leading-none">
           <span
             className={`absolute inset-0 flex items-center justify-center ${isOpen ? 'opacity-0' : 'opacity-100'}`}
