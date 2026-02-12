@@ -192,10 +192,10 @@ export default function ServicesCarousel() {
       className="relative overflow-hidden min-h-screen flex flex-col justify-start lg:pt-24 lg:pb-24 md:pt-15 md:pb-15 pt-10 pb-10 bg-[linear-gradient(to_bottom,#0094DB_0%,#0094DB_85%,#003a5c_95%,#000000_100%)] "
      
     >
-      <div className="w-full flex lg:flex-row flex-col lg:gap-0 gap-8   mx-auto  px-4 sm:px-6 lg:px-6 mb-8">
+      <div className="w-full flex lg:flex-row flex-col gap-8 lg:gap-0   mx-auto  px-4 sm:px-6 lg:px-6 mb-8">
         {/* Header: Title + CTA */}
-        <div className="flex flex-col lg:flex-col justify-between items-start gap-2 lg:gap-2">
-          <h2 className="text-[25px]  sm:text-xl md:text-4xl lg:text-[44px] font-semibold font-inter text-white lg:leading-[60px] md:leading-[50px] leading-[35px]  max-w-4xl">
+        <div className="flex flex-col lg:flex-col justify-between items-start gap-5 lg:gap-2">
+          <h2 className="text-[25px]  sm:text-xl md:text-4xl lg:text-[44px] font-semibold font-inter text-white lg:leading-[60px] md:leading-[50px] leading-[32px]  max-w-4xl">
             Full-stack Development From Discovery To Deployment
           </h2>
           <p className="text-base md:text-lg font-inter font-normal text-white/90 md:leading-relaxed leading-[25px] flex-1">

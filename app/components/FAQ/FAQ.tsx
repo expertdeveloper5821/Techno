@@ -19,7 +19,7 @@ export default function FAQ() {
         {/* Header */}
         <div className="text-center mb-5 sm:mb-14">
           <h2
-            className="text-white mb-6 font-inter font-semibold text-start sm:text-center text-[25px] lg:text-[44px]  md:text-4xl sm:text-xl sm:leading-[34px] lg:leading-[60px] md:leading-[50px] leading-[35px] tracking-[0.01em]"
+            className="text-white mb-6 font-inter font-semibold text-start sm:text-center text-[25px] lg:text-[44px]  md:text-4xl sm:text-xl sm:leading-[34px] lg:leading-[60px] md:leading-[50px] leading-[32px] tracking-[0.01em]"
           >
             Common questions from CTOs and founders
           </h2>

@@ -18,7 +18,7 @@ export default function Partners() {
           variants={fadeInUp}
           className="text-start md:mb-8 mb-5"
         >
-          <h2 className="text-[25px] sm:text-xl  md:text-4xl lg:text-[46px] font-semibold text-[#ffffff]  sm:leading-tight lg:leading-[60px] md:leading-[50px] leading-[35px] font-inter">
+          <h2 className="text-[25px] sm:text-xl  md:text-4xl lg:text-[46px] font-semibold text-[#ffffff]  sm:leading-tight lg:leading-[60px] md:leading-[50px] leading-[32px] font-inter">
             Trusted by Our Partners Who Share Our Vision for Digital Innovation and Long-Term Growth
           </h2>
         </motion.div>

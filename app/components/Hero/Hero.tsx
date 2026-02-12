@@ -57,7 +57,7 @@ We build custom applications and provide dedicated development teams that work a
       </div>
 
       {/* Service slider: hidden on mobile, visible from md up */}
-      <div className="w-full mt-4 hidden md:block">
+      <div className="w-full mt-4 ">
         <ServiceSlider theme="dark" />
       </div>
 

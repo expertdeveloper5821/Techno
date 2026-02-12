@@ -29,7 +29,7 @@ export default function Products() {
               variants={fadeInUp}
               className="lg:mb-10 md:mb-5 mb-5"
             >
-              <h2 className=" font-inter text-[25px] sm:text-xl md:text-4xl lg:text-[44px] font-semibold lg:leading-tight md:leading-[50px] leading-[35px] tracking-tight mb-0 sm:mb-6">
+              <h2 className=" font-inter text-[25px] sm:text-xl md:text-4xl lg:text-[44px] font-semibold lg:leading-tight md:leading-[50px] leading-[32px] tracking-tight mb-0 sm:mb-6">
                 Discover How We Transform Ideas Into Impactful digital Products
               </h2>
             </motion.div>

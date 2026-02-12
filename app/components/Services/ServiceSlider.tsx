@@ -8,7 +8,8 @@ import { Pagination, Autoplay, Navigation, EffectCoverflow } from 'swiper/module
 import { services } from '@/app/lib/data/services';
 import ReadMoreIcon from '@/app/lib/icon/readmore-icon';
 import { redirect } from 'next/dist/server/api-utils';
-
+import arrowl from '@/app/lib/icon/arrow.svg';
+import arrowr from '@/app/lib/icon/arrowr.svg';
 interface ServiceSliderProps {
   theme?: 'dark' | 'light';
 }
@@ -21,7 +22,8 @@ export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const swiperRef = useRef<SwiperType | null>(null);
-
+  const [activeIndex, setActiveIndex] = useState(0);
+const pagination = [1,2,3];
   /** Slide to the clicked slide so it moves to center */
   const handleSlideClick = useCallback((index: number) => {
     swiperRef.current?.slideToLoop(index, 500);
@@ -94,14 +96,15 @@ export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
           modifier: 1,
           slideShadows: false,
         }}
-        // autoplay={{
-        //   delay: 3000,
-        //   disableOnInteraction: false,
-        //   pauseOnMouseEnter: true,
-        // }}
-        pagination={{ clickable: true, dynamicBullets: true }}
-        modules={[EffectCoverflow, Pagination, Navigation]}
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        }}
+        pagination={false}
+        modules={[EffectCoverflow, Navigation, Autoplay]}
         onSwiper={(swiper) => { swiperRef.current = swiper; }}
+        onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
         onInit={() => setIsLoaded(true)}
         className={`w-full  py-12 pb-20 transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
       >
@@ -204,7 +207,48 @@ export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
             }}
           </SwiperSlide>
         ))}
+
+
+<div className=" mt-6 flex items-center justify-center gap-3 shrink-0 md:hidden">
+            <button
+              type="button"
+              aria-label="Previous slide"
+              onClick={() => swiperRef.current?.slidePrev()}
+              className="sm:w-10 sm:h-10 w-7 h-7 rounded-full text-white flex items-center justify-center hover:bg-white/10 transition-colors"
+            >
+              <Image src={arrowl} alt="arrow" width={20} height={20} className="sm:w-8 sm:h-8 w-5 h-5" />
+            </button>
+
+            <div className="flex items-center gap-1.5">
+              {pagination.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  aria-label={`Go to slide ${i + 1}`}
+                  onClick={() => swiperRef.current?.slideToLoop(i, 500)}
+                  className={`rounded-full transition-all duration-300 ${
+                    activeIndex % 3 === i
+                      ? 'w-6 h-2.5 bg-[#2177C7]'
+                      : 'w-2.5 h-2.5 bg-white/50 hover:bg-white/80'
+                  }`}
+                />
+              ))}
+            </div>
+
+            <button
+              type="button"
+              aria-label="Next slide"
+              onClick={() => swiperRef.current?.slideNext()}
+              className="sm:w-10 sm:h-10 w-7 h-7 rounded-full [perspective:1000px] text-white flex items-center justify-center hover:bg-white/10 transition-colors"
+            >
+              <Image src={arrowl} alt="arrow" width={20} height={20} className="sm:w-8 sm:h-8 w-5 h-5 [transform:rotateY(180deg)]" />
+            </button>
+          </div>
+
       </Swiper>
+
+      
+      
 
       <style jsx global>{`
         .swiper-pagination-bullet {
