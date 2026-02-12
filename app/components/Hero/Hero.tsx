@@ -25,7 +25,7 @@ export default function Hero() {
               
             }}
           >
-          Software Built To Scale Your Business, Not Slow It Down
+          Solutions Built To Scale Your Business, Not Slow It Down
           </motion.h1>
 
           <motion.p

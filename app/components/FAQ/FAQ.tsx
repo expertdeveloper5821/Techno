@@ -52,7 +52,7 @@ export default function FAQ() {
     if (typeof window !== 'undefined' && window.matchMedia) {
       return window.matchMedia('(prefers-color-scheme: dark)').matches
         ? 'dark'
-        : 'light';
+        : 'dark';
     }
     return 'light';
   };
@@ -307,7 +307,7 @@ export default function FAQ() {
       >
         <div
           className={`faq1-intro ${introReady ? 'faq1-intro--active' : ''} ${
-            theme === 'light' ? 'faq1-intro--light' : 'faq1-intro--dark'
+            theme === 'light' ? 'faq1-intro--dark' : 'faq1-intro--dark'
           }`}
         >
           <span className="faq1-intro__beam" aria-hidden="true" />
@@ -319,19 +319,15 @@ export default function FAQ() {
 
         <header className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <div className="space-y-4">
-            <p
-              className={`text-xs uppercase tracking-[0.35em] ${palette.muted}`}
-            >
-              Questions
-            </p>
+          
             <h1
               className={`text-4xl font-semibold leading-tight md:text-5xl ${palette.heading}`}
             >
-              FAQ's
+              Common questions from CTOs and founders
             </h1>
-            <p className={`max-w-xl text-base ${palette.muted}`}>
-            Questions from CTO's and founders
-            </p>
+
+            <p className='max-w-xl text-base text-neutral-400'>Everything you’d ask before making a tech decision.</p>
+           
           </div>
 
           {/* <button
@@ -390,7 +386,7 @@ export default function FAQ() {
                     '--faq-outline':
                       theme === 'dark'
                         ? 'rgba(255,255,255,0.35)'
-                        : 'rgba(17,17,17,0.25)',
+                        : 'rgba(255,255,255,0.35)',
                   } as React.CSSProperties}
                   className="relative flex w-full items-start gap-6 px-8 py-7 text-left transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--faq-outline)]"
                 >
