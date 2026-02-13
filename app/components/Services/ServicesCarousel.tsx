@@ -15,34 +15,19 @@ import arrowr from '@/app/lib/icon/arrowr.svg';
 type IconProps = React.SVGProps<SVGSVGElement> & { width?: number; height?: number; color?: string };
 const ChevronRightIcon = ChevronRightIconImport as React.FC<IconProps>;
 
-// Mobile-first responsive card widths
-const CARD_WIDTH_MOBILE_NARROW = 140; // Mobile: collapsed card
-const CARD_WIDTH_MOBILE_EXPANDED = 280; // Mobile: expanded card
-const CARD_WIDTH_NARROW = 193; // Desktop: collapsed card
-const CARD_WIDTH_EXPANDED = 420; // Desktop: expanded card
-// Responsive card heights
-const CARD_HEIGHT_MOBILE = 320; // Mobile height (more compact)
-const CARD_HEIGHT_TABLET = 380; // Tablet height
-const CARD_HEIGHT_DESKTOP = 499; // Desktop height
-const EXTEND_DURATION_MS = 600;
-const TEXT_APPEAR_DELAY_MS = 120;
-const SM_BREAKPOINT = 640;
-const MD_BREAKPOINT = 768;
-const LG_BREAKPOINT = 1024;
+
 /** Smooth ease-out for expand, text, and visual transitions */
 const EASE_SMOOTH = 'cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-const RESIZE_DEBOUNCE_MS = 150;
-/** Delay before clearing hover when leaving a slide - prevents flicker when cursor is at slide edges */
-const HOVER_LEAVE_DELAY_MS = 220;
-/** Delay before setting hover when entering a slide - ignores quick grazes at edges */
-const HOVER_ENTER_DELAY_MS = 50;
+
 
 // Duplicate slides so loop works both left and right (Swiper needs enough slides)
 const loopSlides = [...services, ...services];
 
 export default function ServicesCarousel() {
   const swiperRef = useRef<SwiperType | null>(null);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(0);
+  const [hoveredIndex, setHoveredIndex] = useState<number>(0); // Active tab, defaults to first visible in swiper
+  const [firstVisibleIndex, setFirstVisibleIndex] = useState<number>(0); // First card visible in swiper viewport
+  const [isUserHovering, setIsUserHovering] = useState(false); // Track if user is actively hovering
   const [isBelow640, setIsBelow640] = useState(false);
   const [windowSize, setWindowSize] = useState<'mobile' | 'tablet' | 'desktop'>('mobile');
   const [mobileActiveIndex, setMobileActiveIndex] = useState<number>(0); // Track active card on mobile
@@ -52,9 +37,9 @@ export default function ServicesCarousel() {
 
   // Function to get card height based on screen size
   const getCardHeight = (): number => {
-    if (windowSize === 'mobile') return CARD_HEIGHT_MOBILE;
-    if (windowSize === 'tablet') return CARD_HEIGHT_TABLET;
-    return CARD_HEIGHT_DESKTOP;
+    if (windowSize === 'mobile') return 320;
+    if (windowSize === 'tablet') return 380;
+    return 499;
   };
 
   // Debounce resize so we don't flicker when crossing breakpoint
@@ -64,16 +49,16 @@ export default function ServicesCarousel() {
       clearTimeout(timeoutId);
       timeoutId = setTimeout(() => {
         const width = window.innerWidth;
-        setIsBelow640(width < SM_BREAKPOINT);
+        setIsBelow640(width < 640);
         // Update window size category
-        if (width < SM_BREAKPOINT) {
+        if (width < 640) {
           setWindowSize('mobile');
-        } else if (width < LG_BREAKPOINT) {
+        } else if (width < 1024) {
           setWindowSize('tablet');
         } else {
           setWindowSize('desktop');
         }
-      }, RESIZE_DEBOUNCE_MS);
+      }, 150);
     };
     check();
     window.addEventListener('resize', check);
@@ -89,7 +74,7 @@ export default function ServicesCarousel() {
     updateTimeoutRef.current = setTimeout(() => {
       updateTimeoutRef.current = null;
       swiperRef.current?.update();
-    }, EXTEND_DURATION_MS + 50);
+    }, 400 + 50);
   }, []);
 
   // Enter: set hover after short delay (cancels pending leave) – avoids edge flicker and quick grazes
@@ -104,13 +89,14 @@ export default function ServicesCarousel() {
     enterTimeoutRef.current = setTimeout(() => {
       enterTimeoutRef.current = null;
       setHoveredIndex(realIndex);
+      setIsUserHovering(true);
       // On desktop/tablet we only expand the card; we do NOT slide here
       // to avoid weird reverse looping behavior at the ends.
       scheduleSwiperUpdate();
-    }, HOVER_ENTER_DELAY_MS);
+    }, 50);
   }, [scheduleSwiperUpdate, isBelow640]);
 
-  // Leave: clear hover only after delay so moving to adjacent slide doesn't briefly clear and flicker
+  // Leave: reset hover to first visible card after delay so moving to adjacent slide doesn't briefly flicker
   const handleSlideLeave = useCallback(() => {
     if (isBelow640) return; // Mobile: always extended, no hover required
     
@@ -121,12 +107,13 @@ export default function ServicesCarousel() {
     if (leaveTimeoutRef.current) clearTimeout(leaveTimeoutRef.current);
     leaveTimeoutRef.current = setTimeout(() => {
       leaveTimeoutRef.current = null;
-      setHoveredIndex(0);
+      setHoveredIndex(firstVisibleIndex); // Reset to first visible card in swiper
+      setIsUserHovering(false);
       scheduleSwiperUpdate();
-    }, HOVER_LEAVE_DELAY_MS);
-  }, [scheduleSwiperUpdate, isBelow640]);
+    }, 220);
+  }, [scheduleSwiperUpdate, isBelow640, firstVisibleIndex]);
 
-  // When cursor leaves the carousel area entirely, clear hover and all pending timeouts
+  // When cursor leaves the carousel area entirely, reset to first visible card and all pending timeouts
   const handleCarouselLeave = useCallback(() => {
     if (enterTimeoutRef.current) {
       clearTimeout(enterTimeoutRef.current);
@@ -136,9 +123,10 @@ export default function ServicesCarousel() {
       clearTimeout(leaveTimeoutRef.current);
       leaveTimeoutRef.current = null;
     }
-    setHoveredIndex(null);
+    setHoveredIndex(firstVisibleIndex); // Reset to first visible card in swiper
+    setIsUserHovering(false);
     scheduleSwiperUpdate();
-  }, [scheduleSwiperUpdate]);
+  }, [scheduleSwiperUpdate, firstVisibleIndex]);
 
   // Click handler: on mobile it behaves like an accordion and scrolls to keep card visible;
   // on tablet/desktop it opens (sets hovered) and also scrolls so the expanded card stays on-screen.
@@ -151,7 +139,7 @@ export default function ServicesCarousel() {
         if (swiperRef.current) {
           // On mobile we use slideToLoop so tapping any card brings it into view,
           // but only here to avoid confusing reverse loops on desktop.
-          swiperRef.current.slideToLoop(realIndex, 500);
+          swiperRef.current.slideToLoop(realIndex, 2000);
         }
       } else {
         // Desktop/tablet: treat click like an "intentional hover"
@@ -176,16 +164,16 @@ export default function ServicesCarousel() {
     };
   }, []);
 
-  // Pause autoplay when hovering on a slide, resume when leaving
+  // Pause autoplay when user is actively hovering (not on default first tab), resume when leaving
   useEffect(() => {
     const swiper = swiperRef.current;
     if (!swiper?.autoplay) return;
-    if (hoveredIndex !== null) {
+    if (isUserHovering) {
       swiper.autoplay.stop();
     } else {
       swiper.autoplay.start();
     }
-  }, [hoveredIndex]);
+  }, [isUserHovering]);
 
   return (
     <section
@@ -258,7 +246,7 @@ export default function ServicesCarousel() {
             observer={true}
             observeParents={true}
             watchSlidesProgress={true}
-            speed={600}
+            speed={1500}
             autoplay={{
               delay: 3000,
               disableOnInteraction: false,
@@ -274,17 +262,36 @@ export default function ServicesCarousel() {
               1440: { spaceBetween: 28 },
 
             }}
+
+
+            onSlideChange={(swiper) => {
+              const visibleIndex = swiper.realIndex;
+              setFirstVisibleIndex(visibleIndex);
+              
+              if (isBelow640) {
+                setMobileActiveIndex(visibleIndex);
+              } else if (!isUserHovering) {
+                // On desktop: if not hovering, set active to first visible card
+                setHoveredIndex(visibleIndex);
+              }
+            
+              scheduleSwiperUpdate();
+            }}
+
             className="overflow-hidden! pb-4"
           >
             {loopSlides.map((service, index) => {
-              const realIndex = index % services.length;
+              const realIndex = index % 20;
               // On mobile, only the active card is expanded (accordion behavior)
               // On desktop, hovered card is expanded
-              const isHovered = isBelow640 ? (mobileActiveIndex === realIndex) : (hoveredIndex === realIndex);
+              // const isHovered = isBelow640 ? (mobileActiveIndex === realIndex) : (hoveredIndex === realIndex);
+              const isHovered = isBelow640
+  ? mobileActiveIndex === realIndex
+  : hoveredIndex === realIndex; // First visible card in swiper is active by default
               // Responsive card widths: mobile has its own sizes, desktop has different sizes
               const cardWidth = isBelow640
-                ? (isHovered ? CARD_WIDTH_MOBILE_EXPANDED : CARD_WIDTH_MOBILE_NARROW)
-                : (isHovered ? CARD_WIDTH_EXPANDED : CARD_WIDTH_NARROW);
+                ? (isHovered ? 280 : 140)
+                : (isHovered ? 420: 193);
               const cardHeight = getCardHeight();
               
               return (
@@ -293,7 +300,7 @@ export default function ServicesCarousel() {
                   className="shrink-0! flex justify-end sm:justify-start"
                   style={{
                     width: cardWidth,
-                    transition: `width ${EXTEND_DURATION_MS}ms ${EASE_SMOOTH}`,
+                    transition: `width 400ms ${EASE_SMOOTH}`,
                   }}
                   onMouseEnter={() => handleSlideEnter(realIndex)}
                   onMouseLeave={handleSlideLeave}
@@ -304,7 +311,7 @@ export default function ServicesCarousel() {
                     className="relative rounded-[30px] overflow-hidden group shrink-0 origin-left cursor-pointer w-full"
                     style={{
                       height: `${cardHeight}px`,
-                      transition: `all ${EXTEND_DURATION_MS}ms ${EASE_SMOOTH}`,
+                      transition: `all 400ms ${EASE_SMOOTH}`,
                     }}
                   >
                     {/* Blue glow / border effect */}
@@ -312,7 +319,7 @@ export default function ServicesCarousel() {
                       className="absolute inset-0 rounded-[30px] ring-2 ring-white/20 ring-inset z-10 pointer-events-none"
                       style={{
                         boxShadow: isHovered ? '0 0 40px rgba(0,138,201,0.35)' : '0 0 30px rgba(0,138,201,0.25)',
-                        transition: `box-shadow ${EXTEND_DURATION_MS}ms ${EASE_SMOOTH}`,
+                        transition: `box-shadow 400ms ${EASE_SMOOTH}`,
                       }}
                     />
                     <div className="absolute inset-0 bg-sky-900/90 z-1">
@@ -324,7 +331,7 @@ export default function ServicesCarousel() {
                         className="object-cover object-center"
                         style={{
                           transform: isHovered ? 'scale(1.05)' : 'scale(1)',
-                          transition: `transform ${EXTEND_DURATION_MS}ms ${EASE_SMOOTH}`,
+                          transition: `transform 400ms ${EASE_SMOOTH}`,
                         }}
                         loading="lazy"
                       />
@@ -361,7 +368,7 @@ export default function ServicesCarousel() {
                         paddingBottom: isBelow640 ? '10px' : '24px',
                         opacity: isHovered && service.description ? 1 : 0,
                         transform: isHovered && service.description ? 'translateY(0)' : 'translateY(10px)',
-                        transition: `opacity ${EXTEND_DURATION_MS}ms ${EASE_SMOOTH} ${isBelow640 ? 0 : TEXT_APPEAR_DELAY_MS}ms, transform ${EXTEND_DURATION_MS}ms ${EASE_SMOOTH} ${isBelow640 ? 0 : TEXT_APPEAR_DELAY_MS}ms`,
+                        transition: `opacity 400ms ${EASE_SMOOTH} ${isBelow640 ? 0 : 120}ms, transform 400ms ${EASE_SMOOTH} ${isBelow640 ? 0 : 120}ms`,
                         pointerEvents: isHovered ? 'auto' : 'none',
                       }}
                       aria-hidden={!isHovered}
