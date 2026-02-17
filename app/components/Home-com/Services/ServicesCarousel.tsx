@@ -373,12 +373,12 @@ export default function ServicesCarousel() {
                       }}
                       aria-hidden={!isHovered}
                     >
-                      <p className="text-white leading-snug " style={{ fontSize: isBelow640 ? '12px' : '14px', lineHeight: isBelow640 ? '14px' : '22px' }}>
+                      <div className="text-white leading-snug " style={{ fontSize: isBelow640 ? '12px' : '14px', lineHeight: isBelow640 ? '14px' : '22px' }}>
                         <div>{service.description}</div>
                         <button className="text-white inline-flex items-center gap-1 mt-2" style={{ fontSize: isBelow640 ? '11px' : '14px' }}>
                           Read more <ReadMoreIcon width={isBelow640 ? 10 : 13} height={isBelow640 ? 10 : 13} color="#F8F8F8" className="inline-block" />
                         </button>
-                      </p>
+                      </div>
                     </div>
                   </article>
                 </SwiperSlide>

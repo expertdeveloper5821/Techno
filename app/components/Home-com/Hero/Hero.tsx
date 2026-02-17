@@ -12,7 +12,7 @@ const ChevronRightIcon = ChevronRightIconImport as React.FC<IconProps>;
 export default function Hero() {
   return (
     // Removed background styles, just padding for spacing
-    <section className="relative pt-40 pb-10 sm:pt-48 sm:pb-16 flex flex-col items-center justify-center overflow-hidden z-10">
+    <section className="relative pt-40 pb-10 sm:pt-48 sm:pb-16 flex flex-col items-center justify-center overflow-hidden z-10 bg-[linear-gradient(to_bottom,#0094DB_0%,#0094DB_85%,#003a5c_95%,#000000_100%)]">
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mb-10">
         <div className="max-w-5xl mx-auto text-center">
