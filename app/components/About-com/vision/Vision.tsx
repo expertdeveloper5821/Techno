@@ -23,8 +23,8 @@ function Vision() {
         <div className="relative flex w-full flex-col justify-center bg-black px-6 py-10 text-white md:px-15 lg:w-2/3">
           
           {/* Quote icons */}
-          <span className="absolute left-8 top-6 text-4xl text-[#00A3E0]">“</span>
-          <span className="absolute bottom-6 right-8 text-4xl text-[#00A3E0]">”</span>
+          <span className="absolute left-2 md:left-8 top-6 text-4xl text-[#00A3E0]">“</span>
+          <span className="absolute right-2 bottom-6 md:right-8 text-4xl text-[#00A3E0]">”</span>
 
           <p className="mb-4 text-base leading-[28px] text-white/90 md:text-[20px]">
             Founded with a mission to simplify technology for businesses,

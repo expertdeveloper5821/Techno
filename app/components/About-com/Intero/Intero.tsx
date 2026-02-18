@@ -107,7 +107,7 @@ export default function Intero() {
               transition={{ delay: 0.2 }}
               className="space-y-10 mt-2"
             >
-              <h1 className='font-semibold text-[44px] !mb-1' >Who We Are</h1>
+              <h1 className='font-semibold text-[25px]  sm:text-xl md:text-4xl lg:text-[44px] lg:leading-[60px] md:leading-[50px] leading-[32px] !mb-1' >Who We Are</h1>
               <p className="text-[#FFFFFF] text-lg  leading-[28.8px] font-inters tracking-[1%] mb-0! sm:mb-2 ">
                 Since 2018, we've helped startups and enterprises build software that actually works. No buzzwords, no vendor lock-in—just senior engineers who deliver working code on predictable timelines.            </p>
               <p className=''>We don't treat you like a ticket number. Our teams embed directly into yours—same Slack channels, same sprint cycles, same goals.</p>
@@ -163,7 +163,7 @@ export default function Intero() {
 
 
 {/* statics boxes  */}
-<div className=' grid grid-cols-4 mt-6    p-10  bg-[#111517] rounded-2xl '  >
+<div className=' grid md:grid-cols-4 grid-cols-1  mt-6    md:p-10 p-6 bg-[#111517] rounded-2xl '  >
 
 {
   staticbox.map((statics , index)=>(
@@ -175,8 +175,8 @@ export default function Intero() {
     variants={fadeInUp}
     transition={{ delay: 0.2 + (index * 0.1) }}
     className="
-    bg-[#000] border-r border-white/20  p-6 
-    flex flex-col gap-6 justify-center  font-inter
+    bg-[#000] md:border-r border-b border-white/20  p-6 
+    flex flex-col md:gap-6  gap-3 justify-center  font-inter
     hover:bg-white/5 transition-colors duration-300    
   "
   >
@@ -188,8 +188,8 @@ export default function Intero() {
       height={28}
     />
 
-<p className='font-semibold text-[60px] leading-[60px]' >{statics.number}</p>
-<p className='text-[20px] leading-[34px]' >{statics.heading}</p>
+<p className='font-semibold md:text-[60px] text-[44px] leading-[60px]' >{statics.number}</p>
+<p className='md:text-[20px] text-base leading-[34px]' >{statics.heading}</p>
   </motion.div>
   )
   )

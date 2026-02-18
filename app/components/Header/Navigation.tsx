@@ -9,11 +9,11 @@ interface NavigationProps {
 export default function Navigation({ mobile = false }: NavigationProps) {
   const navItems = [
     { href: '/', label: 'Home' },
-    { href: 'about', label: 'About us' },
-    { href: '#services', label: 'Services' },
-    { href: '#career', label: 'Career' },
-    { href: '#blog', label: 'Blogs' },
-    { href: '#contact', label: 'Contact' },
+    { href: '/about', label: 'About us' },
+    { href: '/services', label: 'Services' },
+    { href: '/career', label: 'Career' },
+    { href: '/blog', label: 'Blogs' },
+    { href: '/contact', label: 'Contact' },
   ];
 
   const baseClasses = mobile

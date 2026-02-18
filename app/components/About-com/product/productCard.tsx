@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { fadeInRight } from '@/app/lib/animations';
-
+import featuresData from '@/app/lib/data/about-data/feature-data';
 interface ProductCardProps {
   title: string;
   description: string;

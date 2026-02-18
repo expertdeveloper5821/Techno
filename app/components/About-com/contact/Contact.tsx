@@ -8,7 +8,7 @@ function Contact() {
                 className="relative overflow-hidden min-h-screen flex flex-col justify-start lg:pt-24 lg:pb-24 md:pt-15 md:pb-15 pt-10 pb-10 bg-[#161616] "
 
             >
-                <div className='absolute bottom-20  ' >
+                <div className='absolute md:bottom-20  bottom-0 ' >
 
 <img src="/About/hero/hero.svg" alt="Hero illustration" className='w-ful ' />
 </div>
@@ -17,14 +17,14 @@ function Contact() {
         
         {/* Left Content */}
         <div className=" text-white p-10 pr-0">
-          <h2 className="mb-4 text-2xl font-semibold leading-snug md:text-[44px]">
+          <h2 className="mb-4 text-2xl font-semibold md:leading-snug leading-[30px]   md:text-[44px]">
             Looking for a digital partner who understands your goals and works
             toward real results?
           </h2>
 
-          <p className="mb-6 text-[20px] text-white/90 md:text-base">
+          <p className="mb-6 text-[20px] text-white/90 md:text-base leading-relaxed">
             Share your idea with us, and let Technogetic turn it into a powerful solution.
-          </p>
+          </p> 
 
           <a
             href="#services"

@@ -15,7 +15,7 @@ export default function Hero() {
     // Removed background styles, just padding for spacing
     <section className="relative pt-40 pb-10 sm:pt-48 sm:pb-16 flex flex-col items-center justify-center overflow-hidden z-10 bg-[linear-gradient(180deg,#0094DB_0%,#036C9F_70.41%,#000000_94.02%)] ">
       
-<div className='absolute bottom-20  ' >
+<div className='absolute md:bottom-20 bottom-0 ' >
 
 <img src="/About/hero/hero.svg" alt="Hero illustration" className='w-ful ' />
 </div>

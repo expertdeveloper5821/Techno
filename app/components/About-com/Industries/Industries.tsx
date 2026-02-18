@@ -42,12 +42,12 @@ function Industries() {
                             </div>
 
                             {/* Title */}
-                            <h3 className="mb-2 text-lg font-semibold">
+                            <h3 className="mb-2 md:text-[28px] text-[20px] font-medium">
                                 {item.title}
                             </h3>
 
                             {/* Description */}
-                            <p className="text-sm text-white/90 leading-relaxed">
+                            <p className="md:text-lg text-base text-white/90 leading-relaxed">
                                 {item.description}
                             </p>
                         </div>

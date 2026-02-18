@@ -5,8 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import facebookLogo from '@/app/lib/icon/facebooklogo.svg';
 import instagramLogo from '@/app/lib/icon/instalogo.svg';
-import figmaLogo from '@/app/lib/icon/figma.svg';
-import telegramLogo from '@/app/lib/icon/telegramlogo.svg';
+
 import twitterLogo from '@/app/lib/icon/twitter.svg';
 import linkedinLogo from '@/app/lib/icon/linkdin.svg';
 import { Subscribe } from '@/app/lib/subscribe-api';
@@ -126,7 +125,7 @@ const handleSubmit = async (e: React.FormEvent) => {
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-6 py-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  gap-8">
         {/* Logo & Description */}
         <div >
-          <Image src="/footer/tg-logo.png" alt="Technogetic Logo" width={120} height={40} className="mb-4" />
+          <Image src="/home/footer/tg-logo.png" alt="Technogetic Logo" width={120} height={40} className="mb-4" />
           <p className=" font-inter text-lg leading-relaxed text-[#D1D5DB] font-normal">
             Technogetic simplifies technology, transforming complexity into seamless solutions to drive innovation, efficiency, and digital success
           </p>
@@ -159,13 +158,13 @@ const handleSubmit = async (e: React.FormEvent) => {
           <h3 className="font-Roboto font-lg font-semibold mb-3">Contact Us</h3>
           <div className="flex items-start gap-2 mb-2">
                             <div className="shrink-0">
-                  <Image src="/footer/location.png" alt="Location" width={20} height={20} sizes="20px" loading="lazy" />
+                  <Image src="/home/footer/location.png" alt="Location" width={20} height={20} sizes="20px" loading="lazy" />
                 </div>
             <span className="space-y-2 text-base font-inter text-[#D1D5DB]">1<sup>st</sup> floor, Nexa Square, C-209/B, Phase 8B, Sec 74, Mohali, Punjab.</span>
           </div>
           <div className="flex items-center gap-2 mb-4">
                             <div className="shrink-0">
-                  <Image src="/footer/mail.png" alt="Email" width={20} height={20} sizes="20px" loading="lazy" />
+                  <Image src="/home/footer/mail.png" alt="Email" width={20} height={20} sizes="20px" loading="lazy" />
                 </div>
             <a href="mailto:info@technogetic.com" className="space-y-2 text-base font-inter text-[#D1D5DB]">info@technogetic.com</a>
           </div>

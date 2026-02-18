@@ -5,9 +5,9 @@ import { motion } from 'framer-motion';
 import { fadeInUp, fadeInRight } from '@/app/lib/animations';
 import Image from 'next/image';
 import { products } from '@/app/lib/data/products';
-
+import featuresData from '@/app/lib/data/about-data/feature-data';
 export default function Products() {
-  const [activeProduct, setActiveProduct] = useState(products[0]);
+  const [activeProduct, setActiveProduct] = useState(featuresData[0]);
 
   return (
     <section id="products" className="lg:py-24 md:py-15 py-10 bg-[#111517] text-white " style={{ overflow:'clip'}}>
@@ -63,11 +63,11 @@ export default function Products() {
             variants={fadeInRight}
             className=" pb-10"
           >
-            {products.map((product) => (
+            {featuresData.map((product) => (
               <div 
                 key={product.id}
                 onMouseEnter={() => setActiveProduct(product)}
-                className="group p-6 mb-4  bg-[#ffff] border-b border-white/50 hover:bg-[#0094DB] transition-all duration-300 cursor-pointer"
+                className="group p-6 mb-4  bg-[#ffff] border-b border-white/50 hover:bg-[#000] transition-all duration-300 cursor-pointer"
               >
                 <div className="flex justify-between  items-start mb-4">
                   <h3 className="text-xl font-inter font-semibold text-black group-hover:text-white transition-colors">
@@ -84,7 +84,7 @@ export default function Products() {
                   {product.description}
                 </p>
                 <p className="text-black font-inter group-hover:text-white text-sm leading-relaxed transition-colors duration-300 mt-2 ">
-                  <span className="font-bold">Tech Stack:</span> {product.TechStack}
+                  {/* <span className="font-bold">Tech Stack:</span> {product.TechStack} */}
                 </p>
               </div>
             ))}
