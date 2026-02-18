@@ -4,7 +4,7 @@ import { motion, number } from 'framer-motion';
 import { fadeInUp, scaleIn } from '@/app/lib/animations';
 import Image from 'next/image';
 import { div, label } from 'framer-motion/client';
-import correctmark  from '@/public/About/Intro/static-icon/correctmark.svg'
+import correctmark from '@/public/About/Intro/static-icon/correctmark.svg'
 import handshake from '@/public/About/Intro/static-icon/handshak.svg'
 import profile from '@/public/About/Intro/static-icon/profile.svg'
 import graph from '@/public/About/Intro/static-icon/graph.svg'
@@ -16,12 +16,12 @@ const features = [
 
 const stats = [
   {
-   
+
     label: 'Our Mission',
     description: 'To help businesses achieve digital success by delivering innovative, reliable, and user-focused technology solutions.',
   },
   {
-    
+
     label: 'Our Mission',
     description: 'To help businesses achieve digital success by delivering innovative, reliable, and user-focused technology solutions.',
   },
@@ -30,27 +30,27 @@ const stats = [
 
 const staticbox = [{
   id: 1,
-  icon:handshake,
+  icon: handshake,
   number: "10k+",
-  heading : "Engaged Customerss"
+  heading: "Engaged Customerss"
 },
 {
   id: 2,
-  icon:correctmark,
+  icon: correctmark,
   number: "99%",
-  heading : "Customer Success Stories"
+  heading: "Customer Success Stories"
 },
 {
   id: 3,
-  icon:profile,
+  icon: profile,
   number: "80+",
-  heading : "Team of Professionals"
+  heading: "Team of Professionals"
 },
 {
   id: 4,
-  icon:graph,
+  icon: graph,
   number: "10X",
-  heading : "More Faster Growths"
+  heading: "More Faster Growths"
 }]
 
 export default function Intero() {
@@ -58,8 +58,8 @@ export default function Intero() {
     <section id="about" className="lg:pt-24 lg:pb-24 md:pt-15 md:pb-15  pt-10 pb-10 bg-[#0a0a0a] text-white w-full mx-auto px-4 sm:px-6 lg:px-6">
       <div className=" ">
 
-     
-      
+
+
 
         {/* --- Bottom Row: Image & Stats --- */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
@@ -70,26 +70,18 @@ export default function Intero() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={scaleIn}
-            className="w-full "
+            className="w-full"
           >
-            {/* 
-                1. Removed 'absolute inset-0' and 'min-h'.
-                2. Removed 'fill'.
-                3. Added width/height to respect aspect ratio.
-                4. Added 'w-full h-auto' to make it responsive.
-             */}
+            <div className="relative w-full aspect-[16/17] rounded-2xl overflow-hidden">
               <Image
                 src="/About/Intro/intro.png"
                 alt="Team working together"
-                width={800}
-                height={600}
-                style={{
-                  objectFit:'cover'
-                }}
-                className="w-full rounded-2xl "
-                // sizes="(max-width: 1024px) 100vw, 50vw"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 loading="lazy"
               />
+            </div>
           </motion.div>
 
 
@@ -162,39 +154,39 @@ export default function Intero() {
       </div>
 
 
-{/* statics boxes  */}
-<div className=' grid md:grid-cols-4 grid-cols-1  mt-6    md:p-10 p-6 bg-[#111517] rounded-2xl '  >
+      {/* statics boxes  */}
+      <div className=' grid md:grid-cols-4 grid-cols-1 md:p-10 p-6 bg-[#111517] rounded-2xl '  >
 
-{
-  staticbox.map((statics , index)=>(
-    <motion.div
-    key={index}
-    initial="hidden"
-    whileInView="visible"
-    viewport={{ once: true }}
-    variants={fadeInUp}
-    transition={{ delay: 0.2 + (index * 0.1) }}
-    className="
+        {
+          staticbox.map((statics, index) => (
+            <motion.div
+              key={index}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeInUp}
+              transition={{ delay: 0.2 + (index * 0.1) }}
+              className="
     bg-[#000] md:border-r border-b border-white/20  p-6 
     flex flex-col md:gap-6  gap-3 justify-center  font-inter
     hover:bg-white/5 transition-colors duration-300    
   "
-  >
+            >
 
-<Image
-      src={statics.icon}
-      alt={statics.heading}
-      width={28}
-      height={28}
-    />
+              <Image
+                src={statics.icon}
+                alt={statics.heading}
+                width={28}
+                height={28}
+              />
 
-<p className='font-semibold md:text-[60px] text-[44px] leading-[60px]' >{statics.number}</p>
-<p className='md:text-[20px] text-base leading-[34px]' >{statics.heading}</p>
-  </motion.div>
-  )
-  )
-}
-</div>
+              <p className='font-semibold md:text-[60px] text-[44px] leading-[60px]' >{statics.number}</p>
+              <p className='md:text-[20px] text-base leading-[34px]' >{statics.heading}</p>
+            </motion.div>
+          )
+          )
+        }
+      </div>
 
 
     </section>

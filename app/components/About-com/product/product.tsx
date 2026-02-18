@@ -29,9 +29,11 @@ export default function Products() {
               variants={fadeInUp}
               className="lg:mb-10 md:mb-5 mb-5"
             >
+              <p className='text-[22px] font-semibold leading-[36px] '>Why Choose Technogetic</p>
               <h2 className=" font-inter text-[25px] sm:text-xl md:text-4xl lg:text-[44px] font-semibold lg:leading-tight md:leading-[50px] leading-[32px] tracking-tight mb-0 sm:mb-6">
-                Discover How We Transform Ideas Into Impactful digital Products
+              Scalable Solutions for Modern Businesses
               </h2>
+              <p className='text-lg font-normal leading-[28px]'>Technogetic partners with businesses to deliver reliable, scalable digital solutions through innovation, clear communication, modern technology, and a strong focus on long-term growth.</p>
             </motion.div>
 
             <motion.div
