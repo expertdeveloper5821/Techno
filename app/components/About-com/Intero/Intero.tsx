@@ -79,7 +79,7 @@ export default function Intero() {
                 4. Added 'w-full h-auto' to make it responsive.
              */}
               <Image
-                src="/About/intro/intro.png"
+                src="/About/Intro/intro.png"
                 alt="Team working together"
                 width={800}
                 height={600}

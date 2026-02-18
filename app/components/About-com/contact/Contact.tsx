@@ -8,10 +8,16 @@ function Contact() {
                 className="relative overflow-hidden min-h-screen flex flex-col justify-start lg:pt-24 lg:pb-24 md:pt-15 md:pb-15 pt-10 pb-10 bg-[#161616] "
 
             >
-                <div className='absolute md:bottom-20  bottom-0 ' >
-
-<img src="/About/hero/hero.svg" alt="Hero illustration" className='w-ful ' />
-</div>
+                <div className='absolute md:bottom-20 bottom-0 w-full h-auto' >
+                  <Image 
+                    src="/About/hero/hero.svg" 
+                    alt="Hero illustration" 
+                    width={600}
+                    height={400}
+                    className='w-full h-auto'
+                    priority
+                  />
+                </div>
 <div className="w-full flex  flex-col gap-0 lg:gap-0   mx-auto  px-4 sm:px-6 lg:px-6 ">
 <div className="mx-auto w-full flex flex-col items-center  gap-0 md:flex-row bg-[#0094DB]  rounded-2xl ">
         

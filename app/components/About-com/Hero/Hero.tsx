@@ -6,7 +6,6 @@ import Image from 'next/image';
 import { fadeInUp } from '@/app/lib/animations';
 import ServiceSlider from '@/app/components/Home-com/Services/ServiceSlider'; // Import the slider
 import ChevronRightIconImport from '@/app/lib/icon/chevron-right-icon';
-import hero from '../../../../public/About/hero/hero.svg'
 type IconProps = React.SVGProps<SVGSVGElement> & { width?: number; height?: number; color?: string };
 const ChevronRightIcon = ChevronRightIconImport as React.FC<IconProps>;
 
@@ -15,9 +14,15 @@ export default function Hero() {
     // Removed background styles, just padding for spacing
     <section className="relative pt-40 pb-10 sm:pt-48 sm:pb-16 flex flex-col items-center justify-center overflow-hidden z-10 bg-[linear-gradient(180deg,#0094DB_0%,#036C9F_70.41%,#000000_94.02%)] ">
       
-<div className='absolute md:bottom-20 bottom-0 ' >
-
-<img src="/About/hero/hero.svg" alt="Hero illustration" className='w-ful ' />
+<div className='absolute md:bottom-20 bottom-0 w-full h-auto' >
+  <Image 
+    src="/About/hero/hero.svg" 
+    alt="Hero illustration" 
+    width={600}
+    height={400}
+    className='w-full h-auto'
+    priority
+  />
 </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mb-10">
