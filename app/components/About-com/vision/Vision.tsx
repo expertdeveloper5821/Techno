@@ -3,7 +3,7 @@ import Image from 'next/image'
 function Vision() {
     return (
         <section
-            className="relative overflow-hidden      flex flex-col justify-start  lg:pb-24  md:pb-15  pb-10 bg-[#010101] "
+            className="relative overflow-hidden      flex flex-col justify-start      bg-[#010101] "
 
         >
             <div className="flex flex-col lg:flex-row">
@@ -14,7 +14,7 @@ function Vision() {
             src="/About/vision/vision.png" // replace with your image path
             alt="Team working in office"
             fill
-            className="object-cover"
+            className="lg:object-cover object-contain "
             priority
           />
         </div>
