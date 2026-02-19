@@ -15,7 +15,7 @@ import VisionSlider from "./Visionslider";
 
 export default function MilestoneCelebration() {
   return (
-    <section className="bg-black py-16">
+    <section className="bg-black py-16 md:pb-28">
       <div className="mx-auto max-w-full ">
         
         {/* Heading */}

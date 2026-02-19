@@ -33,7 +33,7 @@ export default function Industries() {
 
             maxTranslate = Math.max(
                 0,
-                track.scrollWidth - viewportWidth
+                track.scrollWidth - viewportWidth +24
             );
 
             start = section.offsetTop;
@@ -106,7 +106,7 @@ export default function Industries() {
             <div className="lg:h-[300vh]">
                 <div
                     className="
-            lg:sticky lg:top-0
+            lg:sticky lg:-top-23
             flex flex-col justify-center
             px-6 
           "
@@ -130,7 +130,7 @@ export default function Industries() {
                         >
                             {industries.map((item, index) => (
                                 <div
-                                    key={item.id}
+                                    key={index}
                                     ref={(el) => {
                                         cardsRef.current[index] = el;
                                     }}
@@ -148,7 +148,7 @@ export default function Industries() {
                                               
                                                      `}
                                     style={{
-                                        zIndex: stickyStates[index] === 1 ? 10 + index : 0,
+                                        zIndex: stickyStates[index] === 1 ? 10 + index : 11 + index,
                                         position: stickyStates[index] === 1 ? "sticky" : "static",
                                         top: stickyStates[index] === 1 ? "0px" : "auto",
                                     }}

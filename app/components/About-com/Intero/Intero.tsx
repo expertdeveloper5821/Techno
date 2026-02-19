@@ -70,7 +70,7 @@ export default function Intero() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={scaleIn}
-            className="w-full lg:h-full  "
+            className="w-full lg:h-full lg:block hidden  "
           >
             <div className="relative  w-full h-full rounded-2xl overflow-hidden lg:pb-4 pb-8">
               <img

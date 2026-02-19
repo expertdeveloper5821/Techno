@@ -20,7 +20,7 @@ export default function Hero() {
     alt="Hero illustration" 
     width={600}
     height={400}
-    className='w-full h-auto'
+    className='w-full h-auto object-cover '
     priority
   />
 </div>

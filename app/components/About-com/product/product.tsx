@@ -69,7 +69,7 @@ export default function Products() {
               <div 
                 key={product.id}
                 onMouseEnter={() => setActiveProduct(product)}
-                className="group p-6 mb-4  bg-[#ffff] border-b border-white/50 hover:bg-[#000] transition-all duration-300 cursor-pointer"
+                className="group p-6 mb-4  bg-[#ffff] border-b border-white/50 hover:bg-[#000] transition-all duration-300 cursor-pointer rounded-2xl "
               >
                 <div className="flex justify-between  items-start mb-4">
                   <h3 className="text-xl font-inter font-semibold text-black group-hover:text-white transition-colors">
