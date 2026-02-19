@@ -36,7 +36,7 @@ export default function Products() {
               <p className='text-lg font-normal leading-[28px]'>Technogetic partners with businesses to deliver reliable, scalable digital solutions through innovation, clear communication, modern technology, and a strong focus on long-term growth.</p>
             </motion.div>
 
-            <motion.div
+            {/* <motion.div
               initial="hidden "
               whileInView="visible"
               viewport={{ once: true }}
@@ -54,7 +54,7 @@ export default function Products() {
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 loading="lazy"
               />
-            </motion.div>
+            </motion.div> */}
           </div>
 
           {/* --- Right Column: FLOWING LIST --- */}

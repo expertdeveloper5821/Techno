@@ -55,7 +55,7 @@ const staticbox = [{
 
 export default function Intero() {
   return (
-    <section id="about" className="lg:pt-24 lg:pb-24 md:pt-15 md:pb-15  pt-10 pb-10 bg-[#0a0a0a] text-white w-full mx-auto px-4 sm:px-6 lg:px-6">
+    <section id="about" className="lg:pt-24 lg:pb-24 md:pt-15 md:pb-15  pt-10 pb-10 bg-[#000000] text-white w-full mx-auto px-4 sm:px-6 lg:px-6">
       <div className=" ">
 
 
@@ -129,7 +129,7 @@ export default function Intero() {
                   variants={fadeInUp}
                   transition={{ delay: 0.2 + (index * 0.1) }}
                   className="
-                  bg-transparent border border-white/20 rounded-2xl p-6 
+                  bg-[#000000] border border-white/20 rounded-2xl p-6 
                   flex flex-col  justify-between font-inter
                   hover:bg-white/5 transition-colors duration-300    
                 "
@@ -176,8 +176,8 @@ export default function Intero() {
               <Image
                 src={statics.icon}
                 alt={statics.heading}
-                width={28}
-                height={28}
+                width={40}
+                height={40}
               />
 
               <p className='font-semibold md:text-[60px] text-[44px] leading-[60px]' >{statics.number}</p>
