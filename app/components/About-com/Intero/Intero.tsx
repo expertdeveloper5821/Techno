@@ -8,6 +8,8 @@ import correctmark from '@/public/About/Intro/static-icon/correctmark.svg'
 import handshake from '@/public/About/Intro/static-icon/handshak.svg'
 import profile from '@/public/About/Intro/static-icon/profile.svg'
 import graph from '@/public/About/Intro/static-icon/graph.svg'
+import CountUp from 'react-countup'
+
 const features = [
   'Tailored IT Solutions.',
   'Future-Ready Infrastructure.',
@@ -28,30 +30,37 @@ const stats = [
 ];
 
 
-const staticbox = [{
-  id: 1,
-  icon: handshake,
-  number: "10k+",
-  heading: "Engaged Customerss"
-},
-{
-  id: 2,
-  icon: correctmark,
-  number: "99%",
-  heading: "Customer Success Stories"
-},
-{
-  id: 3,
-  icon: profile,
-  number: "80+",
-  heading: "Team of Professionals"
-},
-{
-  id: 4,
-  icon: graph,
-  number: "10X",
-  heading: "More Faster Growths"
-}]
+const staticbox = [
+  {
+    id: 1,
+    icon: handshake,
+    value: 10,
+    suffix: "k+",
+    heading: "Engaged Customers"
+  },
+  {
+    id: 2,
+    icon: correctmark,
+    value: 99,
+    suffix: "%",
+    heading: "Customer Success Stories"
+  },
+  {
+    id: 3,
+    icon: profile,
+    value: 80,
+    suffix: "+",
+    heading: "Team of Professionals"
+  },
+  {
+    id: 4,
+    icon: graph,
+    value: 10,
+    suffix: "X",
+    heading: "More Faster Growth"
+  }
+]
+
 
 export default function Intero() {
   return (
@@ -180,7 +189,17 @@ export default function Intero() {
                 height={40}
               />
 
-              <p className='font-semibold md:text-[60px] text-[44px] leading-[60px]' >{statics.number}</p>
+<p className="font-semibold md:text-[60px] text-[44px] leading-[60px]">
+        <CountUp
+          start={0}
+          end={statics.value}
+          duration={2}
+          separator=","
+          suffix={statics.suffix}
+          enableScrollSpy
+          scrollSpyOnce
+        />
+      </p>
               <p className='md:text-[20px] text-base leading-[34px]' >{statics.heading}</p>
             </motion.div>
           )

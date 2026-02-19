@@ -69,20 +69,39 @@ export default function Products() {
               <div 
                 key={product.id}
                 onMouseEnter={() => setActiveProduct(product)}
-                className="group p-6 mb-4  bg-[#ffff] border-b border-white/50 hover:bg-[#000] transition-all duration-300 cursor-pointer rounded-2xl "
+                className="group p-6 mb-4  bg-[#ffff] border-b border-white/50 hover:bg-[#000] transition-all duration-300 cursor-pointer rounded-xl "
               >
-                <div className="flex justify-between  items-start mb-4">
+                <div className="flex justify-start hover:fill-white   gap-2 items-start mb-4">
+                   {/* Arrow Icon */}
+                   <span className="
+  text-[#000] 
+  group-hover:text-white 
+  transition-all 
+  transform 
+  group-hover:translate-x-1 
+  duration-300
+">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="25"
+    height="25"
+    viewBox="0 0 25 25"
+    fill="none"
+  >
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M0 12.5C0 9.18479 1.31696 6.00537 3.66117 3.66117C6.00537 1.31696 9.18479 0 12.5 0C15.8152 0 18.9946 1.31696 21.3388 3.66117C23.683 6.00537 25 9.18479 25 12.5C25 15.8152 23.683 18.9946 21.3388 21.3388C18.9946 23.683 15.8152 25 12.5 25C9.18479 25 6.00537 23.683 3.66117 21.3388C1.31696 18.9946 0 15.8152 0 12.5ZM11.7867 17.85L18.9833 8.85333L17.6833 7.81333L11.5467 15.4817L7.2 11.86L6.13333 13.14L11.7867 17.85Z"
+      fill="currentColor"
+    />
+  </svg>
+</span>
                   <h3 className="text-xl font-inter font-semibold text-black group-hover:text-white transition-colors">
                     {product.title}
                   </h3>
-                  {/* Arrow Icon */}
-                  {/* <span className="text-gray-500 group-hover:text-white transition-colors transform group-hover:translate-x-1 duration-300">
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-                    </svg>
-                  </span> */}
+                 
                 </div>
-                <p className="text-black font-inter group-hover:text-white text-base leading-relaxed transition-colors duration-300">
+                <p className="text-[#595959] font-inter group-hover:text-white text-base leading-relaxed transition-colors duration-300">
                   {product.description}
                 </p>
                 <p className="text-black font-inter group-hover:text-white text-sm leading-relaxed transition-colors duration-300 mt-2 ">

@@ -94,7 +94,7 @@ export default function Industries() {
             ref={sectionRef}
             className="
         relative
-        bg-[linear-gradient(to_bottom,#0094DB_0%,#0094DB_85%,#003a5c_95%,#000000_100%)]
+        bg-[#0094DB]
         pt-10 pb-10
         md:pt-24 md:pb-24 
       "
@@ -125,6 +125,7 @@ export default function Industries() {
                                        lg:grid-rows-2
                                        lg:grid-flow-col
                                        lg:w-max
+                                       p-1
                                        will-change-transform
               "
                         >
@@ -139,8 +140,10 @@ export default function Industries() {
                                             lg:w-[calc(100vw/3)]
                                             min-w-[260px]
                                             rounded-xl
-                                            border border-white/30
+                                            border
+                                            hover:border-[#FFFFFFCC]
                                             bg-[#018BCE]
+                                            
                                             p-6
                                              text-white
                                               lg:static
