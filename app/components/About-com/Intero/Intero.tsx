@@ -62,7 +62,7 @@ export default function Intero() {
 
 
         {/* --- Bottom Row: Image & Stats --- */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+        <div className="lg:grid  lg:grid-cols-[4fr_6fr] gap-8 lg:gap-4 items-start">
 
           {/* Left: Image Only */}
           <motion.div
@@ -70,14 +70,14 @@ export default function Intero() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={scaleIn}
-            className="w-full"
+            className="w-full lg:h-full  "
           >
-            <div className="relative w-full aspect-[16/17] rounded-2xl overflow-hidden">
-              <Image
+            <div className="relative  w-full h-full rounded-2xl overflow-hidden lg:pb-4 pb-8">
+              <img
                 src="/About/Intro/intro.png"
                 alt="Team working together"
-                fill
-                className="object-cover"
+                
+                className="lg:object-cover object-contain  h-full w-full rounded-2xl "
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 loading="lazy"
               />
@@ -89,7 +89,7 @@ export default function Intero() {
 
           {/* Right: Stats Grid */}
 
-          <div className='flex flex-col gap-6 bg-[#111517] p-6 rounded-t-2xl' >
+          <div className='flex flex-col h-full gap-6 bg-[#111517] p-6 rounded-t-2xl' >
 
             <motion.div
               initial="hidden"
@@ -138,10 +138,10 @@ export default function Intero() {
                     {stat.number}
                   </div> */}
                   <div className='  flex flex-col gap-4  justify-between h-[70%]'>
-                    <h3 className=" md:text-[32px] text-2xl sm:m-0 mb-2 sm:mb-0 font-normal text-white  h-[40%]  flex items-end ">
+                    <h3 className=" xl:text-[32px] text-2xl sm:m-0 mb-2 sm:mb-0 font-normal text-white  h-[40%]  flex items-end ">
                       {stat.label}
                     </h3>
-                    <p className=" text-lg leading-relaxed font-inter tracking-[1%] ">
+                    <p className=" md:text-lg text-base leading-relaxed font-inter tracking-[1%] ">
                       {stat.description}
                     </p>
                   </div>
@@ -155,7 +155,7 @@ export default function Intero() {
 
 
       {/* statics boxes  */}
-      <div className=' grid md:grid-cols-4 grid-cols-1 md:p-10 p-6 bg-[#111517] rounded-2xl '  >
+      <div className=' grid lg:grid-cols-4 grid-cols-1 lg:p-10 p-6 bg-[#111517] rounded-2xl '  >
 
         {
           staticbox.map((statics, index) => (
@@ -167,8 +167,8 @@ export default function Intero() {
               variants={fadeInUp}
               transition={{ delay: 0.2 + (index * 0.1) }}
               className="
-    bg-[#000] md:border-r border-b border-white/20  p-6 
-    flex flex-col md:gap-6  gap-3 justify-center  font-inter
+    bg-[#000] lg:border-r border-b border-white/20  p-6 
+    flex flex-col lg:gap-6  gap-3 justify-top  font-inter
     hover:bg-white/5 transition-colors duration-300    
   "
             >

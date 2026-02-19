@@ -87,5 +87,47 @@ export const  industries = [
       description:
         "Crafting data-driven digital strategies that boost brand visibility and customer engagement.",
     },
+    {
+      id: 7,
+      title: "eCommerce",
+      icon: '/Industries-icon/basket.svg',
+      description:
+        "Developing scalable eCommerce platforms that deliver seamless shopping experiences and growth.",
+    },
+    {
+      id: 8,
+      title: "FinTech",
+      icon: '/Industries-icon/cash.svg',
+      description:
+        "Building secure, compliant fintech solutions that simplify transactions and enhance financial access.",
+    },
+    {
+      id: 9,
+      title: "Transportation & Logistics",
+      icon: '/Industries-icon/truck.svg',
+      description:
+        "Optimizing logistics operations with smart digital solutions for efficiency and real-time tracking.",
+    },
+    {
+      id: 10,
+      title: "Telecom",
+      icon: '/Industries-icon/telephone.svg',
+      description:
+        "Creating robust digital platforms that support connectivity, scalability, and customer satisfaction.",
+    },
+    {
+      id: 11,
+      title: "Sports",
+      icon: '/Industries-icon/football.svg',
+      description:
+        "Designing engaging digital experiences that connect fans, athletes, and sports organizations.",
+    },
+    {
+      id: 12,
+      title: "Gaming",
+      icon: '/Industries-icon/game.svg',
+      description:
+        "Developing immersive gaming experiences with intuitive design, performance, and player engagement.",
+    },
   ];
   

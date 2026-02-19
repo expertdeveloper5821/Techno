@@ -11,18 +11,7 @@ import "swiper/css";
 import VisionSlider from "./Visionslider";
 
 
-const milestones = [
-  { id: 1, image: "/About/milestone/frame1.png" },
-  { id: 2, image: "/About/milestone/frame2.png" },
-  { id: 3, image: "/About/milestone/frame3.png" },
-  { id: 4, image:"/About/milestone/frame4.png" },
-  { id: 5, image: "/About/milestone/frame5.png" },
-  { id: 6, image: "/About/milestone/frame6.png" },
-  { id: 7, image: "/About/milestone/frame7.png" },
-  { id: 8, image: "/About/milestone/frame8.png" },
-  { id: 9, image: "/About/milestone/frame9.png" },
-  { id: 10, image: "/About/milestone/frame10.png" },
-];
+
 
 export default function MilestoneCelebration() {
   return (
