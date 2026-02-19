@@ -5,10 +5,10 @@ function Contact() {
   return (
     <>
     <section
-                className="relative overflow-hidden min-h-screen flex flex-col justify-start lg:pt-24 lg:pb-24 md:pt-15 md:pb-15 pt-10 pb-10 bg-[#161616] "
+                className="relative overflow-hidden  flex flex-col justify-start lg:pt-24 lg:pb-24 md:pt-15 md:pb-15 pt-10 pb-10 bg-[#161616] "
 
             >
-                <div className='absolute md:bottom-20 bottom-0 w-full h-auto' >
+                <div className='absolute lg:bottom-20 bottom-0 w-full h-auto' >
                   <Image 
                     src="/About/hero/hero.svg" 
                     alt="Hero illustration" 
@@ -23,7 +23,7 @@ function Contact() {
         
         {/* Left Content */}
         <div className=" text-white p-10 pr-0">
-          <h2 className="mb-4 text-2xl font-semibold md:leading-snug leading-[30px]   md:text-[44px]">
+          <h2 className="mb-4 text-2xl font-semibold  md:leading-snug leading-[30px] md:text-4xl  lg:text-[44px]">
             Looking for a digital partner who understands your goals and works
             toward real results?
           </h2>
@@ -41,7 +41,7 @@ function Contact() {
         </div>
 
         {/* Right Image */}
-        <div className="relative h-[260px] w-full max-w-[320px] md:h-[400px] md:max-w-[380px]  ">
+        <div className="relative h-[260px] w-full max-w-[320px] md:h-[400px] md:max-w-[380px] lg:block hidden  ">
           <Image
             src="/About/contact/contact.png" // replace with your actual image path
             alt="Customer support representative"

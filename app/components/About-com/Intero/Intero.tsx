@@ -62,7 +62,7 @@ export default function Intero() {
 
 
         {/* --- Bottom Row: Image & Stats --- */}
-        <div className="lg:grid  lg:grid-cols-[4fr_6fr] gap-8 lg:gap-4 items-start">
+        <div className="grid  lg:grid-cols-[4fr_6fr]   gap-8 lg:gap-4 items-start">
 
           {/* Left: Image Only */}
           <motion.div
