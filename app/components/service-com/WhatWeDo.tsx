@@ -1,6 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
 import { whatWeDoData } from '@/app/lib/data/service-what-we-do';
+import ChevronRightIconImport from '@/app/lib/icon/chevron-right-icon';
+type IconProps = React.SVGProps<SVGSVGElement> & { width?: number; height?: number; color?: string };
+const ChevronRightIcon = ChevronRightIconImport as React.FC<IconProps>;
 export default function WhatWeDo() {
   const { heading, description, cards } = whatWeDoData;
   const topOffsetMap = [
@@ -76,15 +79,12 @@ export default function WhatWeDo() {
 
                   {/* Button */}
                   <div className="mt-8">
-                    <button
-                      type="button"
-                      className="inline-flex items-center gap-2 rounded-full bg-white text-[#0094DB] px-6 py-2.5 text-sm sm:text-base font-semibold shadow-lg hover:bg-[#F5F9FF] transition-colors"
-                    >
-                      {card.buttonLabel}
-                      <span className="w-4 h-4 rounded-full bg-[#0094DB] text-white flex items-center justify-center text-[10px]">
-                        &gt;
-                      </span>
-                    </button>
+                  <a
+            href="#services"
+            className="group shrink-0 inline-flex items-center justify-center gap-2 sm:px-8  sm:py-3.5 px-4 py-2 text-base font-semibold text-[#000000] bg-white rounded-full hover:bg-white/95 transition-all duration-200 shadow-lg whitespace-nowrap mt-0"
+          >
+            Explore Services <ChevronRightIcon width={7} height={11} color="#000000" className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-0.5" />
+          </a> 
                   </div>
                 </div>
               </div>
