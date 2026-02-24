@@ -1,10 +1,15 @@
-'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+
+
+
+
+'use client';
+import Link from 'next/link';
+import type React from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, easeOut } from 'framer-motion';
 import Image from 'next/image';
 import Navigation from './Navigation';
-import { FaChevronRight } from 'react-icons/fa6';
 import ChevronRightIconImport from '@/app/lib/icon/chevron-right-icon';
 
 type IconProps = React.SVGProps<SVGSVGElement> & {
@@ -12,103 +17,129 @@ type IconProps = React.SVGProps<SVGSVGElement> & {
   height?: number;
   color?: string;
 };
-
+const NAV_LINKS = [
+ { label: 'Home', href: '/' },
+ { label: 'About us', href: '/about' },
+ { label: 'Services', href: '#services' },
+ { label: 'Career', href: '/career' },
+ { label: 'Blogs', href: '/blogs' },
+ { label: 'Contact', href: '/contact' },
+];
 const ChevronRightIcon = ChevronRightIconImport as React.FC<IconProps>;
+const HEADER_BLUE = '#0094DB';
+// Hysteresis: expand when near top, compact only when scrolled down past threshold
+const SCROLL_UP_THRESHOLD = 50;   // below this = always normal (no flicker)
+const SCROLL_DOWN_THRESHOLD = 120; // above this = use scroll direction
+const MIN_SCROLL_DELTA = 25;      // min px movement to react (reduces jitter)
+const TRANSITION_MS = 550;
+const TRANSITION_EASE = 'cubic-bezier(0.22, 0.61, 0.36, 1)';
 
+function HamburgerIcon({ open, onClick }: { open: boolean; onClick: () => void }) {
+ return (
+<button
+     type="button"
+     onClick={onClick}
+     className="p-2 -m-2 rounded-lg hover:bg-black/5 transition-colors shrink-0 touch-manipulation"
+     aria-label={open ? 'Close menu' : 'Open menu'}
+     aria-expanded={open}
+>
+<svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d={
+                      open
+                        ? 'M6 18L18 6M6 6l12 12'
+                        : 'M4 6h16M4 12h16M4 18h16'
+                    }
+                  />
+                </svg>
+</button>
+ );
+}
 export default function Header() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isCompact, setIsCompact] = useState(false);
-  const lastScrollYRef = useRef(0);
+ const [compact, setCompact] = useState(false);
+ const [menuOpen, setMenuOpen] = useState(false);
+ const lastScrollY = useRef(0);
+ const ticking = useRef(false);
+ const [contactshow, setContactshow] = useState(false);
+ useEffect(() => {
+   const handleScroll = () => {
+     const y = typeof window !== 'undefined' ? window.scrollY : 0;
+     if (!ticking.current) {
+       window.requestAnimationFrame(() => {
+         const prevY = lastScrollY.current;
+         const delta = y - prevY;
+         if (y <= SCROLL_UP_THRESHOLD) {
+           setCompact(false);
+         } else if (y >= SCROLL_DOWN_THRESHOLD && Math.abs(delta) >= MIN_SCROLL_DELTA) {
+           setCompact(delta > 0);
+          
+         }
+         lastScrollY.current = y;
+         ticking.current = false;
+       });
+       ticking.current = true;
+     }
+   };
+   window.addEventListener('scroll', handleScroll, { passive: true });
+   return () => window.removeEventListener('scroll', handleScroll);
+ }, []);
 
-  // Detect scroll direction with a very small threshold so that
-  // even subtle upward scrolls can expand the header again.
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
 
-    const MIN_DELTA = 4; // minimal movement (px) to react to
-
-    const handleScroll = () => {
-      const currentY = window.scrollY || window.pageYOffset || 0;
-      const previousY = lastScrollYRef.current;
-      const diff = currentY - previousY;
-
-      // Ignore imperceptible noise
-      if (Math.abs(diff) < MIN_DELTA) return;
-
-      const isScrollingDown = diff > 0;
-      const isScrollingUp = diff < 0;
-
-      // When user scrolls down a bit from the top, go compact
-      if (isScrollingDown && currentY > 10 && !isCompact) {
-        setIsCompact(true);
-      }
-
-      // As soon as the user scrolls up (even slightly), restore full header
-      if (isScrollingUp && isCompact) {
-        setIsCompact(false);
-      }
-
-      lastScrollYRef.current = currentY;
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [isCompact]);
-
-  return (
-    <motion.header
-      initial={{ y: -80, opacity: 0 }}
-      animate={{
-        y: 0,
+ useEffect(() => {
+  const timer = setTimeout(() => {
+    if (compact) {
+      setContactshow(true);
+    } else {
+      setContactshow(false);
+    }
+  }, 0.1);
+  return () => clearTimeout(timer);
+ }, [compact]);
+ return (
+<>
+     {/* Fixed wrapper: no blue strip, transparent so page (e.g. blue gradient) shows through */}
+<header
+       className="fixed left-0 right-0 z-50 will-change-transform flex justify-center px-4 sm:px-6"
+       style={{
+        paddingTop: compact ? 12 : 20,
+        paddingBottom: compact ? 12 : 20,
+        transition: `padding ${TRANSITION_MS}ms ${TRANSITION_EASE}`,
         opacity: 1,
+        // top: 16,
+        // transform: 'none',
       }}
-      transition={{ duration: 0.45, ease: [0.22, 0.61, 0.36, 1] }}
-      className={`fixed left-0 right-0 z-50 transition-all duration-300 ${
-        isCompact ? 'top-4' : 'top-0 pt-6'
-      }`}
-    >
-      <nav
-        className={`w-full px-4 sm:px-6 lg:px-6 transition-all duration-300 ${
-          isCompact ? 'flex justify-center' : 'mx-auto'
-        }`}
-      >
-        {/* White pill-shaped container */}
-        <motion.div
-          animate={isCompact ? 'compact' : 'default'}
-          variants={{
-            default: {
-              scale: 1,
-              boxShadow: '0 14px 45px rgba(15,23,42,0.16)',
-              borderRadius: 16,
-              y: 0,
-            },
-            compact: {
-              scale: 0.97,
-              boxShadow: '0 18px 60px rgba(15,23,42,0.26)',
-              borderRadius: 16,
-              y: 0,
-            },
-          }}
-          transition={{
-            duration: 0.28,
-            ease: [0.22, 0.61, 0.36, 1],
-          }}
-          className={`    bg-white/50
-    backdrop-blur-[14px]
-    backdrop-saturate-280
-    border
-    border-white/25
-    rounded-2xl
-    shadow-[0_8px_32px_rgba(0,0,0,0.12)]     flex items-center justify-between  px-4 transition-all duration-300 ${
-            isCompact ? 'py-2 md:py-2 max-w-xs w-full gap-3' : 'py-3 md:py-4 w-full mx-auto'
-          }`}
-        >
-          {/* Logo (always visible, scales down in compact mode) */}
-          <motion.div
-            whileHover={{ scale: 1.03 }}
-            animate={{ scale: isCompact ? 0.9 : 1 }}
-            transition={{ duration: 0.2 }}
-            className="flex items-center pl-2"
+>
+       {/* Single bar: normal = full-width frosted, compact = centered pill */}
+<div
+         className="flex items-center justify-between rounded-2xl overflow-hidden w-full"
+         style={{
+           maxWidth: compact ? 340 : '100%',
+           minHeight: compact ? 48 : 56,
+           paddingLeft: compact ? 20 : 28,
+           paddingRight: compact ? 20 : 28,
+           paddingTop: compact ? 14 : 18,
+           paddingBottom: compact ? 14 : 18,
+           gap: compact ? 0 : 12,
+           backgroundColor: 'rgba(255, 255, 255, 0.75)',
+           backdropFilter: 'saturate(180%) blur(14px)',
+           WebkitBackdropFilter: 'saturate(180%) blur(14px)',
+           boxShadow: compact
+             ? '0 4px 24px rgba(0, 0, 0, 0.12)'
+             : '0 1px 0 rgba(255,255,255,0.5), 0 2px 8px rgba(0, 0, 0, 0.06)',
+           border: '1px solid rgba(255, 255, 255, 0.6)',
+           transition: `max-width ${TRANSITION_MS}ms ${TRANSITION_EASE}, padding ${TRANSITION_MS}ms ${TRANSITION_EASE}, min-height ${TRANSITION_MS}ms ${TRANSITION_EASE}, box-shadow ${TRANSITION_MS}ms ${TRANSITION_EASE}`,
+         }}
+>
+<motion.div
+           
           >
             <a href="#" className="flex items-center">
               <Image
@@ -116,80 +147,151 @@ export default function Header() {
                 alt="Technogetic Logo"
                 width={140}
                 height={40}
-                className="h-8 md:h-10 w-auto transition-all duration-300"
+                className="h-8 md:h-10 w-auto "
                 priority
                 sizes="140px"
               />
             </a>
           </motion.div>
-
-          {/* Desktop Navigation (hidden completely in compact mode) */}
-          {!isCompact && (
-            <div className="hidden lg:flex items-center space-x-8 flex-1 justify-center">
-              <Navigation />
-            </div>
-          )}
-
-          {/* Desktop CTA Button (hidden in compact mode) */}
-          {!isCompact && (
-            <div className="hidden lg:block pr-2">
-              <motion.a
-                href="#contact"
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.98 }}
-                className="group inline-flex items-center justify-center gap-1.5 bg-[#0099DD] text-white px-8 py-3.5 rounded-full font-semibold text-base hover:bg-[#0088c4] transition-colors shadow-md"
+         {/* Nav links + Contact: visible in normal, collapse in compact */}
+<div
+           className="hidden sm:flex items-center justify-end overflow-hidden"
+           style={{
+             maxWidth: compact ? 0 : 640,
+             visibility: compact ? 'hidden' : 'visible',
+             pointerEvents: compact ? 'none' : 'auto',
+             gap: 28,
+             transition: `max-width ${TRANSITION_MS}ms ${TRANSITION_EASE}, visibility 0s linear ${compact ? 0 : TRANSITION_MS}ms`,
+           }}
+>
+<nav className="flex items-center gap-6 lg:gap-8 shrink-0">
+   
+             <AnimatePresence initial={false}>
+            { !compact && (
+              <motion.div
+                key="desktop-nav"
+                
+                className="hidden lg:flex items-center space-x-8 flex-1 justify-center"
               >
-                Contact us{' '}
-                <ChevronRightIcon
-                  width={7}
-                  height={11}
-                  color="#fff"
-                  className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-0.5"
-                />
-              </motion.a>
-            </div>
-          )}
+                <Navigation />
+              </motion.div>
+            )}
+          </AnimatePresence>
+</nav>
+</div>
 
-          {/* Menu Button (shows on all breakpoints in compact mode so only logo + hamburger are visible) */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`${isCompact ? '' : 'lg:hidden'} text-dark-bg p-2`}
-            aria-label="Toggle menu"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d={
-                  isMobileMenuOpen
-                    ? 'M6 18L18 6M6 6l12 12'
-                    : 'M4 6h16M4 12h16M4 18h16'
-                }
-              />
-            </svg>
-          </button>
-        </motion.div>
 
-        {/* Mobile Menu Dropdown */}
-        <AnimatePresence>
-          {isMobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden mt-4 bg-white rounded-2xl p-4 shadow-xl"
-            >
-              <Navigation mobile />
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </nav>
-    </motion.header>
-  );
+<AnimatePresence initial={false}>
+            {!contactshow && (
+              <motion.div
+                key="desktop-cta"
+                
+                className={`hidden lg:block pr-2 transition-all duration-500 ease-in-out ${compact ? 'block' : 'none'} `}
+              >
+                <motion.a
+                  href="#contact"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="group inline-flex items-center justify-center gap-1.5 bg-[#0099DD] text-white px-8 py-3.5 rounded-full font-semibold text-base hover:bg-[#0088c4] transition-colors shadow-md"
+                >
+                  Contact us{' '}
+                  <ChevronRightIcon
+                    width={7}
+                    height={11}
+                    color="#fff"
+                    className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-0.5"
+                  />
+                </motion.a>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+
+
+         {/* Hamburger: only in compact on desktop; display none when normal so it takes no space */}
+<div
+           className={`items-center shrink-0 ${compact ? 'hidden sm:flex' : 'hidden'}`}
+>
+<HamburgerIcon open={menuOpen} onClick={() => setMenuOpen((o) => !o)} />
+</div>
+         {/* Mobile: always show hamburger */}
+<div className= 
+{`flex lg:hidden items-center shrink-0 ${compact? 'hidden' : 'block'}`} >
+<HamburgerIcon open={menuOpen} onClick={() => setMenuOpen((o) => !o)} />
+</div>
+</div>
+</header>
+     {/* Mobile dropdown */}
+<div
+       className={`lg:hidden max-w-xl mx-auto mt-4 fixed left-0 right-0 z-40 overflow-hidden ${compact ? "hidden" : "bock"} ` }
+       style={{
+         top: compact ? 76 : 96,
+         maxHeight: menuOpen ? 420 : 0,
+         visibility: menuOpen ? 'visible' : 'hidden',
+         pointerEvents: menuOpen ? 'auto' : 'none',
+         transition: `max-height 0.3s ease-out, visibility 0s linear ${menuOpen ? 0 : 0.3}s`,
+       }}
+>
+<div className="mx-4 rounded-2xl max-w-2xl text-center  bg-white/95 backdrop-blur-xl shadow-lg border border-black/5 py-3 px-4">
+<nav className="flex flex-col gap-1">
+           {NAV_LINKS.map(({ label, href }) => (
+<Link
+               key={href}
+               href={href}
+               onClick={() => setMenuOpen(false)}
+               className="text-[#1f2937] font-medium py-2.5 px-3 rounded-lg hover:bg-black/5"
+>
+               {label}
+</Link>
+           ))}
+<Link
+             href="/contact"
+             onClick={() => setMenuOpen(false)}
+             className="mt-2 inline-flex items-center justify-center gap-2 px-4 py-3 text-white font-medium text-sm rounded-full "
+             style={{ backgroundColor: HEADER_BLUE }}
+>
+             Contact us &gt;
+</Link>
+</nav>
+</div>
+</div>
+     {/* Desktop dropdown when compact + hamburger open */}
+<div
+       className="hidden sm:block fixed left-0 right-0 z-40 overflow-hidden"
+       style={{
+         top: compact ? 76 : 96,
+         maxHeight: compact && menuOpen ? 400 : 0,
+         visibility: compact && menuOpen ? 'visible' : 'hidden',
+         pointerEvents: compact && menuOpen ? 'auto' : 'none',
+         transition: `max-height 0.3s ease-out, visibility 0s linear ${compact && menuOpen ? 0 : 0.3}s`,
+       }}
+>
+<div className="flex justify-center px-4">
+<div className="rounded-2xl mt-4 bg-white/95 backdrop-blur-xl shadow-xl border border-black/8 py-3 px-5 min-w-[200px]">
+<nav className="flex flex-col gap-0.5">
+             {NAV_LINKS.map(({ label, href }) => (
+<Link
+                 key={href}
+                 href={href}
+                 onClick={() => setMenuOpen(false)}
+                 className="text-[#333] font-medium py-2 px-3 rounded-lg hover:bg-[#0094DB]/10 hover:text-[#0094DB]"
+>
+                 {label}
+</Link>
+             ))}
+<Link
+               href="/contact"
+               onClick={() => setMenuOpen(false)}
+               className="mt-2 inline-flex items-center justify-center gap-2 px-4 py-2.5 text-white font-medium text-sm rounded-full"
+               style={{ backgroundColor: HEADER_BLUE }}
+>
+               Contact us &gt;
+</Link>
+</nav>
+</div>
+</div>
+</div>
+
+</>
+ );
 }
