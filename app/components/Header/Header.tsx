@@ -192,9 +192,9 @@ export default function Header() {
           }}
         >
           <div className='flex w-full justify-between ' >
-            <motion.div
+            
 
-            >
+            
               <a href="#" className="flex items-center">
                 <Image
                   src="/tg-logo.png"
@@ -206,7 +206,7 @@ export default function Header() {
                   sizes="140px"
                 />
               </a>
-            </motion.div>
+           
             {/* Nav links + Contact: visible in normal, collapse in compact */}
             <div
               className="hidden sm:flex items-center justify-end overflow-hidden"
@@ -275,7 +275,7 @@ export default function Header() {
             </div>
           </div>
           {/* Mobile dropdown */}
-          {!compact && (
+          {compact && (
             <div
               className={`hidden sm:block  lg:hidden  mx-auto w-full bg-transparent z-40 overflow-hidden ${compact ? "hidden" : "block"} `}
               style={{
