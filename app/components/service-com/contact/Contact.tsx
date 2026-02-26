@@ -8,7 +8,10 @@ function Contact() {
                 className="relative overflow-hidden  flex flex-col justify-start lg:pt-24 lg:pb-24 md:pt-15 md:pb-15 pt-10 pb-10 bg-[#161616] "
 
             >
-                <div className='absolute lg:bottom-20 bottom-0 w-full h-auto' >
+               
+<div className="w-full flex  flex-col gap-0 lg:gap-0   mx-auto  px-4 sm:px-6 lg:px-6 ">
+<div className="mx-auto relative w-full flex flex-col items-center  gap-0 md:flex-row bg-[#0094DB]  rounded-2xl ">
+<div className='absolute lg:bottom-20 bottom-0 w-full h-auto' >
                   <Image 
                     src="/About/hero/hero.svg" 
                     alt="Hero illustration" 
@@ -18,16 +21,13 @@ function Contact() {
                     priority
                   />
                 </div>
-<div className="w-full flex  flex-col gap-0 lg:gap-0   mx-auto  px-4 sm:px-6 lg:px-6 ">
-<div className="mx-auto w-full flex flex-col items-center  gap-0 md:flex-row bg-[#0094DB]  rounded-2xl ">
-        
         {/* Left Content */}
-        <div className=" text-white p-10 pr-0">
+        <div className=" text-white p-10 md:pr-0">
           <h2 className="mb-4 text-2xl font-semibold  md:leading-snug leading-[30px] md:text-4xl  lg:text-[44px]">
           Let’s Build Solutions That Drive Real Business Impact
           </h2>
 
-          <p className="mb-6 text-[20px] text-white/90 md:text-base leading-relaxed">
+          <p className="mb-6 text-base sm:text-[20px] text-white/90 md:text-base leading-relaxed">
           Tell us about your idea, and our experts will help you bring it to life.
           </p> 
 

@@ -225,14 +225,8 @@ export default function Slider() {
   }, [isDark]);
 
   return (
-    <div className="w-screen min-h-screen bg-white dark:bg-neutral-950 transition-colors duration-300 flex flex-col justify-center relative selection:bg-primary selection:text-white">
-      {/* <button
-        onClick={() => setIsDark(!isDark)}
-        className="fixed top-6 right-6 z-50 p-3 rounded-full bg-white dark:bg-neutral-900 text-neutral-800 dark:text-neutral-100 border border-neutral-200 dark:border-neutral-800 shadow-xl hover:scale-110 transition-all active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary/50"
-        aria-label="Toggle Dark Mode"
-      >
-        {isDark ? <Sun size={20} /> : <Moon size={20} />}
-      </button> */}
+    <div className=" bg-white dark:bg-neutral-950 transition-colors duration-300 flex flex-col justify-center relative selection:bg-primary selection:text-white">
+      
 
       <TestimonialsSection />
     </div>

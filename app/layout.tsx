@@ -79,7 +79,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased`}
       >
-        <div className="relative  ">
+        <div className="sm:relative  ">
           <Header />
           
         </div>

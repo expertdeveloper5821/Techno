@@ -24,26 +24,53 @@ export default function VisionSlider() {
     
     <Swiper
     className="vision-container"
+    modules={[Autoplay]}
+    loop={true}
+    speed={6000}               // smooth continuous speed
+    autoplay={{
+      delay: 0,                // no pause
+      disableOnInteraction: false,
+    }}
+    allowTouchMove={false}
+    breakpoints={{
+      320: {
+        slidesPerView: 1,
+        spaceBetween: 8,
+      },
+
+      400: {
+        slidesPerView: 2,
+        spaceBetween: 8,
+      },
+      640: {
+        slidesPerView: 3,
+        spaceBetween: 10,
+      },
+      768: {
+        slidesPerView: 3,
+        spaceBetween: 12,
+      },
+      1024: {
+        slidesPerView: 4,
+        spaceBetween: 14,
+      },
+      1280: {
+        slidesPerView: 5,
+        spaceBetween: 16,
+      },
+    }}
   
-      spaceBetween={10}
-      slidesPerView={6}
-      modules={[Autoplay]}
-      autoplay={{
-        delay: 2500,
-        disableOnInteraction: false,
-      }}
-      onSlideChange={() => console.log("slide change")}
-      onSwiper={(swiper) => console.log(swiper)}
-    >
-      { milestone.map((service, index) => (
-        <SwiperSlide key={index}>
-          <img
-            alt={service.image}
-            src={`https://picsum.photos/seed/picsum${index}/300`}
-          />
-        </SwiperSlide>
-      ))}
-    </Swiper>
+>
+  {milestone.map((service, index) => (
+    <SwiperSlide key={index}>
+      <img
+        src={service.image}
+        alt={service.image}
+        className="w-full sm:h-auto "
+      />
+    </SwiperSlide>
+  ))}
+</Swiper>
     
   );
 }

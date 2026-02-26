@@ -106,7 +106,7 @@ export default function Header() {
   return (
     <>
       {/* Mobile: simple, non-floating navbar */}
-      <header className="sm:hidden fixed left-0 right-0 z-50 will-change-transform  px-4 sm:px-6"
+      <header className="sm:hidden absolute left-0 right-0 z-50 will-change-transform  px-4 sm:px-6"
         style={{
           paddingTop: compact ? 12 : 20,
           paddingBottom: compact ? 12 : 20,

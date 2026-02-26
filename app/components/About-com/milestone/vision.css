@@ -4,10 +4,10 @@
 
   .swiper-wrapper {
     display: flex;
-    align-items: center;
+  
   }
 
-  .swiper-slide {
+  /* .swiper-slide {
     width: 300px !important;
 
     img {
@@ -19,7 +19,7 @@
         height: 200px;
       }
     }
-  }
+  } */
 
   /* curved top & bottom */
   &:before,

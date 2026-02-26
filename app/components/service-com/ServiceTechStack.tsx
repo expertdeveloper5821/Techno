@@ -7,7 +7,7 @@ import { Autoplay } from "swiper/modules";
 import Image from "next/image";
 import arrowLeft from "@/app/lib/icon/arrow.svg";
 import { IconType } from "react-icons";
-
+import js from "/service/techstack/js.png"
 
 import {
   FaReact,
@@ -232,13 +232,13 @@ export default function ServiceTechStack() {
   const swiperRef = useRef<SwiperType | null>(null);
 
   return (
-    <section className="bg-[#020617] py-16 md:py-24">
-      <div className=" mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="lg:pt-24 lg:pb-24 md:pt-15 md:pb-15  pt-10 pb-10 bg-[#000000] text-white w-full mx-auto px-4 sm:px-6 lg:px-6">
+      <div className=" mx-auto s">
         <div className="max-w-3xl mx-auto text-center mb-10 md:mb-14">
-          <h2 className="font-inter text-[26px] sm:text-[32px] md:text-[36px] font-semibold tracking-[0.03em] text-white mb-4">
+        <h2 className="text-[25px] md:text-4xl lg:text-[44px] font-semibold text-white max-w-4xl  text-center mb-6">
             Our Technology Stack
           </h2>
-          <p className="text-sm sm:text-base md:text-lg leading-relaxed text-[#E5E5E5]">
+          <p className="text-base sm:text-base md:text-lg  text-center max-w-5xl leading-[22px] sm:leading-[28px] text-[#ffff]">
             We leverage modern, reliable, and scalable technologies to build
             secure, high‑performance digital solutions tailored to your business
             needs.
@@ -261,7 +261,7 @@ export default function ServiceTechStack() {
             //   pauseOnMouseEnter: true,
             // }}
             breakpoints={{
-              640: { slidesPerView: 1.2 },
+              640: { slidesPerView: 1 },
               768: { slidesPerView: 2 },
               1024: { slidesPerView: 3 },
             }}
@@ -275,8 +275,8 @@ export default function ServiceTechStack() {
         
         <header className="flex items-start flex-col justify-between mb-6">
           <div className="flex justify-between w-full">
-            <div className="w-10 h-10 flex items-center justify-center">
-              <TitleIcon size={20} />
+            <div className="w-16 h-16 flex items-center text-white  justify-center">
+              <TitleIcon size={40}  />
             </div>
 
             <div className="w-8 h-8 rounded-full flex items-center justify-center text-white/60 text-sm font-semibold">
@@ -289,14 +289,14 @@ export default function ServiceTechStack() {
           </h3>
         </header>
 
-        <div className="grid grid-cols-3 gap-2">
+        <div className="grid grid-cols-3 gap-2 ">
           {slide.tags.map((tag) => {
             const Icon = tag.icon;
 
             return (
               <span
                 key={tag.name}
-                className="px-6 py-3 rounded-xl bg-white/10 border border-white/20 text-xs sm:text-sm text-white whitespace-nowrap flex items-center gap-2"
+                className="sm:px-6 px-3 py-3 rounded-xl bg-white/10 border border-white/20 text-xs sm:text-sm text-white whitespace-nowrap flex items-center gap-2 break-words "
               >
                 <Icon size={16} />
                 {tag.name}
