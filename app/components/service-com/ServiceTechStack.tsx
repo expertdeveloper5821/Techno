@@ -6,224 +6,112 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import Image from "next/image";
 import arrowLeft from "@/app/lib/icon/arrow.svg";
-import { IconType } from "react-icons";
-import js from "/service/techstack/js.png"
 
-import {
-  FaReact,
-  FaNodeJs,
-  FaDatabase,
-  FaCloud,
-  FaRobot,
-  FaChartLine,
-  FaPaintBrush,
-  FaShieldAlt,
-} from "react-icons/fa";
 
-import {
-  SiNextdotjs,
-  SiTypescript,
-  SiTailwindcss,
-  SiVuedotjs,
-  SiAngular,
-  SiRedux,
-  SiMui,
-  SiFramer,
-  SiExpress,
-  SiPython,
-  SiDjango,
-  SiFastapi,
-  SiNestjs,
-  SiGraphql,
-  SiPostgresql,
-  SiMongodb,
-  SiRedis,
-  SiSupabase,
-  SiMysql,
-  SiFirebase,
-  SiPrisma,
-  SiElasticsearch,
-  SiAmazons3,
-  SiAmazon,
-  SiGooglecloud,
-  // SiMicrosoftazure,
-  SiVercel,
-  SiDocker,
-  SiKubernetes,
-  SiGithubactions,
-  SiNetlify,
-  SiDigitalocean,
-  SiOpenai,
-  SiZapier,
-  SiTensorflow,
-  SiHuggingface,
-  SiGoogleads,
-  SiMeta,
-  SiSemrush,
-  SiMailchimp,
-  SiHubspot,
-  SiHootsuite,
-  SiFigma,
-  SiAdobe,
-  SiSlack,
-  SiJira,
-  SiTrello,
-  SiNotion,
-  SiGithub,
-  SiZoom,
-  SiStripe,
-  SiAuth0,
-  SiCloudflare,
-  SiSentry,
-  SiJsonwebtokens,
-  SiNewrelic,
-} from "react-icons/si";
 
-type TechTag = {
+
+;
+
+export interface TechStackTag {
   name: string;
-  icon: IconType;
-};
+  iconUrl: string;
+}
 
-type TechStackSlide = {
+export interface TechStackSlide {
   id: number;
   title: string;
-  titleIcon: IconType;
   subtitle: string;
-  tags: TechTag[];
-};
+  tags: TechStackTag[];
+}
 
-export const techStackSlides: TechStackSlide[] = [
+export const techStackSlides = [
   {
     id: 1,
     title: "Frontend Technologies",
-    titleIcon: FaReact,
+    // Title icon using the colorful React logo
+    titleIconUrl: "https://skillicons.dev/icons?i=react", 
     subtitle: "Modern UI frameworks & state management",
     tags: [
-      { name: "React", icon: FaReact },
-      { name: "Next.js", icon: SiNextdotjs },
-      { name: "TypeScript", icon: SiTypescript },
-      { name: "Tailwind CSS", icon: SiTailwindcss },
-      { name: "Vue.js", icon: SiVuedotjs },
-      { name: "Angular", icon: SiAngular },
-      { name: "Redux", icon: SiRedux },
-      { name: "Material-UI", icon: SiMui },
-      { name: "Framer Motion", icon: SiFramer },
+      { name: "React", iconUrl: "https://skillicons.dev/icons?i=react" },
+      { name: "Next.js", iconUrl: "https://skillicons.dev/icons?i=nextjs" },
+      { name: "TypeScript", iconUrl: "https://skillicons.dev/icons?i=ts" },
+      { name: "Tailwind CSS", iconUrl: "https://skillicons.dev/icons?i=tailwind" },
+      { name: "Vue.js", iconUrl: "https://skillicons.dev/icons?i=vue" },
+      { name: "Angular", iconUrl: "https://skillicons.dev/icons?i=angular" },
+      { name: "Redux", iconUrl: "https://skillicons.dev/icons?i=redux" },
+      { name: "Material-UI", iconUrl: "https://skillicons.dev/icons?i=mui" },
+      { name: "Framer Motion", iconUrl: "https://skillicons.dev/icons?i=framer" },
     ],
   },
   {
     id: 2,
     title: "Backend Technologies",
-    titleIcon: FaNodeJs,
+    titleIconUrl: "https://skillicons.dev/icons?i=nodejs",
     subtitle: "Scalable APIs & real-time systems",
     tags: [
-      { name: "Node.js", icon: FaNodeJs },
-      { name: "Express.js", icon: SiExpress },
-      { name: "Python", icon: SiPython },
-      { name: "Django", icon: SiDjango },
-      { name: "FastAPI", icon: SiFastapi },
-      { name: "Nest.js", icon: SiNestjs },
-      { name: "GraphQL", icon: SiGraphql },
-      { name: "REST API", icon: FaNodeJs },
-      { name: "Socket.io", icon: FaNodeJs },
+      { name: "Node.js", iconUrl: "https://skillicons.dev/icons?i=nodejs" },
+      { name: "Express.js", iconUrl: "https://skillicons.dev/icons?i=express" },
+      { name: "Python", iconUrl: "https://skillicons.dev/icons?i=py" },
+      { name: "Django", iconUrl: "https://skillicons.dev/icons?i=django" },
+      { name: "FastAPI", iconUrl: "https://skillicons.dev/icons?i=fastapi" },
+      { name: "Nest.js", iconUrl: "https://skillicons.dev/icons?i=nestjs" },
+      { name: "GraphQL", iconUrl: "https://skillicons.dev/icons?i=graphql" },
+      { name: "PostgreSQL", iconUrl: "https://skillicons.dev/icons?i=postgres" },
     ],
   },
   {
     id: 3,
     title: "Database & Storage",
-    titleIcon: FaDatabase,
+    titleIconUrl: "https://skillicons.dev/icons?i=mongodb",
     subtitle: "Reliable data & object storage",
     tags: [
-      { name: "PostgreSQL", icon: SiPostgresql },
-      { name: "MongoDB", icon: SiMongodb },
-      { name: "Redis", icon: SiRedis },
-      { name: "Supabase", icon: SiSupabase },
-      { name: "MySQL", icon: SiMysql },
-      { name: "Firebase", icon: SiFirebase },
-      { name: "Prisma", icon: SiPrisma },
-      { name: "Elasticsearch", icon: SiElasticsearch },
-      { name: "AWS S3", icon: SiAmazons3 },
+      { name: "PostgreSQL", iconUrl: "https://skillicons.dev/icons?i=postgres" },
+      { name: "MongoDB", iconUrl: "https://skillicons.dev/icons?i=mongodb" },
+      { name: "Redis", iconUrl: "https://skillicons.dev/icons?i=redis" },
+      { name: "Supabase", iconUrl: "https://skillicons.dev/icons?i=supabase" },
+      { name: "MySQL", iconUrl: "https://skillicons.dev/icons?i=mysql" },
+      { name: "Firebase", iconUrl: "https://skillicons.dev/icons?i=firebase" },
+      { name: "Prisma", iconUrl: "https://skillicons.dev/icons?i=prisma" },
+      { name: "AWS S3", iconUrl: "https://skillicons.dev/icons?i=aws" },
     ],
   },
   {
     id: 4,
     title: "Cloud & DevOps",
-    titleIcon: FaCloud,
+    titleIconUrl: "https://skillicons.dev/icons?i=docker",
     subtitle: "Deployment, automation & scalability",
     tags: [
-      { name: "AWS", icon: SiAmazon },
-      { name: "Google Cloud", icon: SiGooglecloud },
-      // { name: "Azure", icon: SiMicrosoftazure },
-      { name: "Vercel", icon: SiVercel },
-      { name: "Docker", icon: SiDocker },
-      { name: "Kubernetes", icon: SiKubernetes },
-      { name: "GitHub Actions", icon: SiGithubactions },
-      { name: "Netlify", icon: SiNetlify },
-      { name: "DigitalOcean", icon: SiDigitalocean },
+      { name: "AWS", iconUrl: "https://skillicons.dev/icons?i=aws" },
+      { name: "Google Cloud", iconUrl: "https://skillicons.dev/icons?i=gcp" },
+      { name: "Vercel", iconUrl: "https://skillicons.dev/icons?i=vercel" },
+      { name: "Docker", iconUrl: "https://skillicons.dev/icons?i=docker" },
+      { name: "Kubernetes", iconUrl: "https://skillicons.dev/icons?i=kubernetes" },
+      { name: "GitHub Actions", iconUrl: "https://skillicons.dev/icons?i=githubactions" },
     ],
   },
   {
     id: 5,
     title: "AI & Automation",
-    titleIcon: FaRobot,
+    titleIconUrl: "https://skillicons.dev/icons?i=ai",
     subtitle: "Intelligent systems & workflow automation",
     tags: [
-      { name: "OpenAI", icon: SiOpenai },
-      { name: "Claude", icon: FaRobot },
-      { name: "Make.com", icon: FaRobot },
-      { name: "n8n", icon: FaRobot },
-      { name: "Cursor", icon: FaRobot },
-      { name: "Zapier", icon: SiZapier },
-      { name: "LangChain", icon: FaRobot },
-      { name: "TensorFlow", icon: SiTensorflow },
-      { name: "Hugging Face", icon: SiHuggingface },
+      { name: "OpenAI", iconUrl: "https://skillicons.dev/icons?i=openai" },
+      { name: "TensorFlow", iconUrl: "https://skillicons.dev/icons?i=tensorflow" },
+      { name: "PyTorch", iconUrl: "https://skillicons.dev/icons?i=pytorch" },
+      { name: "Zapier", iconUrl: "https://skillicons.dev/icons?i=zapier" },
     ],
   },
   {
     id: 6,
-    title: "Digital Marketing & Analytics",
-    titleIcon: FaChartLine,
-    subtitle: "Growth, tracking & campaign optimization",
-    tags: [
-      { name: "Google Ads", icon: SiGoogleads },
-      { name: "Meta Ads", icon: SiMeta },
-      { name: "SEMrush", icon: SiSemrush },
-      { name: "Mailchimp", icon: SiMailchimp },
-      { name: "HubSpot", icon: SiHubspot },
-      { name: "Hootsuite", icon: SiHootsuite },
-      { name: "GA4", icon: FaChartLine },
-      { name: "Search Console", icon: FaChartLine },
-    ],
-  },
-  {
-    id: 7,
     title: "Design & Collaboration",
-    titleIcon: FaPaintBrush,
+    titleIconUrl: "https://skillicons.dev/icons?i=figma",
     subtitle: "Product design & team productivity",
     tags: [
-      { name: "Figma", icon: SiFigma },
-      { name: "Adobe Creative Suite", icon: SiAdobe },
-      { name: "Slack", icon: SiSlack },
-      { name: "Jira", icon: SiJira },
-      { name: "Trello", icon: SiTrello },
-      { name: "Notion", icon: SiNotion },
-      { name: "GitHub", icon: SiGithub },
-      { name: "Zoom", icon: SiZoom },
-    ],
-  },
-  {
-    id: 8,
-    title: "Security & Performance",
-    titleIcon: FaShieldAlt,
-    subtitle: "Payments, auth & monitoring",
-    tags: [
-      { name: "Stripe", icon: SiStripe },
-      { name: "Auth0", icon: SiAuth0 },
-      { name: "Cloudflare", icon: SiCloudflare },
-      { name: "Sentry", icon: SiSentry },
-      { name: "JWT", icon: SiJsonwebtokens },
-      { name: "SSL/TLS", icon: FaShieldAlt },
-      { name: "OAuth 2.0", icon: FaShieldAlt },
-      { name: "New Relic", icon: SiNewrelic },
+      { name: "Figma", iconUrl: "https://skillicons.dev/icons?i=figma" },
+      { name: "Photoshop", iconUrl: "https://skillicons.dev/icons?i=ps" },
+      { name: "Illustrator", iconUrl: "https://skillicons.dev/icons?i=ai" },
+      { name: "Notion", iconUrl: "https://skillicons.dev/icons?i=notion" },
+      { name: "Slack", iconUrl: "https://skillicons.dev/icons?i=slack" },
     ],
   },
 ];
@@ -232,7 +120,7 @@ export default function ServiceTechStack() {
   const swiperRef = useRef<SwiperType | null>(null);
 
   return (
-    <section className="lg:pt-24 lg:pb-24 md:pt-15 md:pb-15  pt-10 pb-10 bg-[#000000] text-white w-full mx-auto px-4 sm:px-6 lg:px-6">
+    <section className="  bg-[#000000] text-white w-full mx-auto px-4 sm:px-6 lg:px-6">
       <div className=" mx-auto s">
         <div className="max-w-3xl mx-auto text-center mb-10 md:mb-14">
         <h2 className="text-[25px] md:text-4xl lg:text-[44px] font-semibold text-white max-w-4xl  text-center mb-6">
@@ -246,8 +134,9 @@ export default function ServiceTechStack() {
         </div>
 
         <div className="relative">
+          
           <Swiper
-            // modules={[Autoplay]}
+            modules={[Autoplay]}
             onSwiper={(swiper) => {
               swiperRef.current = swiper;
             }}
@@ -255,29 +144,36 @@ export default function ServiceTechStack() {
             spaceBetween={20}
             slidesPerView={1.05}
             centeredSlides={false}
-            // autoplay={{
-            //   delay: 3500,
-            //   disableOnInteraction: false,
-            //   pauseOnMouseEnter: true,
-            // }}
+            autoplay={{
+              delay: 3500,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            }}
             breakpoints={{
               640: { slidesPerView: 1 },
               768: { slidesPerView: 2 },
-              1024: { slidesPerView: 3 },
+
+              1224: { slidesPerView: 3 },
             }}
           >
             {techStackSlides.map((slide) => {
-  const TitleIcon = slide.titleIcon;
+  // const TitleIcon = slide.titleIcon;
 
   return (
     <SwiperSlide key={slide.id}>
-      <article className="bg-[#0094DB] h-[300px] w-full rounded-xl px-6 py-7 sm:px-7 sm:py-9 md:px-8 md:py-10 lg:px-2 lg:py-2 shadow-[0_20px_60px_rgba(0,0,0,0.5)] flex flex-col">
+      <article className="bg-[#0094DB] h-[350px] w-full rounded-xl px-6 py-7 sm:px-7 sm:py-9 md:px-8 md:py-10 lg:px-2 lg:py-2 shadow-[0_20px_60px_rgba(0,0,0,0.5)] flex flex-col">
         
         <header className="flex items-start flex-col justify-between mb-6">
           <div className="flex justify-between w-full">
             <div className="w-16 h-16 flex items-center text-white  justify-center">
-              <TitleIcon size={40}  />
+              {/* <TitleIcon size={40}  /> */}
+              <img 
+        src={slide.titleIconUrl} 
+        alt={slide.title} 
+        className="w-10 h-10" 
+      />
             </div>
+            
 
             <div className="w-8 h-8 rounded-full flex items-center justify-center text-white/60 text-sm font-semibold">
               {slide.id}
@@ -291,14 +187,18 @@ export default function ServiceTechStack() {
 
         <div className="grid grid-cols-3 gap-2 ">
           {slide.tags.map((tag) => {
-            const Icon = tag.icon;
+            // const Icon = tag.icon;
 
             return (
               <span
                 key={tag.name}
-                className="sm:px-6 px-3 py-3 rounded-xl bg-white/10 border border-white/20 text-xs sm:text-sm text-white whitespace-nowrap flex items-center gap-2 break-words "
+                className="sm:px-1 px-3 py-3 rounded-xl bg-white/10 border border-white/20 text-xs sm:text-sm text-white whitespace-nowrap flex items-center gap-2 break-words "
               >
-                <Icon size={16} />
+              <img 
+      src={tag.iconUrl} 
+      alt={tag.name} 
+      className="w-4 h-4 object-contain" 
+    />
                 {tag.name}
               </span>
             );
