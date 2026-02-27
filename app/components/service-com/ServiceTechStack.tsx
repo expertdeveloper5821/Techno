@@ -1,16 +1,11 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import type { Swiper as SwiperType } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import Image from "next/image";
 import arrowLeft from "@/app/lib/icon/arrow.svg";
-
-
-
-
-;
 
 export interface TechStackTag {
   name: string;
@@ -118,6 +113,8 @@ export const techStackSlides = [
 
 export default function ServiceTechStack() {
   const swiperRef = useRef<SwiperType | null>(null);
+  const [activeIndex, setActiveIndex] = React.useState(0);
+  const [slidesPerView, setSlidesPerView] = React.useState(3);
 
   return (
     <section className="  bg-[#000000] text-white w-full mx-auto px-4 sm:px-6 lg:px-6">
@@ -134,35 +131,87 @@ export default function ServiceTechStack() {
         </div>
 
         <div className="relative">
-          
-
-          <Swiper
+          {/* <Swiper
             modules={[Autoplay]}
             onSwiper={(swiper) => {
               swiperRef.current = swiper;
+              setSlidesPerView(
+                typeof swiper.params.slidesPerView === "number"
+                  ? swiper.params.slidesPerView
+                  : 3
+              );
+            }}
+            onSlideChange={(swiper) => {
+              setActiveIndex(swiper.realIndex);
             }}
             loop
-            spaceBetween={20}
             slidesPerView={1.05}
-            centeredSlides={false}
-            autoplay={{
-              delay: 3500,
-              disableOnInteraction: false,
-              pauseOnMouseEnter: true,
-            }}
             breakpoints={{
               640: { slidesPerView: 1 },
               768: { slidesPerView: 2 },
-
               1224: { slidesPerView: 3 },
             }}
+            autoplay={{
+              delay: 3500,
+              disableOnInteraction: false,
+            }}
           >
+
             {techStackSlides.map((slide) => {
               // const TitleIcon = slide.titleIcon;
 
-              return (
-                <SwiperSlide key={slide.id}>
-                  <article className="bg-[#0094DB] h-[350px] w-full rounded-xl px-6 py-7 sm:px-7 sm:py-9 md:px-8 md:py-10 lg:px-2 lg:py-2 shadow-[0_20px_60px_rgba(0,0,0,0.5)] flex flex-col">
+              return (<>
+
+                <SwiperSlide key={slide.id} style={{ display: 'block' }}>
+                  <div className="relative w-full flex items-center mb-6 mt-4">
+                    <div className="w-full h-[2px] bg-neutral-400"></div>
+                    <div className="absolute left-1/2 -translate-x-1/2 w-3 h-3 bg-neutral-400 rounded-full"></div>
+                  </div>
+                </SwiperSlide>
+              </>
+
+              );
+            })}
+          </Swiper> */}
+
+          <Swiper
+            // modules={[Autoplay]}
+            onSwiper={(swiper) => {
+              swiperRef.current = swiper;
+              setSlidesPerView(
+                typeof swiper.params.slidesPerView === "number"
+                  ? swiper.params.slidesPerView
+                  : 3
+              );
+            }}
+            onSlideChange={(swiper) => {
+              setActiveIndex(swiper.realIndex);
+            }}
+            loop
+            // spaceBetween={20}
+            slidesPerView={1}
+            breakpoints={{
+              640: { slidesPerView: 1 },
+              768: { slidesPerView: 2 },
+              1224: { slidesPerView: 3 },
+            }}
+            // autoplay={{
+            //   delay: 3500,
+            //   disableOnInteraction: false,
+            // }}
+          >
+
+            {techStackSlides.map((slide) => {
+              // const TitleIcon = slide.titleIcon;
+
+              return (<>
+                <SwiperSlide key={slide.id} style={{ display: 'block' }}>
+                  <div className="relative w-full flex items-center mb-6 mt-4">
+                    <div className="w-full h-[2px] bg-neutral-400"></div>
+                    <div className="absolute left-1/2 -translate-x-1/2 w-3 h-3 bg-[#0094DB] shadow-xl  rounded-full"></div>
+                  </div>
+                  <div className="p-2">
+                  <article className="bg-[#0094DB] h-[350px] w-full rounded-xl px-6 py-7 sm:px-7 sm:py-9 md:px-8 md:py-10 lg:px-2 lg:py-2 shadow-[0_20px_60px_rgba(0,0,0,0.5)] flex flex-col my-4">
 
                     <header className="flex items-start flex-col justify-between mb-6">
                       <div className="flex justify-between w-full">
@@ -206,7 +255,10 @@ export default function ServiceTechStack() {
                       })}
                     </div>
                   </article>
+                  </div>
                 </SwiperSlide>
+              </>
+
               );
             })}
           </Swiper>

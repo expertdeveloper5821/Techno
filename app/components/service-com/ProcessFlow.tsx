@@ -74,7 +74,7 @@ export default function ProcessFlow() {
               Designing scalable architectures and intuitive user experiences tailored to your users.
             </p>
           </article>
-          <img src='/service/flowicon/bottomicon.svg' alt="icon" className="lg:w-18 w-13 lg:h-15 md:h-13 h-11  absolute lg:bottom-[-60px] md:bottom-[-53px] bottom-[-47px] "  />
+          <img src='/service/flowicon/bottomicon.svg' alt="icon" className="lg:w-18 w-13 lg:h-17 md:h-13 h-11  absolute lg:bottom-[-72px] md:bottom-[-53px] bottom-[-47px] "  />
 
           </div>
 
