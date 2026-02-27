@@ -47,7 +47,7 @@ const industries = [
   },
   {
     title: "On‑Demand Platforms",
-    blackicon : '/service/industriesicon/card8sblack.svg',
+    blackicon : '/service/industriesicon/card8black.svg',
     desc: "Scalable on‑demand applications connecting users with real‑time services.",
     icon:'/service/industriesicon/card8.svg',
   },
@@ -76,7 +76,7 @@ export default function IndustriesSection() {
             >
               <div className="flex justify-between " >
               {/* Icon */}
-              <img src={item.icon} alt="icon" className=" relative top-[-18px] " />
+              <img src={item.icon} alt="icon" className=" relative top-[-16px] " />
               <img src={item.blackicon} alt="icon" className="  " />
              </div>
               {/* Content */}

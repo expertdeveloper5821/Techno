@@ -79,7 +79,7 @@ export default function ProcessFlow() {
           </div>
 
           {/* Card 4 */}
-          <div className=" relative flex justify-center items-center ">
+          <div className=" relative hidden  md:flex justify-center items-center ">
           <article className="relative rounded-2xl w-full border border-white/10 bg-white/6 px-4 py-4 shadow-[0_20px_60px_rgba(0,0,0,0.6)] lg:h-[280px] md:h-[260px] bg-red-500">
             <div className="flex items-start justify-between lg:mb-8 mb-4">
               <span className="inline-flex lg:h-9 lg:w-9 h-5 w-5 items-center justify-center rounded-full text-[25px] lg:text-[30px] font-semibold">
@@ -97,7 +97,24 @@ export default function ProcessFlow() {
           <img src='/service/flowicon/leftarrow.svg' alt="icon" className=" md:block hidden lg:w-18 w-13 h-6 absolute right-[-55px] lg:right-[-75px] "  />
           <img src='/service/flowicon/bottomicon.svg' alt="icon" className=" block md:hidden  lg:w-18 w-13 lg:h-15 md:h-13 h-11  absolute lg:bottom-[-60px] md:bottom-[-53px] bottom-[-47px] "  />
           </div>
-
+          <div className=" relative md:hidden  flex justify-center items-center ">
+          <article className="relative block md:hidden rounded-2xl w-full border border-white/10 bg-white/6 px-4 py-4 shadow-[0_20px_60px_rgba(0,0,0,0.6)] lg:h-[280px] md:h-[260px] bg-red-500">
+            <div className="flex items-start justify-between lg:mb-8 mb-4">
+              <span className=" inline-flex lg:h-9 lg:w-9 h-5 w-5 items-center justify-center rounded-full text-[25px] lg:text-[30px] font-semibold">
+                4
+              </span>
+              
+              <img src="/service/flowicon/card4.svg" alt="Development" />
+            </div>
+            <h3 className="text-[20px] md:text-lg  lg:text-[20px] font-semibold mb-2">
+              Development & Integration
+            </h3>
+            <p className="text-lg md:text-base lg:text-[18px] text-[#BABABA] leading-[28px]">
+              Building secure, scalable solutions with seamless integration across your systems.
+            </p>
+          </article>
+          <img src='/service/flowicon/bottomicon.svg' alt="icon" className=" block md:hidden  lg:w-18 w-13 lg:h-15 md:h-13 h-11  absolute lg:bottom-[-60px] md:bottom-[-53px] bottom-[-47px] "  />
+</div>
           {/* Card 5 */}
           <div className=" relative flex justify-center items-center  ">
           <article className="relative rounded-2xl w-full border border-white/10 bg-white/6 px-4 py-4 shadow-[0_20px_60px_rgba(0,0,0,0.6)] lg:h-[280px] md:h-[260px] bg-red-500">
@@ -121,11 +138,12 @@ export default function ProcessFlow() {
 
 
           {/* Card 6 */}
-          <article className="relative rounded-2xl w-full border border-white/10 bg-white/6 px-4 py-4 shadow-[0_20px_60px_rgba(0,0,0,0.6)] lg:h-[280px] md:h-[260px] bg-red-500">
+          <article className="relative md:block hidden rounded-2xl w-full border border-white/10 bg-white/6 px-4 py-4 shadow-[0_20px_60px_rgba(0,0,0,0.6)] lg:h-[280px] md:h-[260px] bg-red-500">
             <div className="flex items-start justify-between lg:mb-8 mb-4">
-              <span className="inline-flex lg:h-9 lg:w-9 h-5 w-5 items-center justify-center rounded-full text-[25px] lg:text-[30px] font-semibold">
-                6
+              <span className=" inline-flex lg:h-9 lg:w-9 h-5 w-5 items-center justify-center rounded-full text-[25px] lg:text-[30px] font-semibold">
+                4
               </span>
+              
               <img src="/service/flowicon/card4.svg" alt="Development" />
             </div>
             <h3 className="text-[20px] md:text-lg  lg:text-[20px] font-semibold mb-2">
@@ -135,6 +153,24 @@ export default function ProcessFlow() {
               Building secure, scalable solutions with seamless integration across your systems.
             </p>
           </article>
+          <div className=" relative md:hidden  flex justify-center items-center ">
+          <article className="relative rounded-2xl w-full border border-white/10 bg-white/6 px-4 py-4 shadow-[0_20px_60px_rgba(0,0,0,0.6)] lg:h-[280px] md:h-[260px] bg-red-500">
+            <div className="flex items-start justify-between lg:mb-8 mb-4">
+              <span className="inline-flex lg:h-9 lg:w-9 h-5 w-5 items-center justify-center rounded-full text-[25px] lg:text-[30px] font-semibold">
+                6
+              </span>
+              <img src="/service/flowicon/card6.svg" alt="Deployment" />
+            </div>
+            <h3 className="text-[20px] md:text-lg  lg:text-[20px] font-semibold mb-2">
+              Deployment & Support
+            </h3>
+            <p className="text-lg md:text-base lg:text-[18px] text-[#BABABA] leading-[28px]">
+              Smooth deployment with monitoring, optimization, and ongoing support for long-term success.
+            </p>
+          </article>
+          {/* <img src='/service/flowicon/leftarrow.svg' alt="icon" className=" md:block hidden lg:w-18 w-13 h-6 absolute right-[-55px] lg:right-[-75px] "  />
+          <img src='/service/flowicon/bottomicon.svg' alt="icon" className=" block md:hidden  lg:w-18 w-13 lg:h-15 md:h-13 h-11  absolute lg:bottom-[-60px] md:bottom-[-53px] bottom-[-47px] "  /> */}
+          </div>
 
         </div>
       </div>

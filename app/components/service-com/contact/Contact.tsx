@@ -11,13 +11,13 @@ function Contact() {
                
 <div className="w-full flex  flex-col gap-0 lg:gap-0   mx-auto  px-4 sm:px-6 lg:px-6 ">
 <div className="mx-auto overflow-hidden relative w-full flex flex-col items-center  gap-0 md:flex-row bg-[#0094DB]  rounded-2xl ">
-<div className='absolute lg:bottom-20 bottom-0 w-full h-auto' >
+<div className='absolute w-full h-full' >
                   <Image 
                     src="/About/hero/hero.svg" 
                     alt="Hero illustration" 
                     width={600}
                     height={400}
-                    className='w-full h-auto'
+                    className='w-full h-full object-cover '
                     priority
                   />
                 </div>

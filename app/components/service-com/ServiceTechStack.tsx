@@ -211,7 +211,7 @@ export default function ServiceTechStack() {
                     <div className="absolute left-1/2 -translate-x-1/2 w-3 h-3 bg-[#0094DB] shadow-xl  rounded-full"></div>
                   </div>
                   <div className="p-2">
-                  <article className="bg-[#0094DB] h-[400px] sm:h-[350px] w-full rounded-xl px-2 py-7 sm:px-7 sm:py-9 md:px-8 md:py-10 lg:px-2 lg:py-2 shadow-[0_20px_60px_rgba(0,0,0,0.5)] flex flex-col my-4">
+                  <article className="bg-[#0094DB] h-[400px] sm:h-[350px] w-full rounded-xl px-2 py-7 sm:px-7 sm:py-9 md:px-8 md:py-6 lg:px-2 lg:py-2 shadow-[0_20px_60px_rgba(0,0,0,0.5)] flex flex-col my-4">
 
                     <header className="flex items-start flex-col justify-between mb-6">
                       <div className="flex justify-between w-full">
@@ -242,7 +242,7 @@ export default function ServiceTechStack() {
                         return (
                           <span
                             key={tag.name}
-                            className="sm:px-1 px-3 py-3 rounded-xl bg-white/10 border border-white/20 text-xs sm:text-sm text-white whitespace-nowrap flex items-center gap-2 break-words "
+                            className="sm:px-1 px-3 py-3 rounded-xl bg-white/10 border border-white/20 text-xs sm:text-sm text-white whitespace-nowrap flex items-center gap-2 overflow-hidden "
                           >
                             <img
                               src={tag.iconUrl}

@@ -33,11 +33,11 @@ export default function WhatWeDo() {
           {cards.map((card, cardIndex) => (
             <div
               key={card.title + cardIndex}
-              className={`bg-[#0094DB] rounded-[32px] px-2 py-4 mb-2 sm:px-6  md:px-10  lg:px-12  shadow-[0_20px_60px_rgba(0,0,0,0.5)] lg:sticky ${topOffsetMap[cardIndex]} `}
+              className={`bg-[#0094DB] rounded-[20px] px-2 py-4 mb-2 sm:px-4  md:px-4 lg:px-4  shadow-[0_20px_60px_rgba(0,0,0,0.5)] lg:sticky ${topOffsetMap[cardIndex]} `}
             >
               <div className="flex flex-col lg:flex-row gap-4 sm:gap-2 lg:gap-10 items-stretch">
                 {/* Left image */}
-                <div className="relative lg:w-[32%] h-97 sm:h-94 md:h-94 lg:h-auto rounded-2xl overflow-clip">
+                <div className="relative lg:w-[32%] h-97 sm:h-94 md:h-94 lg:h-auto rounded-[12px] overflow-clip">
                   <Image
                     src={card.imageSrc}
                     alt={card.imageAlt}
