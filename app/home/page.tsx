@@ -1,12 +1,5 @@
 import React from 'react'
-// import About from '../components/About/About'
-// import Services from '../components/Services/Services'
-// import Products from '../components/Products/Products'
-// import Technologies from '../components/Technologies/Technologies'
-// import Partners from '../components/Partners/Partners'
-// import FAQ from '../components/FAQ/FAQ'
-// import Contact from '../components/Contact/Contact'
-// import ContactPopupLoader from '../components/Contact/ContactPopupLoader'
+
 import dynamic from 'next/dynamic';
 
 // Lazy load below-the-fold components for better initial load performance
