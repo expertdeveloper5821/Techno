@@ -207,6 +207,12 @@ const TestimonialsSection = () => {
             className="hidden lg:block"
             duration={17}
           />
+
+<TestimonialsColumn
+            testimonials={thirdColumn}
+            className="hidden xl:block"
+            duration={17}
+          />
         </div>
       </motion.div>
     </section>

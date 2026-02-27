@@ -10,7 +10,7 @@ function Contact() {
             >
                
 <div className="w-full flex  flex-col gap-0 lg:gap-0   mx-auto  px-4 sm:px-6 lg:px-6 ">
-<div className="mx-auto relative w-full flex flex-col items-center  gap-0 md:flex-row bg-[#0094DB]  rounded-2xl ">
+<div className="mx-auto overflow-hidden relative w-full flex flex-col items-center  gap-0 md:flex-row bg-[#0094DB]  rounded-2xl ">
 <div className='absolute lg:bottom-20 bottom-0 w-full h-auto' >
                   <Image 
                     src="/About/hero/hero.svg" 

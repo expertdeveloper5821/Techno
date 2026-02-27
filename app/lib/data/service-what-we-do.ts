@@ -54,87 +54,63 @@ export const whatWeDoData: WhatWeDoSectionData = {
         },
       ],
     },
+    // Second Card: Marketing Services (From Image 1)
     {
-      imageSrc: '/service/whatwedo/card1.png',
-      imageAlt: 'Marketing services',
-      icon: '/service/whatwedo/icon1.svg',
-      title: 'Marketing & Growth Services',
+      imageSrc: '/service/whatwedo/card2.png',
+      imageAlt: 'Marketing Services',
+      icon: '/service/whatwedo/icon2.svg',
+      title: 'Marketing Services',
       description:
-        'We design and execute data-driven marketing strategies that accelerate brand visibility, lead generation, and revenue growth.',
-      buttonLabel: 'Explore Marketing',
+        'Our consulting services help businesses make informed decisions, reduce risks, and plan technology initiatives effectively.',
+      buttonLabel: 'Explore Services',
       servicesColumns: [
         {
           items: [
             { label: 'Digital Marketing Strategy' },
-            { label: 'Performance Marketing Campaigns' },
-            { label: 'Content & Brand Storytelling' },
+            { label: 'Performance & Paid Marketing' },
+            { label: 'Content Marketing' },
+            { label: 'Conversion Rate Optimization' },
+          ],
+        },
+        {
+          items: [
+            { label: 'Search Engine Optimization (SEO)' },
+            { label: 'Social Media Marketing' },
+            { label: 'Branding & Visual Identity' },
             { label: 'Marketing Automation' },
           ],
         },
-        {
-          items: [
-            { label: 'SEO & Organic Growth' },
-            { label: 'Social Media Strategy' },
-            { label: 'Conversion Rate Optimization' },
-            { label: 'Analytics & Reporting' },
-          ],
-        },
       ],
     },
+    // Third Card: IT Solutions Services (From Image 2)
     {
-      imageSrc: '/service/whatwedo/card1.png',
-      imageAlt: 'Technology implementation services',
-      icon: '/service/whatwedo/icon1.svg',
-      title: 'Technology Implementation',
+      imageSrc: '/service/whatwedo/card3.png',
+      imageAlt: 'IT Solutions Services',
+      icon: '/service/whatwedo/icon3.svg',
+      title: 'IT Solutions Services',
       description:
-        'From architecture to deployment, we help teams implement scalable, secure, and future-ready digital platforms.',
-      buttonLabel: 'Explore Technology',
+        'Our consulting services help businesses make informed decisions, reduce risks, and plan technology initiatives effectively.',
+      buttonLabel: 'Explore Services',
       servicesColumns: [
         {
           items: [
-            { label: 'Custom Web & App Development' },
-            { label: 'Cloud & DevOps Enablement' },
-            { label: 'Enterprise Integrations' },
-            { label: 'API Design & Management' },
+            { label: 'Web Application Development' },
+            { label: 'Data Science & AI Solutions' },
+            { label: 'Content Management Systems' },
+            { label: 'Enterprise Software Solutions' },
           ],
         },
         {
           items: [
-            { label: 'Data & Analytics Platforms' },
-            { label: 'UX/UI Design Systems' },
-            { label: 'Security & Compliance' },
-            { label: 'Ongoing Maintenance & Support' },
+            { label: 'Cloud & DevOps Solutions' },
+            { label: 'E-Commerce Solutions' },
+            { label: 'Server Setup & Configuration' },
+            { label: 'Application Customization & Integration' },
           ],
         },
       ],
     },
-    {
-      imageSrc: '/service/whatwedo/card1.png',
-      imageAlt: 'Marketing services',
-      icon: '/service/whatwedo/icon1.svg',
-      title: 'Marketing & Growth Services',
-      description:
-        'We design and execute data-driven marketing strategies that accelerate brand visibility, lead generation, and revenue growth.',
-      buttonLabel: 'Explore Marketing',
-      servicesColumns: [
-        {
-          items: [
-            { label: 'Digital Marketing Strategy' },
-            { label: 'Performance Marketing Campaigns' },
-            { label: 'Content & Brand Storytelling' },
-            { label: 'Marketing Automation' },
-          ],
-        },
-        {
-          items: [
-            { label: 'SEO & Organic Growth' },
-            { label: 'Social Media Strategy' },
-            { label: 'Conversion Rate Optimization' },
-            { label: 'Analytics & Reporting' },
-          ],
-        },
-      ],
-    },
+   
   ],
 };
 

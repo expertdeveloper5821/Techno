@@ -35,7 +35,7 @@ export const techStackSlides = [
       { name: "Angular", iconUrl: "https://skillicons.dev/icons?i=angular" },
       { name: "Redux", iconUrl: "https://skillicons.dev/icons?i=redux" },
       { name: "Material-UI", iconUrl: "https://skillicons.dev/icons?i=mui" },
-      { name: "Framer Motion", iconUrl: "https://skillicons.dev/icons?i=framer" },
+      { name: "Framer Motion", iconUrl: "/service/techstack/framer.png" },
     ],
   },
   {
@@ -90,10 +90,10 @@ export const techStackSlides = [
     titleIconUrl: "https://skillicons.dev/icons?i=ai",
     subtitle: "Intelligent systems & workflow automation",
     tags: [
-      { name: "OpenAI", iconUrl: "https://skillicons.dev/icons?i=openai" },
+      { name: "OpenAI", iconUrl: "https://skillicons.dev/icons?i=ai" },
       { name: "TensorFlow", iconUrl: "https://skillicons.dev/icons?i=tensorflow" },
       { name: "PyTorch", iconUrl: "https://skillicons.dev/icons?i=pytorch" },
-      { name: "Zapier", iconUrl: "https://skillicons.dev/icons?i=zapier" },
+      { name: "Zapier", iconUrl: "/service/techstack/zapier.svg" },
     ],
   },
   {
@@ -106,7 +106,7 @@ export const techStackSlides = [
       { name: "Photoshop", iconUrl: "https://skillicons.dev/icons?i=ps" },
       { name: "Illustrator", iconUrl: "https://skillicons.dev/icons?i=ai" },
       { name: "Notion", iconUrl: "https://skillicons.dev/icons?i=notion" },
-      { name: "Slack", iconUrl: "https://skillicons.dev/icons?i=slack" },
+      { name: "Slack", iconUrl: "/service/techstack/slack.png" },
     ],
   },
 ];
@@ -211,7 +211,7 @@ export default function ServiceTechStack() {
                     <div className="absolute left-1/2 -translate-x-1/2 w-3 h-3 bg-[#0094DB] shadow-xl  rounded-full"></div>
                   </div>
                   <div className="p-2">
-                  <article className="bg-[#0094DB] h-[350px] w-full rounded-xl px-6 py-7 sm:px-7 sm:py-9 md:px-8 md:py-10 lg:px-2 lg:py-2 shadow-[0_20px_60px_rgba(0,0,0,0.5)] flex flex-col my-4">
+                  <article className="bg-[#0094DB] h-[400px] sm:h-[350px] w-full rounded-xl px-2 py-7 sm:px-7 sm:py-9 md:px-8 md:py-10 lg:px-2 lg:py-2 shadow-[0_20px_60px_rgba(0,0,0,0.5)] flex flex-col my-4">
 
                     <header className="flex items-start flex-col justify-between mb-6">
                       <div className="flex justify-between w-full">
@@ -235,7 +235,7 @@ export default function ServiceTechStack() {
                       </h3>
                     </header>
 
-                    <div className="grid grid-cols-3 gap-2 ">
+                    <div className="grid sm:grid-cols-3  grid-cols-2 gap-2 ">
                       {slide.tags.map((tag) => {
                         // const Icon = tag.icon;
 

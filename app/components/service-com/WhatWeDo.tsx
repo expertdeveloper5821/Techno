@@ -33,11 +33,11 @@ export default function WhatWeDo() {
           {cards.map((card, cardIndex) => (
             <div
               key={card.title + cardIndex}
-              className={`bg-[#0094DB] rounded-[32px] px-2 py-4 mb-2 sm:px-6  md:px-10  lg:px-12  shadow-[0_20px_60px_rgba(0,0,0,0.5)] sm:sticky ${topOffsetMap[cardIndex]} `}
+              className={`bg-[#0094DB] rounded-[32px] px-2 py-4 mb-2 sm:px-6  md:px-10  lg:px-12  shadow-[0_20px_60px_rgba(0,0,0,0.5)] lg:sticky ${topOffsetMap[cardIndex]} `}
             >
-              <div className="flex flex-col lg:flex-row gap-4 sm:gap-8 lg:gap-10 items-stretch">
+              <div className="flex flex-col lg:flex-row gap-4 sm:gap-2 lg:gap-10 items-stretch">
                 {/* Left image */}
-                <div className="relative lg:w-[32%] h-97 sm:h-64 lg:h-auto rounded-2xl overflow-clip">
+                <div className="relative lg:w-[32%] h-97 sm:h-94 md:h-94 lg:h-auto rounded-2xl overflow-clip">
                   <Image
                     src={card.imageSrc}
                     alt={card.imageAlt}
@@ -48,34 +48,37 @@ export default function WhatWeDo() {
                 </div>
 
                 {/* Right content */}
-                <div className="lg:w-[68%] lg:py-12 md:py-10  sm:py-8 py-0 flex flex-col justify-between text-white">
+                <div className="lg:w-[68%] lg:py-12 md:py-2  sm:py-2 py-0 flex flex-col justify-between text-white">
                   {/* Title and intro */}
-                  <div>
-                    <div className="flex sm:items-center justify-center gap-3 mb-4">
-                      <div className="  hidden w-10 h-10 rounded-full sm:flex items-center justify-center">
+                  <div className='flex  gap-4 '>
+                    <div className="flex items-center justify-center gap-3 ">
+                      <div className="   lg:w-15 lg:h-15 w-10 h-10 rounded-full flex items-center justify-center">
                         <img src={card.icon} alt="icon " className='w-full h-full' />
                       </div>
-                      <h3 className="font-inter text-xl sm:text-2xl md:text-[36px] font-medium sm:font-semibold leading-[40px] tracking-[0.03em]">
-                        {card.title}
-                      </h3>
+                      
                     </div>
        
-                  <div className='flex sm:flex-col sm:gap-10 gap-3 sm:mb-8 mb-4' >
-                  <div className=" sm:hidden  w-35 h-10 rounded-full bg-white/10 flex items-center justify-center">
+                  <div className='flex flex-col sm:gap-2 gap-3 lg:mb-8 mb-0' >
+                  {/* <div className=" sm:hidden  w-35 h-10 rounded-full bg-white/10 flex items-center justify-center">
                         <img src={card.icon} alt="icon " className='w-full h-full' />
-                      </div>
-                    <p className="text-sm sm:text-base md:text-[15px] text-[#F5F5F5] max-w-xl sm:leading-relaxed leading-[22px]">
+                      </div> */}
+                      <h3 className="font-inter text-xl sm:text-2xl md:text-[36px] font-medium sm:font-semibold  tracking-[0.03em]">
+                        {card.title}
+                      </h3>
+                      <p className="text-sm sm:text-base md:text-[15px] text-[#F5F5F5] max-w-xl sm:leading-relaxed leading-[22px]">
                       {card.description}
                     </p>
-                    <div className=' sm:block hidden w-full h-[1px] text-white bg-white  '></div>
+                    
+                   
                     </div>
                   </div>
+                  <div className=' lg:block hidden w-full h-[1px] text-white bg-white mt-8 '></div>
 
                   {/* Services list */}
                   <div className="mt-4 md:mt-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-y-3 gap-x-10 text-sm sm:text-[15px]">
                       {card.servicesColumns.map((column, columnIndex) => (
-                        <ul key={columnIndex} className="sm:space-y-7 space-y-4 ">
+                        <ul key={columnIndex} className="sm:space-y-4 space-y-4 ">
                           {column.items.map((item, itemIndex) => (
                             <li key={itemIndex} className="flex items-center gap-2">
                               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
