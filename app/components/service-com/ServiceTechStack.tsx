@@ -29,7 +29,7 @@ export const techStackSlides = [
     id: 1,
     title: "Frontend Technologies",
     // Title icon using the colorful React logo
-    titleIconUrl: "https://skillicons.dev/icons?i=react", 
+    titleIconUrl: "https://skillicons.dev/icons?i=react",
     subtitle: "Modern UI frameworks & state management",
     tags: [
       { name: "React", iconUrl: "https://skillicons.dev/icons?i=react" },
@@ -123,7 +123,7 @@ export default function ServiceTechStack() {
     <section className="  bg-[#000000] text-white w-full mx-auto px-4 sm:px-6 lg:px-6">
       <div className=" mx-auto s">
         <div className="max-w-3xl mx-auto text-center mb-10 md:mb-14">
-        <h2 className="text-[25px] md:text-4xl lg:text-[44px] font-semibold text-white max-w-4xl  text-center mb-6">
+          <h2 className="text-[25px] md:text-4xl lg:text-[44px] font-semibold text-white max-w-4xl  text-center mb-6">
             Our Technology Stack
           </h2>
           <p className="text-base sm:text-base md:text-lg  text-center max-w-5xl leading-[22px] sm:leading-[28px] text-[#ffff]">
@@ -134,7 +134,7 @@ export default function ServiceTechStack() {
         </div>
 
         <div className="relative">
-          
+
           <Swiper
             modules={[Autoplay]}
             onSwiper={(swiper) => {
@@ -157,57 +157,57 @@ export default function ServiceTechStack() {
             }}
           >
             {techStackSlides.map((slide) => {
-  // const TitleIcon = slide.titleIcon;
+              // const TitleIcon = slide.titleIcon;
 
-  return (
-    <SwiperSlide key={slide.id}>
-      <article className="bg-[#0094DB] h-[350px] w-full rounded-xl px-6 py-7 sm:px-7 sm:py-9 md:px-8 md:py-10 lg:px-2 lg:py-2 shadow-[0_20px_60px_rgba(0,0,0,0.5)] flex flex-col">
-        
-        <header className="flex items-start flex-col justify-between mb-6">
-          <div className="flex justify-between w-full">
-            <div className="w-16 h-16 flex items-center text-white  justify-center">
-              {/* <TitleIcon size={40}  /> */}
-              <img 
-        src={slide.titleIconUrl} 
-        alt={slide.title} 
-        className="w-10 h-10" 
-      />
-            </div>
-            
+              return (
+                <SwiperSlide key={slide.id}>
+                  <article className="bg-[#0094DB] h-[350px] w-full rounded-xl px-6 py-7 sm:px-7 sm:py-9 md:px-8 md:py-10 lg:px-2 lg:py-2 shadow-[0_20px_60px_rgba(0,0,0,0.5)] flex flex-col">
 
-            <div className="w-8 h-8 rounded-full flex items-center justify-center text-white/60 text-sm font-semibold">
-              {slide.id}
-            </div>
-          </div>
+                    <header className="flex items-start flex-col justify-between mb-6">
+                      <div className="flex justify-between w-full">
+                        <div className="w-16 h-16 flex items-center text-white  justify-center">
+                          {/* <TitleIcon size={40}  /> */}
+                          <img
+                            src={slide.titleIconUrl}
+                            alt={slide.title}
+                            className="w-10 h-10"
+                          />
+                        </div>
 
-          <h3 className="font-inter text-lg sm:text-xl md:text-[20px] font-semibold text-white">
-            {slide.title}
-          </h3>
-        </header>
 
-        <div className="grid grid-cols-3 gap-2 ">
-          {slide.tags.map((tag) => {
-            // const Icon = tag.icon;
+                        <div className="w-8 h-8 rounded-full flex items-center justify-center text-white/60 text-sm font-semibold">
+                          {slide.id}
+                        </div>
+                      </div>
 
-            return (
-              <span
-                key={tag.name}
-                className="sm:px-1 px-3 py-3 rounded-xl bg-white/10 border border-white/20 text-xs sm:text-sm text-white whitespace-nowrap flex items-center gap-2 break-words "
-              >
-              <img 
-      src={tag.iconUrl} 
-      alt={tag.name} 
-      className="w-4 h-4 object-contain" 
-    />
-                {tag.name}
-              </span>
-            );
-          })}
-        </div>
-      </article>
-    </SwiperSlide>
-  );
-})}
+                      <h3 className="font-inter text-lg sm:text-xl md:text-[20px] font-semibold text-white">
+                        {slide.title}
+                      </h3>
+                    </header>
+
+                    <div className="grid grid-cols-3 gap-2 ">
+                      {slide.tags.map((tag) => {
+                        // const Icon = tag.icon;
+
+                        return (
+                          <span
+                            key={tag.name}
+                            className="sm:px-1 px-3 py-3 rounded-xl bg-white/10 border border-white/20 text-xs sm:text-sm text-white whitespace-nowrap flex items-center gap-2 break-words "
+                          >
+                            <img
+                              src={tag.iconUrl}
+                              alt={tag.name}
+                              className="w-4 h-4 object-contain"
+                            />
+                            {tag.name}
+                          </span>
+                        );
+                      })}
+                    </div>
+                  </article>
+                </SwiperSlide>
+              );
+            })}
           </Swiper>
 
           <div className="mt-8 flex items-center justify-center gap-3">
