@@ -22,7 +22,7 @@ function Contact() {
 <div className="mx-auto w-full flex flex-col items-center  gap-0 md:flex-row bg-[#0094DB]  rounded-2xl ">
         
         {/* Left Content */}
-        <div className=" text-white p-10 pr-0">
+        <div className=" text-white p-10 lg:pr-0">
           <h2 className="mb-4 text-2xl font-semibold  md:leading-snug leading-[30px] md:text-4xl  lg:text-[44px]">
             Looking for a digital partner who understands your goals and works
             toward real results?

@@ -275,7 +275,7 @@ export default function Header() {
             </div>
           </div>
           {/* Mobile dropdown */}
-          {compact && (
+           
             <div
               className={`hidden sm:block  lg:hidden  mx-auto w-full bg-transparent z-40 overflow-hidden ${compact ? "hidden" : "block"} `}
               style={{
@@ -308,7 +308,7 @@ export default function Header() {
                   </Link>
                 </nav>
               </div>
-            </div>)}
+            </div>
 
           {/* Desktop dropdown when compact + hamburger open */}
           <div

@@ -22,7 +22,7 @@ function Contact() {
                   />
                 </div>
         {/* Left Content */}
-        <div className=" text-white p-10 md:pr-0">
+        <div className=" text-white p-10 lg:pr-0">
           <h2 className="mb-4 text-2xl font-semibold  md:leading-snug leading-[30px] md:text-4xl  lg:text-[44px]">
           Let’s Build Solutions That Drive Real Business Impact
           </h2>
