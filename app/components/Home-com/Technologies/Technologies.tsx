@@ -13,7 +13,7 @@ const row2Extended = [...technologiesRow2, ...technologiesRow2, ...technologiesR
 
 export default function Technologies() {
   return (
-    <section className="lg:py-24 md:py-15 py-10 bg-[#0a0a0a] overflow-hidden">
+    <section className="lg:py-24 md:py-15 py-10 bg-[#000000] overflow-hidden">
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-6 md:mb-16 mb-5">
         <motion.div
           initial="hidden"
@@ -28,12 +28,12 @@ export default function Technologies() {
         </motion.div>
       </div>
 
-      <div className="flex flex-col gap-8  w-full mx-auto px-4 sm:px-6 lg:px-6">
+      <div className="flex flex-col gap-3  w-full mx-auto px-4 sm:px-6 lg:px-6">
         {/* --- Row 1 Slider (Left Scroll) --- */}
         <div className="w-full">
           <Swiper
             modules={[Autoplay]}
-            spaceBetween={24}
+            spaceBetween={14}
             slidesPerView="auto"
             loop={true}
             speed={5000} // Smooth continuous scroll speed
@@ -57,7 +57,7 @@ export default function Technologies() {
         <div className="w-full">
           <Swiper
             modules={[Autoplay]}
-            spaceBetween={24}
+            spaceBetween={14}
             slidesPerView="auto"
             loop={true}
             speed={5000}

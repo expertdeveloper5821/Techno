@@ -338,10 +338,10 @@ export default function ServicesCarousel() {
                     </div>
                     {/* Top black gradient overlay (like screenshot) - dark at top, fades down */}
                     <div
-                      className="absolute top-0 left-0 right-0 z-2 pointer-events-none rounded-t-[30px]"
+                      className="absolute top-0 left-0 right-0 z-2  bg-linear-to-b from-black/85 via-black/50 to-transparent pointer-events-none rounded-t-[30px]"
                       style={{
                         height: '50%',
-                        background: 'linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 50%, transparent 100%)',
+                        // background: 'linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 50%, transparent 100%)',
                       }}
                       aria-hidden
                     />
@@ -361,7 +361,7 @@ export default function ServicesCarousel() {
                     </div>
                     {/* Bottom gradient + description: always visible on mobile, shows on hover on desktop */}
                     <div
-                      className="absolute bottom-0 left-0 right-0 z-2 bg-linear-to-t from-black/85 via-black/50 to-transparent"
+                      className="absolute bottom-0 left-0 right-0 z-2 bg-linear-to-t from-black/85 via-black/70 to-transparent"
                       style={{
                         padding: isBelow640 ? '10px' : '24px',
                         paddingTop: isBelow640 ? '12px' : '32px',

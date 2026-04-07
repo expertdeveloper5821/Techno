@@ -7,7 +7,7 @@ import { partners } from '@/app/lib/data/partners';
 
 export default function Partners() {
   return (
-    <section className="lg:py-24 md:py-15 py-10 bg-[linear-gradient(to_bottom,#0094DB_0%,#0094DB_85%,#003a5c_95%,#000000_100%)] relative ">
+    <section className="lg:py-24 md:py-15 py-10 bg-[#0094DB] relative ">
       <div className=" w-full mx-auto px-4 sm:px-6 lg:px-6">
         
         {/* Header */}

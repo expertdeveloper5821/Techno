@@ -310,7 +310,7 @@ export default function IndustriesSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const stickyWrapRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
-  const headingRef = useRef<HTMLHeadingElement>(null);
+  const headingRef = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -332,7 +332,7 @@ export default function IndustriesSection() {
       const getMaxTranslate = () => {
         const padding = 48;
         const viewportWidth = window.innerWidth - padding;
-        return Math.max(0, track.scrollWidth - viewportWidth + 54);
+        return Math.max(0, track.scrollWidth - viewportWidth );
       };
 
       const tween = gsap.to(track, {
@@ -340,7 +340,7 @@ export default function IndustriesSection() {
         ease: "none",
         scrollTrigger: {
           trigger: heading,
-          start: "top top",           // start only when heading touches viewport top
+          start: "top 20px",           // start only when heading touches viewport top
           end: () => `+=${getMaxTranslate()}`,  // scroll distance = how far we need to translate
           pin: stickyWrap,           // pin the inner sticky wrapper (not the whole section)
           anticipatePin: 1,
@@ -377,7 +377,7 @@ export default function IndustriesSection() {
       <div ref={stickyWrapRef} className="flex flex-col justify-center px-4 sm:px-6 lg:px-6">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <h2 ref={headingRef} className="text-[25px] md:text-4xl lg:text-[44px] font-semibold text-white max-w-4xl text-center mb-6">
+          <h2  className="text-[25px] md:text-4xl lg:text-[44px] font-semibold text-white max-w-4xl text-center mb-6">
             Industries We Serve
           </h2>
           <p className="text-base sm:text-base md:text-lg text-center max-w-5xl leading-[28px] text-[#ffff]">
@@ -388,13 +388,13 @@ export default function IndustriesSection() {
         </div>
 
         {/* Cards track — overflow hidden on the wrapper, translate on the track */}
-        <div className="overflow-clip w-full">
+        <div ref={headingRef} className="overflow-clip  w-full">
           <div
             ref={trackRef}
             className="
               grid grid-cols-1 sm:grid-cols-2 gap-10
               lg:grid-cols-none lg:grid-rows-2 lg:grid-flow-col lg:w-max
-              p-1 will-change-transform
+              p-1 py-6 will-change-transform
             "
           >
             {industries.map((item) => (

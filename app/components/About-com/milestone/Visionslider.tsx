@@ -11,7 +11,7 @@ export default function VisionSlider() {
     { id: 1, image: "/About/milestone/Frame1.png" },
     { id: 2, image: "/About/milestone/Frame2.png" },
     { id: 3, image: "/About/milestone/Frame3.png" },
-    { id: 4, image:"/About/milestone/fFame4.png" },
+    // { id: 4, image:"/About/milestone/Fame4.png" },
     { id: 5, image: "/About/milestone/Frame5.png" },
     { id: 6, image: "/About/milestone/Frame6.png" },
     { id: 7, image: "/About/milestone/Frame7.png" },

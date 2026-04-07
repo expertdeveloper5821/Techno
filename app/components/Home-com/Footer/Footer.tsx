@@ -97,7 +97,7 @@ const handleSubmit = async (e: React.FormEvent) => {
         <span className="text-base md:text-base font-normal font-Roboto text-left   ">Subscribe to stay tuned for new web design and latest updates.</span>
         {/* Right: Let's do it + input group */}
         <div className="flex flex-col md:flex-row md:items-center gap-2 w-full md:w-auto justify-start md:justify-end">
-          <span className="font-bold text-white text-base  md:text-lg whitespace-nowrap md:mr-2">Let&apos;s do it! —</span>
+          <span className="font-semibold text-white text-base  md:text-lg whitespace-nowrap md:mr-2">Let&apos;s do it! —</span>
           <form className="w-full" onSubmit={handleSubmit}>
             <div className="flex w-full bg-white rounded-full overflow-hidden shadow-md px-0.5 py-0.5">
               <input
@@ -126,7 +126,7 @@ const handleSubmit = async (e: React.FormEvent) => {
         {/* Logo & Description */}
         <div >
           <Image src="/Home/footer/tg-logo.png" alt="Technogetic Logo" width={120} height={40} className="mb-4" />
-          <p className=" font-inter text-lg leading-relaxed text-[#D1D5DB] font-normal">
+          <p className=" font-inter text-base leading-relaxed text-[#D1D5DB] font-normal">
             Technogetic simplifies technology, transforming complexity into seamless solutions to drive innovation, efficiency, and digital success
           </p>
         </div>

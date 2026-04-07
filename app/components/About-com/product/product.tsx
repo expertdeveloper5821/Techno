@@ -10,7 +10,7 @@ export default function Products() {
   const [activeProduct, setActiveProduct] = useState(featuresData[0]);
 
   return (
-    <section id="products" className="lg:py-24 md:py-15 py-10 bg-[#111517] text-white " style={{ overflow:'clip'}}>
+    <section id="products" className="lg:py-24 md:py-15 py-10 bg-[#010101] text-white " style={{ overflow:'clip'}}>
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-6">
         
         {/* The Grid container defines the scroll area */}
@@ -29,7 +29,7 @@ export default function Products() {
               variants={fadeInUp}
               className="lg:mb-10 md:mb-5 mb-5"
             >
-              <p className='text-[22px] font-semibold leading-[36px] '>Why Choose Technogetic</p>
+              <p className='text-[22px] font-semibold mb-2 leading-[36px] '>Why Choose Technogetic</p>
               <h2 className=" font-inter text-[25px] sm:text-xl md:text-4xl lg:text-[44px] font-semibold lg:leading-tight md:leading-[50px] leading-[32px] tracking-tight mb-0 sm:mb-6">
               Scalable Solutions for Modern Businesses
               </h2>
@@ -101,7 +101,7 @@ export default function Products() {
                   </h3>
                  
                 </div>
-                <p className="text-[#595959] font-inter group-hover:text-white text-base leading-relaxed transition-colors duration-300">
+                <p className="text-[#595959] font-inter group-hover:text-white text-base leading-relaxed transition-colors duration-300 px-9">
                   {product.description}
                 </p>
                 <p className="text-black font-inter group-hover:text-white text-sm leading-relaxed transition-colors duration-300 mt-2 ">

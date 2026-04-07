@@ -10,7 +10,7 @@ export default function Products() {
   const [activeProduct, setActiveProduct] = useState(products[0]);
 
   return (
-    <section id="products" className="lg:py-24 md:py-15 py-10 bg-[#0000] text-white " style={{ overflow:'clip'}}>
+    <section id="products" className="lg:py-24 md:py-15 py-10 bg-[#000000] text-white " style={{ overflow:'clip'}}>
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-6">
         
         {/* The Grid container defines the scroll area */}
@@ -67,7 +67,7 @@ export default function Products() {
               <div 
                 key={product.id}
                 onMouseEnter={() => setActiveProduct(product)}
-                className="group p-6  bg-[#222] border-b border-white/50 hover:bg-[#0094DB] transition-all duration-300 cursor-pointer"
+                className="group p-6  bg-[#0F0F0F] border-b border-white/50 hover:bg-[#0094DB] transition-all duration-300 cursor-pointer"
               >
                 <div className="flex justify-between items-start mb-4">
                   <h3 className="text-xl font-inter font-semibold text-white group-hover:text-white transition-colors">

@@ -17,8 +17,8 @@ export default function Navigation({ mobile = false }: NavigationProps) {
   ];
 
   const baseClasses = mobile
-    ? 'flex flex-col space-y-4 font-[20px] font-light font-inter text-[#040404]'
-    : 'flex items-center space-x-6 xl:space-x-8 text-[20px] font-light font-inter text-[#040404]';
+    ? 'flex flex-col space-y-4 font-[18px] font-light font-inter text-[#040404]'
+    : 'flex items-center space-x-6 xl:space-x-8 text-[18px] font-light font-inter text-[#040404]';
 ;
 
   return (

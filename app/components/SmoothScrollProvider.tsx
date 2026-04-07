@@ -1,7 +1,8 @@
 'use client';
 
 import type { ReactNode } from 'react';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
+import { usePathname, useSearchParams } from 'next/navigation';
 import Lenis from 'lenis';
 
 type SmoothScrollProviderProps = {
@@ -9,6 +10,10 @@ type SmoothScrollProviderProps = {
 };
 
 export default function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const lenisRef = useRef<Lenis | null>(null);
+
   useEffect(() => {
     const reduceMotion =
       typeof window !== 'undefined' &&
@@ -22,6 +27,7 @@ export default function SmoothScrollProvider({ children }: SmoothScrollProviderP
       wheelMultiplier: 0.9,
       touchMultiplier: 1.0,
     });
+    lenisRef.current = lenis;
 
     let rafId = 0;
     const raf = (time: number) => {
@@ -33,8 +39,27 @@ export default function SmoothScrollProvider({ children }: SmoothScrollProviderP
     return () => {
       window.cancelAnimationFrame(rafId);
       lenis.destroy();
+      lenisRef.current = null;
     };
   }, []);
+
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
+    const scrollTop = () => {
+      lenisRef.current?.scrollTo(0, { immediate: true, force: true });
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+      if (document.scrollingElement) {
+        document.scrollingElement.scrollTop = 0;
+      }
+    };
+
+    scrollTop();
+    const rafId = window.requestAnimationFrame(scrollTop);
+    return () => window.cancelAnimationFrame(rafId);
+  }, [pathname, searchParams]);
 
   return children;
 }

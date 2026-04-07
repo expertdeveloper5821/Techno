@@ -175,11 +175,13 @@ export default function Intero() {
               viewport={{ once: true }}
               variants={fadeInUp}
               transition={{ delay: 0.2 + (index * 0.1) }}
-              className="
-    bg-[#000] lg:border-r border-b border-white/20  p-6 
-    flex flex-col lg:gap-6  gap-3 justify-top  font-inter
-    hover:bg-white/5 transition-colors duration-300    
-  "
+              className={`
+    bg-black lg:border-r border-b border-white/20 p-6 
+    flex flex-col lg:gap-6 gap-3 justify-top font-inter
+    hover:bg-white/5 transition-colors duration-300
+    ${index === 0 ? 'lg:rounded-tl-2xl lg:rounded-bl-2xl' : ''}
+    ${index === staticbox.length - 1 ? 'lg:rounded-tr-2xl lg:rounded-br-2xl lg:border-r-0' : ''}
+  `}
             >
 
               <Image
