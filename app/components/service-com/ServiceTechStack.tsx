@@ -195,10 +195,10 @@ export default function ServiceTechStack() {
               768: { slidesPerView: 2 },
               1224: { slidesPerView: 3 },
             }}
-            // autoplay={{
-            //   delay: 3500,
-            //   disableOnInteraction: false,
-            // }}
+          // autoplay={{
+          //   delay: 3500,
+          //   disableOnInteraction: false,
+          // }}
           >
 
             {techStackSlides.map((slide) => {
@@ -208,53 +208,62 @@ export default function ServiceTechStack() {
                 <SwiperSlide key={slide.id} style={{ display: 'block' }}>
                   <div className="relative w-full flex items-center mb-6 mt-4">
                     <div className="w-full h-[2px] bg-neutral-400"></div>
-                    <div className="absolute left-1/2 -translate-x-1/2 w-3 h-3 bg-[#0094DB] shadow-xl  rounded-full"></div>
+                    <div
+                        className="
+                          absolute left-1/2 -translate-x-1/2
+                          w-4 h-4 rounded-full
+                          bg-[#1E9BFF]
+                          overflow-hidden
+                          shadow-[0_0_8px_2px_rgba(30,155,255,0.95),0_0_16px_6px_rgba(30,155,255,0.7),0_0_28px_12px_rgba(30,155,255,0.5),0_0_56px_24px_rgba(30,155,255,0.25),0_0_80px_40px_rgba(30,155,255,0.12)]
+
+                        "
+                          ></div>
                   </div>
                   <div className="p-2">
-                  <article className="bg-[#0094DB] h-[400px] sm:h-[350px] w-full rounded-xl px-2 py-7 sm:px-7 sm:py-9 md:px-8 md:py-6 lg:px-2 lg:py-2 shadow-[0_20px_60px_rgba(0,0,0,0.5)] flex flex-col my-4">
+                    <article className="bg-[#0094DB] h-[400px] sm:h-[350px] w-full rounded-xl px-2 py-7 sm:px-7 sm:py-9 md:px-8 md:py-6 lg:px-2 lg:py-2 shadow-[0_20px_60px_rgba(0,0,0,0.5)] flex flex-col my-4">
 
-                    <header className="flex items-start flex-col justify-between mb-6">
-                      <div className="flex justify-between w-full">
-                        <div className="w-16 h-16 flex items-center text-white  justify-center">
-                          {/* <TitleIcon size={40}  /> */}
-                          <img
-                            src={slide.titleIconUrl}
-                            alt={slide.title}
-                            className="w-10 h-10"
-                          />
-                        </div>
-
-
-                        <div className="w-8 h-8 rounded-full flex items-center justify-center text-white/60 text-sm font-semibold">
-                          {slide.id}
-                        </div>
-                      </div>
-
-                      <h3 className="font-inter text-lg sm:text-xl md:text-[20px] font-semibold text-white">
-                        {slide.title}
-                      </h3>
-                    </header>
-
-                    <div className="grid sm:grid-cols-3  grid-cols-2 gap-2 ">
-                      {slide.tags.map((tag) => {
-                        // const Icon = tag.icon;
-
-                        return (
-                          <span
-                            key={tag.name}
-                            className="sm:px-1 px-3 py-3 rounded-xl bg-white/10 border border-white/20 text-xs sm:text-sm text-white whitespace-nowrap flex items-center gap-2 overflow-hidden "
-                          >
+                      <header className="flex items-start flex-col justify-between mb-6">
+                        <div className="flex justify-between w-full">
+                          <div className="w-16 h-16 flex items-center text-white  justify-center">
+                            {/* <TitleIcon size={40}  /> */}
                             <img
-                              src={tag.iconUrl}
-                              alt={tag.name}
-                              className="w-4 h-4 object-contain"
+                              src={slide.titleIconUrl}
+                              alt={slide.title}
+                              className="w-10 h-10"
                             />
-                            {tag.name}
-                          </span>
-                        );
-                      })}
-                    </div>
-                  </article>
+                          </div>
+
+
+                          <div className="w-8 h-8 rounded-full flex items-center justify-center text-white/60 text-sm font-semibold">
+                            {slide.id}
+                          </div>
+                        </div>
+
+                        <h3 className="font-inter text-lg sm:text-xl md:text-[20px] font-semibold text-white">
+                          {slide.title}
+                        </h3>
+                      </header>
+
+                      <div className="grid sm:grid-cols-3  grid-cols-2 gap-2 ">
+                        {slide.tags.map((tag) => {
+                          // const Icon = tag.icon;
+
+                          return (
+                            <span
+                              key={tag.name}
+                              className="sm:px-1 px-3 py-3 rounded-xl bg-white/10 border border-white/20 text-xs sm:text-sm text-white whitespace-nowrap flex items-center gap-2 overflow-hidden "
+                            >
+                              <img
+                                src={tag.iconUrl}
+                                alt={tag.name}
+                                className="w-4 h-4 object-contain"
+                              />
+                              {tag.name}
+                            </span>
+                          );
+                        })}
+                      </div>
+                    </article>
                   </div>
                 </SwiperSlide>
               </>

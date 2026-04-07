@@ -9,7 +9,7 @@ import Industries from '../components/About-com/Industries/Industries'
 import Contact from '../components/About-com/contact/Contact'
 import Vision from '../components/About-com/vision/Vision'
 import MilestoneCelebration from '../components/About-com/milestone/Milestone'
-
+import IndustriesSection from '../components/service-com/IndustriesSection'
 function About() {
   return (
     <>
@@ -17,7 +17,8 @@ function About() {
    <Intero/>
    <Services/>
    <Products/>
-   <Industries/>
+   {/* <Industries/> */}
+   <IndustriesSection/>
    <Vision/>
    <MilestoneCelebration/>
    <Contact/>

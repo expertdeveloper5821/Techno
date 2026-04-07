@@ -28,9 +28,9 @@ const NAV_LINKS = [
 const ChevronRightIcon = ChevronRightIconImport as React.FC<IconProps>;
 const HEADER_BLUE = '#0094DB';
 // Hysteresis: expand when near top, compact only when scrolled down past threshold
-const SCROLL_UP_THRESHOLD = 50;   // below this = always normal (no flicker)
-const SCROLL_DOWN_THRESHOLD = 120; // above this = use scroll direction
-const MIN_SCROLL_DELTA = 25;      // min px movement to react (reduces jitter)
+const SCROLL_UP_THRESHOLD = 20;   // below this = always normal (no flicker)
+const SCROLL_DOWN_THRESHOLD = 0; // above this = use scroll direction
+const MIN_SCROLL_DELTA = 10;      // min px movement to react (reduces jitter)
 const TRANSITION_MS = 550;
 const TRANSITION_EASE = 'cubic-bezier(0.22, 0.61, 0.36, 1)';
 
@@ -66,6 +66,7 @@ function HamburgerIcon({ open, onClick }: { open: boolean; onClick: () => void }
 export default function Header() {
   const [compact, setCompact] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [headerVisible, setHeaderVisible] = useState(true);
   const lastScrollY = useRef(0);
   const ticking = useRef(false);
   const [contactshow, setContactshow] = useState(false);
@@ -76,6 +77,13 @@ export default function Header() {
         window.requestAnimationFrame(() => {
           const prevY = lastScrollY.current;
           const delta = y - prevY;
+          if (!menuOpen) {
+            if (y <= SCROLL_UP_THRESHOLD) {
+              setHeaderVisible(true);
+            } else if (Math.abs(delta) >= MIN_SCROLL_DELTA) {
+              setHeaderVisible(delta < 0);
+            }
+          }
           if (y <= SCROLL_UP_THRESHOLD) {
             setCompact(false);
           } else if (y >= SCROLL_DOWN_THRESHOLD && Math.abs(delta) >= MIN_SCROLL_DELTA) {
@@ -90,7 +98,7 @@ export default function Header() {
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [menuOpen]);
 
 
   useEffect(() => {
@@ -110,10 +118,9 @@ export default function Header() {
         style={{
           paddingTop: compact ? 12 : 20,
           paddingBottom: compact ? 12 : 20,
-          transition: `padding ${TRANSITION_MS}ms ${TRANSITION_EASE}`,
+          transition: `padding ${TRANSITION_MS}ms ${TRANSITION_EASE}, transform ${TRANSITION_MS}ms ${TRANSITION_EASE}`,
+          transform: headerVisible ? 'translateY(0)' : 'translateY(-100%)',
           opacity: 1,
-          // top: 16,
-          // transform: 'none',
         }}
       >
         <div className="flex  items-center justify-between rounded-2xl bg-white w-full p-4 ">
@@ -164,10 +171,9 @@ export default function Header() {
         style={{
           paddingTop: compact ? 12 : 20,
           paddingBottom: compact ? 12 : 20,
-          transition: `padding ${TRANSITION_MS}ms ${TRANSITION_EASE}`,
+          transition: `padding ${TRANSITION_MS}ms ${TRANSITION_EASE}, transform ${TRANSITION_MS}ms ${TRANSITION_EASE}`,
+          transform: headerVisible ? 'translateY(0)' : 'translateY(-100%)',
           opacity: 1,
-          // top: 16,
-          // transform: 'none',
         }}
       >
         {/* Single bar: normal = full-width frosted, compact = centered pill */}

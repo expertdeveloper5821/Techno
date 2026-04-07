@@ -4,6 +4,7 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import Header from "./components/Header/Header";
+import SmoothScrollProvider from "./components/SmoothScrollProvider";
 
 import Footer from "./components/Home-com/Footer/Footer";
 const geistSans = Geist({
@@ -79,14 +80,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased`}
       >
-        <div className="sm:relative  ">
-          <Header />
-          
-        </div>
-        {children}
-        <Analytics />
-        <SpeedInsights />
-        <Footer />
+        <SmoothScrollProvider>
+          <div className="sm:relative  ">
+            <Header />
+          </div>
+          {children}
+          <Analytics />
+          <SpeedInsights />
+          <Footer />
+        </SmoothScrollProvider>
 
       </body>
     </html>
