@@ -392,7 +392,7 @@ export default function IndustriesSection() {
           <div
             ref={trackRef}
             className="
-              grid grid-cols-1 sm:grid-cols-2 gap-10
+              grid grid-cols-1 sm:grid-cols-2 gap-5
               lg:grid-cols-none lg:grid-rows-2 lg:grid-flow-col lg:w-max
               p-1 py-6 will-change-transform
             "

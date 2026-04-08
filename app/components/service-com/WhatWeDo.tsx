@@ -65,7 +65,7 @@ export default function WhatWeDo() {
                       <h3 className="font-inter text-xl sm:text-2xl md:text-[36px] font-medium sm:font-semibold  tracking-[0.03em]">
                         {card.title}
                       </h3>
-                      <p className="text-sm sm:text-base md:text-[15px] text-[#F5F5F5] max-w-xl sm:leading-relaxed leading-[22px]">
+                      <p className="text-sm sm:text-base md:text-[18px] text-[#F5F5F5] sm:leading-relaxed leading-[22px]">
                       {card.description}
                     </p>
                     

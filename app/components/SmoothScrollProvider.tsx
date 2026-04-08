@@ -2,7 +2,7 @@
 
 import type { ReactNode } from 'react';
 import { useEffect, useRef } from 'react';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import Lenis from 'lenis';
 
 type SmoothScrollProviderProps = {
@@ -11,7 +11,6 @@ type SmoothScrollProviderProps = {
 
 export default function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
@@ -59,7 +58,7 @@ export default function SmoothScrollProvider({ children }: SmoothScrollProviderP
     scrollTop();
     const rafId = window.requestAnimationFrame(scrollTop);
     return () => window.cancelAnimationFrame(rafId);
-  }, [pathname, searchParams]);
+  }, [pathname]);
 
   return children;
 }

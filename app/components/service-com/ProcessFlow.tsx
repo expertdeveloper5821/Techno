@@ -2,7 +2,7 @@ import React from "react";
 
 export default function ProcessFlow() {
   return (
-    <section className="lg:pt-24 lg:pb-24 md:pt-15 md:pb-15 pt-10 pb-10 bg-[#000000] text-white w-full mx-auto px-4 sm:px-6 lg:px-6">
+    <section className="lg:pt-24 lg:pb-24 md:pt-15 md:pb-15 pt-10 pb-10  text-white w-full mx-auto px-4 sm:px-6 lg:px-6 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/service/background-solution.svg')" }} >
       <div className="mx-auto">
 
         {/* Heading */}

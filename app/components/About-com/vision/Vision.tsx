@@ -4,7 +4,7 @@ import { FaLinkedinIn, FaInstagram, FaFacebookF } from "react-icons/fa";
 
 
 // import * as React from "react";
-const SVGComponentright = (props) => (
+const SVGComponentright = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -65,7 +65,7 @@ const SVGComponentright = (props) => (
 
 
 // import * as React from "react";
-const SVGComponent = (props) => (
+const SVGComponent = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
