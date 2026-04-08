@@ -14,7 +14,8 @@ import arrowl from '@/app/lib/icon/arrow.svg';
 import arrowr from '@/app/lib/icon/arrowr.svg';
 type IconProps = React.SVGProps<SVGSVGElement> & { width?: number; height?: number; color?: string };
 const ChevronRightIcon = ChevronRightIconImport as React.FC<IconProps>;
-
+import { motion } from 'framer-motion';
+import { fadeInUp } from '@/app/lib/animations';
 
 /** Smooth ease-out for expand, text, and visual transitions */
 const EASE_SMOOTH = 'cubic-bezier(0.25, 0.46, 0.45, 0.94)';
@@ -180,7 +181,16 @@ export default function ServicesCarousel() {
       className="relative overflow-hidden min-h-screen flex flex-col justify-start lg:pt-24 lg:pb-24 md:pt-15 md:pb-15 pt-10 pb-10 bg-[linear-gradient(to_bottom,#0094DB_0%,#0094DB_85%,#003a5c_95%,#000000_100%)] "
      
     >
+      
       <div className="w-full flex lg:flex-row flex-col gap-8 lg:gap-0   mx-auto  px-4 sm:px-6 lg:px-6 mb-8">
+      <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+          // className="text-start md:mb-8 mb-5"
+        >
+      
         {/* Header: Title + CTA */}
         <div className="flex flex-col lg:flex-col justify-between items-start gap-5 lg:gap-2">
           <h2 className="text-[25px]  sm:text-xl md:text-4xl lg:text-[44px] font-semibold font-inter text-white lg:leading-[60px] md:leading-[50px] leading-[32px]  max-w-4xl">
@@ -190,6 +200,7 @@ export default function ServicesCarousel() {
             At Technogetic, we are at the forefront of technological innovation, dedicated to delivering cutting-edge IT solutions that drive business success. Founded in 2018, our mission is to redefine the digital landscape by providing reliable and scalable technology solutions.
           </p>
         </div>
+        </motion.div>
 
         {/* Description + Navigation arrows */}
         <div className=" flex lg:justify-center sm:justify-between sm:gap-20 justify-between sm:items-end items-center flex-row  lg:flex-col   ">
