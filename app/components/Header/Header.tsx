@@ -20,9 +20,11 @@ type IconProps = React.SVGProps<SVGSVGElement> & {
 const NAV_LINKS = [
   { label: 'Home', href: '/' },
   { label: 'About us', href: '/about' },
-  { label: 'Services', href: '#services' },
+  { label: 'Services', href: '/service' },
+  { label: 'Industries', href: '/industries' },
+  { label: 'Portfolio', href: '/portfolio' },
   { label: 'Career', href: '/career' },
-  { label: 'Blogs', href: '/blogs' },
+  { label: 'Blogs', href: '/blog' },
   { label: 'Contact', href: '/contact' },
 ];
 const ChevronRightIcon = ChevronRightIconImport as React.FC<IconProps>;
@@ -113,7 +115,7 @@ export default function Header() {
   }, [compact]);
   return (
     <>
-      {/* Mobile: simple, non-floating navbar */}
+      {/* Mobile: simple, non-floating navbar mobile view header  */}
       <header className="sm:hidden absolute left-0 right-0 z-50 will-change-transform  px-4 sm:px-6"
         style={{
           paddingTop: compact ? 12 : 20,
@@ -197,27 +199,26 @@ export default function Header() {
             transition: `max-width ${TRANSITION_MS}ms ${TRANSITION_EASE}, padding ${TRANSITION_MS}ms ${TRANSITION_EASE}, min-height ${TRANSITION_MS}ms ${TRANSITION_EASE}, box-shadow ${TRANSITION_MS}ms ${TRANSITION_EASE}`,
           }}
         >
+          {/* the normal deskto view header and navbar */}
           <div className='flex w-full justify-between ' >
-            
+            <a href="#" className="flex items-center">
+              <Image
+                src="/tg-logo.png"
+                alt="Technogetic Logo"
+                width={140}
+                height={40}
+                className="h-8 md:h-10 w-auto "
+                priority
+                sizes="140px"
+              />
+            </a>
 
-            
-              <a href="#" className="flex items-center">
-                <Image
-                  src="/tg-logo.png"
-                  alt="Technogetic Logo"
-                  width={140}
-                  height={40}
-                  className="h-8 md:h-10 w-auto "
-                  priority
-                  sizes="140px"
-                />
-              </a>
-           
             {/* Nav links + Contact: visible in normal, collapse in compact */}
+            {/* the normal navbar link  */}
             <div
-              className="hidden sm:flex items-center justify-end overflow-hidden"
+              className="hidden sm:flex items-center justify-end overflow-visible"
               style={{
-                maxWidth: compact ? 0 : 640,
+                // maxWidth: compact ? 0 : 640,
                 visibility: compact ? 'hidden' : 'visible',
                 pointerEvents: compact ? 'none' : 'auto',
                 gap: 28,
@@ -231,7 +232,7 @@ export default function Header() {
                     <motion.div
                       key="desktop-nav"
 
-                      className="hidden lg:flex items-center space-x-8 flex-1 justify-center"
+                      className="hidden xl:flex items-center space-x-8 flex-1 justify-center"
                     >
                       <Navigation />
                     </motion.div>
@@ -246,7 +247,7 @@ export default function Header() {
                 <motion.div
                   key="desktop-cta"
 
-                  className={`hidden lg:block pr-2 transition-all duration-500 ease-in-out ${compact ? 'block' : 'none'} `}
+                  className={`hidden xl:block pr-2 transition-all duration-500 ease-in-out ${compact ? 'block' : 'none'} `}
                 >
                   <motion.a
                     href="#contact"
@@ -265,58 +266,65 @@ export default function Header() {
                 </motion.div>
               )}
             </AnimatePresence>
+{/* here the normal desktop view header is finish  */}
 
 
 
-            {/* Hamburger: only in compact on desktop; display none when normal so it takes no space */}
+
+
+
+            {/* Hamburger: only in compact on desktop; display none when normal so it takes no space  + it is a scroll up hamburger */}
             <div
               className={`items-center shrink-0 ${compact ? 'hidden sm:flex' : 'hidden'}`}
             >
               <HamburgerIcon open={menuOpen} onClick={() => setMenuOpen((o) => !o)} />
             </div>
-            {/* Mobile: always show hamburger */}
+            {/* Mobile: always show hamburger + scroll down hanburger and cross */}
             <div className=
-              {`flex lg:hidden items-center shrink-0 ${compact ? 'hidden' : 'block'}`} >
+              {`flex xl:hidden items-center shrink-0 ${compact ? 'hidden' : 'block'}`} >
               <HamburgerIcon open={menuOpen} onClick={() => setMenuOpen((o) => !o)} />
             </div>
           </div>
-          {/* Mobile dropdown */}
-           
-            <div
-              className={`hidden sm:block  lg:hidden  mx-auto w-full bg-transparent z-40 overflow-hidden ${compact ? "hidden" : "block"} `}
-              style={{
-                top: compact ? 76 : 96,
-                maxHeight: menuOpen ? 420 : 0,
-                visibility: menuOpen ? 'visible' : 'hidden',
-                pointerEvents: menuOpen ? 'auto' : 'none',
-                transition: `max-height 0.3s ease-out, visibility 0s linear ${menuOpen ? 0 : 0.3}s`,
-              }}
-            >
-              <div className={`mx-4 rounded-2xl max-w-2xl text-center    py-3 px-4 ${compact ? "hidden" : "block"} `}>
-                <nav className="flex flex-col gap-1">
-                  {NAV_LINKS.map(({ label, href }) => (
-                    <Link
-                      key={href}
-                      href={href}
-                      onClick={() => setMenuOpen(false)}
-                      className="text-[#1f2937] font-medium py-2.5 px-3 rounded-lg hover:bg-black/5"
-                    >
-                      {label}
-                    </Link>
-                  ))}
+
+
+
+          {/* Mobile dropdown + when user scroll to down side on the tab then it will show on the screen */}
+
+          <div
+            className={`hidden sm:block  xl:hidden  mx-auto w-full  bg-transparent z-40 overflow-hidden ${compact ? "hidden" : "block"} `}
+            style={{
+              top: compact ? 76 : 96,
+              maxHeight: menuOpen ? 420 : 0,
+              visibility: menuOpen ? 'visible' : 'hidden',
+              pointerEvents: menuOpen ? 'auto' : 'none',
+              transition: `max-height 0.3s ease-out, visibility 0s linear ${menuOpen ? 0 : 0.3}s`,
+            }}
+          >
+            <div className={`mx-auto rounded-2xl max-w-2xl text-center    py-3 px-4 ${compact ? "hidden" : "block"} `}>
+              <nav className="flex flex-col gap-1">
+                {NAV_LINKS.map(({ label, href }) => (
                   <Link
+                    key={href}
+                    href={href}
+                    onClick={() => setMenuOpen(false)}
+                    className="text-[#1f2937] font-medium py-2.5 px-3 rounded-lg hover:bg-black/5"
+                  >
+                    {label}
+                  </Link>
+                ))}
+                {/* <Link
                     href="/contact"
                     onClick={() => setMenuOpen(false)}
                     className="mt-2 inline-flex items-center justify-center gap-2 px-4 py-3 text-white font-medium text-sm rounded-full "
                     style={{ backgroundColor: HEADER_BLUE }}
                   >
                     Contact &gt;
-                  </Link>
-                </nav>
-              </div>
+                  </Link> */}
+              </nav>
             </div>
+          </div>
 
-          {/* Desktop dropdown when compact + hamburger open */}
+          {/* Desktop dropdown when compact + hamburger open + when user scroll to up side on the tab then it will show on the screen */}
           <div
             className="hidden sm:block w-full  left-0 right-0 z-40 overflow-hidden"
             style={{
@@ -335,19 +343,12 @@ export default function Header() {
                       key={href}
                       href={href}
                       onClick={() => setMenuOpen(false)}
-                      className="text-[#333] font-medium py-2 px-3 rounded-lg hover:bg-[#0094DB]/10 hover:text-[#0094DB]"
+                      className="text-[#333] text-center font-medium py-2 px-3 rounded-lg hover:bg-[#0094DB]/10 hover:text-[#0094DB]"
                     >
                       {label}
                     </Link>
                   ))}
-                  <Link
-                    href="/contact"
-                    onClick={() => setMenuOpen(false)}
-                    className="mt-2 inline-flex items-center justify-center gap-2 px-4 py-2.5 text-white font-medium text-sm rounded-full"
-                    style={{ backgroundColor: HEADER_BLUE }}
-                  >
-                    Contact us &gt;
-                  </Link>
+                 
                 </nav>
               </div>
             </div>
