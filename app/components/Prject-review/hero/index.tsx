@@ -21,7 +21,7 @@ export default function Hero() {
       
 
 
-      <div className="container h-full mx-auto px-4 sm:px-6 lg:px-8 py-25 relative z-10  bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-6 shadow-lg">
+      <div className="container h-full md:mx-auto mx-14 px-4 sm:px-6 lg:px-8 py-25 relative z-10  bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-6 shadow-lg">
         <div className="max-w-5xl mx-auto text-center">
 
           <motion.h1

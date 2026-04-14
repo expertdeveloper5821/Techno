@@ -28,8 +28,8 @@ function SectionDivider() {
 }
 
 function renderBody(section: CaseStudySection, alignRight: boolean) {
-  const textAlign = alignRight ? "text-right" : "text-left";
-  const listAlign = alignRight ? "items-end" : "items-start";
+  const textAlign = alignRight ? "lg:text-right" : "text-left ";
+  const listAlign = alignRight ? "items-end" : "items-start ";
 
   if (section.variant === "paragraphs") {
     return (
@@ -103,7 +103,7 @@ export default function ProjectCaseStudy({ content }: ProjectCaseStudyProps) {
                 >
                   <h3
                     className={`mb-6 font-inter text-2xl font-semibold text-white md:text-3xl lg:text-[44px] leading-[60px] ${
-                      alignRight ? "text-right" : "text-left"
+                      alignRight ? "lg:text-right" : "text-left"
                     }`}
                   >
                     {section.title}

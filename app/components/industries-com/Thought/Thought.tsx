@@ -10,12 +10,12 @@ function Thought() {
                 <div className="w-full flex  flex-col gap-0 lg:gap-0   mx-auto  px-4 sm:px-6 lg:px-6 ">
                     <div className="mx-auto overflow-hidden relative w-full flex xl:flex-row flex-col-reverse items-center  gap-0  border border-[#FFFFFF33] b-[#FDFDFD4D]  bg-[#060606]  rounded-[10px] ">
                         {/* Left Content */}
-                        <div className=" text-white z-10 xl:w-4/10 w-full p-20 lg:pr-0 xl:h-[450px] bg-[#060606]" style={
+                        <div className=" text-white z-10 xl:w-4/10 w-full p-4 md:p-20 lg:pr-0 xl:h-[450px] bg-[#060606]" style={
                             {
                                 boxShadow: '60px 0px 40px 0px #060606',
                             }
                         }>
-                            <h2 className="mb-4 text-2xl font-medium   md:leading-[50px] leading-[30px] md:text-4xl  lg:text-[38px] text-[#F5F5F5] tracking-[1%]">
+                            <h2 className="mb-4 text-xl md:text-2xl font-medium   md:leading-[50px] leading-[30px] md:text-4xl  lg:text-[38px] text-[#F5F5F5] tracking-[1%]">
                                 Starting From Scratch or Rethinking Your Software?
                             </h2>
 
@@ -25,13 +25,13 @@ function Thought() {
 
                             <a
                                 href="#services"
-                                className="group shrink-0 inline-flex items-center justify-center gap-2 sm:px-8  sm:py-3.5 px-4 py-2 text-base font-semibold text-white bg-[#018FD4] rounded-full hover:bg-white/95 transition-all duration-200 shadow-lg whitespace-nowrap mt-0"
+                                className="group shrink-0 inline-flex items-center justify-center gap-2 sm:px-8  sm:py-3.5 px-4 py-2 text-sm md:font-semibold text-white bg-[#018FD4] rounded-full hover:bg-white/95 transition-all duration-200 shadow-lg whitespace-nowrap mt-0"
                             >
                                 Schedule a free consultation <ChevronRightIcon width={7} height={11} color="#FFFFFF" className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-0.5" />
                             </a>
                         </div>
                         {/* Right Image */}
-                        <div className="relative w-8/10 xl:w-6/10 md:h-[450px] mt-20 xl:mt-0  ">
+                        <div className="relative w-8/10 xl:w-6/10 md:h-[450px] md:mt-20 xl:mt-0  ">
                             <Image
                                 src="/industries/men.png" // replace with your actual image path
                                 alt="Customer support representative"

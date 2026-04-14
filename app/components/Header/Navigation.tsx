@@ -29,7 +29,7 @@ export default function Navigation({ mobile = false }: NavigationProps) {
     { href: '/service', label: 'Services' },
     { href: '/industries', label: 'Industries' },
     { href: '/portfolio', label: 'Portfolio' },
-    { href: '/Career', label: 'Career' },
+    { href: '/career', label: 'career' },
     { href: '/blog', label: 'Blogs' },
     { href: '/contact', label: 'Contact' },
   ];

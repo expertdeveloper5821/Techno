@@ -19,14 +19,13 @@ export default function AboutProject({ content }: AboutProjectProps) {
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
             variants={fadeInUp}
-            className="relative overflow-hidden rounded-tl-xl rounded-bl-xl border border-white/10 bg-[#0a0a0a]"
+            className="relative overflow-hidden h-full w-full rounded-tl-xl rounded-bl-xl border border-white/10 bg-[#0a0a0a]"
           >
             <Image
               src={content.imageSrc}
               alt={content.imageAlt}
-              width={640}
-              height={400}
-              className="h-auto w-full object-cover object-top rounded-none"
+           fill
+              className="  object-cover object-top rounded-none"
               sizes="(max-width: 1024px) 100vw, 50vw"
               priority
             />
@@ -38,7 +37,7 @@ export default function AboutProject({ content }: AboutProjectProps) {
             viewport={{ once: true, amount: 0.2 }}
             variants={fadeInUp}
             transition={{ delay: 0.08 }}
-            className="flex flex-col gap-6 bg-[#FFFFFF0F] h-full  px-14 py-10"
+            className="flex flex-col gap-6 bg-[#FFFFFF0F] h-full  px-6 py-10"
           >
             <h2 className="font-inter text-[28px] font-semibold leading-[60px] text-white md:text-4xl lg:text-[44px]">
               {content.sectionTitle}
