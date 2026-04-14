@@ -7,7 +7,7 @@ interface BlogCardProps {
 
 export default function BlogCard({ post }: BlogCardProps) {
   return (
-    <article className="flex flex-col overflow-hidden rounded-2xl border border-white/8 bg-[#141414]">
+    <article className="flex flex-col overflow-hidden rounded-2xl border border-[#FFFFFF33] bg-[#141414]">
       <div className="relative aspect-16/10 w-full bg-[#0a1628]">
         <Image
           src={post.image}
@@ -22,13 +22,13 @@ export default function BlogCard({ post }: BlogCardProps) {
         </span>
       </div>
       <div className="flex flex-1 flex-col gap-3 p-5">
-        <h2 className="text-lg font-semibold leading-snug text-white sm:text-xl">
+        <h2 className="text-lg font-semibol tracking-[1%]  leading-snug text-white sm:text-xl">
           {post.title}
         </h2>
-        <p className="line-clamp-3 flex-1 text-sm leading-relaxed text-[#b8b8b8] sm:text-[15px]">
+        <p className="line-clamp-3 flex-1 text-sm tracking-[1%] leading-relaxed text-[#FFFFFF] sm:text-[14px]">
           {post.excerpt}
         </p>
-        <p className="text-xs text-[#9ca3af] sm:text-sm">
+        <p className="text-xs text-[#8B8B8B] tracking-[1%] leading-[20px] sm:text-sm">
           {post.author} <span className="text-white/40">|</span> {post.date}
         </p>
       </div>

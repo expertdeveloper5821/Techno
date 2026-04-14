@@ -36,7 +36,7 @@ function Thought() {
                                 src="/industries/men.png" // replace with your actual image path
                                 alt="Customer support representative"
                                 fill
-                                className="object-fit  h-full xl:rounded-0 rounded-xl "
+                                className="object-cover object-center   h-full xl:rounded-0 rounded-xl "
                                 priority
                             />
                         </div>

@@ -127,7 +127,10 @@ function Vision() {
       <div className="flex flex-col lg:flex-row">
 
         {/* Left Image Section */}
-        <div className="relative h-[260px] bg-[url('/About/vision/vision.png')] bg-center bg-cover  w-full lg:h-auto lg:w-1/3 lg:block hidden" >
+        <div
+          className="relative h-[260px] bg-center bg-cover  w-full lg:h-auto lg:w-1/3 lg:block hidden"
+          style={{ backgroundImage: "url('/About/vision/vision.png')" }}
+        >
 
 
           {/* Dark Overlay */}

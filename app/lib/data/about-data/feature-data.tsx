@@ -1,36 +1,31 @@
 const featuresData = [
     {
         id:1,
-      title: "Client-First Approach",
+      title: "We Review Your Requirement",
       image: '/Home/produced/blocktech.svg',
       description:
-        "We prioritize your business needs with transparent communication, regular updates, and a collaborative process that keeps you involved at every stage."
+        "We carefully read your message to understand your actual need, not just surface details."
     },
     {
         id:2,
-      title: "Custom-Built Solutions",
+      title: "We Connect With You",
       image: '/Home/produced/blocktech.svg',
       description:
-        "Every solution is designed specifically around your goals, audience, and industry requirements—ensuring relevance, flexibility, and long-term success."
+        "If needed, we reach out to ask a few simple questions for better clarity."
     },
     { id:3,
-      title: "Modern UI/UX & Performance",
+      title: "We Suggest a Plan",
       image: '/Home/produced/blocktech.svg',
       description:
-        "We craft visually appealing interfaces combined with performance-driven development for fast, intuitive, and engaging digital experiences across all devices."
+        "You get a clear and practical approach based on your requirement."
     },
     { id:4,
-      title: "Scalable & Secure Technology",
+      title: "You Decide the Next Step",
       image: '/Home/produced/blocktech.svg',
       description:
-        "Our solutions are built using modern, secure technologies that scale easily with your business and remain reliable as your needs grow."
+        "No pressure. You can move forward only if it makes sense for you."
     },
-    { id:5,
-      title: "Long-Term Support & Partnership",
-      image: '/Home/produced/blocktech.svg',
-      description:
-        "We go beyond delivery by offering continuous support, improvements, and guidance to help your digital products evolve and perform better."
-    }
+  
   ];
   
   export default featuresData;

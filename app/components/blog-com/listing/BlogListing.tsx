@@ -13,6 +13,8 @@ import {
 function normalize(s: string) {
   return s.trim().toLowerCase();
 }
+import ChevronRightIcon from "@/app/lib/icon/chevron-right-icon";
+import ChevronLeftIcon from "@/app/lib/icon/chevron-left-icon";
 
 export default function BlogListing() {
   const [query, setQuery] = useState("");
@@ -98,9 +100,9 @@ export default function BlogListing() {
             type="button"
             onClick={goPrev}
             disabled={page <= 1}
-            className="rounded-lg border border-[#3F3F3F] bg-[#141414] px-4 py-2 text-sm font-medium text-white transition enabled:hover:border-white/30 disabled:cursor-not-allowed disabled:opacity-40"
+            className="rounded-lg border border-[#EAEAEA33] bg-[#FFFFFF1A] px-4 py-2 text-sm font-medium text-white transition enabled:hover:border-white/30 disabled:cursor-not-allowed disabled:opacity-40"
           >
-            Back
+           <ChevronLeftIcon width={7} height={11} color="#626262" className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-0.5" />  Back
           </button>
           {pageNumbers.map((n) => (
             <button
@@ -122,7 +124,7 @@ export default function BlogListing() {
             disabled={page >= totalPages}
             className="rounded-lg border border-[#3F3F3F] bg-[#141414] px-4 py-2 text-sm font-medium text-white transition enabled:hover:border-white/30 disabled:cursor-not-allowed disabled:opacity-40"
           >
-            Next
+            Next <ChevronRightIcon width={7} height={11} color="#626262" className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-0.5" />
           </button>
         </div>
       </div>
