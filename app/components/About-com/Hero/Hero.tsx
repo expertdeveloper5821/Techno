@@ -14,13 +14,13 @@ export default function Hero() {
     // Removed background styles, just padding for spacing
     <section className="relative pt-40 pb-10 sm:pt-48 sm:pb-40 flex flex-col items-center justify-center overflow-hidden z-10 bg-[linear-gradient(180deg,#0094DB_0%,#036C9F_70.41%,#000000_94.02%)] ">
       
-<div className='absolute md:bottom-20 bottom-0 w-full h-auto' >
+<div className='absolute md:bottom-20 bottom-0 w-full h-full' >
   <Image 
     src="/About/hero/hero.svg" 
     alt="Hero illustration" 
     width={600}
     height={400}
-    className='w-full h-auto object-cover '
+    className='w-full h-full object-cover '
     priority
   />
 </div>

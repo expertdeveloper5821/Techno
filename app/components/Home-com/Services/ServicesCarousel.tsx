@@ -372,7 +372,7 @@ export default function ServicesCarousel() {
                     </div>
                     {/* Bottom gradient + description: always visible on mobile, shows on hover on desktop */}
                     <div
-                      className="absolute bottom-0 left-0 right-0 z-2 bg-linear-to-t from-black/85 via-black/70 to-transparent"
+                      className="absolute bottom-0 left-0 right-0 z-2 bg-[linear-gradient(to_top,rgba(0,0,0,0.85)_0%,rgba(0,0,0,0.7)_80%,transparent_100%)]"
                       style={{
                         padding: isBelow640 ? '10px' : '24px',
                         paddingTop: isBelow640 ? '12px' : '32px',

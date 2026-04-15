@@ -17,16 +17,6 @@ type IconProps = React.SVGProps<SVGSVGElement> & {
   height?: number;
   color?: string;
 };
-const NAV_LINKS = [
-  { label: 'Home', href: '/' },
-  { label: 'About us', href: '/about' },
-  { label: 'Services', href: '/service' },
-  { label: 'Industries', href: '/industries' },
-  { label: 'Portfolio', href: '/portfolio' },
-  { label: 'Career', href: '/career' },
-  { label: 'Blogs', href: '/blog' },
-  { label: 'Contact', href: '/contact' },
-];
 const ChevronRightIcon = ChevronRightIconImport as React.FC<IconProps>;
 const HEADER_BLUE = '#0094DB';
 // Hysteresis: expand when near top, compact only when scrolled down past threshold
@@ -123,9 +113,18 @@ export default function Header() {
           transition: `padding ${TRANSITION_MS}ms ${TRANSITION_EASE}, transform ${TRANSITION_MS}ms ${TRANSITION_EASE}`,
           transform: headerVisible ? 'translateY(0)' : 'translateY(-100%)',
           opacity: 1,
+          
         }}
       >
-        <div className="flex  items-center justify-between rounded-2xl bg-white w-full p-4 ">
+        <div className="flex  items-center justify-between rounded-2xl w-full p-4 " style={{
+           backgroundColor: 'rgba(255, 255, 255, 0.75)',
+           backdropFilter: 'saturate(180%) blur(14px)',
+           WebkitBackdropFilter: 'saturate(180%) blur(14px)',
+           boxShadow: compact
+             ? '0 4px 24px rgba(0, 0, 0, 0.12)'
+             : '0 1px 0 rgba(255,255,255,0.5), 0 2px 8px rgba(0, 0, 0, 0.06)',
+           border: '1px solid rgba(255, 255, 255, 0.6)',
+        }}>
           <Link href="/" className="flex items-center">
             <Image
               src="/tg-logo.png"
@@ -145,19 +144,18 @@ export default function Header() {
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.2, ease: easeOut }}
-              className="border-t border-black/5 bg-white px-4 pb-3 rounded-2xl mt-2 "
+              className="border-t border-black/5  px-4 pb-3 rounded-2xl mt-2 " style={{
+                backgroundColor: 'rgba(255, 255, 255, 0.75)',
+                backdropFilter: 'saturate(180%) blur(14px)',
+                WebkitBackdropFilter: 'saturate(180%) blur(14px)',
+                boxShadow: compact
+                  ? '0 4px 24px rgba(0, 0, 0, 0.12)'
+                  : '0 1px 0 rgba(255,255,255,0.5), 0 2px 8px rgba(0, 0, 0, 0.06)',
+                border: '1px solid rgba(255, 255, 255, 0.6)',
+              }}
             >
-              <div className="flex flex-col gap-1 pt-2">
-                {NAV_LINKS.map(({ label, href }) => (
-                  <Link
-                    key={href}
-                    href={href}
-                    onClick={() => setMenuOpen(false)}
-                    className="text-[#1f2937] font-medium py-2.5 rounded-md hover:bg-black/5"
-                  >
-                    {label}
-                  </Link>
-                ))}
+              <div className="pt-2">
+                <Navigation mobile onNavigate={() => setMenuOpen(false)} />
               </div>
             </motion.nav>
           )}
@@ -294,33 +292,14 @@ export default function Header() {
             className={`hidden sm:block  xl:hidden  mx-auto w-full  bg-transparent z-40 overflow-hidden ${compact ? "hidden" : "block"} `}
             style={{
               top: compact ? 76 : 96,
-              maxHeight: menuOpen ? 420 : 0,
+              maxHeight: menuOpen ? 700 : 0,
               visibility: menuOpen ? 'visible' : 'hidden',
               pointerEvents: menuOpen ? 'auto' : 'none',
               transition: `max-height 0.3s ease-out, visibility 0s linear ${menuOpen ? 0 : 0.3}s`,
             }}
           >
             <div className={`mx-auto rounded-2xl max-w-2xl text-center    py-3 px-4 ${compact ? "hidden" : "block"} `}>
-              <nav className="flex flex-col gap-1">
-                {NAV_LINKS.map(({ label, href }) => (
-                  <Link
-                    key={href}
-                    href={href}
-                    onClick={() => setMenuOpen(false)}
-                    className="text-[#1f2937] font-medium py-2.5 px-3 rounded-lg hover:bg-black/5"
-                  >
-                    {label}
-                  </Link>
-                ))}
-                {/* <Link
-                    href="/contact"
-                    onClick={() => setMenuOpen(false)}
-                    className="mt-2 inline-flex items-center justify-center gap-2 px-4 py-3 text-white font-medium text-sm rounded-full "
-                    style={{ backgroundColor: HEADER_BLUE }}
-                  >
-                    Contact &gt;
-                  </Link> */}
-              </nav>
+              <Navigation mobile onNavigate={() => setMenuOpen(false)} />
             </div>
           </div>
 
@@ -329,7 +308,7 @@ export default function Header() {
             className="hidden sm:block w-full  left-0 right-0 z-40 overflow-hidden"
             style={{
               top: compact ? 76 : 96,
-              maxHeight: compact && menuOpen ? 400 : 0,
+              maxHeight: compact && menuOpen ? 700 : 0,
               display: compact && menuOpen ? ' block' : 'none',
               pointerEvents: compact && menuOpen ? 'auto' : 'none',
               transition: `max-height 0.3s ease-out, visibility 0s linear ${compact && menuOpen ? 0 : 0.3}s`,
@@ -337,19 +316,7 @@ export default function Header() {
           >
             <div className="flex justify-center w-full">
               <div className=" w-full  bg-transparent!   py-3 px-5 min-w-[200px]">
-                <nav className="flex flex-col gap-0.5">
-                  {NAV_LINKS.map(({ label, href }) => (
-                    <Link
-                      key={href}
-                      href={href}
-                      onClick={() => setMenuOpen(false)}
-                      className="text-[#333] text-center font-medium py-2 px-3 rounded-lg hover:bg-[#0094DB]/10 hover:text-[#0094DB]"
-                    >
-                      {label}
-                    </Link>
-                  ))}
-                 
-                </nav>
+                <Navigation mobile onNavigate={() => setMenuOpen(false)} />
               </div>
             </div>
           </div>

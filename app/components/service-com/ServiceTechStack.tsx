@@ -461,6 +461,7 @@ export default function ServiceTechStack() {
 
         <div className="relative">
           <Swiper
+           speed={2500}
             // ── 1. register the Autoplay module ──────────────────────────────
             modules={[Autoplay]}
 
@@ -482,7 +483,7 @@ export default function ServiceTechStack() {
 
             // ── 2. autoplay config ────────────────────────────────────────────
             autoplay={{
-              delay: 2500,              // ms between slides
+              delay: 3500,              // ms between slides
               disableOnInteraction: false, // keeps auto-playing after manual swipe
               pauseOnMouseEnter: true,  // pauses when user hovers over slider
             }}

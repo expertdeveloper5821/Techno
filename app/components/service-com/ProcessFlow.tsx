@@ -21,7 +21,7 @@ export default function ProcessFlow() {
 
           {/* Card 1 */}
           <div className=" relative  flex justify-center items-center  ">
-          <article className="relative rounded-2xl border w-full border-white/10 bg-white/6 px-4 py-4 shadow-[0_20px_60px_rgba(0,0,0,0.6)] h-full bg-red-500">
+          <article className="relative rounded-2xl border w-full border-[#ffffff33] bg-[#ffffff08] px-4 py-4 shadow-[0_20px_60px_rgba(0,0,0,0.6)] h-full">
             <div className="flex items-start justify-between  mb-3">
               <span className="inline-flex lg:h-9 lg:w-9 h-5 w-5 items-center justify-center rounded-full text-[25px] lg:text-[30px] font-semibold">
                 1
@@ -41,7 +41,7 @@ export default function ProcessFlow() {
 
           {/* Card 2 */}
           <div className=" relative flex justify-center items-center ">
-          <article className="relative rounded-2xl w-full border border-white/10 bg-white/6 px-4 py-4 shadow-[0_20px_60px_rgba(0,0,0,0.6)] h-full bg-red-500">
+          <article className="relative rounded-2xl w-full border border-[#ffffff33] bg-[#ffffff08] px-4 py-4 shadow-[0_20px_60px_rgba(0,0,0,0.6)] h-full ">
             <div className="flex items-start justify-between  mb-3">
               <span className="inline-flex lg:h-9 lg:w-9 h-5 w-5 items-center justify-center rounded-full text-[25px] lg:text-[30px] font-semibold">
                 2
@@ -60,7 +60,7 @@ export default function ProcessFlow() {
           </div>
           {/* Card 3 */}
           <div className=" relative flex justify-center items-center ">
-          <article className="relative rounded-2xl w-full border border-white/10 bg-white/6 px-4 py-4 shadow-[0_20px_60px_rgba(0,0,0,0.6)] h-full bg-red-500">
+          <article className="relative rounded-2xl w-full border border-[#ffffff33] bg-[#ffffff08]px-4 py-4 shadow-[0_20px_60px_rgba(0,0,0,0.6)] h-full ">
             <div className="flex items-start justify-between mb-3">
               <span className="inline-flex lg:h-9 lg:w-9 h-5 w-5 items-center justify-center rounded-full text-[25px] lg:text-[30px] font-semibold">
                 3
@@ -80,7 +80,7 @@ export default function ProcessFlow() {
 
           {/* Card 4 */}
           <div className=" relative hidden  md:flex justify-center items-center ">
-          <article className="relative rounded-2xl w-full border border-white/10 bg-white/6 px-4 py-4 shadow-[0_20px_60px_rgba(0,0,0,0.6)] h-full bg-red-500">
+          <article className="relative rounded-2xl w-full border border-[#ffffff33] bg-[#ffffff08] px-4 py-4 shadow-[0_20px_60px_rgba(0,0,0,0.6)] h-full ">
             <div className="flex items-start justify-between  mb-3">
               <span className="inline-flex lg:h-9 lg:w-9 h-5 w-5 items-center justify-center rounded-full text-[25px] lg:text-[30px] font-semibold">
                 6
@@ -117,7 +117,7 @@ export default function ProcessFlow() {
 </div>
           {/* Card 5 */}
           <div className=" relative flex justify-center items-center  ">
-          <article className="relative rounded-2xl w-full border border-white/10 bg-white/6 px-4 py-4 shadow-[0_20px_60px_rgba(0,0,0,0.6)] h-full bg-red-500">
+          <article className="relative rounded-2xl w-full border border-[#ffffff33] bg-[#ffffff08] px-4 py-4 shadow-[0_20px_60px_rgba(0,0,0,0.6)] h-full">
             <div className="flex items-start justify-between mb-3">
               <span className="inline-flex lg:h-9 lg:w-9 h-5 w-5 items-center justify-center rounded-full text-[25px] lg:text-[30px] font-semibold">
                 5
@@ -138,7 +138,7 @@ export default function ProcessFlow() {
 
 
           {/* Card 6 */}
-          <article className="relative md:block hidden rounded-2xl w-full border border-white/10 bg-white/6 px-4 py-4 shadow-[0_20px_60px_rgba(0,0,0,0.6)] h-full bg-red-500">
+          <article className="relative md:block hidden rounded-2xl w-full border border-[#ffffff33] bg-[#ffffff08] px-4 py-4 shadow-[0_20px_60px_rgba(0,0,0,0.6)] h-full ">
             <div className="flex items-start justify-between  mb-3">
               <span className=" inline-flex lg:h-9 lg:w-9 h-5 w-5 items-center justify-center rounded-full text-[25px] lg:text-[30px] font-semibold">
                 4
