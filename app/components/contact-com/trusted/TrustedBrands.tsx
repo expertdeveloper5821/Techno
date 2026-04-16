@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useRef } from "react";
-import { motion } from "framer-motion";
+import { memo, useRef } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { fadeInUp } from "@/app/lib/animations";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, FreeMode } from "swiper/modules";
@@ -29,26 +29,29 @@ const bottomRow: Brand[] = [
   { name: "Beast", logo: "/Home/partners/beast-gray.svg" },
 ];
 
-const topRowExtended = [...topRow, ...topRow, ...topRow];
-const bottomRowExtended = [...bottomRow, ...bottomRow, ...bottomRow];
+const topRowExtended = [...topRow, ...topRow];
+const bottomRowExtended = [...bottomRow, ...bottomRow];
 
-function BrandCard({ brand }: { brand: Brand }) {
+const BrandCard = memo(function BrandCard({ brand }: { brand: Brand }) {
   return (
-    <div className="flex h-[98px] w-[190px] shrink-0 items-center justify-center rounded-[10px] border border-white/10 bg-[#070707] sm:h-[150px] sm:w-[296px]">
+    <div className="flex h-[98px] w-[190px] shrink-0 items-center justify-center rounded-[10px] border border-white/10 bg-[#ffffff05] sm:h-[150px] sm:w-[296px]">
       <Image
         src={brand.logo}
         alt={brand.name}
         width={250} 
         height={84}
-        className="h-14  w-[200px] object-contain opacity-95"
+        className="h-12  w-[170px] object-contain opacity-95"
+        sizes="(max-width: 640px) 170px, 250px"
+        loading="lazy"
       />
     </div>
   );
-}
+});
 
 export default function TrustedBrands() {
   const topSwiperRef = useRef<SwiperType | null>(null);
   const bottomSwiperRef = useRef<SwiperType | null>(null);
+  const shouldReduceMotion = useReducedMotion();
 
   const restartIfStopped = (swiper: SwiperType | null) => {
     if (!swiper?.autoplay) return;
@@ -96,12 +99,12 @@ export default function TrustedBrands() {
             spaceBetween={14}
             slidesPerView={4}
             loop={true}
-            speed={5000}
+            speed={4500}
             freeMode={{
               enabled: true,
               momentum: false,
             }}
-            autoplay={{
+            autoplay={shouldReduceMotion ? false : {
               delay: 0,
               disableOnInteraction: false,
               reverseDirection: true,
@@ -129,12 +132,12 @@ export default function TrustedBrands() {
             spaceBetween={14}
             slidesPerView="auto"
             loop={true}
-            speed={5000}
+            speed={4500}
             freeMode={{
               enabled: true,
               momentum: false,
             }}
-            autoplay={{
+            autoplay={shouldReduceMotion ? false : {
               delay: 0,
               disableOnInteraction: false,
               pauseOnMouseEnter: false,

@@ -119,7 +119,7 @@ function ChallengeCard({ title, description }: Omit<Challenge, 'id'>) {
             <div className="relative mb-6 flex h-[197px] w-[215px] items-center justify-center">
                 <GridCheckIcon className="h-full w-full max-h-[198px] max-w-[216px]" />
             </div>
-            <h3 className="mb-3 text-center text-base font-medium text-[#3b82f6] md:text-xl leading-[34px] tracking-[1%]">
+            <h3 className="mb-3 text-center text-base font-medium bg-[linear-gradient(237.1deg,_#35A9F4_24.76%,_#0088FF_69.64%)] bg-clip-text text-transparent md:text-xl leading-[34px] tracking-[1%]">
                 {title}
             </h3>
             <p className="text-base text-center text-[#9ca3af] md:text-lg  md:leading-[27.8px] tracking-[1%]">

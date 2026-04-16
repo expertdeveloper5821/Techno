@@ -10,7 +10,7 @@ function Thought() {
                 <div className="w-full flex  flex-col gap-0 lg:gap-0   mx-auto  px-4 sm:px-6 lg:px-6 ">
                     <div className="mx-auto overflow-hidden relative w-full flex xl:flex-row flex-col-reverse items-center  gap-0  border border-[#FFFFFF33] b-[#FDFDFD4D]  bg-[#060606]  rounded-[10px] ">
                         {/* Left Content */}
-                        <div className=" text-white z-10 xl:w-4/10 w-full p-4 md:p-20 lg:pr-0 xl:h-[450px] bg-[#060606]" style={
+                        <div className=" text-white z-10 xl:w-4/10 w-full p-4 md:p-20 lg:pr-0  bg-[#060606]" style={
                             {
                                 boxShadow: '60px 0px 40px 0px #060606',
                             }

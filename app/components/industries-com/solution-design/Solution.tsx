@@ -8,6 +8,12 @@ import { products } from '@/app/lib/data/products';
 import featuresData from '@/app/lib/data/about-data/feature-data';
 export default function Solution() {
   const [activeProduct, setActiveProduct] = useState(featuresData[0]);
+  const stickyTopByIndex: Record<number, number> = {
+    0: 24,
+    1: 36,
+    2: 48,
+    3: 50,
+  };
 
   return (
     <section id="products" className="lg:py-24 md:py-15 py-10 bg-[#010101] text-white " style={{ overflow:'clip'}}>
@@ -46,12 +52,14 @@ export default function Solution() {
             variants={fadeInRight}
             className=" pb-10 space-y-20"
           >
-            {featuresData.map((product,index) => (
+            {featuresData.map((product,index) => {
+              const stickyTop = stickyTopByIndex[index] ?? 56;
+              return (
               <div 
                 key={product.id}
                 onMouseEnter={() => setActiveProduct(product)}
                 className={` flex  flex-col gap-4  group p-6   bg-[#000000]  border border-white/50  transition-all duration-300 cursor-pointer rounded-xl  sticky` }   style={{
-                    top: `${(index + 2) * 16}px`,   // dynamic → inline style
+                    top: `${stickyTop}px`,
                     zIndex: index + 2,               // dynamic → inline style
                   }}
               >
@@ -72,7 +80,7 @@ export default function Solution() {
                   {/* <span className="font-bold">Tech Stack:</span> {product.TechStack} */}
                 </p>
               </div>
-            ))}
+            )})}
           </motion.div>
 
         </div>

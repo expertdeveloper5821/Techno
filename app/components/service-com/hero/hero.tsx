@@ -1,13 +1,12 @@
 'use client';
 
-import React from 'react';
+import type { FC, SVGProps } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { fadeInUp } from '@/app/lib/animations';
-import ServiceSlider from '@/app/components/Home-com/Services/ServiceSlider'; // Import the slider
 import ChevronRightIconImport from '@/app/lib/icon/chevron-right-icon';
-type IconProps = React.SVGProps<SVGSVGElement> & { width?: number; height?: number; color?: string };
-const ChevronRightIcon = ChevronRightIconImport as React.FC<IconProps>;
+type IconProps = SVGProps<SVGSVGElement> & { width?: number; height?: number; color?: string };
+const ChevronRightIcon = ChevronRightIconImport as FC<IconProps>;
 
 export default function Hero() {
   return (
@@ -63,7 +62,7 @@ We combine strategic consulting, result-driven marketing, and advanced technolog
                 border:'1px solid #B8B8B833'
               }}
             >
-              <p className='p-0 m-0' > <span className='text-[#CECECE]'>Home</span>  <ChevronRightIcon width={7} height={11} color="#CECECE" className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-0.5" />  About us</p>
+              <p className='p-0 m-0' > <span className='text-[#CECECE]'><a href='/' >Home</a></span>  <ChevronRightIcon width={7} height={11} color="#CECECE" className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-0.5" /> Services</p>
             </motion.a>
           </motion.div>
         </div>

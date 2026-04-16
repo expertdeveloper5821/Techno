@@ -34,7 +34,7 @@ export const whatWeDoData: WhatWeDoSectionData = {
       title: 'Consulting Services',
       description:
         'Our consulting services help businesses make informed decisions, reduce risks, and plan technology initiatives effectively.',
-      buttonLabel: 'Explore Services',
+      buttonLabel: 'Talk to us ',
       servicesColumns: [
         {
           items: [
@@ -62,7 +62,7 @@ export const whatWeDoData: WhatWeDoSectionData = {
       title: 'Marketing Services',
       description:
         'Our consulting services help businesses make informed decisions, reduce risks, and plan technology initiatives effectively.',
-      buttonLabel: 'Explore Services',
+      buttonLabel: 'Talk to us ',
       servicesColumns: [
         {
           items: [
@@ -90,7 +90,7 @@ export const whatWeDoData: WhatWeDoSectionData = {
       title: 'IT Solutions Services',
       description:
         'Our consulting services help businesses make informed decisions, reduce risks, and plan technology initiatives effectively.',
-      buttonLabel: 'Explore Services',
+      buttonLabel: 'Talk to us ',
       servicesColumns: [
         {
           items: [

@@ -1,15 +1,13 @@
 'use client';
 
-import React, { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import type { Swiper as SwiperType } from 'swiper';
-import { Pagination, Autoplay, Navigation, EffectCoverflow } from 'swiper/modules';
+import { Autoplay, EffectCoverflow } from 'swiper/modules';
 import { services } from '@/app/lib/data/services';
 import ReadMoreIcon from '@/app/lib/icon/readmore-icon';
-import { redirect } from 'next/dist/server/api-utils';
 import arrowl from '@/app/lib/icon/arrow.svg';
-import arrowr from '@/app/lib/icon/arrowr.svg';
 interface ServiceSliderProps {
   theme?: 'dark' | 'light';
 }
@@ -20,7 +18,6 @@ const EASE_SLIDE = 'cubic-bezier(0.25, 0.46, 0.45, 0.94)';
 export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
   const isDark = theme === 'dark';
   const [isLoaded, setIsLoaded] = useState(false);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const swiperRef = useRef<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const pagination = [1, 2, 3];
@@ -102,7 +99,7 @@ export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
           pauseOnMouseEnter: true,
         }}
         pagination={false}
-        modules={[EffectCoverflow, Navigation, Autoplay]}
+        modules={[EffectCoverflow, Autoplay]}
         onSwiper={(swiper) => { swiperRef.current = swiper; }}
         onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
         onInit={() => setIsLoaded(true)}
@@ -114,15 +111,12 @@ export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
             borderRadius: '34px',
           }}>
             {({ isActive }) => {
-              const showDetails = hoveredIndex === index;
               return (
                 <div
                   role="button"
                   tabIndex={0}
                   onClick={() => handleSlideClick(index)}
                   onFocus={() => handleSlideClick(index)}
-                  onMouseEnter={() => setHoveredIndex(index)}
-                  onMouseLeave={() => setHoveredIndex(null)}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                       e.preventDefault();
@@ -130,7 +124,7 @@ export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
                     }
                   }}
                   className={`
-                    relative h-[400px] md:h-[470px] w-full 
+                    group relative h-[400px] md:h-[470px] w-full 
                     rounded-[32px] overflow-hidden cursor-pointer
                     transition-all duration-500 ease-out
                     ${isActive
@@ -146,23 +140,17 @@ export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
                       alt={service.title}
                       fill
                       sizes="(max-width: 768px) 260px, (max-width: 1024px) 320px, 380px"
-                      className={`object-cover transition-transform duration-700  rounded-[32px] overflow-hidden ${showDetails ? 'scale-105' : 'scale-100'}`}
+                      className="object-cover transition-transform duration-700 rounded-[32px] overflow-hidden group-hover:scale-105 group-focus-visible:scale-105"
                       loading="lazy"
                     />
                     <div
-                      className="absolute inset-0 transition-opacity duration-300 overflow-hidden rounded-[32px]"
-                      style={{
-                        background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, transparent 100%)',
-                        opacity: showDetails ? 0.5 : 0.7,
-                      }}
+                      className="absolute inset-0 transition-opacity duration-300 overflow-hidden rounded-[32px] bg-[linear-gradient(to_top,rgba(0,0,0,0.85)_0%,rgba(0,0,0,0.2)_50%,transparent_100%)] opacity-70 group-hover:opacity-50 group-focus-visible:opacity-50"
                     />
                   </div>
 
                   {/* Default title bar – visible when details are hidden */}
                   <div
-                    className="absolute bottom-0 left-0 w-full p-6 md:p-8 text-center  transition-opacity duration-300 opacity-80   slider-tittle bg-[linear-gradient(176.17deg,rgba(0,139,206,0)_2.91%,#018BCE_90.68%,#018BCD_80.79%)] "
-                    style={{ opacity: showDetails ? 0 : 1 }}
-                    aria-hidden={showDetails}
+                    className="absolute bottom-0 left-0 w-full p-6 md:p-8 text-center transition-opacity duration-300 opacity-80 slider-tittle bg-[linear-gradient(176.17deg,rgba(0,139,206,0)_2.91%,#018BCE_90.68%,#018BCD_80.79%)] group-hover:opacity-0 group-focus-visible:opacity-0"
                   >
                     <h3 className="font-bold text-white tracking-wide text-lg md:text-xl drop-shadow-md">
                       {service.title}
@@ -172,13 +160,11 @@ export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
 
                   {/* Sliding details panel – slides up from bottom on hover/active */}
                   <div
-                    className="absolute left-0 right-0 bottom-0 w-full flex flex-col justify-end rounded-b-[32px] overflow-hidden pointer-events-none opacity-90 bg-[linear-gradient(176.17deg,rgba(0,139,206,0)_2.91%,#018BCE_47.68%,#018BCD_89.79%)] "
+                    className="absolute left-0 right-0 bottom-0 w-full flex flex-col justify-end rounded-b-[32px] overflow-hidden pointer-events-none opacity-90 bg-[linear-gradient(176.17deg,rgba(0,139,206,0)_2.91%,#018BCE_47.68%,#018BCD_89.79%)] translate-y-full group-hover:translate-y-0 group-focus-visible:translate-y-0"
                     style={{
                       height: '58%',
-                      transform: showDetails ? 'translateY(0)' : 'translateY(100%)',
                       transition: `transform ${DETAIL_TRANSITION_MS}ms ${EASE_SLIDE}`,
                     }}
-                    aria-hidden={!showDetails}
                   >
                     <div
                       className="flex flex-col gap-2 justify-end flex-1 min-h-0 p-6 md:p-8 pb-7 text-center text-white"
@@ -192,11 +178,11 @@ export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
                         {service.title}
                       </h3>
                       {service.description && (
-                        <p className="text-white/95 text-sm md:text-base font-normal leading-relaxed line-clamp-3 ">
+                        <p className="text-white/95 text-sm md:text-base font-normal leading-4 line-clamp-3 ">
                           {service.description}
                         </p>
                       )}
-                      <span className="inline-flex items-center justify-center gap-1 text-sm md:text-base font-[500px] font-inter text-white/95 hover:text-white p-0! m-0!">
+                      <span className="inline-flex items-center justify-center gap-1 text-sm md:text-base font-medium font-inter text-white/95 hover:text-white p-0! m-0!">
                         Read more
                        <ReadMoreIcon width={13} height={13} color="#F8F8F8" className="inline-block" />
                       </span>
@@ -238,9 +224,9 @@ export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
             type="button"
             aria-label="Next slide"
             onClick={() => swiperRef.current?.slideNext()}
-            className="sm:w-10 sm:h-10 w-7 h-7 rounded-full [perspective:1000px] text-white flex items-center justify-center hover:bg-white/10 transition-colors"
+            className="sm:w-10 sm:h-10 w-7 h-7 rounded-full perspective-[1000px] text-white flex items-center justify-center hover:bg-white/10 transition-colors"
           >
-            <Image src={arrowl} alt="arrow" width={20} height={20} className="sm:w-8 sm:h-8 w-5 h-5 [transform:rotateY(180deg)]" />
+            <Image src={arrowl} alt="arrow" width={20} height={20} className="sm:w-8 sm:h-8 w-5 h-5 transform-[rotateY(180deg)]" />
           </button>
         </div>
 
