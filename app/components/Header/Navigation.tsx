@@ -189,7 +189,7 @@ export default function Navigation({ mobile = false, onNavigate }: NavigationPro
                   </div>
                   <div className=" h-full bg-[linear-gradient(237.1deg,rgba(53,169,244,0.12)_24.76%,rgba(0,136,255,0.12)_69.64%)] p-3 text-white overflow-hidden">
                     <Image
-                      src="/Home/industries.png"
+                      src="/Home/industries.webp"
                       alt="Commerce showcase"
                       width={280}
                       height={120}

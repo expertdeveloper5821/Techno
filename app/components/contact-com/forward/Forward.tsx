@@ -8,6 +8,10 @@ import { products } from '@/app/lib/data/products';
 import featuresData from '@/app/lib/data/about-data/feature-data';
 export default function Forward() {
   const [activeProduct, setActiveProduct] = useState(featuresData[0]);
+  const validFeatures = featuresData.filter(
+    (product): product is NonNullable<(typeof featuresData)[number]> =>
+      product !== undefined && product !== null
+  );
 
   return (
     <section id="products" className="lg:py-24 md:py-15 py-10 bg-[#010101] text-white " style={{ overflow:'clip'}}>
@@ -46,7 +50,7 @@ export default function Forward() {
             variants={fadeInRight}
             className=" pb-10 space-y-20"
           >
-            {featuresData.map((product,index) => (
+            {validFeatures.map((product,index) => (
               <div 
                 key={product.id}
                 onMouseEnter={() => setActiveProduct(product)}

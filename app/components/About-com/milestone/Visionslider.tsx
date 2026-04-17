@@ -8,16 +8,16 @@ import "swiper/css/autoplay";
 
 export default function VisionSlider() {
   const milestone = [
-    { id: 1, image: "/About/milestone/Frame1.png" },
-    { id: 2, image: "/About/milestone/Frame2.png" },
-    { id: 3, image: "/About/milestone/Frame3.png" },
-    // { id: 4, image:"/About/milestone/Fame4.png" },
-    { id: 5, image: "/About/milestone/Frame5.png" },
-    { id: 6, image: "/About/milestone/Frame6.png" },
-    { id: 7, image: "/About/milestone/Frame7.png" },
-    { id: 8, image: "/About/milestone/Frame8.png" },
-    { id: 9, image: "/About/milestone/Frame9.png" },
-    { id: 10, image: "/About/milestone/Frame10.png" },
+    { id: 1, image: "/About/milestone/Frame1.webp" },
+    { id: 2, image: "/About/milestone/Frame2.webp" },
+    { id: 3, image: "/About/milestone/Frame3.webp" },
+    // { id: 4, image:"/About/milestone/Fame4.webp" },
+    { id: 5, image: "/About/milestone/Frame5.webp" },
+    { id: 6, image: "/About/milestone/Frame6.webp" },
+    { id: 7, image: "/About/milestone/Frame7.webp" },
+    { id: 8, image: "/About/milestone/Frame8.webp" },
+    { id: 9, image: "/About/milestone/Frame9.webp" },
+    { id: 10, image: "/About/milestone/Frame10.webp" },
   ];
 
   return (

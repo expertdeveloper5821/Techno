@@ -58,11 +58,11 @@ export const projectReviewAkasa: ProjectReviewContent = {
     description:
       "Built a high-performance booking and scheduling system to manage airline operations smoothly, ensuring fast response times and reliable performance during high user traffic.",
     breadcrumbCurrent: "Akasa Air",
-    backgroundImageSrc: "contact-hero.wwebp",
+    backgroundImageSrc: "/Projectreview/project.webp",
   },
   about: {
     sectionTitle: "About the Project",
-    imageSrc: "/Home/produced/Akasa Air.png",
+    imageSrc: "/Home/produced/Akasa Air.webp",
     imageAlt: "Akasa Air flight booking website interface",
     paragraphs: [
       "Akasa Air needed a reliable system to manage flight bookings and scheduling efficiently. Their operations required handling a large number of users without delays, especially during peak traffic periods when performance becomes critical.",

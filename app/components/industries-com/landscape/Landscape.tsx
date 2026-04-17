@@ -83,7 +83,7 @@ export default function Landscape() {
           >
             <div className="relative  w-full h-full xl:h-[585px] rounded-l-2xl overflow-hidden ">
               <img
-                src="/About/Intro/intro.png"
+                src="/About/Intro/intro.webp"
                 alt="Team working together"
                 
                 className="lg:object-cover object-contain  h-full w-full rounded-l-2xl "

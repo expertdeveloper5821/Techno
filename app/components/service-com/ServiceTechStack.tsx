@@ -28,7 +28,7 @@ export const techStackSlides = [
     id: 1,
     title: "Frontend Technologies",
     // titleIconUrl: "https://skillicons.dev/icons?i=react",
-    titleIconUrl:"/service/techstack/frontend.png",
+    titleIconUrl:"/service/techstack/frontend.webp",
     subtitle: "Modern UI frameworks & state management",
     tags: [
       { name: "React",        iconUrl: "https://skillicons.dev/icons?i=react" },
@@ -39,14 +39,14 @@ export const techStackSlides = [
       { name: "Angular",      iconUrl: "https://skillicons.dev/icons?i=angular" },
       { name: "Redux",        iconUrl: "https://skillicons.dev/icons?i=redux" },
       { name: "Material-UI",  iconUrl: "https://skillicons.dev/icons?i=mui" },
-      { name: "Framer Motion",iconUrl: "/service/techstack/framer.png" },
+      { name: "Framer Motion",iconUrl: "/service/techstack/framer.webp" },
     ],
   },
   {
     id: 2,
     title: "Backend Technologies",
     // titleIconUrl: "https://skillicons.dev/icons?i=nodejs",
-    titleIconUrl:"/service/techstack/backend.png",
+    titleIconUrl:"/service/techstack/backend.webp",
     subtitle: "Scalable APIs & real-time systems",
     tags: [
       { name: "Node.js",    iconUrl: "https://skillicons.dev/icons?i=nodejs" },
@@ -63,7 +63,7 @@ export const techStackSlides = [
     id: 3,
     title: "Database & Storage",
     // titleIconUrl: "https://skillicons.dev/icons?i=mongodb",
-    titleIconUrl:"/service/techstack/database.png",
+    titleIconUrl:"/service/techstack/database.webp",
     subtitle: "Reliable data & object storage",
     tags: [
       { name: "PostgreSQL", iconUrl: "https://skillicons.dev/icons?i=postgres" },
@@ -80,7 +80,7 @@ export const techStackSlides = [
     id: 4,
     title: "Cloud & DevOps",
     // titleIconUrl: "https://skillicons.dev/icons?i=docker",
-    titleIconUrl:"/service/techstack/devops.png",
+    titleIconUrl:"/service/techstack/devops.webp",
     subtitle: "Deployment, automation & scalability",
     tags: [
       { name: "AWS",            iconUrl: "https://skillicons.dev/icons?i=aws" },
@@ -107,14 +107,14 @@ export const techStackSlides = [
     id: 6,
     title: "Design & Collaboration",
     // titleIconUrl: "https://skillicons.dev/icons?i=figma",
-    titleIconUrl:"/service/techstack/web-design.png",
+    titleIconUrl:"/service/techstack/web-design.webp",
     subtitle: "Product design & team productivity",
     tags: [
       { name: "Figma",       iconUrl: "https://skillicons.dev/icons?i=figma" },
       { name: "Photoshop",   iconUrl: "https://skillicons.dev/icons?i=ps" },
       { name: "Illustrator", iconUrl: "https://skillicons.dev/icons?i=ai" },
       { name: "Notion",      iconUrl: "https://skillicons.dev/icons?i=notion" },
-      { name: "Slack",       iconUrl: "/service/techstack/slack.png" },
+      { name: "Slack",       iconUrl: "/service/techstack/slack.webp" },
     ],
   },
 ];

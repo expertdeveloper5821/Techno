@@ -33,7 +33,7 @@ function Thought() {
                         {/* Right Image */}
                         <div className="relative w-8/10 xl:w-6/10 xl:h-[480px] md:mt-20 xl:mt-0  ">
                             <Image
-                                src="/industries/men.png" // replace with your actual image path
+                                src="/industries/men.webp" // replace with your actual image path
                                 alt="Customer support representative"
                                 fill
                                 className="object-cover object-center   h-full xl:rounded-none rounded-xl "

@@ -102,7 +102,7 @@ export default function ContactHero() {
     <>
     <section
       className="relative overflow-hidden    bg-black  text-white  bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: "url('/contact/contact-hero.png')" }}
+      style={{ backgroundImage: "url('/contact/contact-hero.webp')" }}
     >
       <div
         className="pointer-events-none absolute inset-0 opacity-90"

@@ -22,7 +22,7 @@ export default function AboutProject({ content }: AboutProjectProps) {
             className="relative overflow-hidden h-full w-full rounded-tl-xl rounded-bl-xl border border-white/10 bg-[#0a0a0a]"
           >
             <Image
-              src="/Home/about/client4.png"
+              src="/Home/about/client4.webp"
               alt={content.imageAlt}
               fill
               className="  object-cover object-top rounded-none"

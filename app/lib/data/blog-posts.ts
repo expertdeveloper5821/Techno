@@ -22,7 +22,7 @@ export interface BlogPost {
   image: string;
 }
 
-const DEFAULT_THUMB = "/Home/services/slide1.png";
+const DEFAULT_THUMB = "/Home/services/slide1.webp";
 
 const BASE_POSTS: Omit<BlogPost, "id">[] = [
   {
@@ -41,7 +41,7 @@ const BASE_POSTS: Omit<BlogPost, "id">[] = [
     category: "Marketing",
     author: "Vivek Sahani",
     date: "April 2, 2024",
-    image: "/Home/services/slide2.png",
+    image: "/Home/services/slide2.webp",
   },
   {
     title: "Aligning Stakeholders Before the First Sprint",
@@ -50,7 +50,7 @@ const BASE_POSTS: Omit<BlogPost, "id">[] = [
     category: "Business",
     author: "Vivek Sahani",
     date: "April 18, 2024",
-    image: "/Home/services/digital-marketing.jpg",
+    image: "/Home/services/digital-marketing.webp",
   },
   {
     title: "What We Learned Migrating a Legacy Checkout Flow",
@@ -59,7 +59,7 @@ const BASE_POSTS: Omit<BlogPost, "id">[] = [
     category: "Case Studies",
     author: "Vivek Sahani",
     date: "May 6, 2024",
-    image: "/Home/services/ui-ux.jpg",
+    image: "/Home/services/ui-ux.webp",
   },
   {
     title: "Practical Guardrails for Shipping AI Features",
@@ -68,7 +68,7 @@ const BASE_POSTS: Omit<BlogPost, "id">[] = [
     category: "AI Solutions",
     author: "Vivek Sahani",
     date: "May 21, 2024",
-    image: "/Home/services/cloud-computing.jpg",
+    image: "/Home/services/cloud-computing.webp",
   },
   {
     title: "E‑Commerce Performance Budgets That Actually Stick",
@@ -77,7 +77,7 @@ const BASE_POSTS: Omit<BlogPost, "id">[] = [
     category: "E-Commerce",
     author: "Vivek Sahani",
     date: "June 3, 2024",
-    image: "/Home/services/slide5.png",
+    image: "/Home/services/slide5.webp",
   },
 ];
 

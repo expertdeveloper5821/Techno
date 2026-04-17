@@ -88,7 +88,7 @@ export default function About() {
                 4. Added 'w-full h-auto' to make it responsive.
              */}
              <Image
-              src="/Home/about/client4.png" 
+              src="/Home/about/client4.webp" 
               alt="Team working together"
               width={800}
               height={600}

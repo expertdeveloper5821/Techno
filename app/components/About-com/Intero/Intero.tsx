@@ -83,7 +83,7 @@ export default function Intero() {
           >
             <div className="relative  w-full h-full rounded-2xl overflow-hidden lg:pb-4 pb-8">
               <img
-                src="/About/Intro/intro.png"
+                src="/About/Intro/intro.webp"
                 alt="Team working together"
                 
                 className="lg:object-cover object-contain  h-full w-full rounded-2xl "
