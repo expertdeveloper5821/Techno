@@ -24,7 +24,7 @@ const featuresData = [
       image: '/Home/produced/blocktech.svg',
       description:
         "No pressure. You can move forward only if it makes sense for you."
-    },
+    }, ,
   
   ];
   

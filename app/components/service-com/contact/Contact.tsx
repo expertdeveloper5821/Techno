@@ -1,6 +1,8 @@
-import React from 'react'
+"use client"
 import Image from 'next/image'
 import ChevronRightIcon from '@/app/lib/icon/chevron-right-icon'
+import { motion } from 'framer-motion'
+import { parallaxVariants } from '@/app/lib/animations'
 function Contact() {
   return (
     <>
@@ -10,6 +12,14 @@ function Contact() {
             >
                
 <div className="w-full flex  flex-col gap-0 lg:gap-0   mx-auto  px-4 sm:px-6 lg:px-6 ">
+<motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.15 }}
+      transition={{ duration: 1, ease: [0.6, -0.05, 0.01, 0.99] }}
+      variants={parallaxVariants}
+      >
+    
 <div className="mx-auto overflow-hidden relative w-full flex flex-col items-center  gap-0 md:flex-row bg-[#0094DB]  rounded-2xl ">
 <div className='absolute w-full h-full' >
                   <Image 
@@ -18,7 +28,8 @@ function Contact() {
                     width={600}
                     height={400}
                     className='w-full h-full object-cover '
-                    priority
+                    loading="lazy"
+                    sizes="100vw"
                   />
                 </div>
         {/* Left Content */}
@@ -46,10 +57,12 @@ function Contact() {
             alt="Customer support representative"
             fill
             className="object-fill pt-10 pr-10 h-full"
-            priority
+            loading="lazy"
+            sizes="(max-width: 768px) 0px, (max-width: 1024px) 320px, 380px"
           />
         </div>
       </div>
+      </motion.div>
       </div>
             </section>
     

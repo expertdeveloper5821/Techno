@@ -22,7 +22,7 @@ export default function AboutProject({ content }: AboutProjectProps) {
             className="relative overflow-hidden h-full w-full rounded-tl-xl rounded-bl-xl border border-white/10 bg-[#0a0a0a]"
           >
             <Image
-              src={content.imageSrc}
+              src="/Home/about/client4.png"
               alt={content.imageAlt}
               fill
               className="  object-cover object-top rounded-none"
@@ -40,18 +40,18 @@ export default function AboutProject({ content }: AboutProjectProps) {
             className="flex flex-col gap-6 bg-[#FFFFFF0F] h-full  px-6 py-10"
           >
             <h2 className="font-inter text-[28px] font-semibold leading-[60px] text-white md:text-4xl lg:text-[44px]">
-              {content.sectionTitle}
+            Your Partner for Custom Software That Actually Works
             </h2>
 
             <div className="space-y-4 text-base leading-7 tracking-[1%] font-normal text-[#FFFFFF] md:text-lg">
-              {content.paragraphs.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
+           <p> At Technogetic, custom software development is not just about writing code—it’s about solving real business problems with systems that actually work in day-to-day operations. We focus on building solutions that fit your processes instead of forcing you to adjust to generic tools.</p>
+
+<p>Your business needs systems that are reliable, easy to use, and built for growth. We work closely with you to understand your requirements and develop software that improves efficiency, reduces manual work, and supports your long-term goals.</p>
             </div>
 
-            <p className="text-base font-medium leading-7 tracking-[1%]  mt-6 text-[#0094DB] md:text-lg">
+            {/* <p className="text-base font-medium leading-7 tracking-[1%]  mt-6 text-[#0094DB] md:text-lg">
               {content.technologies.join(", ")}
-            </p>
+            </p> */}
           </motion.div>
         </div>
       </div>

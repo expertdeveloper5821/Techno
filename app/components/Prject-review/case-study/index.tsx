@@ -90,12 +90,12 @@ export default function ProjectCaseStudy({ content }: ProjectCaseStudyProps) {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.2 }}
                 variants={fadeInUp}
-                className={`mb-10 flex w-full last:mb-0 md:mb-20 ${
+                className={`mb-10 flex w-full  last:mb-0 md:mb-20 ${
                   alignRight ? "justify-end" : "justify-start"
                 }`}
               >
                 <div
-                  className={`w-full max-w-[min(100%,1000px)] rounded border border-[#FFFFFF2B] p-8 shadow-[0_0_0_1px_rgba(255,255,255,0.04)] md:p-10 ${
+                  className={`w-full max-w-[min(100%,1000px)] rounded-[10px] border border-[#FFFFFF2B] p-8 shadow-[0_0_0_1px_rgba(255,255,255,0.04)] md:p-10 ${
                     alignRight
                       ? "bg-[linear-gradient(270.93deg,_rgba(0,0,0,0.5)_25.97%,_rgba(2,126,186,0.5)_96.83%)]"
                       : "bg-[linear-gradient(270.93deg,_rgba(0,0,0,0.5)_25.97%,_rgba(2,126,186,0.5)_96.83%)]"

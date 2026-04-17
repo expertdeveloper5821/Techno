@@ -7,8 +7,8 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ item }: ProjectCardProps) {
   return (
-    <article className="flex flex-col overflow-hidden rounded-xl border border-white/20 bg-[#000000]">
-      <div className="relative aspect-412/220 w-full bg-[#1a1a1a]">
+    <article className="flex flex-col overflow-hidden rounded-xl border border-white/20 bg-[#141414]">
+      <div className="relative aspect-412/220 w-full bg-[#141414]">
         <Image
           src={item.image}
           alt={item.title}

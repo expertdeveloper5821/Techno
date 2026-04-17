@@ -1,63 +1,28 @@
 'use client';
 
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { faqs } from '@/app/lib/data/faqs';
 
 const INTRO_STYLE_ID = 'faq1-animations';
 
-const palettes = {
-  dark: {
-    surface: 'bg-neutral-950 text-neutral-100',
-    panel: 'bg-neutral-900/50',
-    border: 'border-white/10',
-    heading: 'text-white',
-    muted: 'text-neutral-400',
-    iconRing: 'border-white/20',
-    iconSurface: 'bg-white/5',
-    icon: 'text-white',
-    toggle: 'border-white/20 text-white',
-    toggleSurface: 'bg-white/10',
-    glow: 'rgba(255, 255, 255, 0.08)',
-    aurora:
-      'radial-gradient(ellipse 50% 100% at 10% 0%, rgba(226, 232, 240, 0.15), transparent 65%), #000000',
-    shadow: 'shadow-[0_36px_140px_-60px_rgba(10,10,10,0.95)]',
-    overlay:
-      'linear-gradient(130deg, rgba(255,255,255,0.04) 0%, transparent 65%)',
-  },
-  light: {
-    surface: 'bg-slate-100 text-neutral-900',
-    panel: 'bg-white/70',
-    border: 'border-neutral-200',
-    heading: 'text-neutral-900',
-    muted: 'text-neutral-600',
-    iconRing: 'border-neutral-300',
-    iconSurface: 'bg-neutral-900/5',
-    icon: 'text-neutral-900',
-    toggle: 'border-neutral-200 text-neutral-900',
-    toggleSurface: 'bg-white',
-    glow: 'rgba(15, 15, 15, 0.08)',
-    aurora:
-      'radial-gradient(ellipse 50% 100% at 10% 0%, rgba(15, 23, 42, 0.08), rgba(255, 255, 255, 0.95) 70%)',
-    shadow: 'shadow-[0_36px_120px_-70px_rgba(15,15,15,0.18)]',
-    overlay:
-      'linear-gradient(130deg, rgba(15,23,42,0.08) 0%, transparent 70%)',
-  },
-};
+const palette = {
+  surface: 'bg-neutral-950 text-neutral-100',
+  panel: 'bg-neutral-900/50',
+  border: 'border-white/10',
+  heading: 'text-white',
+  muted: 'text-neutral-400',
+  iconRing: 'border-white/20',
+  iconSurface: 'bg-white/5',
+  icon: 'text-white',
+  glow: 'rgba(255, 255, 255, 0.08)',
+  aurora:
+    'radial-gradient(ellipse 50% 100% at 10% 0%, rgba(226, 232, 240, 0.15), transparent 65%), #000000',
+  shadow: 'shadow-[0_36px_140px_-60px_rgba(10,10,10,0.95)]',
+  overlay:
+    'linear-gradient(130deg, rgba(255,255,255,0.04) 0%, transparent 65%)',
+} as const;
 
 export default function FAQ() {
-  const getRootTheme = (): 'dark' | 'light' => {
-    if (typeof document === 'undefined') return 'dark';
-    if (document.documentElement.classList.contains('dark')) return 'dark';
-    if (document.documentElement.classList.contains('light')) return 'light';
-    if (typeof window !== 'undefined' && window.matchMedia) {
-      return window.matchMedia('(prefers-color-scheme: dark)').matches
-        ? 'dark'
-        : 'dark';
-    }
-    return 'light';
-  };
-
-  const [theme, setTheme] = useState<'dark' | 'light'>(getRootTheme);
   const [introReady, setIntroReady] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [hasEntered, setHasEntered] = useState(false);
@@ -204,46 +169,6 @@ export default function FAQ() {
     return () => window.cancelAnimationFrame(frame);
   }, []);
 
-  useEffect(() => {
-    if (typeof document === 'undefined') return;
-
-    const applyThemeFromRoot = () => setTheme(getRootTheme());
-
-    applyThemeFromRoot();
-
-    const observer = new MutationObserver(applyThemeFromRoot);
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['class', 'data-theme'],
-    });
-
-    const handleStorage = (event: StorageEvent) => {
-      if (event.key === 'bento-theme') applyThemeFromRoot();
-    };
-
-    window.addEventListener('storage', handleStorage);
-
-    return () => {
-      observer.disconnect();
-      window.removeEventListener('storage', handleStorage);
-    };
-  }, []);
-
-  const palette = useMemo(() => palettes[theme], [theme]);
-
-  const toggleTheme = () => {
-    if (typeof document === 'undefined') return;
-    const root = document.documentElement;
-    const next = root.classList.contains('dark') ? 'light' : 'dark';
-    root.classList.toggle('dark', next === 'dark');
-    setTheme(next);
-    try {
-      window.localStorage?.setItem('bento-theme', next);
-    } catch (_err) {
-      /* ignore */
-    }
-  };
-
   const toggleQuestion = (index: number) =>
     setActiveIndex((prev) => (prev === index ? -1 : index));
 
@@ -296,7 +221,7 @@ export default function FAQ() {
         className="pointer-events-none absolute inset-0 z-0 opacity-80"
         style={{
           background: palette.overlay,
-          mixBlendMode: theme === 'dark' ? 'screen' : 'multiply',
+          mixBlendMode: 'screen',
         }}
       />
 
@@ -305,11 +230,7 @@ export default function FAQ() {
           hasEntered ? 'faq1-fade--ready' : 'faq1-fade'
         }`}
       >
-        <div
-          className={`faq1-intro ${introReady ? 'faq1-intro--active' : ''} ${
-            theme === 'light' ? 'faq1-intro--dark' : 'faq1-intro--dark'
-          }`}
-        >
+        <div className={`faq1-intro faq1-intro--dark ${introReady ? 'faq1-intro--active' : ''}`}>
           <span className="faq1-intro__beam" aria-hidden="true" />
           <span className="faq1-intro__pulse" aria-hidden="true" />
           <span className="faq1-intro__label text-base sm:text-xl">FAQ's</span>
@@ -329,29 +250,6 @@ export default function FAQ() {
             <p className='max-w-xl text-base text-neutral-400'>Everything you’d ask before making a tech decision.</p>
            
           </div>
-
-          {/* <button
-            type="button"
-            onClick={toggleTheme}
-            className={`relative inline-flex h-11 items-center gap-3 rounded-full border px-5 text-sm font-medium transition-colors duration-500 ${palette.toggleSurface} ${palette.toggle}`}
-            aria-pressed={theme === 'dark' ? 'true' : 'false'}
-          >
-            <span className="relative flex h-6 w-6 items-center justify-center">
-              <span
-                className={`pointer-events-none absolute inset-0 rounded-full border opacity-40 ${
-                  theme === 'dark'
-                    ? 'border-white/30 animate-pulse'
-                    : 'border-neutral-400/50'
-                }`}
-              />
-              <span
-                className={`h-3 w-3 rounded-full transition-all duration-500 ${
-                  theme === 'dark' ? 'bg-white' : 'bg-neutral-900'
-                }`}
-              />
-            </span>
-            {theme === 'dark' ? 'Night' : 'Day'} mode
-          </button> */}
         </header>
 
         <ul className="space-y-4">
@@ -363,7 +261,7 @@ export default function FAQ() {
             return (
               <li
                 key={item.id}
-                className={`group relative overflow-hidden rounded-3xl border backdrop-blur-xl transition-all duration-500 hover:-translate-y-0.5 focus-within:-translate-y-0.5 ${palette.border} ${palette.panel} ${palette.shadow} ${open ? 'border-1 border-[#0183C1]! ' : ''}`}
+                className={`group relative overflow-hidden rounded-3xl border backdrop-blur-xl transition-all duration-500 hover:-translate-y-0.5 focus-within:-translate-y-0.5 ${palette.border} ${palette.panel} ${palette.shadow} ${open ? 'border border-[#0183C1]! ' : ''}`}
                 onMouseMove={setCardGlow}
                 onMouseLeave={clearCardGlow}
               >
@@ -382,13 +280,8 @@ export default function FAQ() {
                   aria-controls={panelId}
                   aria-expanded={open}
                   onClick={() => toggleQuestion(index)}
-                  style={{
-                    '--faq-outline':
-                      theme === 'dark'
-                        ? 'rgba(255,255,255,0.35)'
-                        : 'rgba(255,255,255,0.35)',
-                  } as React.CSSProperties}
-                  className="relative flex w-full items-start gap-6 px-8 py-7 text-left transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--faq-outline)]  "
+                  style={{ '--faq-outline': 'rgba(255,255,255,0.35)' } as React.CSSProperties}
+                  className="relative flex w-full items-start gap-6 px-8 py-7 text-left transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--faq-outline)"
                 >
                   <span
                     className={`relative flex h-12 w-12 shrink-0 items-center justify-center rounded-full border transition-all duration-500 group-hover:scale-105 ${palette.iconRing} ${palette.iconSurface} `}

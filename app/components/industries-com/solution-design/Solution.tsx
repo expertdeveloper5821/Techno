@@ -56,7 +56,7 @@ export default function Solution() {
               const stickyTop = stickyTopByIndex[index] ?? 56;
               return (
               <div 
-                key={product.id}
+                key={product?.id}
                 onMouseEnter={() => setActiveProduct(product)}
                 className={` flex  flex-col gap-4  group p-6   bg-[#000000]  border border-white/50  transition-all duration-300 cursor-pointer rounded-xl  sticky` }   style={{
                     top: `${stickyTop}px`,
@@ -69,12 +69,12 @@ export default function Solution() {
     
 
                   <h3 className="text-2xl tracking-normal leading-7 font-inter  font-semibold text-[#0094DB] group-hover:text-white transition-colors">
-                    {product.title}
+                    {product?.title}
                   </h3>
                  
                 
                 <p className="text-[#FFFFFF] font-inter text-lg leading-7 tracking-[1%] transition-colors duration-300 ">
-                  {product.description}
+                  {product?.description}
                 </p>
                 <p className="text-black font-inter group-hover:text-white text-sm leading-relaxed transition-colors duration-300 mt-2 ">
                   {/* <span className="font-bold">Tech Stack:</span> {product.TechStack} */}

@@ -58,7 +58,7 @@ export const projectReviewAkasa: ProjectReviewContent = {
     description:
       "Built a high-performance booking and scheduling system to manage airline operations smoothly, ensuring fast response times and reliable performance during high user traffic.",
     breadcrumbCurrent: "Akasa Air",
-    backgroundImageSrc: "/Projectreview/project.png",
+    backgroundImageSrc: "contact-hero.wwebp",
   },
   about: {
     sectionTitle: "About the Project",

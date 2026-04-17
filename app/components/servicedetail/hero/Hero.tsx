@@ -1,27 +1,30 @@
 'use client';
 
-import React from 'react';
+import type { FC, SVGProps } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { fadeInUp } from '@/app/lib/animations';
 import ChevronRightIconImport from '@/app/lib/icon/chevron-right-icon';
-import { defaultProjectReview } from '@/app/lib/data/project-review';
-
-type IconProps = React.SVGProps<SVGSVGElement> & { width?: number; height?: number; color?: string };
-const ChevronRightIcon = ChevronRightIconImport as React.FC<IconProps>;
+type IconProps = SVGProps<SVGSVGElement> & { width?: number; height?: number; color?: string };
+const ChevronRightIcon = ChevronRightIconImport as FC<IconProps>;
 
 export default function Hero() {
-  const { hero } = defaultProjectReview;
-
   return (
     // Removed background styles, just padding for spacing
-    <section
-      className="relative pt-30 pb-10 sm:pt-40 sm:pb-30 flex flex-col items-center justify-center overflow-hidden z-10 bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: `url('${hero.backgroundImageSrc}')` }}
-    >
+    <section className="relative pt-40 pb-10 sm:pt-48 sm:pb-40 flex flex-col items-center justify-center overflow-hidden z-10 bg-[linear-gradient(180deg,#0094DB_0%,#036C9F_70.41%,#000000_94.02%)] ">
       
+<div className='absolute md:bottom-20 bottom-0 w-full h-full' >
+  <Image 
+    src="/About/hero/hero.svg" 
+    alt="Hero illustration" 
+    width={600}
+    height={400}
+    className='w-full h-full object-cover '
+    priority
+  />
+</div>
 
-
-      <div className="container h-full md:mx-auto mx-14 px-4 sm:px-6 lg:px-8 py-25 relative z-10  bg-[#0000004D] backdrop-blur-xs  border border-white/20 rounded-xl p-6 shadow-lg">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mb-10">
         <div className="max-w-5xl mx-auto text-center">
 
           <motion.h1
@@ -33,7 +36,7 @@ export default function Hero() {
               
             }}
           >
-            {hero.title}
+         Custom Software Development
           </motion.h1>
 
           <motion.p
@@ -43,8 +46,7 @@ export default function Hero() {
             transition={{ delay: 0.2 }}
             className="text-white font-normal font-inter  text-base sm:text-xl max-w-5xl   mb-10 leading-relaxed  md:pt-6 tracking-[0.03em] "
           >
-            {hero.description}
-          </motion.p>
+We build custom software tailored to your business needs, helping automate workflows, improve efficiency, enhance security, and support long-term scalability without unnecessary complexity.</motion.p>
 
           <motion.div
             initial="hidden"
@@ -60,7 +62,7 @@ export default function Hero() {
                 border:'1px solid #B8B8B833'
               }}
             >
-              <p className='p-0 m-0' > <span className='text-[#CECECE]'>Home</span>  <ChevronRightIcon width={7} height={11} color="#CECECE" className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-0.5" /> {hero.breadcrumbCurrent}</p>
+              <p className='p-0 m-0' > <span className='text-[#CECECE]'><a href='/' >Home</a></span>  <ChevronRightIcon width={7} height={11} color="#CECECE" className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-0.5" />  Custom Software Development</p>
             </motion.a>
           </motion.div>
         </div>

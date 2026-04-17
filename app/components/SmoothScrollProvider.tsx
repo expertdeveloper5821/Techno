@@ -14,14 +14,18 @@ export default function SmoothScrollProvider({ children }: SmoothScrollProviderP
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
-    const reduceMotion =
-      typeof window !== 'undefined' &&
-      window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    if (typeof window === 'undefined') return;
 
-    if (reduceMotion) return;
+    const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    const coarsePointer = window.matchMedia?.('(pointer: coarse)').matches;
+    const isSmallScreen = window.innerWidth < 1024;
+
+    // Avoid running a global RAF-based smooth scrolling loop on touch devices
+    // and smaller screens where it tends to add more cost than value.
+    if (reduceMotion || coarsePointer || isSmallScreen) return;
 
     const lenis = new Lenis({
-      duration: 2.05,
+      duration: 1.1,
       smoothWheel: true,
       wheelMultiplier: 0.9,
       touchMultiplier: 1.0,

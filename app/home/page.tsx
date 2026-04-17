@@ -24,7 +24,6 @@ const FAQ = dynamic(() => import('../components/Home-com/FAQ/FAQ'), {
 const Contact = dynamic(() => import('../components/Home-com/Contact/Contact'), {
   loading: () => <div className="h-[600px] bg-[#e5e5e5]" />,
 });
-import ContactPopupLoader from '../components/Home-com/Contact/ContactPopupLoader';
 import Hero from '../components/Home-com/Hero/Hero';
 
 
@@ -41,10 +40,8 @@ function Homeland() {
       <Partners />
       <FAQ />
       <Contact />
-      <ContactPopupLoader />
 
     </>
   )
 }
-
 export default Homeland

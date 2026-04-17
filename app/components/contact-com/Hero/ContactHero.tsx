@@ -99,9 +99,9 @@ export default function ContactHero() {
   };
 
   return (
-    
+    <>
     <section
-      className="relative overflow-hidden  pt-40 pb-10 sm:pt-58 sm:pb-40  bg-black  text-white  bg-cover bg-center bg-no-repeat"
+      className="relative overflow-hidden    bg-black  text-white  bg-cover bg-center bg-no-repeat"
       style={{ backgroundImage: "url('/contact/contact-hero.png')" }}
     >
       <div
@@ -113,7 +113,7 @@ export default function ContactHero() {
         <div className="absolute left-1/2 top-1/3 h-[280px] w-[280px] -translate-x-1/2 rounded-full bg-[#0ea5e9]/15 blur-[80px]" />
       </div>
 
-      <div className="relative z-10 mx-auto w-full   px-4 sm:px-6 lg:px-6">
+      <div className="relative z-10 mx-auto w-full   px-4 sm:px-6 lg:px-6 pt-40  sm:pt-58  ">
         <div className="overflow-hidden rounded-xl border border-white/20 bg-transparent shadow-[0_0_0_1px_rgba(255,255,255,0.06)]">
           <div className="grid lg:grid-cols-2 rounded-l-xl">
             {/* Left */}
@@ -329,6 +329,16 @@ export default function ContactHero() {
           </div>
         </div>
       </div>
+      <div
+        className="w-full h-[150px]"
+        style={{
+          background:
+            "linear-gradient(355.64deg, #000000 10.61%, rgba(0, 0, 0, 0) 96.69%)",
+        }}
+      />
     </section>
+          
+          </>
+
   );
 }

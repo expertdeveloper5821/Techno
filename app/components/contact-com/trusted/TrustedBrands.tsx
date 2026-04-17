@@ -49,8 +49,7 @@ const BrandCard = memo(function BrandCard({ brand }: { brand: Brand }) {
 });
 
 export default function TrustedBrands() {
-  const topSwiperRef = useRef<SwiperType | null>(null);
-  const bottomSwiperRef = useRef<SwiperType | null>(null);
+  const swiperRef = useRef<SwiperType | null>(null);
   const shouldReduceMotion = useReducedMotion();
 
   const restartIfStopped = (swiper: SwiperType | null) => {
@@ -89,15 +88,15 @@ export default function TrustedBrands() {
 
       <div className="flex flex-col gap-3 w-full mx-auto px-4 sm:px-6 lg:px-6">
         <div className="w-full">
-          <Swiper
+        <Swiper
             modules={[Autoplay, FreeMode]}
             onSwiper={(swiper) => {
-              topSwiperRef.current = swiper;
+              swiperRef.current = swiper;
             }}
-            onMouseLeave={() => restartIfStopped(topSwiperRef.current)}
-            onTouchEnd={() => restartIfStopped(topSwiperRef.current)}
+            onMouseLeave={() => restartIfStopped(swiperRef.current)}
+            onTouchEnd={() => restartIfStopped(swiperRef.current)}
             spaceBetween={14}
-            slidesPerView={4}
+            slidesPerView="auto"
             loop={true}
             speed={4500}
             freeMode={{
@@ -107,7 +106,6 @@ export default function TrustedBrands() {
             autoplay={shouldReduceMotion ? false : {
               delay: 0,
               disableOnInteraction: false,
-              reverseDirection: true,
               pauseOnMouseEnter: false,
             }}
             allowTouchMove={true}
@@ -125,10 +123,10 @@ export default function TrustedBrands() {
           <Swiper
             modules={[Autoplay, FreeMode]}
             onSwiper={(swiper) => {
-              bottomSwiperRef.current = swiper;
+              swiperRef.current = swiper;
             }}
-            onMouseLeave={() => restartIfStopped(bottomSwiperRef.current)}
-            onTouchEnd={() => restartIfStopped(bottomSwiperRef.current)}
+            onMouseLeave={() => restartIfStopped(swiperRef.current)}
+            onTouchEnd={() => restartIfStopped(swiperRef.current)}
             spaceBetween={14}
             slidesPerView="auto"
             loop={true}

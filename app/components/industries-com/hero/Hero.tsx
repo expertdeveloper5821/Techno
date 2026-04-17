@@ -25,7 +25,7 @@ export default function Hero() {
 </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mb-10">
-        <div className="max-w-5xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto text-center">
 
           <motion.h1
             initial="hidden"
@@ -62,7 +62,7 @@ We help e-commerce businesses build faster, smarter, and more reliable platforms
                 border:'1px solid #B8B8B833'
               }}
             >
-              <p className='p-0 m-0' > <span className='text-[#CECECE]  '><a href='/' >Home</a></span>  <ChevronRightIcon width={7} height={11} color="#CECECE" className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-0.5" /> ecommerce</p>
+              <p className='p-0 m-0' > <span className='text-[#CECECE]'><a href='/' >Home</a></span>  <ChevronRightIcon width={7} height={11} color="#CECECE" className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-0.5" />  About us</p>
             </motion.a>
           </motion.div>
         </div>

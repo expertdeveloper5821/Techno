@@ -11,6 +11,7 @@ import { motion, AnimatePresence, easeOut } from 'framer-motion';
 import Image from 'next/image';
 import Navigation from './Navigation';
 import ChevronRightIconImport from '@/app/lib/icon/chevron-right-icon';
+import { openContactPopup } from '@/app/lib/contact-popup';
 
 type IconProps = React.SVGProps<SVGSVGElement> & {
   width?: number;
@@ -199,7 +200,7 @@ export default function Header() {
         >
           {/* the normal deskto view header and navbar */}
           <div className='flex w-full justify-between ' >
-            <a href="#" className="flex items-center">
+            <a href="/" className="flex items-center">
               <Image
                 src="/tg-logo.png"
                 alt="Technogetic Logo"
@@ -247,8 +248,9 @@ export default function Header() {
 
                   className={`hidden xl:block pr-2 transition-all duration-500 ease-in-out ${compact ? 'block' : 'none'} `}
                 >
-                  <motion.a
-                    href="#contact"
+                  <motion.button
+                    type="button"
+                    onClick={openContactPopup}
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.98 }}
                     className="group inline-flex items-center justify-center gap-1.5 bg-[#0099DD] text-white px-8 py-3.5 rounded-full font-semibold text-base hover:bg-[#0088c4] transition-colors shadow-md"
@@ -260,7 +262,7 @@ export default function Header() {
                       color="#fff"
                       className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-0.5"
                     />
-                  </motion.a>
+                  </motion.button>
                 </motion.div>
               )}
             </AnimatePresence>

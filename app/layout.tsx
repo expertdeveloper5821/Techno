@@ -4,6 +4,7 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import Header from "./components/Header/Header";
+import ContactPopupLoader from "./components/Home-com/Contact/ContactPopupLoader";
 import SmoothScrollProvider from "./components/SmoothScrollProvider";
 
 import Footer from "./components/Home-com/Footer/Footer";
@@ -84,6 +85,7 @@ export default function RootLayout({
           <div className="sm:relative  ">
             <Header />
           </div>
+          <ContactPopupLoader />
           {children}
           <Analytics />
           <SpeedInsights />

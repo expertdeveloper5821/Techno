@@ -29,32 +29,13 @@ export default function Products() {
               variants={fadeInUp}
               className="lg:mb-10 md:mb-5 mb-5"
             >
-              <p className='text-[22px] font-semibold mb-2 leading-[36px] '>Why Choose Technogetic</p>
+                
+              <p className='text-[22px] font-semibold mb-2 leading-[36px] '>Key Features</p>
               <h2 className=" font-inter text-[25px] sm:text-xl md:text-4xl lg:text-[44px] font-semibold lg:leading-tight md:leading-[50px] leading-[32px] tracking-tight mb-0 sm:mb-6">
-              Scalable Solutions for Modern Businesses
+              Built to Support Real Business Operations
               </h2>
-              <p className='text-lg font-normal leading-[28px]'>Technogetic partners with businesses to deliver reliable, scalable digital solutions through innovation, clear communication, modern technology, and a strong focus on long-term growth.</p>
+              <p className='text-lg font-normal leading-[28px]'>We create software solutions that are reliable, scalable, and easy to use, helping businesses improve efficiency, reduce complexity, and manage operations smoothly.</p>
             </motion.div>
-
-            {/* <motion.div
-              initial="hidden "
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeInUp}
-              transition={{ delay: 0 }}
-              className="relative w-full rounded-2xl  border border-white/10 shadow-2xl bg-white hidden lg:block "
-            >
-              <Image
-                key={activeProduct.id}
-                src={activeProduct.image}
-                alt={activeProduct.title}
-                width={800}
-                height={600}
-                className="w-full h-auto object-cover object-top transition-opacity duration-300 rounded-2xl"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                loading="lazy"
-              />
-            </motion.div> */}
           </div>
 
           {/* --- Right Column: FLOWING LIST --- */}

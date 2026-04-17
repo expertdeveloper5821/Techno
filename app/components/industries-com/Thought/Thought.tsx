@@ -15,7 +15,7 @@ function Thought() {
                                 boxShadow: '60px 0px 40px 0px #060606',
                             }
                         }>
-                            <h2 className="mb-4 text-xl md:text-2xl font-medium   md:leading-[50px] leading-[30px] md:text-4xl  lg:text-[38px] text-[#F5F5F5] tracking-[1%]">
+                            <h2 className="mb-4 text-xl font-medium leading-[30px] md:text-4xl md:leading-[50px] lg:text-[38px] text-[#F5F5F5] tracking-[1%]">
                                 Starting From Scratch or Rethinking Your Software?
                             </h2>
 
@@ -31,13 +31,14 @@ function Thought() {
                             </a>
                         </div>
                         {/* Right Image */}
-                        <div className="relative w-8/10 xl:w-6/10 md:h-[450px] md:mt-20 xl:mt-0  ">
+                        <div className="relative w-8/10 xl:w-6/10 xl:h-[480px] md:mt-20 xl:mt-0  ">
                             <Image
                                 src="/industries/men.png" // replace with your actual image path
                                 alt="Customer support representative"
                                 fill
-                                className="object-cover object-center   h-full xl:rounded-0 rounded-xl "
-                                priority
+                                className="object-cover object-center   h-full xl:rounded-none rounded-xl "
+                                loading="lazy"
+                                sizes="(max-width: 1280px) 80vw, 60vw"
                             />
                         </div>
                     </div>

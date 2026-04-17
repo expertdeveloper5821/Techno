@@ -21,6 +21,7 @@ export default function Hero() {
     height={400}
     className='w-full h-full object-cover '
     priority
+    sizes="100vw"
   />
 </div>
 
