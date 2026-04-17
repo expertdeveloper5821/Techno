@@ -94,7 +94,7 @@ export default function WhyChoose() {
   return (
     <section
 
-            className=" text-white w-full mx-auto lg:pt-24 lg:pb-24 md:pt-15 md:pb-15 pt-10 pb-10 bg-cover bg-center bg-no-repeat    "style={{ backgroundImage: "url('/service/background-solution.svg')" }}
+            className=" text-white w-full mx-auto lg:pt-20 lg:pb-24 md:pt-15 md:pb-15 pt-10 pb-10 bg-cover bg-center bg-no-repeat    "style={{ backgroundImage: "url('/service/background-solution.svg')" }}
         >
       
 

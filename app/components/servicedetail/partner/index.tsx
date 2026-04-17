@@ -11,7 +11,7 @@ interface AboutProjectProps {
 
 export default function AboutProject({ content }: AboutProjectProps) {
   return (
-    <section className="bg-[#000000]  text-white lg:pt-24 lg:pb-24 md:pt-15 md:pb-15 pt-10 pb-10">
+    <section className="bg-[#000000]  text-white lg:pt-20 lg:pb-24 md:pt-15 md:pb-15 pt-10 pb-10">
       <div className="mx-auto w-full px-4 sm:px-6 lg:px-8">
         <div className="grid items-center  lg:grid-cols-2 ">
           <motion.div

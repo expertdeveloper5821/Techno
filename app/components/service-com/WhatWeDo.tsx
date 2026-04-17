@@ -13,7 +13,7 @@ export default function WhatWeDo() {
     '!top-32',
   ];
   return (
-    <section className="lg:pt-24 lg:pb-24 md:pt-15 md:pb-15  pt-10 pb-10 bg-[#000000] text-white w-full mx-auto px-4 sm:px-6 lg:px-6">
+    <section className="lg:pt-20 lg:pb-24 md:pt-15 md:pb-15  pt-10 pb-10 bg-[#000000] text-white w-full mx-auto px-4 sm:px-6 lg:px-6">
       <div className=" mx-auto ">
         {/* Top heading and description */}
         <div className="  flex justify-center items-center flex-col mx-auto  mb-10 md:mb-14">

@@ -60,7 +60,7 @@ export default function TrustedBrands() {
   };
 
   return (
-    <section className="lg:py-24 md:py-15 py-10 bg-[#000000] overflow-hidden text-white">
+    <section className="lg:pt-20 pb-24 md:py-15 py-10 bg-[#000000] overflow-hidden text-white">
       <style jsx>{`
         :global(.brand-swiper .swiper-wrapper) {
           transition-timing-function: linear !important;

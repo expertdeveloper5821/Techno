@@ -56,7 +56,7 @@ export default function BlogListing() {
   return (
     <section
 
-    className="bg-[#000000] text-white w-full mx-auto lg:pt-24 lg:pb-24 md:pt-15 md:pb-15 pt-10 pb-10"
+    className="bg-[#000000] text-white w-full mx-auto lg:pt-20 lg:pb-24 md:pt-15 md:pb-15 pt-10 pb-10"
 >
       <div className="mx-auto w-full px-4 sm:px-6 lg:px-6">
         <div className="relative mx-auto mb-8 max-w-3xl md:mb-10">

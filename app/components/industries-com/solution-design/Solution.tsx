@@ -8,6 +8,8 @@ import { products } from '@/app/lib/data/products';
 import featuresData from '@/app/lib/data/about-data/feature-data';
 export default function Solution() {
   const [activeProduct, setActiveProduct] = useState(featuresData[0]);
+  const TOP_START = 24;   // first card top
+  const TOP_STEP = 24;  
   const stickyTopByIndex: Record<number, number> = {
     0: 24,
     1: 36,
@@ -50,7 +52,12 @@ export default function Solution() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeInRight}
-            className=" pb-10 space-y-20"
+            className=" pb-10 space-y-20 " style={{
+              // ✅ THIS IS THE KEY: container must be tall enough
+              // so the last card has scroll room before the section ends
+              minHeight: `${featuresData.length * 300}px`,
+              position: 'relative',
+            }}
           >
             {featuresData.map((product,index) => {
               const stickyTop = stickyTopByIndex[index] ?? 56;
@@ -77,11 +84,42 @@ export default function Solution() {
                   {product?.description}
                 </p>
                 <p className="text-black font-inter group-hover:text-white text-sm leading-relaxed transition-colors duration-300 mt-2 ">
-                  {/* <span className="font-bold">Tech Stack:</span> {product.TechStack} */}
                 </p>
               </div>
             )})}
           </motion.div>
+
+          {/* Right: stacking sticky cards — needs to be TALL enough for last card */}
+          {/* <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInRight}
+            style={{
+              // ✅ THIS IS THE KEY: container must be tall enough
+              // so the last card has scroll room before the section ends
+              minHeight: `${featuresData.length * 500}px`,
+              position: 'relative',
+            }}
+          >
+            {featuresData.map((product, index) => (
+              <div
+                key={product?.id}
+                onMouseEnter={() => setActiveProduct(product)}
+                style={{
+                  top: `${TOP_START + index * TOP_STEP}px`,  // 24, 48, 72, 96
+                  zIndex: index + 2,
+                }}
+                className="sticky flex flex-col gap-4 group p-6 bg-black border border-white/50 rounded-xl cursor-pointer transition-all duration-300"
+              >
+                <h1 className="font-medium text-[#0094DB] text-[32px]">{index + 1}</h1>
+                <h3 className="text-2xl font-semibold text-[#0094DB] group-hover:text-white transition-colors">
+                  {product?.title}
+                </h3>
+                <p className="text-white text-lg leading-7">{product?.description}</p>
+              </div>
+            ))}
+          </motion.div> */}
 
         </div>
       </div>
