@@ -1,7 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { sendContactForm } from '@/app/lib/contact-api';
+import {
+  FORM_SUBMIT_THROTTLE_MS,
+  validateContactForm,
+} from '@/app/lib/form-validation';
 import ContactFormCard from './ContactFormCard';
 
 export default function Contact() {
@@ -15,10 +19,13 @@ export default function Contact() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [formErrorMessage, setFormErrorMessage] = useState<string | undefined>(undefined);
+  const lastSubmitAtRef = useRef(0);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
+    setFormErrorMessage(undefined);
     const name = e.target.name;
     const value = e.target.type === 'checkbox' ? (e.target as HTMLInputElement).checked : e.target.value;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -26,20 +33,25 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus('idle');
 
-    if (
-      !formData.firstName ||
-      !formData.lastName ||
-      !formData.email ||
-      !formData.message ||
-      !formData.agreePrivacy
-    ) {
+    const validation = validateContactForm(formData);
+    if (!validation.ok) {
       setSubmitStatus('error');
-      setIsSubmitting(false);
+      setFormErrorMessage(validation.message);
       return;
     }
+
+    const now = Date.now();
+    if (now - lastSubmitAtRef.current < FORM_SUBMIT_THROTTLE_MS) {
+      setSubmitStatus('error');
+      setFormErrorMessage('Please wait a moment before submitting again.');
+      return;
+    }
+    lastSubmitAtRef.current = now;
+
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+    setFormErrorMessage(undefined);
 
     try {
       const result = await sendContactForm(formData);
@@ -55,9 +67,13 @@ export default function Contact() {
         });
       } else {
         setSubmitStatus('error');
+        setFormErrorMessage(
+          result.error ?? 'Something went wrong. Please try again.'
+        );
       }
     } catch {
       setSubmitStatus('error');
+      setFormErrorMessage('Something went wrong. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -74,6 +90,7 @@ export default function Contact() {
             handleSubmit={handleSubmit}
             isSubmitting={isSubmitting}
             submitStatus={submitStatus}
+            formErrorMessage={formErrorMessage}
             idPrefix="contact"
           />
         </div>

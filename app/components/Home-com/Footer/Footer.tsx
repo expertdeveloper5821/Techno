@@ -9,7 +9,12 @@ import instagramLogo from '@/app/lib/icon/instalogo.svg';
 import twitterLogo from '@/app/lib/icon/twitter.svg';
 import linkedinLogo from '@/app/lib/icon/linkdin.svg';
 import { Subscribe } from '@/app/lib/subscribe-api';
-import { useState } from 'react';
+import {
+  FORM_SUBMIT_THROTTLE_MS,
+  isValidEmail,
+} from '@/app/lib/form-validation';
+import { siteContact } from '@/app/lib/data/site-contact';
+import { useRef, useState } from 'react';
 const helpfulLinks = [
   { href: '#about', label: 'About Us' },
   { href: '#contact', label: 'Contact Us' },
@@ -29,65 +34,66 @@ const services = [
 ];
  
 const socialLinks = [
-  { name: 'Facebook', icon: facebookLogo },
-  { name: 'Twitter', icon: twitterLogo },
-  { name: 'Instagram', icon: instagramLogo },
+  { name: 'Facebook', icon: facebookLogo , link : "https://www.facebook.com/p/Technogetic-Web-Services-100071705236676/" },
+  { name: 'Twitter', icon: twitterLogo , link : "https://www.instagram.com/life_at_tg/" },
+  { name: 'Instagram', icon: instagramLogo  , link : "https://www.linkedin.com/company/technogetic/"},
   // { name: 'LinkedIn', icon: '/footer/ },
   { name: 'LinkedIn', icon: linkedinLogo },
 ];
 
 
-
-
- 
 export default function Footer() {
+  const [formData, setFormData] = useState<{ email: string }>({ email: '' });
+  const [newsletterError, setNewsletterError] = useState<string | null>(null);
+  const [isNewsletterSubmitting, setIsNewsletterSubmitting] = useState(false);
+  const lastSubmitAtRef = useRef(0);
 
-const[formData , setFormData]= useState({
-  email:""
-})
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    setNewsletterError(null);
+    const value = e.target.value;
+    setFormData({ email: value });
+  };
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setNewsletterError(null);
 
-// const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-//   e.preventDefault();
-//   if(!data){
-//     console.log("data is empty")
-//   }
-//   Subscribe(data)
-//   console.log()
-// };
-
-
-const handleChange = (
-  e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-) => {
-  const value = e.target.value;
-  setFormData({...formData,email:value})
-};
-
-// console.log(formData)
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-
-  if (!formData.email){
-    return;
-  }
-
-  try {
-    const result = await Subscribe(formData);
-    if (result.ok) {
-      setFormData({
-        email: '',
-
-      });
-    } else {
-      console.log('error');
+    if (!formData.email.trim()) {
+      setNewsletterError('Please enter your email address.');
+      return;
     }
-  } catch {
-    console.log('error');
-  } finally {
-    console.log("done");
-  }
-};
+    if (!isValidEmail(formData.email)) {
+      setNewsletterError('Please enter a valid email address.');
+      return;
+    }
+
+    const now = Date.now();
+    if (now - lastSubmitAtRef.current < FORM_SUBMIT_THROTTLE_MS) {
+      setNewsletterError('Please wait a moment before subscribing again.');
+      return;
+    }
+    lastSubmitAtRef.current = now;
+
+    setIsNewsletterSubmitting(true);
+    try {
+      const result = await Subscribe({ email: formData.email });
+      if (result.ok) {
+        setFormData({ email: '' });
+      } else {
+        setNewsletterError(
+          'We could not complete your subscription. Please try again later.'
+        );
+      }
+    } catch {
+      setNewsletterError(
+        'We could not complete your subscription. Please check your connection and try again.'
+      );
+    } finally {
+      setIsNewsletterSubmitting(false);
+    }
+  };
 
   return (
     <footer className="bg-[#090909] text-white ">
@@ -98,25 +104,35 @@ const handleSubmit = async (e: React.FormEvent) => {
         {/* Right: Let's do it + input group */}
         <div className="flex flex-col md:flex-row md:items-center gap-2 w-full md:w-auto justify-start md:justify-end">
           <span className="font-semibold text-white text-base  md:text-lg whitespace-nowrap md:mr-2">Let&apos;s do it! —</span>
-          <form className="w-full" onSubmit={handleSubmit}>
-            <div className="flex w-full bg-white rounded-full overflow-hidden shadow-md px-0.5 py-0.5">
-              <input
-                id="newsletter"
-                type="email"
-                placeholder="Enter your email Address"
-                value={formData.email}
-                onChange={handleChange}
-                className="footer-input md:flex-1 w-full px-4 py-2 text-black bg-transparent focus:outline-none rounded-full"
-                style={{borderTopRightRadius: 0, borderBottomRightRadius: 0}}
-              />
-              <button
-                type="submit"
-
-                className="bg-black text-white  text-sm sm:text-base font-semibold sm:px-8 sm:py-2 px-4 py-1.5 transition hover:bg-gray-800"
-                style={{borderTopLeftRadius: 20, borderBottomLeftRadius: 20,borderTopRightRadius: 20, borderBottomRightRadius: 20 }}
-              >
-                Subscribe
-              </button>
+          <form className="w-full" onSubmit={handleSubmit} noValidate>
+            <div className="flex flex-col gap-2">
+              <div className="flex w-full bg-white rounded-full overflow-hidden shadow-md px-0.5 py-0.5">
+                <input
+                  id="newsletter"
+                  type="email"
+                  placeholder="Enter your email Address"
+                  value={formData.email}
+                  onChange={handleChange}
+                  disabled={isNewsletterSubmitting}
+                  autoComplete="email"
+                  className="footer-input md:flex-1 w-full px-4 py-2 text-black bg-transparent focus:outline-none rounded-full disabled:opacity-60"
+                  style={{borderTopRightRadius: 0, borderBottomRightRadius: 0}}
+                />
+                <button
+                  type="submit"
+                  disabled={isNewsletterSubmitting}
+                  aria-busy={isNewsletterSubmitting}
+                  className="bg-black text-white  text-sm sm:text-base font-semibold sm:px-8 sm:py-2 px-4 py-1.5 transition hover:bg-gray-800 disabled:opacity-70 disabled:cursor-not-allowed"
+                  style={{borderTopLeftRadius: 20, borderBottomLeftRadius: 20,borderTopRightRadius: 20, borderBottomRightRadius: 20 }}
+                >
+                  {isNewsletterSubmitting ? 'Subscribing…' : 'Subscribe'}
+                </button>
+              </div>
+              {newsletterError && (
+                <p className="text-red-300 text-sm font-medium px-1" role="alert">
+                  {newsletterError}
+                </p>
+              )}
             </div>
           </form>
         </div>
@@ -160,13 +176,13 @@ const handleSubmit = async (e: React.FormEvent) => {
                             <div className="shrink-0">
                   <Image src="/Home/footer/location.webp" alt="Location" width={20} height={20} sizes="20px" loading="lazy" />
                 </div>
-            <span className="space-y-2 text-base font-inter text-[#D1D5DB]">1<sup>st</sup> floor, Nexa Square, C-209/B, Phase 8B, Sec 74, Mohali, Punjab.</span>
+            <span className="space-y-2 text-base font-inter text-[#D1D5DB]">{siteContact.address}</span>
           </div>
           <div className="flex items-center gap-2 mb-4">
                             <div className="shrink-0">
                   <Image src="/Home/footer/mail.webp" alt="Email" width={20} height={20} sizes="20px" loading="lazy" />
                 </div>
-            <a href="mailto:info@technogetic.com" className="space-y-2 text-base font-inter text-[#D1D5DB]">info@technogetic.com</a>
+            <a href={`mailto:${siteContact.email}`} className="space-y-2 text-base font-inter text-[#D1D5DB]">{siteContact.email}</a>
           </div>
           <div>
             <span className="font-bold text-base font-Roboto text-[#ffffff]">Follow us</span>
@@ -193,4 +209,3 @@ const handleSubmit = async (e: React.FormEvent) => {
     </footer>
   );
 }
- 

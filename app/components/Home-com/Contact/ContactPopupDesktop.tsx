@@ -1,7 +1,11 @@
 'use client';
 
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { sendContactForm } from '@/app/lib/contact-api';
+import {
+  FORM_SUBMIT_THROTTLE_MS,
+  validateContactForm,
+} from '@/app/lib/form-validation';
 import ContactFormCard from './ContactFormCard';
 
 const STORAGE_KEY = 'technogetic_contact_popup_shown';
@@ -18,16 +22,11 @@ export default function ContactPopupDesktop() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [formErrorMessage, setFormErrorMessage] = useState<string | undefined>(undefined);
+  const lastSubmitAtRef = useRef(0);
 
   const closePopup = useCallback(() => {
     setIsOpen(false);
-    if (typeof window !== 'undefined') {
-      try {
-        sessionStorage.setItem(STORAGE_KEY, 'true');
-      } catch {
-        // ignore
-      }
-    }
   }, []);
 
   useEffect(() => {
@@ -42,6 +41,7 @@ export default function ContactPopupDesktop() {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
+    setFormErrorMessage(undefined);
     const name = e.target.name;
     const value = e.target.type === 'checkbox' ? (e.target as HTMLInputElement).checked : e.target.value;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -49,20 +49,25 @@ export default function ContactPopupDesktop() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus('idle');
 
-    if (
-      !formData.firstName ||
-      !formData.lastName ||
-      !formData.email ||
-      !formData.message ||
-      !formData.agreePrivacy
-    ) {
+    const validation = validateContactForm(formData);
+    if (!validation.ok) {
       setSubmitStatus('error');
-      setIsSubmitting(false);
+      setFormErrorMessage(validation.message);
       return;
     }
+
+    const now = Date.now();
+    if (now - lastSubmitAtRef.current < FORM_SUBMIT_THROTTLE_MS) {
+      setSubmitStatus('error');
+      setFormErrorMessage('Please wait a moment before submitting again.');
+      return;
+    }
+    lastSubmitAtRef.current = now;
+
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+    setFormErrorMessage(undefined);
 
     try {
       const result = await sendContactForm(formData);
@@ -79,9 +84,13 @@ export default function ContactPopupDesktop() {
         setTimeout(closePopup, 1500);
       } else {
         setSubmitStatus('error');
+        setFormErrorMessage(
+          result.error ?? 'Something went wrong. Please try again.'
+        );
       }
     } catch {
       setSubmitStatus('error');
+      setFormErrorMessage('Something went wrong. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -109,6 +118,7 @@ export default function ContactPopupDesktop() {
           handleSubmit={handleSubmit}
           isSubmitting={isSubmitting}
           submitStatus={submitStatus}
+          formErrorMessage={formErrorMessage}
           onClose={closePopup}
           idPrefix="desktop-popup"
         />

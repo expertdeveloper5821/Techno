@@ -224,7 +224,7 @@ export default function ServicesCarousel() {
             </button>
             <button
               type="button"
-              aria-label="Previous slide"
+              aria-label="Next slide"
               onClick={() => swiperRef.current?.slideNext()}
               className="sm:w-12 sm:h-12 w-6 h-6 rounded-full [perspective:1000px] text-white flex items-center justify-center hover:bg-white/10 hover:border-white transition-colors"
             >

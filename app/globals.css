@@ -21,6 +21,7 @@
 }
 
 @theme inline {
+  --grid-cols-custom: 1fr 3fr;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary-blue: var(--primary-blue);
