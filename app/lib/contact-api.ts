@@ -1,10 +1,36 @@
 /**
  * Sends contact form data to the Supabase Edge Function.
- * Optional: set NEXT_PUBLIC_SUPABASE_ANON_KEY in .env.local if the function requires auth.
+ * Set NEXT_PUBLIC_CONTACT_ENDPOINT and optionally NEXT_PUBLIC_SUPABASE_ANON_KEY in .env.local.
  */
 
-const SEND_QUERY_EMAILS_URL =
-  'https://wcpvzrdsljdjjzxgbidv.supabase.co/functions/v1/send-query-emails';
+function getContactEndpoint(): string {
+  return (
+    (typeof process !== 'undefined' && process.env?.NEXT_PUBLIC_CONTACT_ENDPOINT?.trim()) || ''
+  );
+}
+
+let warnedMissingEndpoint = false;
+let warnedMissingAnonKey = false;
+
+function warnProductionConfig(): void {
+  if (typeof process === 'undefined' || process.env.NODE_ENV !== 'production') {
+    return;
+  }
+  const endpoint = getContactEndpoint();
+  if (!endpoint && !warnedMissingEndpoint) {
+    warnedMissingEndpoint = true;
+    console.warn(
+      '[contact-api] NEXT_PUBLIC_CONTACT_ENDPOINT is not set. Contact form submissions will fail.'
+    );
+  }
+  const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  if (!anon && !warnedMissingAnonKey) {
+    warnedMissingAnonKey = true;
+    console.warn(
+      '[contact-api] NEXT_PUBLIC_SUPABASE_ANON_KEY is not set. If your Edge Function requires auth, requests may fail.'
+    );
+  }
+}
 
 export interface ContactFormPayload {
   firstName: string;
@@ -23,6 +49,16 @@ export interface SendContactResponse {
 export async function sendContactForm(
   payload: ContactFormPayload
 ): Promise<SendContactResponse> {
+  warnProductionConfig();
+
+  const url = getContactEndpoint();
+  if (!url) {
+    return {
+      ok: false,
+      error: 'Contact form is not configured. Please try again later.',
+    };
+  }
+
   const body = {
     first_name: payload.firstName.trim(),
     last_name: payload.lastName.trim(),
@@ -32,19 +68,18 @@ export async function sendContactForm(
     privacy_policy_agreed: payload.agreePrivacy,
   };
 
-  const headers: HeadersInit = {
+  const headers: Record<string, string> = {
     'Content-Type': 'application/json',
   };
 
   const anonKey =
-    typeof process !== 'undefined' &&
-    process.env?.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    typeof process !== 'undefined' && process.env?.NEXT_PUBLIC_SUPABASE_ANON_KEY;
   if (anonKey) {
-    (headers as Record<string, string>)['Authorization'] = `Bearer ${anonKey}`;
+    headers['Authorization'] = `Bearer ${anonKey}`;
   }
 
   try {
-    const res = await fetch(SEND_QUERY_EMAILS_URL, {
+    const res = await fetch(url, {
       method: 'POST',
       headers,
       body: JSON.stringify(body),

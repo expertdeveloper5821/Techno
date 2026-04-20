@@ -30,8 +30,11 @@ import Hero from '../components/Home-com/Hero/Hero';
 
 
 function Homeland() {
+ 
   return (
+
     <>
+    
     <Hero/>
       <About />
       <Services />

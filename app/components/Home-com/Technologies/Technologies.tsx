@@ -48,6 +48,7 @@ export default function Technologies() {
             allowTouchMove={true}
             className="tech-swiper"
           >
+            {/* id + index: same tech appears twice for seamless loop; index keeps keys unique */}
             {row1Extended.map((tech, index) => (
               <SwiperSlide key={`${tech.id}-${index}`} className="w-[280px]! md:w-[320px]!">
                 <TechCard tech={tech} />
@@ -73,6 +74,7 @@ export default function Technologies() {
             allowTouchMove={true}
             className="tech-swiper"
           >
+            {/* id + index: same tech appears twice for seamless loop; index keeps keys unique */}
             {row2Extended.map((tech, index) => (
               <SwiperSlide key={`${tech.id}-${index}`} className="w-[280px]! md:w-[320px]!">
                 <TechCard tech={tech} />
