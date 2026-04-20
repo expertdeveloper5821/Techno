@@ -29,7 +29,7 @@ const SEED: Omit<PortfolioWorkItem, "id">[] = [
     tag: "Mobile Apps",
     category: "Mobile Apps",
     description: AKASA_DESC,
-    image: "/Home/produced/Akasa Air.png",
+    image: "/Home/produced/Akasa Air.webp",
   },
   {
     title: "Blocktech Platform",
@@ -53,7 +53,7 @@ const SEED: Omit<PortfolioWorkItem, "id">[] = [
     category: "Consulting",
     description:
       "Enterprise integrations supporting compliance, performance, and data governance for global data products.",
-    image: "/Home/produced/DunBradstreetIndia.png",
+    image: "/Home/produced/DunBradstreetIndia.webp",
   },
   {
     title: "Trukky",
@@ -61,7 +61,7 @@ const SEED: Omit<PortfolioWorkItem, "id">[] = [
     category: "E-Commerce",
     description:
       "Real-time logistics marketplace connecting customers with transport providers and live booking flows.",
-    image: "/Home/produced/Trukky.png",
+    image: "/Home/produced/Trukky.webp",
   },
   {
     title: "Transporteca",
@@ -69,7 +69,7 @@ const SEED: Omit<PortfolioWorkItem, "id">[] = [
     category: "Cloud & DevOps",
     description:
       "Multi-vendor freight platform with resilient APIs, monitoring, and cloud pipelines for peak traffic.",
-    image: "/Home/produced/Transporteca .png",
+    image: "/Home/produced/Transporteca .webp",
   },
   {
     title: "Intellectyx Engagement",
@@ -77,7 +77,7 @@ const SEED: Omit<PortfolioWorkItem, "id">[] = [
     category: "Consulting",
     description:
       "Strategy and delivery for digital initiatives with measurable outcomes and stakeholder alignment.",
-    image: "/Home/services/slide1.png",
+    image: "/Home/services/slide1.webp",
   },
   {
     title: "Cloud Services Rollout",
@@ -85,7 +85,7 @@ const SEED: Omit<PortfolioWorkItem, "id">[] = [
     category: "Cloud & DevOps",
     description:
       "Migration and DevOps automation improving uptime, observability, and release cadence for client teams.",
-    image: "/Home/services/cloud-computing.jpg",
+    image: "/Home/services/cloud-computing.webp",
   },
   {
     title: "Commerce Experience",
@@ -93,7 +93,7 @@ const SEED: Omit<PortfolioWorkItem, "id">[] = [
     category: "E-Commerce",
     description:
       "Conversion-focused storefront and checkout flows with performance budgets and analytics integration.",
-    image: "/Home/services/slide2.png",
+    image: "/Home/services/slide2.webp",
   },
   {
     title: "Commerce Experience",
@@ -101,7 +101,7 @@ const SEED: Omit<PortfolioWorkItem, "id">[] = [
     category: "E-Commerce",
     description:
       "Conversion-focused storefront and checkout flows with performance budgets and analytics integration.",
-    image: "/Home/services/slide2.png",
+    image: "/Home/services/slide2.webp",
   },
   {
     title: "Commerce Experience",
@@ -109,7 +109,7 @@ const SEED: Omit<PortfolioWorkItem, "id">[] = [
     category: "E-Commerce",
     description:
       "Conversion-focused storefront and checkout flows with performance budgets and analytics integration.",
-    image: "/Home/services/slide2.png",
+    image: "/Home/services/slide2.webp",
   },
   {
     title: "Commerce Experience",
@@ -117,7 +117,7 @@ const SEED: Omit<PortfolioWorkItem, "id">[] = [
     category: "E-Commerce",
     description:
       "Conversion-focused storefront and checkout flows with performance budgets and analytics integration.",
-    image: "/Home/services/slide2.png",
+    image: "/Home/services/slide2.webp",
   },
   {
     title: "Commerce Experience",
@@ -125,7 +125,7 @@ const SEED: Omit<PortfolioWorkItem, "id">[] = [
     category: "E-Commerce",
     description:
       "Conversion-focused storefront and checkout flows with performance budgets and analytics integration.",
-    image: "/Home/services/slide2.png",
+    image: "/Home/services/slide2.webp",
   },
   {
     title: "Commerce Experience",
@@ -133,7 +133,7 @@ const SEED: Omit<PortfolioWorkItem, "id">[] = [
     category: "E-Commerce",
     description:
       "Conversion-focused storefront and checkout flows with performance budgets and analytics integration.",
-    image: "/Home/services/slide2.png",
+    image: "/Home/services/slide2.webp",
   },
   {
     title: "Commerce Experience",
@@ -141,7 +141,7 @@ const SEED: Omit<PortfolioWorkItem, "id">[] = [
     category: "E-Commerce",
     description:
       "Conversion-focused storefront and checkout flows with performance budgets and analytics integration.",
-    image: "/Home/services/slide2.png",
+    image: "/Home/services/slide2.webp",
   },
   {
     title: "Commerce Experience",
@@ -149,7 +149,7 @@ const SEED: Omit<PortfolioWorkItem, "id">[] = [
     category: "E-Commerce",
     description:
       "Conversion-focused storefront and checkout flows with performance budgets and analytics integration.",
-    image: "/Home/services/slide2.png",
+    image: "/Home/services/slide2.webp",
   },
   {
     title: "Commerce Experience",
@@ -157,7 +157,7 @@ const SEED: Omit<PortfolioWorkItem, "id">[] = [
     category: "E-Commerce",
     description:
       "Conversion-focused storefront and checkout flows with performance budgets and analytics integration.",
-    image: "/Home/services/slide2.png",
+    image: "/Home/services/slide2.webp",
   },
   {
     title: "Commerce Experience",
@@ -165,7 +165,7 @@ const SEED: Omit<PortfolioWorkItem, "id">[] = [
     category: "E-Commerce",
     description:
       "Conversion-focused storefront and checkout flows with performance budgets and analytics integration.",
-    image: "/Home/services/slide2.png",
+    image: "/Home/services/slide2.webp",
   },
   
 ];

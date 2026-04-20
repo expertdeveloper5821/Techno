@@ -54,7 +54,7 @@ function Contact() {
         {/* Right Image */}
         <div className="relative h-[260px] w-full max-w-[320px] md:h-[400px] md:max-w-[380px] lg:block hidden  ">
           <Image
-            src="/About/contact/contact.png" // replace with your actual image path
+            src="/About/contact/contact.webp" // replace with your actual image path
             alt="Customer support representative"
             fill
             className="object-fill pt-10 pr-10 h-full"

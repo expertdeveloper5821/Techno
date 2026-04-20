@@ -64,7 +64,7 @@ const staticbox = [
 
 export default function Landscape() {
   return (
-    <section id="about" className="lg:pt-24 lg:pb-24 md:pt-15 md:pb-15  pt-10 pb-10 bg-[#000000] text-white w-full mx-auto px-4 sm:px-6 lg:px-6">
+    <section id="about" className="lg:pt-20 lg:pb-24 md:pt-15 md:pb-15  pt-10 pb-10 bg-[#000000] text-white w-full mx-auto px-4 sm:px-6 lg:px-6">
       <div className=" ">
 
 
@@ -83,7 +83,7 @@ export default function Landscape() {
           >
             <div className="relative  w-full h-full xl:h-[585px] rounded-l-2xl overflow-hidden ">
               <img
-                src="/About/Intro/intro.png"
+                src="/About/Intro/intro.webp"
                 alt="Team working together"
                 
                 className="lg:object-cover object-contain  h-full w-full rounded-l-2xl "

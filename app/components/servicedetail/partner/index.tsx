@@ -11,7 +11,7 @@ interface AboutProjectProps {
 
 export default function AboutProject({ content }: AboutProjectProps) {
   return (
-    <section className="bg-[#000000]  text-white lg:pt-24 lg:pb-24 md:pt-15 md:pb-15 pt-10 pb-10">
+    <section className="bg-[#000000]  text-white lg:pt-20 lg:pb-24 md:pt-15 md:pb-15 pt-10 pb-10">
       <div className="mx-auto w-full px-4 sm:px-6 lg:px-8">
         <div className="grid items-center  lg:grid-cols-2 ">
           <motion.div
@@ -22,7 +22,7 @@ export default function AboutProject({ content }: AboutProjectProps) {
             className="relative overflow-hidden h-full w-full rounded-tl-xl rounded-bl-xl border border-white/10 bg-[#0a0a0a]"
           >
             <Image
-              src="/Home/about/client4.png"
+              src="/Home/about/client4.webp"
               alt={content.imageAlt}
               fill
               className="  object-cover object-top rounded-none"

@@ -25,7 +25,7 @@ const stats = [
 
 export default function About() {
   return (
-    <section id="about" className="lg:pt-24 lg:pb-24 md:pt-15 md:pb-15  pt-10 pb-10 bg-[#000000] text-white w-full mx-auto px-4 sm:px-6 lg:px-6">
+    <section id="about" className="lg:pt-20 lg:pb-24 md:pt-15 md:pb-15  pt-10 pb-10 bg-[#000000] text-white w-full mx-auto px-4 sm:px-6 lg:px-6">
       <div className=" ">
         
         {/* --- Top Row: Heading & Description --- */}
@@ -88,7 +88,7 @@ export default function About() {
                 4. Added 'w-full h-auto' to make it responsive.
              */}
              <Image
-              src="/Home/about/client4.png" 
+              src="/Home/about/client4.webp" 
               alt="Team working together"
               width={800}
               height={600}

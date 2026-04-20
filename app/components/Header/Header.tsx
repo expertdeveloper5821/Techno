@@ -128,7 +128,7 @@ export default function Header() {
         }}>
           <Link href="/" className="flex items-center">
             <Image
-              src="/tg-logo.png"
+              src="/tg-logo.webp"
               alt="Technogetic Logo"
               width={120}
               height={32}
@@ -202,7 +202,7 @@ export default function Header() {
           <div className='flex w-full justify-between ' >
             <a href="/" className="flex items-center">
               <Image
-                src="/tg-logo.png"
+                src="/tg-logo.webp"
                 alt="Technogetic Logo"
                 width={140}
                 height={40}
