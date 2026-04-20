@@ -8,7 +8,8 @@ import {
   portfolioWorkItems,
   type PortfolioCategory,
 } from "@/app/lib/data/portfolio-work";
-
+import ChevronLeftIcon from "@/app/lib/icon/chevron-left-icon";
+import ChevronRightIcon from "@/app/lib/icon/chevron-right-icon";
 export default function Work() {
   const [category, setCategory] = useState<PortfolioCategory>("All");
   const [page, setPage] = useState(1);
@@ -39,10 +40,10 @@ export default function Work() {
 
   return (
     <section
-      className="bg-[#000000] text-white lg:pb-24 md:pb-15 pb-10 lg:pt-24 md:pt-15 pt-10"
-      aria-labelledby="portfolio-work-heading"
-    >
-      <div className="mx-auto w-full max-w-[1320px] px-4 sm:px-6 lg:px-6">
+
+            className="bg-[#000000] text-white w-full mx-auto lg:pt-20 lg:pb-24 md:pt-15 md:pb-15 pt-10 pb-10"
+        >
+            <div className="flex flex-col justify-center  px-4 sm:px-6 lg:px-6">
         <div className="mx-auto mb-10 max-w-4xl text-center md:mb-14">
           <h2
             id="portfolio-work-heading"
@@ -82,7 +83,7 @@ export default function Work() {
             disabled={page <= 1}
             className="rounded-lg border border-[#3F3F3F] bg-[#141414] px-4 py-2 text-sm font-medium text-white transition enabled:hover:border-white/30 disabled:cursor-not-allowed disabled:opacity-40"
           >
-            Back
+            <ChevronLeftIcon width={7} height={11} color="#626262" className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-0.5" />  Back
           </button>
           {pageNumbers.map((n) => (
             <button
@@ -104,7 +105,7 @@ export default function Work() {
             disabled={page >= totalPages}
             className="rounded-lg border border-[#3F3F3F] bg-[#141414] px-4 py-2 text-sm font-medium text-white transition enabled:hover:border-white/30 disabled:cursor-not-allowed disabled:opacity-40"
           >
-            Next
+            Next <ChevronRightIcon width={7} height={11} color="#626262" className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-0.5" />
           </button>
         </div>
       </div>

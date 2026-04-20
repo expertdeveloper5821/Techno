@@ -8,6 +8,14 @@ import { products } from '@/app/lib/data/products';
 import featuresData from '@/app/lib/data/about-data/feature-data';
 export default function Solution() {
   const [activeProduct, setActiveProduct] = useState(featuresData[0]);
+  const TOP_START = 24;   // first card top
+  const TOP_STEP = 24;  
+  const stickyTopByIndex: Record<number, number> = {
+    0: 24,
+    1: 36,
+    2: 48,
+    3: 50,
+  };
 
   return (
     <section id="products" className="lg:py-24 md:py-15 py-10 bg-[#010101] text-white " style={{ overflow:'clip'}}>
@@ -44,14 +52,21 @@ export default function Solution() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeInRight}
-            className=" pb-10 space-y-20"
+            className=" pb-10 space-y-20 " style={{
+              // ✅ THIS IS THE KEY: container must be tall enough
+              // so the last card has scroll room before the section ends
+              minHeight: `${featuresData.length * 300}px`,
+              position: 'relative',
+            }}
           >
-            {featuresData.map((product,index) => (
+            {featuresData.map((product,index) => {
+              const stickyTop = stickyTopByIndex[index] ?? 56;
+              return (
               <div 
-                key={product.id}
+                key={product?.id}
                 onMouseEnter={() => setActiveProduct(product)}
                 className={` flex  flex-col gap-4  group p-6   bg-[#000000]  border border-white/50  transition-all duration-300 cursor-pointer rounded-xl  sticky` }   style={{
-                    top: `${(index + 2) * 16}px`,   // dynamic → inline style
+                    top: `${stickyTop}px`,
                     zIndex: index + 2,               // dynamic → inline style
                   }}
               >
@@ -61,19 +76,50 @@ export default function Solution() {
     
 
                   <h3 className="text-2xl tracking-normal leading-7 font-inter  font-semibold text-[#0094DB] group-hover:text-white transition-colors">
-                    {product.title}
+                    {product?.title}
                   </h3>
                  
                 
                 <p className="text-[#FFFFFF] font-inter text-lg leading-7 tracking-[1%] transition-colors duration-300 ">
-                  {product.description}
+                  {product?.description}
                 </p>
                 <p className="text-black font-inter group-hover:text-white text-sm leading-relaxed transition-colors duration-300 mt-2 ">
-                  {/* <span className="font-bold">Tech Stack:</span> {product.TechStack} */}
                 </p>
               </div>
-            ))}
+            )})}
           </motion.div>
+
+          {/* Right: stacking sticky cards — needs to be TALL enough for last card */}
+          {/* <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInRight}
+            style={{
+              // ✅ THIS IS THE KEY: container must be tall enough
+              // so the last card has scroll room before the section ends
+              minHeight: `${featuresData.length * 500}px`,
+              position: 'relative',
+            }}
+          >
+            {featuresData.map((product, index) => (
+              <div
+                key={product?.id}
+                onMouseEnter={() => setActiveProduct(product)}
+                style={{
+                  top: `${TOP_START + index * TOP_STEP}px`,  // 24, 48, 72, 96
+                  zIndex: index + 2,
+                }}
+                className="sticky flex flex-col gap-4 group p-6 bg-black border border-white/50 rounded-xl cursor-pointer transition-all duration-300"
+              >
+                <h1 className="font-medium text-[#0094DB] text-[32px]">{index + 1}</h1>
+                <h3 className="text-2xl font-semibold text-[#0094DB] group-hover:text-white transition-colors">
+                  {product?.title}
+                </h3>
+                <p className="text-white text-lg leading-7">{product?.description}</p>
+              </div>
+            ))}
+          </motion.div> */}
 
         </div>
       </div>

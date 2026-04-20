@@ -69,11 +69,8 @@ const CheckIcon = (props : any) => (
 function ReasonCardItem({ item }: { item: ReasonCard }) {
   return (
     <div
-      className="flex h-full flex-col rounded-[10px] border border-[#616161] bg-[#141824] p-6 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)] transition-colors hover:border-white/20 sm:p-7 md:p-8"
-      style={{
-        background:
-          'linear-gradient(145deg, rgba(30, 36, 52, 0.95) 0%, rgba(18, 22, 34, 0.98) 100%)',
-      }}
+      className="flex h-full flex-col rounded-[10px] border border-[#616161] bg-[#ffffff03] p-6 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)] transition-colors hover:border-white/20 sm:p-7 md:p-8"
+     
     >
       <div className="mb-6 flex items-start justify-between">
         <span className="font-inter text-xl font-semibold leading-5 text-[#FFFFFF] md:text-3xl">
@@ -97,7 +94,7 @@ export default function WhyChoose() {
   return (
     <section
 
-            className=" text-white w-full mx-auto lg:pt-24 lg:pb-24 md:pt-15 md:pb-15 pt-10 pb-10 bg-cover bg-center bg-no-repeat    "style={{ backgroundImage: "url('/service/background-solution.svg')" }}
+            className=" text-white w-full mx-auto lg:pt-20 lg:pb-24 md:pt-15 md:pb-15 pt-10 pb-10 bg-cover bg-center bg-no-repeat    "style={{ backgroundImage: "url('/service/background-solution.svg')" }}
         >
       
 

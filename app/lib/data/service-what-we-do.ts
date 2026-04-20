@@ -28,13 +28,13 @@ export const whatWeDoData: WhatWeDoSectionData = {
     'We provide end-to-end consulting, marketing, and technology services that help businesses plan smarter, grow faster, and build scalable digital solutions. Our integrated approach ensures every strategy, campaign, and product aligns seamlessly with long-term business goals and measurable outcomes.',
   cards: [
     {
-      imageSrc: '/service/whatwedo/card1.png',
+      imageSrc: '/service/whatwedo/card1.webp',
       imageAlt: 'Consulting services',
       icon: '/service/whatwedo/icon1.svg',
       title: 'Consulting Services',
       description:
         'Our consulting services help businesses make informed decisions, reduce risks, and plan technology initiatives effectively.',
-      buttonLabel: 'Explore Services',
+      buttonLabel: 'Talk to us ',
       servicesColumns: [
         {
           items: [
@@ -56,13 +56,13 @@ export const whatWeDoData: WhatWeDoSectionData = {
     },
     // Second Card: Marketing Services (From Image 1)
     {
-      imageSrc: '/service/whatwedo/card2.png',
+      imageSrc: '/service/whatwedo/card2.webp',
       imageAlt: 'Marketing Services',
       icon: '/service/whatwedo/icon2.svg',
       title: 'Marketing Services',
       description:
         'Our consulting services help businesses make informed decisions, reduce risks, and plan technology initiatives effectively.',
-      buttonLabel: 'Explore Services',
+      buttonLabel: 'Talk to us ',
       servicesColumns: [
         {
           items: [
@@ -84,13 +84,13 @@ export const whatWeDoData: WhatWeDoSectionData = {
     },
     // Third Card: IT Solutions Services (From Image 2)
     {
-      imageSrc: '/service/whatwedo/card3.png',
+      imageSrc: '/service/whatwedo/card3.webp',
       imageAlt: 'IT Solutions Services',
       icon: '/service/whatwedo/icon3.svg',
       title: 'IT Solutions Services',
       description:
         'Our consulting services help businesses make informed decisions, reduce risks, and plan technology initiatives effectively.',
-      buttonLabel: 'Explore Services',
+      buttonLabel: 'Talk to us ',
       servicesColumns: [
         {
           items: [

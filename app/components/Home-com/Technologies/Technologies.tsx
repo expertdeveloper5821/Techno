@@ -1,17 +1,20 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useReducedMotion } from 'framer-motion';
 import { fadeInUp } from '@/app/lib/animations';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import TechCard from './TechCard';
 import { technologiesRow1, technologiesRow2 } from '@/app/lib/data/technologies';
 
-// Duplicate data to ensure seamless looping on wide screens
-const row1Extended = [...technologiesRow1, ...technologiesRow1, ...technologiesRow1];
-const row2Extended = [...technologiesRow2, ...technologiesRow2, ...technologiesRow2];
+// Duplicate data twice for smooth looping without excess DOM nodes.
+const row1Extended = [...technologiesRow1, ...technologiesRow1];
+const row2Extended = [...technologiesRow2, ...technologiesRow2];
 
 export default function Technologies() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section className="lg:py-24 md:py-15 py-10 bg-[#000000] overflow-hidden">
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-6 md:mb-16 mb-5">
@@ -36,8 +39,8 @@ export default function Technologies() {
             spaceBetween={14}
             slidesPerView="auto"
             loop={true}
-            speed={5000} // Smooth continuous scroll speed
-            autoplay={{
+            speed={4500}
+            autoplay={shouldReduceMotion ? false : {
               delay: 0,
               disableOnInteraction: false,
               pauseOnMouseEnter: true,
@@ -60,11 +63,11 @@ export default function Technologies() {
             spaceBetween={14}
             slidesPerView="auto"
             loop={true}
-            speed={5000}
-            autoplay={{
+            speed={4500}
+            autoplay={shouldReduceMotion ? false : {
               delay: 0,
               disableOnInteraction: false,
-              reverseDirection: true, // Scroll in opposite direction
+              reverseDirection: true,
               pauseOnMouseEnter: true,
             }}
             allowTouchMove={true}

@@ -9,6 +9,13 @@ interface JobOpening {
   description: string;
 }
 
+
+ const  stickytop = {
+  0: 24,
+  1: 36,
+  2: 48,
+  3: 50,
+ }
 const openings: JobOpening[] = [
   {
     title: "Backend Developer",
@@ -64,10 +71,10 @@ export default function Opportunities() {
           {openings.map((opening , index ) => (
             <article
             key={opening.title}
-            className="rounded-[12px] bg-[#027EBA] px-5 py-8 sm:px-8 lg:px-10 sticky"
+            className="rounded-[12px] bg-[#027EBA] px-5 py-8 sm:px-8 lg:px-10  sticky "
             style={{
-              zIndex: index * 2,
-              top: `${index * 5}px`,
+                zIndex: index * 2,
+                top: `${stickytop[index as keyof typeof stickytop]}px`,
               borderTop: '1px solid #5D5D5D',
               borderBottom: '1px solid #5D5D5D',
             }}

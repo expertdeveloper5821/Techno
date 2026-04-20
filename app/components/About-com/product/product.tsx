@@ -67,7 +67,7 @@ export default function Products() {
           >
             {featuresData.map((product) => (
               <div 
-                key={product.id}
+                key={product?.id}
                 onMouseEnter={() => setActiveProduct(product)}
                 className="group p-6 mb-4  bg-[#ffff] border-b border-white/50 hover:bg-[#000] transition-all duration-300 cursor-pointer rounded-xl "
               >
@@ -97,12 +97,12 @@ export default function Products() {
   </svg>
 </span>
                   <h3 className="text-xl font-inter font-semibold text-black group-hover:text-white transition-colors">
-                    {product.title}
+                    {product?.title}
                   </h3>
                  
                 </div>
                 <p className="text-[#595959] font-inter group-hover:text-white text-base leading-relaxed transition-colors duration-300 px-9">
-                  {product.description}
+                  {product?.description}
                 </p>
                 <p className="text-black font-inter group-hover:text-white text-sm leading-relaxed transition-colors duration-300 mt-2 ">
                   {/* <span className="font-bold">Tech Stack:</span> {product.TechStack} */}

@@ -1,9 +1,9 @@
-import React from 'react';
+import type { FC, SVGProps } from 'react';
 import Image from 'next/image';
 import { whatWeDoData } from '@/app/lib/data/service-what-we-do';
 import ChevronRightIconImport from '@/app/lib/icon/chevron-right-icon';
-type IconProps = React.SVGProps<SVGSVGElement> & { width?: number; height?: number; color?: string };
-const ChevronRightIcon = ChevronRightIconImport as React.FC<IconProps>;
+type IconProps = SVGProps<SVGSVGElement> & { width?: number; height?: number; color?: string };
+const ChevronRightIcon = ChevronRightIconImport as FC<IconProps>;
 export default function WhatWeDo() {
   const { heading, description, cards } = whatWeDoData;
   const topOffsetMap = [
@@ -13,7 +13,7 @@ export default function WhatWeDo() {
     '!top-32',
   ];
   return (
-    <section className="lg:pt-24 lg:pb-24 md:pt-15 md:pb-15  pt-10 pb-10 bg-[#000000] text-white w-full mx-auto px-4 sm:px-6 lg:px-6">
+    <section className="lg:pt-20 lg:pb-24 md:pt-15 md:pb-15  pt-10 pb-10 bg-[#000000] text-white w-full mx-auto px-4 sm:px-6 lg:px-6">
       <div className=" mx-auto ">
         {/* Top heading and description */}
         <div className="  flex justify-center items-center flex-col mx-auto  mb-10 md:mb-14">
@@ -53,7 +53,14 @@ export default function WhatWeDo() {
                 <div className='flex  gap-4 '>
                   <div className="flex items-center justify-center gap-3 ">
                     <div className="   lg:w-15 lg:h-15 w-10 h-10 rounded-full flex items-center justify-center">
-                      <img src={card.icon} alt="icon " className='w-full h-full' />
+                      <Image
+                        src={card.icon}
+                        alt={`${card.title} icon`}
+                        width={60}
+                        height={60}
+                        className="w-full h-full object-contain"
+                        loading="lazy"
+                      />
                     </div>
 
                   </div>
@@ -72,7 +79,7 @@ export default function WhatWeDo() {
 
                   </div>
                 </div>
-                <div className=' lg:block hidden w-full h-[1px] text-white bg-white mt-8 '></div>
+                <div className=' lg:block hidden w-full h-px text-white bg-white mt-8 '></div>
 
                 {/* Services list */}
                 <div className="mt-4 md:mt-8">
@@ -98,7 +105,7 @@ export default function WhatWeDo() {
                     href="#services"
                     className="group shrink-0 text-lg inline-flex items-center justify-center gap-2 sm:px-8  sm:py-3.5 px-4 py-2  font-semibold text-[#000000] bg-white rounded-full hover:bg-white/95 transition-all duration-200 shadow-lg whitespace-nowrap mt-0"
                   >
-                    Explore Services <ChevronRightIcon width={7} height={11} color="#000000" className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-0.5" />
+                    Talk to us  <ChevronRightIcon width={7} height={11} color="#000000" className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-0.5" />
                   </a>
                 </div>
               </div>

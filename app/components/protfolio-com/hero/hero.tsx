@@ -1,26 +1,25 @@
 'use client';
 
-import React from 'react';
+import type { FC, SVGProps } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { fadeInUp } from '@/app/lib/animations';
-import ServiceSlider from '@/app/components/Home-com/Services/ServiceSlider'; // Import the slider
 import ChevronRightIconImport from '@/app/lib/icon/chevron-right-icon';
-type IconProps = React.SVGProps<SVGSVGElement> & { width?: number; height?: number; color?: string };
-const ChevronRightIcon = ChevronRightIconImport as React.FC<IconProps>;
+type IconProps = SVGProps<SVGSVGElement> & { width?: number; height?: number; color?: string };
+const ChevronRightIcon = ChevronRightIconImport as FC<IconProps>;
 
 export default function Hero() {
   return (
     // Removed background styles, just padding for spacing
     <section className="relative pt-40 pb-10 sm:pt-48 sm:pb-40 flex flex-col items-center justify-center overflow-hidden z-10 bg-[linear-gradient(180deg,#0094DB_0%,#036C9F_70.41%,#000000_94.02%)] ">
       
-<div className='absolute md:bottom-20 bottom-0 w-full h-auto' >
+<div className='absolute  bottom-0 md:bottom-20 w-full h-full' >
   <Image 
     src="/About/hero/hero.svg" 
     alt="Hero illustration" 
     width={600}
     height={400}
-    className='w-full h-auto object-cover '
+    className='w-full h-full object-cover '
     priority
   />
 </div>
@@ -63,7 +62,7 @@ A look at the work we’ve done for clients across consulting, marketing, and so
                 border:'1px solid #B8B8B833'
               }}
             >
-              <p className='p-0 m-0' > <span className='text-[#CECECE]'>Home</span>  <ChevronRightIcon width={7} height={11} color="#CECECE" className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-0.5" />  Protfolio</p>
+              <p className='p-0 m-0' > <span className='text-[#CECECE]'><a href='/' >Home</a></span>  <ChevronRightIcon width={7} height={11} color="#CECECE" className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-0.5" />  Protfolio</p>
             </motion.a>
           </motion.div>
         </div>

@@ -30,6 +30,11 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-inter: var(--font-inter), ui-sans-serif, sans-serif;
+
+  --background-image-dark-ocean:
+  radial-gradient(ellipse at 25% 40%, rgba(30,110,144,0.4) 0%, transparent 60%),
+  radial-gradient(ellipse at 75% 60%, rgba(13,74,106,0.3) 0%, transparent 55%),
+  linear-gradient(135deg, #0a2a3a 0%, #0d3347 40%, #050f18 100%);
 }
 
 html {

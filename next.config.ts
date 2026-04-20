@@ -4,6 +4,10 @@ const nextConfig: NextConfig = {
   compress: true,
   poweredByHeader: false,
   reactStrictMode: true,
+  turbopack: {
+    // Prevent Turbopack from scanning outside this project.
+    root: process.cwd(),
+  },
   // Optimize bundle size
   experimental: {
     optimizePackageImports: ['framer-motion', 'swiper'],
