@@ -3,12 +3,12 @@
  */
 
 export const siteContact = {
-  email: process.env.NEXT_PUBLIC_SITE_EMAIL ?? 'info@technogetic.com',
-  phoneDisplay: process.env.NEXT_PUBLIC_SITE_PHONE_DISPLAY ?? '+91-9779992829',
+  email: 'info@technogetic.com',
+  phoneDisplay:'+91-9779992829',
   /** E.164-style digits for tel: link (no spaces/dashes) */
-  phoneTel: process.env.NEXT_PUBLIC_SITE_PHONE_TEL ?? '+919779992829',
+  phoneTel:'+919779992829',
   address:
-    process.env.NEXT_PUBLIC_SITE_ADDRESS ??
+  
     '1st floor, Nexa Square, C-209/B, Phase 8B, Sec 74, Mohali, Punjab.',
 } as const;
 
