@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import FilterBar from "./FilterBar";
 import ProjectCard from "./ProjectCard";
+import Link from "next/link";
 import {
   ITEMS_PER_PAGE,
   portfolioWorkItems,
@@ -71,7 +72,9 @@ export default function Work() {
         ) : (
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
             {pageItems.map((item) => (
+              <Link href={`/projects`} key={item.id}>
               <ProjectCard key={item.id} item={item} />
+              </Link>
             ))}
           </div>
         )}
