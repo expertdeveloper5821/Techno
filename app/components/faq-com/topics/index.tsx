@@ -61,7 +61,7 @@ export default function TopicsAccordion() {
 
 
   return (
-    <section className={`relative w-full overflow-clip lg:py-24 md:py-15 py-10 ${palette.surface}`}>
+    <section className={`relative w-full overflow-clip lg:py-20 md:py-15 py-10 ${palette.surface}`}>
       <div className="mx-auto w-full  px-4 sm:px-6 lg:px-10">
       <h2 className="mb-3 text-[32px] leading-[40px] font-medium tracking-[1%] text-white">Topics</h2>
         <div className="grid gap-6 lg:grid-cols-[1fr_3fr] lg:gap-7">
@@ -82,11 +82,7 @@ export default function TopicsAccordion() {
                       }`}
                   >
                     <span className="block font-medium">{topic.title}</span>
-                    {/* {isActive ? (
-                      <span className="mt-1 block text-xl font-medium tracking-[1%] text-[#BFEAFF] sm:text-sm leading-[34px]">
-                        {topic.description}
-                      </span>
-                    ) : null} */}
+                 
                   </button>
                 );
               })}
@@ -99,7 +95,7 @@ export default function TopicsAccordion() {
                 <div className={`flex items-center gap-4 px-1 ${index === 0 ? 'hidden' : ''}`}>
                   <span className="h-px flex-1 bg-[#535353]" />
                   <h3
-                    className={`shrink-0 text-base font-medium tracking-[1%]   text-[#F5F5F5] leading-7 sm:text-lg ${
+                    className={`shrink-0 text-base  tracking-[1%]   text-[#F5F5F5] leading-7 sm:text-lg ${
                       index === 0 ? 'hidden' : ''
                     }`}
                   >

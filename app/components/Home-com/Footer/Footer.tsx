@@ -16,12 +16,12 @@ import {
 import { siteContact } from '@/app/lib/data/site-contact';
 import { useRef, useState } from 'react';
 const helpfulLinks = [
-  { href: '#about', label: 'About Us' },
-  { href: '#contact', label: 'Contact Us' },
-  { href: '#', label: 'Privacy Policy' },
-  { href: '#', label: 'Terms of Service' },
-  { href: '#faq', label: 'FAQ' },
-  { href: '#blog', label: 'Blog' },
+  { href: '/about', label: 'About Us' },
+  { href: '/contact', label: 'Contact Us' },
+  { href: '/policy', label: 'Privacy Policy' },
+  { href: '/terms', label: 'Terms of Service' },
+  { href: '/faq', label: 'FAQ' },
+  { href: '/blog', label: 'Blog' },
 ];
  
 const services = [
@@ -201,8 +201,8 @@ export default function Footer() {
       <div className="w-full bg-[#232429] border-t border-gray-800 px-6 py-4 flex flex-col md:flex-row items-center justify-between text-xs">
         <span className="space-y-2 text-base font-inter text-[#9CA3AF]">© 2026 Technogetic Inc. All rights reserved.</span>
         <div className="flex gap-6 mt-2 md:mt-0">
-          <Link href="#privacy" className="space-y-2 text-base font-inter text-[#9CA3AF]">Privacy</Link>
-          <Link href="#terms" className="space-y-2 text-base font-inter text-[#9CA3AF]">Terms</Link>
+          <Link href="/policy" className="space-y-2 text-base font-inter text-[#9CA3AF]">Privacy</Link>
+          <Link href="/terms" className="space-y-2 text-base font-inter text-[#9CA3AF]">Terms</Link>
           <Link href="#cookies" className="space-y-2 text-base font-inter text-[#9CA3AF]">Cookies</Link>
         </div>
       </div>

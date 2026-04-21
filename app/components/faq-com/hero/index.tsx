@@ -7,7 +7,7 @@ export default function Hero() {
     return (
         // Use inline backgroundImage for reliable asset resolution in all builds.
         <section
-            className="relative pb-10  pt-48  sm:pt-64  sm:pb-40 flex flex-col items-center justify-center overflow-hidden z-10 bg-cover bg-center bg-no-repeat "
+            className="relative pb-10  pt-48  sm:pt-64  sm:pb-40 flex flex-col items-center justify-center overflow-hidden z-10 bg-cover bg-right bg-no-repeat "
             style={{ backgroundImage: "url('/faq/faqHero.webp')" }}
         >
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10  content-baseline  ">
