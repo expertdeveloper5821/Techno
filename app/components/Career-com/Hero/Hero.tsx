@@ -63,7 +63,7 @@ Join a team building scalable digital solutions that drive real impact and turn 
                 border:'1px solid #B8B8B833'
               }}
             >
-              <p className='p-0 m-0' > <span className='text-[#CECECE]'><a href='/' >Home</a></span>  <ChevronRightIcon width={7} height={11} color="#CECECE" className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-0.5" />Career</p>
+              <p className='p-0 m-0' > <span className='text-[#CECECE]'><a href='/' >Home</a></span>  <ChevronRightIcon width={7} height={11} color="#CECECE" className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-0.5" /> Career</p>
             </motion.a>
           </motion.div>
         </div>

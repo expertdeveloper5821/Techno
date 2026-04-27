@@ -7,10 +7,10 @@ export default function Hero() {
     return (
         // Use inline backgroundImage for reliable asset resolution in all builds.
         <section
-            className="relative pb-10  pt-48  sm:pt-64  sm:pb-40 flex flex-col items-center justify-center overflow-hidden z-10 bg-cover bg-right bg-no-repeat "
+            className="relative pb-10  pt-48  sm:pt-64  sm:pb-40 flex flex-col xl:items-center justify-center overflow-hidden z-10 bg-cover xl:bg-right bg-center bg-no-repeat "
             style={{ backgroundImage: "url('/faq/faqHero.webp')" }}
         >
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10  content-baseline  ">
+            <div className="container xl:mx-auto px-4 sm:px-6 lg:px-8 relative z-10  content-baseline  ">
                 <div className='max-w-lg' >
                 <motion.h1 initial="hidden"
                     animate="visible"
@@ -28,7 +28,7 @@ export default function Hero() {
                     animate="visible"
                     variants={fadeInUp}
                     transition={{ delay: 0.2 }}
-                    className="text-white font-normal font-inter  text-base sm:text-xl max-w-5xl   mb-10 leading-relaxed  md:pt-6 tracking-[0.03em] "
+                    className="text-white font-normal font-inter  text-base sm:text-xl max-w-lg mb-10 leading-relaxed  md:pt-6 tracking-[0.03em] "
                 >
                    Everything you need to know about working with Technogetic, all in one place.
                 </motion.p>

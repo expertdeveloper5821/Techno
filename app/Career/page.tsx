@@ -10,8 +10,8 @@ function page() {
     <>
     <Hero/>
     <WhyChoose />
-    <Life />
     <Opportunities />
+    <Life />
     <Growth />
     <Contact />
     </>

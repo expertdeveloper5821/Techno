@@ -36,9 +36,9 @@ const services = [
 const socialLinks = [
   { name: 'Facebook', icon: facebookLogo , link : "https://www.facebook.com/p/Technogetic-Web-Services-100071705236676/" },
   { name: 'Twitter', icon: twitterLogo , link : "https://www.instagram.com/life_at_tg/" },
-  { name: 'Instagram', icon: instagramLogo  , link : "https://www.linkedin.com/company/technogetic/"},
-  // { name: 'LinkedIn', icon: '/footer/ },
-  { name: 'LinkedIn', icon: linkedinLogo },
+  // { name: 'Instagram', icon: instagramLogo  , link : "https://www.linkedin.com/company/technogetic/" },
+
+  { name: 'LinkedIn', icon: linkedinLogo  , link : "https://www.linkedin.com/company/technogetic/"},
 ];
 
 
@@ -188,7 +188,7 @@ export default function Footer() {
             <span className="font-bold text-base font-Roboto text-[#ffffff]">Follow us</span>
             <div className="flex gap-3 mt-2">
               {socialLinks.map((social) => (
-                <Link key={social.name} href="#" aria-label={social.name} className="hover:text-gray-400 text-xl">
+                <Link key={social.name} href={social.link} aria-label={social.name} className="hover:text-gray-400 text-xl">
                   <Image src={social.icon} alt={social.name} width={22} height={22} />
                 </Link>
               ))}

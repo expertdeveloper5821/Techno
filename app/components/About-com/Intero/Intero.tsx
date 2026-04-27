@@ -164,7 +164,7 @@ export default function Intero() {
 
 
       {/* statics boxes  */}
-      <div className=' grid lg:grid-cols-4 grid-cols-1 lg:p-10 p-6 bg-[#111517] rounded-2xl '  >
+      <div className=' grid lg:grid-cols-4 grid-cols-1 lg:p-10 p-6 bg-[#111517] lg:rounded-2xl lg:rounded-tr-none '  >
 
         {
           staticbox.map((statics, index) => (

@@ -111,7 +111,7 @@ export default function ContactPopupDesktop() {
         className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
         aria-label="Close"
       />
-      <div className="relative w-full max-w-6xl max-h-[90vh] overflow-y-auto">
+      <div className="relative w-full max-w-6xl min-h-[90vh] ">
         <ContactFormCard
           formData={formData}
           handleChange={handleChange}

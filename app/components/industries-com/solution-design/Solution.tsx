@@ -14,7 +14,7 @@ export default function Solution() {
     0: 24,
     1: 36,
     2: 48,
-    3: 50,
+    3: 58,
   };
 
   return (
@@ -55,7 +55,7 @@ export default function Solution() {
             className=" pb-10 space-y-20 " style={{
               // ✅ THIS IS THE KEY: container must be tall enough
               // so the last card has scroll room before the section ends
-              minHeight: `${featuresData.length * 300}px`,
+              minHeight: `${featuresData.length * 280}px`,
               position: 'relative',
             }}
           >
