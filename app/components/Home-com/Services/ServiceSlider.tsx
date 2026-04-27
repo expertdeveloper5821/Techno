@@ -12,8 +12,9 @@ interface ServiceSliderProps {
   theme?: 'dark' | 'light';
 }
 
-const DETAIL_TRANSITION_MS = 450;
-const EASE_SLIDE = 'cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+ 
+const DETAIL_TRANSITION_MS = 2000;
+const EASE_SLIDE = 'linear';
 
 export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
   const isDark = theme === 'dark';
@@ -160,12 +161,12 @@ export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
 
                   {/* Sliding details panel – slides up from bottom on hover/active */}
                   <div
-                    className="absolute left-0 right-0 bottom-0 w-full flex flex-col justify-end rounded-b-[32px] overflow-hidden pointer-events-none opacity-90 bg-[linear-gradient(176.17deg,rgba(0,139,206,0)_2.91%,#018BCE_47.68%,#018BCD_89.79%)] translate-y-full group-hover:translate-y-0 group-focus-visible:translate-y-0"
-                    style={{
-                      height: '58%',
-                      transition: `transform ${DETAIL_TRANSITION_MS}ms ${EASE_SLIDE}`,
-                    }}
-                  >
+  className="absolute left-0 right-0 bottom-0 w-full flex flex-col justify-end rounded-b-[32px] overflow-hidden pointer-events-none opacity-90 bg-[linear-gradient(176.17deg,rgba(0,139,206,0)_2.91%,#018BCE_47.68%,#018BCD_89.79%)] translate-y-full group-hover:translate-y-0  "
+  style={{
+    height: '58%',
+    transition: `all 800ms cubic-bezier(0.22, 1, 0.36, 1)`
+  }}
+>
                     <div
                       className="flex flex-col gap-2 justify-end flex-1 min-h-0 p-6 md:p-8 pb-7 text-center text-white"
                       style={{
@@ -178,7 +179,7 @@ export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
                         {service.title}
                       </h3>
                       {service.description && (
-                        <p className="text-white/95 text-sm md:text-base font-normal leading-4 line-clamp-3 ">
+                        <p className="text-white/95 text-sm md:text-base font-normal leading-6 line-clamp-3 ">
                           {service.description}
                         </p>
                       )}

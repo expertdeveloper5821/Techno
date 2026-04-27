@@ -52,7 +52,7 @@ export default function Forward() {
             style={{
               // ✅ THIS IS THE KEY: container must be tall enough
               // so the last card has scroll room before the section ends
-              minHeight: `${featuresData.length * 500}px`,
+              minHeight: `${featuresData.length * 280}px`,
               position: 'relative',
             }}
           >

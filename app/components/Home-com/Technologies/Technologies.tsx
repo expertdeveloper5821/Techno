@@ -7,7 +7,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import TechCard from './TechCard';
 import { technologiesRow1, technologiesRow2 } from '@/app/lib/data/technologies';
-
+// import 'swiper/css';
 // Duplicate data twice for smooth looping without excess DOM nodes.
 const row1Extended = [...technologiesRow1, ...technologiesRow1];
 const row2Extended = [...technologiesRow2, ...technologiesRow2];
@@ -40,6 +40,8 @@ export default function Technologies() {
             slidesPerView="auto"
             loop={true}
             speed={4500}
+            observer={true}
+observeParents={true}
             autoplay={shouldReduceMotion ? false : {
               delay: 0,
               disableOnInteraction: false,

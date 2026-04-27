@@ -107,7 +107,7 @@ export default function Header() {
   return (
     <>
       {/* Mobile: simple, non-floating navbar mobile view header  */}
-      <header className="sm:hidden absolute left-0 right-0 z-50 will-change-transform  px-4 sm:px-6"
+      {/* <header className="sm:hidden absolute left-0 right-0 z-50 will-change-transform  px-4 sm:px-6"
         style={{
           paddingTop: compact ? 12 : 20,
           paddingBottom: compact ? 12 : 20,
@@ -161,14 +161,14 @@ export default function Header() {
             </motion.nav>
           )}
         </AnimatePresence>
-      </header>
+      </header> */}
 
 
 
 
       {/* Fixed wrapper: no blue strip, transparent so page (e.g. blue gradient) shows through */}
       <header
-        className=" hidden fixed left-0 right-0 z-50 will-change-transform sm:flex justify-center px-4 sm:px-6"
+        className=" fixed left-0 right-0 z-50 will-change-transform flex justify-center px-4 sm:px-6"
         style={{
           paddingTop: compact ? 12 : 20,
           paddingBottom: compact ? 12 : 20,
@@ -179,7 +179,7 @@ export default function Header() {
       >
         {/* Single bar: normal = full-width frosted, compact = centered pill */}
         <div
-          className="flex flex-col items-center justify-between rounded-2xl  w-full"
+          className="flex flex-col items-center  rounded-2xl  w-full"
           style={{
             maxWidth: compact ? 540 : '100%',
             minHeight: compact ? 48 : 56,
@@ -187,7 +187,7 @@ export default function Header() {
             paddingRight: compact ? 20 : 28,
             paddingTop: compact ? 14 : 18,
             paddingBottom: compact ? 14 : 18,
-            gap: compact ? 0 : 12,
+            gap: compact ? 0 : 0,
             backgroundColor: 'rgba(255, 255, 255, 0.75)',
             backdropFilter: 'saturate(180%) blur(14px)',
             WebkitBackdropFilter: 'saturate(180%) blur(14px)',
@@ -291,7 +291,7 @@ export default function Header() {
           {/* Mobile dropdown + when user scroll to down side on the tab then it will show on the screen */}
 
           <div
-            className={`hidden sm:block  xl:hidden  mx-auto w-full  bg-transparent z-40 overflow-hidden ${compact ? "hidden" : "block"} `}
+            className={`block  xl:hidden  mx-auto w-full  bg-transparent z-40 overflow-hidden ${compact ? "hidden" : "block"} `}
             style={{
               top: compact ? 76 : 96,
               maxHeight: menuOpen ? 700 : 0,

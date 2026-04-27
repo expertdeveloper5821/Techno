@@ -67,7 +67,7 @@ export default function Opportunities() {
           </p>
         </div>
 
-        <div className="space-y-12">
+        <div className="space-y-12 xl:h-[1400px]">
           {openings.map((opening , index ) => (
             <article
             key={opening.title}

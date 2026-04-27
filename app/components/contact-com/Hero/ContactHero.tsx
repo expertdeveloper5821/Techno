@@ -115,9 +115,9 @@ export default function ContactHero() {
 
       <div className="relative z-10 mx-auto w-full   px-4 sm:px-6 lg:px-6 pt-40  sm:pt-58  ">
         <div className="overflow-hidden rounded-xl border border-white/20 bg-transparent shadow-[0_0_0_1px_rgba(255,255,255,0.06)]">
-          <div className="grid lg:grid-cols-2 rounded-l-xl">
+          <div className="grid lg:grid-cols-2  rounded-l-xl">
             {/* Left */}
-            <div className="flex flex-col justify-center gap-8  p-8 sm:p-10 lg:p-12 bg-transparent border border-white/20  rounded-l-xl  shadow-lg">
+            <div className=" lg:order-1 order-2 flex flex-col justify-center backdrop-blur-lg gap-8  p-8 sm:p-10 lg:p-12 b bg-transparent border border-white/20  rounded-l-xl  shadow-lg">
               <div>
                 <h1 className="font-inter text-[24px] font-medium leading-[40px] tracking-[1%] text-[#FFFFFF] sm:text-3xl lg:text-[32px] lg:leading-tight">
                   Insights That Help You Build Better Systems
@@ -174,7 +174,7 @@ export default function ContactHero() {
             </div>
 
             {/* Right — form */}
-            <div className="bg-[#FFFFFFE5] p-8 text-[#111827] sm:p-10 lg:p-12">
+            <div className=" lg:order-2 order-1  bg-[#FFFFFFE5] p-8 text-[#111827] sm:p-10 lg:p-12">
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid gap-5 sm:grid-cols-2">
                   <div className="space-y-1.5">
@@ -333,7 +333,7 @@ export default function ContactHero() {
         className="w-full h-[150px]"
         style={{
           background:
-            "linear-gradient(355.64deg, #000000 10.61%, rgba(0, 0, 0, 0) 96.69%)",
+            "linear-gradient(360.64deg, #000000 10.61%, rgb(0 0 0 / 0%) 96.69%)",
         }}
       />
     </section>

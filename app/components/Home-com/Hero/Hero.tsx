@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { fadeInUp } from '@/app/lib/animations';
 import ServiceSlider from '../Services/ServiceSlider'; // Import the slider
 import ChevronRightIconImport from '@/app/lib/icon/chevron-right-icon';
-
+import SplitTextReveal from '../../SmoothScrollProvider'
 type IconProps = React.SVGProps<SVGSVGElement> & { width?: number; height?: number; color?: string };
 const ChevronRightIcon = ChevronRightIconImport as React.FC<IconProps>;
 
@@ -25,7 +25,9 @@ export default function Hero() {
               
             }}
           >
+            <SplitTextReveal>
           Solutions Built To Scale Your Business, Not Slow It Down
+          </SplitTextReveal>
           </motion.h1>
 
           <motion.p
@@ -35,7 +37,9 @@ export default function Hero() {
             transition={{ delay: 0.2 }}
             className="text-white font-normal font-inter  text-base sm:text-xl max-w-4xl mx-auto mb-10 leading-relaxed  md:pt-10 tracking-[0.03em] "
           >
-We build custom applications and provide dedicated development teams that work as your team—no vendor games, just reliable engineering.          </motion.p>
+            <SplitTextReveal>
+We build custom applications and provide dedicated development teams that work as your team—no vendor games, just reliable engineering.      
+</SplitTextReveal>    </motion.p>
 
           <motion.div
             initial="hidden"

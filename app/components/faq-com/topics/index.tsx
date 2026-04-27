@@ -65,7 +65,7 @@ export default function TopicsAccordion() {
       <div className="mx-auto w-full  px-4 sm:px-6 lg:px-10">
       <h2 className="mb-3 text-[32px] leading-[40px] font-medium tracking-[1%] text-white">Topics</h2>
         <div className="grid gap-6 lg:grid-cols-[1fr_3fr] lg:gap-7">
-          <aside className="h-fit  border rounded-[10px] border-[#FFFFFF4D] bg-[#0094DB] p-3 sm:p-4  sticky top-0">
+          <aside className="h-fit  border rounded-[10px] border-[#FFFFFF4D] bg-[#0094DB] p-3 sm:p-4  xl:sticky top-0">
             
 
             <div className="space-y-1.5">

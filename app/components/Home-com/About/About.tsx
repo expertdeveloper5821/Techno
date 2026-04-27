@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { fadeInUp, scaleIn } from '@/app/lib/animations';
 import Image from 'next/image';
-
+import SplitTextReveal from '../../SmoothScrollProvider'
 const features = [
   'Tailored IT Solutions.',
   'Future-Ready Infrastructure.',
@@ -25,22 +25,24 @@ const stats = [
 
 export default function About() {
   return (
-    <section id="about" className="lg:pt-20 lg:pb-24 md:pt-15 md:pb-15  pt-10 pb-10 bg-[#000000] text-white w-full mx-auto px-4 sm:px-6 lg:px-6">
+    <section id="about" className="lg:pt-2 lg:pb-24 md:pt-15 md:pb-15  pt-10 pb-10 bg-[#000000] text-white w-full mx-auto px-4 sm:px-6 lg:px-6">
       <div className=" ">
         
         {/* --- Top Row: Heading & Description --- */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-20 mb-5 items-start">
-          
+          <SplitTextReveal>
           {/* Left: Main Heading */}
+
           <motion.h2 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
+            // initial="hidden"
+            // whileInView="visible"
+            // viewport={{ once: true }}
+            // variants={fadeInUp}
             className="font-inter text-[25px] sm:text-xl md:text-4xl font-semibold   lg:leading-[60px] md:leading-[50px] leading-[32px] "
           >
             We deliver exceptional value through innovative, tailored solutions.
           </motion.h2>
+          </SplitTextReveal>
 
           {/* Right: Description & Checkmarks */}
           <motion.div 

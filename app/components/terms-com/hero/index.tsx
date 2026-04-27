@@ -69,7 +69,7 @@ Welcome to Technogetic. By accessing or using our website and services, you agre
         </div>
       </div>
 
-      <h2 className='font-semibold text-xl leading-8 tracking-[1%] text-[#FFFF] '>Last Updated: April 2026</h2>
+      <h2 className='font-semibold text-base leading-8 tracking-[1%] text-[#FFFF] '>Last Updated: April 2026</h2>
     </section>
   );
 }
