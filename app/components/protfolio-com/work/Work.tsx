@@ -1,50 +1,74 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import FilterBar from "./FilterBar";
 import ProjectCard from "./ProjectCard";
 import Link from "next/link";
-import {
-  ITEMS_PER_PAGE,
-  portfolioWorkItems,
-  type PortfolioCategory,
-} from "@/app/lib/data/portfolio-work";
 import ChevronLeftIcon from "@/app/lib/icon/chevron-left-icon";
 import ChevronRightIcon from "@/app/lib/icon/chevron-right-icon";
+
+export type PortfolioCategory =
+  | "All"
+  | "Consulting"
+  | "Mobile Apps"
+  | "Web Development"
+  | "Cloud & DevOps"
+  | "AI Solutions"
+  | "E-Commerce";
+
+export interface PortfolioItem {
+  _id: string;
+  title: string;
+  tag: string;
+  category: Exclude<PortfolioCategory, "All">;
+  description: string;
+  image: string;
+}
+
+const ITEMS_PER_PAGE = 9;
+
 export default function Work() {
+  const [items, setItems] = useState<PortfolioItem[]>([]);
+  const [totalPages, setTotalPages] = useState(1);
   const [category, setCategory] = useState<PortfolioCategory>("All");
   const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(true);
 
-  const filtered = useMemo(() => {
-    if (category === "All") return portfolioWorkItems;
-    return portfolioWorkItems.filter((p) => p.category === category);
-  }, [category]);
+  const fetchItems = useCallback(() => {
+    setLoading(true);
+    const params = new URLSearchParams({
+      page: String(page),
+      limit: String(ITEMS_PER_PAGE),
+    });
+    if (category !== "All") params.set("category", category);
 
-  const totalPages = Math.max(1, Math.ceil(filtered.length / ITEMS_PER_PAGE));
+    fetch(`/api/portfolio?${params}`)
+      .then((res) => res.json())
+      .then((json) => {
+        if (json.success) {
+          setItems(json.data);
+          setTotalPages(json.pagination.totalPages);
+        }
+      })
+      .catch(console.error)
+      .finally(() => setLoading(false));
+  }, [page, category]);
 
-  const pageItems = useMemo(() => {
-    const start = (page - 1) * ITEMS_PER_PAGE;
-    return filtered.slice(start, start + ITEMS_PER_PAGE);
-  }, [filtered, page]);
-
-  const pageNumbers = useMemo(() => {
-    return Array.from({ length: totalPages }, (_, i) => i + 1);
-  }, [totalPages]);
-
-  const goPrev = () => setPage((p) => Math.max(1, p - 1));
-  const goNext = () => setPage((p) => Math.min(totalPages, p + 1));
+  useEffect(() => {
+    fetchItems();
+  }, [fetchItems]);
 
   const handleCategory = (next: PortfolioCategory) => {
     setCategory(next);
     setPage(1);
   };
 
-  return (
-    <section
+  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
-            className="bg-[#000000] text-white w-full mx-auto lg:pt-20 lg:pb-24 md:pt-15 md:pb-15 pt-10 pb-10"
-        >
-            <div className="flex flex-col justify-center  px-4 sm:px-6 lg:px-6">
+  return (
+    <section className="bg-[#000000] text-white w-full mx-auto lg:pt-20 lg:pb-24 md:pt-15 md:pb-15 pt-10 pb-10">
+      <div className="flex flex-col justify-center px-4 sm:px-6 lg:px-6">
+
         <div className="mx-auto mb-10 max-w-4xl text-center md:mb-14">
           <h2
             id="portfolio-work-heading"
@@ -65,15 +89,17 @@ export default function Work() {
           <FilterBar active={category} onChange={handleCategory} />
         </div>
 
-        {pageItems.length === 0 ? (
-          <p className="py-16 text-center text-white/70">
-            No projects in this category yet.
-          </p>
+        {loading ? (
+          <div className="flex justify-center py-16">
+            <div className="w-10 h-10 border-4 border-white/20 border-t-white rounded-full animate-spin" />
+          </div>
+        ) : items.length === 0 ? (
+          <p className="py-16 text-center text-white/70">No projects in this category yet.</p>
         ) : (
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-            {pageItems.map((item) => (
-              <Link href={`/projects`} key={item.id}>
-              <ProjectCard key={item.id} item={item} />
+            {items.map((item) => (
+              <Link href="/projects" key={item._id}>
+                <ProjectCard item={item} />
               </Link>
             ))}
           </div>
@@ -82,11 +108,11 @@ export default function Work() {
         <div className="mt-10 flex flex-wrap items-center justify-end gap-2 sm:gap-3">
           <button
             type="button"
-            onClick={goPrev}
+            onClick={() => setPage((p) => Math.max(1, p - 1))}
             disabled={page <= 1}
             className="rounded-lg border border-[#3F3F3F] bg-[#141414] px-4 py-2 text-sm font-medium text-white transition enabled:hover:border-white/30 disabled:cursor-not-allowed disabled:opacity-40"
           >
-            <ChevronLeftIcon width={7} height={11} color="#626262" className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-0.5" />  Back
+            <ChevronLeftIcon width={7} height={11} color="#626262" className="inline-block" /> Back
           </button>
           {pageNumbers.map((n) => (
             <button
@@ -104,11 +130,11 @@ export default function Work() {
           ))}
           <button
             type="button"
-            onClick={goNext}
+            onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
             disabled={page >= totalPages}
             className="rounded-lg border border-[#3F3F3F] bg-[#141414] px-4 py-2 text-sm font-medium text-white transition enabled:hover:border-white/30 disabled:cursor-not-allowed disabled:opacity-40"
           >
-            Next <ChevronRightIcon width={7} height={11} color="#626262" className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-0.5" />
+            Next <ChevronRightIcon width={7} height={11} color="#626262" className="inline-block" />
           </button>
         </div>
       </div>
