@@ -4,21 +4,15 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { fadeInUp, staggerContainer } from '@/app/lib/animations';
 import Image from 'next/image';
-
-interface Partner {
-  _id: string;
-  name: string;
-  logoGray: string;
-  logoColor: string;
-}
+import { getPartners } from '@/app/services';
+import type { Partner } from '@/app/services';
 
 export default function Partners() {
   const [partners, setPartners] = useState<Partner[]>([]);
 
   useEffect(() => {
-    fetch('/api/partners')
-      .then((res) => res.json())
-      .then((json) => { if (json.success) setPartners(json.data); })
+    getPartners()
+      .then(setPartners)
       .catch(console.error);
   }, []);
 

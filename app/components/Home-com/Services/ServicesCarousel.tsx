@@ -15,12 +15,8 @@ import { fadeInUp } from '@/app/lib/animations';
 type IconProps = React.SVGProps<SVGSVGElement> & { width?: number; height?: number; color?: string };
 const ChevronRightIcon = ChevronRightIconImport as React.FC<IconProps>;
 
-interface Service {
-  _id: string;
-  title: string;
-  image: string;
-  description: string;
-}
+import { getServices } from '@/app/services';
+import type { Service } from '@/app/services';
 
 const EASE_SMOOTH = 'cubic-bezier(0.25, 0.46, 0.45, 0.94)';
 
@@ -38,9 +34,8 @@ export default function ServicesCarousel() {
   const enterTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    fetch('/api/services')
-      .then((res) => res.json())
-      .then((json) => { if (json.success) setServices(json.data); })
+    getServices()
+      .then(setServices)
       .catch(console.error);
   }, []);
 

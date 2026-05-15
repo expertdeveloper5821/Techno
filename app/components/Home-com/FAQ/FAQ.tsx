@@ -1,13 +1,8 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-
-interface FAQItem {
-  _id: string;
-  question: string;
-  answer: string;
-  meta?: string;
-}
+import { getFAQs } from '@/app/services';
+import type { FAQ as FAQItem } from '@/app/services';
 
 const INTRO_STYLE_ID = 'faq1-animations';
 
@@ -35,9 +30,8 @@ export default function FAQ() {
   const [hasEntered, setHasEntered] = useState(false);
 
   useEffect(() => {
-    fetch('/api/faqs')
-      .then((res) => res.json())
-      .then((json) => { if (json.success) setFaqs(json.data); })
+    getFAQs()
+      .then(setFaqs)
       .catch(console.error);
   }, []);
 

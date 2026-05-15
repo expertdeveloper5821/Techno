@@ -7,28 +7,19 @@ import { fadeInUp } from '@/app/lib/animations';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import TechCard from './TechCard';
-
-interface Tech {
-  _id: string;
-  name: string;
-  logo: string;
-  description: string;
-  row: number;
-}
+import { getTechnologies } from '@/app/services';
+import type { Technology } from '@/app/services';
 
 export default function Technologies() {
   const shouldReduceMotion = useReducedMotion();
-  const [row1, setRow1] = useState<Tech[]>([]);
-  const [row2, setRow2] = useState<Tech[]>([]);
+  const [row1, setRow1] = useState<Technology[]>([]);
+  const [row2, setRow2] = useState<Technology[]>([]);
 
   useEffect(() => {
-    fetch('/api/technologies')
-      .then((res) => res.json())
-      .then((json) => {
-        if (json.success) {
-          setRow1(json.data.filter((t: Tech) => t.row === 1));
-          setRow2(json.data.filter((t: Tech) => t.row === 2));
-        }
+    getTechnologies()
+      .then((data) => {
+        setRow1(data.filter((t) => t.row === 1));
+        setRow2(data.filter((t) => t.row === 2));
       })
       .catch(console.error);
   }, []);
@@ -36,10 +27,6 @@ export default function Technologies() {
   // Duplicate for seamless loop
   const row1Extended = [...row1, ...row1];
   const row2Extended = [...row2, ...row2];
-
- const app:string = 10
-
- const Number: number = app as unknown  as number;
    
   return (
     <section className="lg:py-24 md:py-15 py-10 bg-[#000000] overflow-hidden">

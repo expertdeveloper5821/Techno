@@ -3,16 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { getIndustries } from "@/app/services";
+import type { Industry } from "@/app/services";
 
 gsap.registerPlugin(ScrollTrigger);
-
-interface Industry {
-  _id: string;
-  title: string;
-  icon: string;
-  blackIcon: string;
-  description: string;
-}
 
 export default function IndustriesSection() {
   const [industries, setIndustries] = useState<Industry[]>([]);
@@ -24,11 +18,8 @@ export default function IndustriesSection() {
 
   // Fetch industries from the database
   useEffect(() => {
-    fetch("/api/industries")
-      .then((res) => res.json())
-      .then((json) => {
-        if (json.success) setIndustries(json.data);
-      })
+    getIndustries()
+      .then(setIndustries)
       .catch(console.error);
   }, []);
 

@@ -582,7 +582,7 @@ async function seed() {
     PortfolioWorkModel.deleteMany({}),
     IndustryModel.deleteMany({}),
   ]);
-  console.log("🗑️  Cleared existing collections");
+  console.log(" Cleared existing collections");
 
   await Promise.all([
     ProductModel.insertMany(products),
@@ -596,14 +596,14 @@ async function seed() {
   ]);
 
   console.log("🌱 Seeded:");
-  console.log(`   • ${products.length} products`);
-  console.log(`   • ${services.length} services`);
-  console.log(`   • ${partners.length} partners`);
-  console.log(`   • ${technologies.length} technologies`);
-  console.log(`   • ${faqs.length} FAQs`);
-  console.log(`   • ${blogPosts.length} blog posts`);
-  console.log(`   • ${portfolioWorkItems.length} portfolio items`);
-  console.log(`   • ${industries.length} industries`);
+  console.log(`• ${products.length} products`);
+  console.log(`• ${services.length} services`);
+  console.log(`• ${partners.length} partners`);
+  console.log(`• ${technologies.length} technologies`);
+  console.log(`• ${faqs.length} FAQs`);
+  console.log(`• ${blogPosts.length} blog posts`);
+  console.log(`• ${portfolioWorkItems.length} portfolio items`);
+  console.log(`• ${industries.length} industries`);
 
   await mongoose.disconnect();
   console.log("✅ Done — disconnected from MongoDB");

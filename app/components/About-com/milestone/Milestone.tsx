@@ -29,33 +29,7 @@ export default function MilestoneCelebration() {
           </p>
         </div>
 
-        {/* Swiper Slider */}
-        {/* <Swiper
-         modules={[EffectCoverflow, Autoplay]}
-        //  effect="coverflow"
-          autoplay={{ delay: 2000, disableOnInteraction: false }}
-          loop
-          spaceBetween={2}
-          slidesPerView={4}
-          breakpoints={{
-            640: { slidesPerView: 2 },
-            1024: { slidesPerView: 4 },
-          }}
-          className="w-full"
-        >
-          {milestones.map((item) => (
-            <SwiperSlide key={item.id}>
-              <div className="relative h-[260px] overflow-hidden ">
-                <Image
-                  src={item.image}
-                  alt="Milestone moment"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper> */}
+       
 
         <VisionSlider/>
        

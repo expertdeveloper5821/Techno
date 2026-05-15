@@ -6,6 +6,8 @@ import BlogCard from "./BlogCard";
 import BlogFilterBar from "./BlogFilterBar";
 import ChevronRightIcon from "@/app/lib/icon/chevron-right-icon";
 import ChevronLeftIcon from "@/app/lib/icon/chevron-left-icon";
+import { getBlogPosts } from "@/app/services";
+import type { BlogPost } from "@/app/services";
 
 export type BlogFilterCategory =
   | "All"
@@ -16,21 +18,11 @@ export type BlogFilterCategory =
   | "AI Solutions"
   | "E-Commerce";
 
-export interface BlogPost {
-  _id: string;
-  title: string;
-  excerpt: string;
-  category: Exclude<BlogFilterCategory, "All">;
-  author: string;
-  date: string;
-  image: string;
-}
-
 const ITEMS_PER_PAGE = 6;
 
 export default function BlogListing() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [total, setTotal] = useState(0);  
+  const [total, setTotal] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<BlogFilterCategory>("All");
@@ -39,29 +31,20 @@ export default function BlogListing() {
 
   const fetchPosts = useCallback(() => {
     setLoading(true);
-    const params = new URLSearchParams({
-      page: String(page),
-      limit: String(ITEMS_PER_PAGE),
-    });
-    if (category !== "All") params.set("category", category);
-
-    fetch(`/api/blog-posts?${params}`)
-      .then((res) => res.json())
-      .then((json) => {
-        if (json.success) {
-          // Client-side search filter (search is local since API doesn't support it)
-          const q = query.trim().toLowerCase();
-          const filtered = q
-            ? json.data.filter((p: BlogPost) =>
-                `${p.title} ${p.excerpt} ${p.category} ${p.author}`
-                  .toLowerCase()
-                  .includes(q)
-              )
-            : json.data;
-          setPosts(filtered);
-          setTotal(json.pagination.total);
-          setTotalPages(json.pagination.totalPages);
-        }
+    getBlogPosts({ page, limit: ITEMS_PER_PAGE, category })
+      .then(({ posts: fetched, pagination }) => {
+        // Client-side search filter (search is local since API doesn't support it)
+        const q = query.trim().toLowerCase();
+        const filtered = q
+          ? fetched.filter((p) =>
+              `${p.title} ${p.excerpt} ${p.category} ${p.author}`
+                .toLowerCase()
+                .includes(q)
+            )
+          : fetched;
+        setPosts(filtered);
+        setTotal(pagination.total);
+        setTotalPages(pagination.totalPages);
       })
       .catch(console.error)
       .finally(() => setLoading(false));

@@ -4,14 +4,8 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { fadeInUp, fadeInRight } from '@/app/lib/animations';
 import Image from 'next/image';
-
-interface Product {
-  _id: string;
-  title: string;
-  description: string;
-  image: string;
-  techStack: string;
-}
+import { getProducts } from '@/app/services';
+import type { Product } from '@/app/services';
 
 export default function Products() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -19,12 +13,11 @@ export default function Products() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/api/products')
-      .then((res) => res.json())
-      .then((json) => {
-        if (json.success && json.data.length > 0) {
-          setProducts(json.data);
-          setActiveProduct(json.data[0]);
+    getProducts()
+      .then((data) => {
+        if (data.length > 0) {
+          setProducts(data);
+          setActiveProduct(data[0]);
         }
       })
       .catch(console.error)

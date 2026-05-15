@@ -6,6 +6,8 @@ import ProjectCard from "./ProjectCard";
 import Link from "next/link";
 import ChevronLeftIcon from "@/app/lib/icon/chevron-left-icon";
 import ChevronRightIcon from "@/app/lib/icon/chevron-right-icon";
+import { getPortfolioItems } from "@/app/services";
+import type { PortfolioItem } from "@/app/services";
 
 export type PortfolioCategory =
   | "All"
@@ -15,15 +17,6 @@ export type PortfolioCategory =
   | "Cloud & DevOps"
   | "AI Solutions"
   | "E-Commerce";
-
-export interface PortfolioItem {
-  _id: string;
-  title: string;
-  tag: string;
-  category: Exclude<PortfolioCategory, "All">;
-  description: string;
-  image: string;
-}
 
 const ITEMS_PER_PAGE = 9;
 
@@ -36,19 +29,10 @@ export default function Work() {
 
   const fetchItems = useCallback(() => {
     setLoading(true);
-    const params = new URLSearchParams({
-      page: String(page),
-      limit: String(ITEMS_PER_PAGE),
-    });
-    if (category !== "All") params.set("category", category);
-
-    fetch(`/api/portfolio?${params}`)
-      .then((res) => res.json())
-      .then((json) => {
-        if (json.success) {
-          setItems(json.data);
-          setTotalPages(json.pagination.totalPages);
-        }
+    getPortfolioItems({ page, limit: ITEMS_PER_PAGE, category })
+      .then(({ items: fetched, pagination }) => {
+        setItems(fetched);
+        setTotalPages(pagination.totalPages);
       })
       .catch(console.error)
       .finally(() => setLoading(false));
