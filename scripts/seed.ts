@@ -17,6 +17,10 @@ import FAQModel from "../app/lib/models/FAQ";
 import BlogPostModel from "../app/lib/models/BlogPost";
 import PortfolioWorkModel from "../app/lib/models/PortfolioWork";
 import IndustryModel from "../app/lib/models/Industry";
+import FeatureModel from "../app/lib/models/Feature";
+import WhatWeDoModel from "../app/lib/models/WhatWeDo";
+import JobOpeningModel from "../app/lib/models/JobOpening";
+import GrowthItemModel from "../app/lib/models/GrowthItem";
 
 // ── Raw data ──────────────────────────────────────────────────────────────────
 
@@ -560,6 +564,204 @@ const industries = [
   },
 ];
 
+const features = [
+  {
+    title: "We Review Your Requirement",
+    description: "We carefully read your message to understand your actual need, not just surface details.",
+    image: "/Home/produced/blocktech.svg",
+    order: 1,
+  },
+  {
+    title: "We Connect With You",
+    description: "If needed, we reach out to ask a few simple questions for better clarity.",
+    image: "/Home/produced/blocktech.svg",
+    order: 2,
+  },
+  {
+    title: "We Suggest a Plan",
+    description: "You get a clear and practical approach based on your requirement.",
+    image: "/Home/produced/blocktech.svg",
+    order: 3,
+  },
+  {
+    title: "You Decide the Next Step",
+    description: "No pressure. You can move forward only if it makes sense for you.",
+    image: "/Home/produced/blocktech.svg",
+    order: 4,
+  },
+];
+
+const whatWeDoCards = [
+  {
+    imageSrc: "/service/whatwedo/card1.webp",
+    imageAlt: "Consulting services",
+    icon: "/service/whatwedo/icon1.svg",
+    title: "Consulting Services",
+    description:
+      "Our consulting services help businesses make informed decisions, reduce risks, and plan technology initiatives effectively.",
+    buttonLabel: "Talk to us",
+    servicesColumns: [
+      {
+        items: [
+          { label: "Technology Consulting" },
+          { label: "Digital Transformation Consulting" },
+          { label: "Product Strategy & Roadmapping" },
+          { label: "Business Process Analysis" },
+        ],
+      },
+      {
+        items: [
+          { label: "Startup & MVP Consulting" },
+          { label: "System Architecture & Planning" },
+          { label: "IT Audit & Optimization" },
+          { label: "Process Automation Consulting" },
+        ],
+      },
+    ],
+    order: 1,
+  },
+  {
+    imageSrc: "/service/whatwedo/card2.webp",
+    imageAlt: "Marketing Services",
+    icon: "/service/whatwedo/icon2.svg",
+    title: "Marketing Services",
+    description:
+      "Our marketing services help businesses grow their reach, engagement, and conversions through data-driven strategies.",
+    buttonLabel: "Talk to us",
+    servicesColumns: [
+      {
+        items: [
+          { label: "Digital Marketing Strategy" },
+          { label: "Performance & Paid Marketing" },
+          { label: "Content Marketing" },
+          { label: "Conversion Rate Optimization" },
+        ],
+      },
+      {
+        items: [
+          { label: "Search Engine Optimization (SEO)" },
+          { label: "Social Media Marketing" },
+          { label: "Branding & Visual Identity" },
+          { label: "Marketing Automation" },
+        ],
+      },
+    ],
+    order: 2,
+  },
+  {
+    imageSrc: "/service/whatwedo/card3.webp",
+    imageAlt: "IT Solutions Services",
+    icon: "/service/whatwedo/icon3.svg",
+    title: "IT Solutions Services",
+    description:
+      "Our IT solutions help businesses build scalable, secure, and high-performance digital products and infrastructure.",
+    buttonLabel: "Talk to us",
+    servicesColumns: [
+      {
+        items: [
+          { label: "Web Application Development" },
+          { label: "Data Science & AI Solutions" },
+          { label: "Content Management Systems" },
+          { label: "Enterprise Software Solutions" },
+        ],
+      },
+      {
+        items: [
+          { label: "Cloud & DevOps Solutions" },
+          { label: "E-Commerce Solutions" },
+          { label: "Server Setup & Configuration" },
+          { label: "Application Customization & Integration" },
+        ],
+      },
+    ],
+    order: 3,
+  },
+];
+
+const jobOpenings = [
+  {
+    title: "Backend Developer",
+    experience: "1-3 Years",
+    type: "Full-Time",
+    location: "Remote",
+    description:
+      "We are looking for a skilled backend developer to build secure, scalable APIs and optimize server-side performance for high-quality digital applications.",
+    order: 1,
+  },
+  {
+    title: "Full Stack Developer",
+    experience: "1-3 Years",
+    type: "Full-Time",
+    location: "Remote",
+    description:
+      "Join our team to develop end-to-end web applications, manage databases, and deliver seamless, scalable digital experiences.",
+    order: 2,
+  },
+  {
+    title: "UI/UX Designer",
+    experience: "1-3 Years",
+    type: "Full-Time",
+    location: "Remote",
+    description:
+      "We seek a creative designer to craft intuitive user experiences and visually engaging interfaces for modern digital products.",
+    order: 3,
+  },
+  {
+    title: "Digital Marketing",
+    experience: "1-3 Years",
+    type: "Full-Time",
+    location: "Remote",
+    description:
+      "Help drive growth through SEO, paid campaigns, and data-driven marketing strategies that increase visibility and conversions.",
+    order: 4,
+  },
+];
+
+const growthItems = [
+  {
+    title: "Learning & Certification Support",
+    description: "We support continuous learning through certifications, courses, and training.",
+    icon: "/career/Growth/verified.svg",
+    blackIcon: "/career/Growth/verified-black.svg",
+    order: 1,
+  },
+  {
+    title: "Performance-Based Incentives",
+    description: "Earn rewards and bonuses based on measurable performance and achievements.",
+    icon: "/career/Growth/graph.svg",
+    blackIcon: "/career/Growth/graph-black.svg",
+    order: 2,
+  },
+  {
+    title: "Flexible Work Hours",
+    description: "Enjoy flexible schedules that promote productivity and work-life balance.",
+    icon: "/career/Growth/time.svg",
+    blackIcon: "/career/Growth/time-black.svg",
+    order: 3,
+  },
+  {
+    title: "Skill Development Programs",
+    description: "Participate in structured programs designed to enhance technical expertise.",
+    icon: "/career/Growth/men.svg",
+    blackIcon: "/career/Growth/men-black.svg",
+    order: 4,
+  },
+  {
+    title: "Supportive Team Culture",
+    description: "Work within a collaborative environment that values respect and teamwork.",
+    icon: "/career/Growth/hand.svg",
+    blackIcon: "/career/Growth/hand-black.svg",
+    order: 5,
+  },
+  {
+    title: "Career Progression Opportunities",
+    description: "Advance your career through clear growth paths and leadership opportunities.",
+    icon: "/career/Growth/stair.svg",
+    blackIcon: "/career/Growth/stair-black.svg",
+    order: 6,
+  },
+];
+
 // ── Seed runner ───────────────────────────────────────────────────────────────
 
 async function seed() {
@@ -581,6 +783,10 @@ async function seed() {
     BlogPostModel.deleteMany({}),
     PortfolioWorkModel.deleteMany({}),
     IndustryModel.deleteMany({}),
+    FeatureModel.deleteMany({}),
+    WhatWeDoModel.deleteMany({}),
+    JobOpeningModel.deleteMany({}),
+    GrowthItemModel.deleteMany({}),
   ]);
   console.log(" Cleared existing collections");
 
@@ -593,6 +799,10 @@ async function seed() {
     BlogPostModel.insertMany(blogPosts),
     PortfolioWorkModel.insertMany(portfolioWorkItems),
     IndustryModel.insertMany(industries),
+    FeatureModel.insertMany(features),
+    WhatWeDoModel.insertMany(whatWeDoCards),
+    JobOpeningModel.insertMany(jobOpenings),
+    GrowthItemModel.insertMany(growthItems),
   ]);
 
   console.log("🌱 Seeded:");
@@ -604,6 +814,10 @@ async function seed() {
   console.log(`• ${blogPosts.length} blog posts`);
   console.log(`• ${portfolioWorkItems.length} portfolio items`);
   console.log(`• ${industries.length} industries`);
+  console.log(`• ${features.length} features`);
+  console.log(`• ${whatWeDoCards.length} what-we-do cards`);
+  console.log(`• ${jobOpenings.length} job openings`);
+  console.log(`• ${growthItems.length} growth items`);
 
   await mongoose.disconnect();
   console.log("✅ Done — disconnected from MongoDB");

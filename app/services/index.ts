@@ -21,3 +21,15 @@ export type { PortfolioItem, PortfolioResponse, PortfolioPagination } from "./po
 
 export { getIndustries } from "./industryService";
 export type { Industry } from "./industryService";
+
+export { getFeatures } from "./featureService";
+export type { Feature } from "./featureService";
+
+export { getWhatWeDo } from "./whatWeDoService";
+export type { WhatWeDoCard, ServiceColumn, ServiceBullet } from "./whatWeDoService";
+
+export { getJobOpenings } from "./jobOpeningService";
+export type { JobOpening } from "./jobOpeningService";
+
+export { getGrowthItems } from "./growthItemService";
+export type { GrowthItem } from "./growthItemService";
