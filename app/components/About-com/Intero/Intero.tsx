@@ -66,22 +66,18 @@ export default function Intero() {
   return (
     <section id="about" className="lg:pt-20 lg:pb-24 md:pt-15 md:pb-15  pt-10 pb-10 bg-[#000000] text-white w-full mx-auto px-4 sm:px-6 lg:px-6">
       <div className=" ">
-
-
-
-
         {/* --- Bottom Row: Image & Stats --- */}
         <div className="grid  lg:grid-cols-[4fr_6fr]   gap-8 lg:gap-4 items-start">
 
           {/* Left: Image Only */}
           <motion.div
             initial="hidden"
-            whileInView="visible"
+            whileInView="visible"           
             viewport={{ once: true }}
             variants={scaleIn}
             className="w-full lg:h-full lg:block hidden  "
           >
-            <div className="relative  w-full h-full rounded-2xl overflow-hidden lg:pb-4 pb-8">
+            <div className="relative  w-full h-full rounded-2xl overflow-hidden lg:p b-4 pb-8">
               <img
                 src="/About/Intro/intro.webp"
                 alt="Team working together"

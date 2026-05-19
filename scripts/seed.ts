@@ -21,6 +21,8 @@ import FeatureModel from "../app/lib/models/Feature";
 import WhatWeDoModel from "../app/lib/models/WhatWeDo";
 import JobOpeningModel from "../app/lib/models/JobOpening";
 import GrowthItemModel from "../app/lib/models/GrowthItem";
+import PrivacyPolicyModel from "../app/lib/models/PrivacyPolicy";
+import TermsAndConditionsModel from "../app/lib/models/TermsAndConditions";
 
 // ── Raw data ──────────────────────────────────────────────────────────────────
 
@@ -281,41 +283,69 @@ const technologies = [
 ];
 
 const faqs = [
-  {
-    question: "How long does a typical project take?",
-    answer:
-      "Most MVPs launch in 8-12 weeks. Larger projects break into phases, so you see working software every two weeks, not after months.",
-    meta: "Discovery",
-    order: 1,
-  },
-  {
-    question: "Do you work alongside our existing team?",
-    answer:
-      "Yes. We integrate directly—same tools, same standups, same accountability. Think of us as an extension, not a vendor.",
-    meta: "Collaboration",
-    order: 2,
-  },
-  {
-    question: "What if requirements change during development?",
-    answer:
-      "We adapt. Priorities shift, and we understand that. Well re-scope, update timelines, and keep you informed on any cost impacts.",
-    meta: "Systems",
-    order: 3,
-  },
-  {
-    question: "Can we see examples of your work?",
-    answer:
-      "Absolutely. We share relevant case studies in our first call. Some are under NDA, but we have plenty.",
-    meta: "Quality",
-    order: 4,
-  },
-  {
-    question: "Do you provide support after launch?",
-    answer:
-      "Yes. We offer flexible retainers for maintenance and feature additions. Many clients keep engineers long-term.",
-    meta: "Quality",
-    order: 5,
-  },
+  // General Information
+  { question: "What services does Technogetic offer?", answer: "We provide end-to-end digital solutions including UI/UX design, website development, mobile app development, and custom software tailored to your business needs.", meta: "General Information", order: 1 },
+  { question: "Which industries do you specialize in?", answer: "We work with startups, healthcare, education, e-commerce, and service-based businesses, delivering solutions that align with industry-specific requirements.", meta: "General Information", order: 2 },
+  { question: "How experienced is your team?", answer: "Our team consists of skilled designers and developers with hands-on experience in building scalable, user-friendly, and modern digital products.", meta: "General Information", order: 3 },
+  { question: "Do you work with startups or only established businesses?", answer: "We work with both startups and established companies, helping them build, scale, and improve their digital presence effectively.", meta: "General Information", order: 4 },
+  { question: "Where is your company located?", answer: "We operate remotely and collaborate with clients globally, ensuring smooth communication and timely project delivery.", meta: "General Information", order: 5 },
+  { question: "How can I get started with Technogetic?", answer: "Simply contact us through our website or email. We will schedule a consultation to understand your requirements and guide you through the next steps.", meta: "General Information", order: 6 },
+
+  // Project Process
+  { question: "What is your development process?", answer: "Our process includes discovery, planning, design, development, testing, and deployment, ensuring a structured and efficient workflow for every project.", meta: "Project Process", order: 7 },
+  { question: "How long does it take to complete a project?", answer: "Project timelines vary depending on complexity, but most projects take between 2 to 8 weeks from start to completion.", meta: "Project Process", order: 8 },
+  { question: "How do you handle project timelines and deadlines?", answer: "We follow a milestone-based approach with clear timelines, ensuring transparency and timely delivery without compromising quality.", meta: "Project Process", order: 9 },
+  { question: "Will I be involved during the development process?", answer: "Yes, we keep you involved at every stage with regular updates, feedback sessions, and approvals to ensure alignment with your vision.", meta: "Project Process", order: 10 },
+  { question: "Do you provide regular project updates?", answer: "Absolutely. We share consistent updates through meetings, reports, or collaboration tools to keep you informed.", meta: "Project Process", order: 11 },
+  { question: "What tools do you use for project management?", answer: "We use tools like Trello, Jira, Slack, and Figma to manage tasks, communication, and design collaboration efficiently.", meta: "Project Process", order: 12 },
+
+  // UI/UX Design
+  { question: "Do you offer custom UI/UX design services?", answer: "Yes, we create fully customized designs tailored to your brand, audience, and business goals.", meta: "UI/UX Design", order: 13 },
+  { question: "How do you ensure a user-friendly design?", answer: "We follow user-centered design principles, focusing on usability, accessibility, and intuitive navigation.", meta: "UI/UX Design", order: 14 },
+  { question: "Can you redesign my existing website/app?", answer: "Yes, we can revamp your current product to improve usability, performance, and visual appeal.", meta: "UI/UX Design", order: 15 },
+  { question: "Do you conduct user research and testing?", answer: "We perform basic research and usability testing to ensure the design meets user expectations and solves real problems.", meta: "UI/UX Design", order: 16 },
+  { question: "Will the design be mobile-friendly and responsive?", answer: "All our designs are fully responsive, ensuring seamless performance across mobile, tablet, and desktop devices.", meta: "UI/UX Design", order: 17 },
+  { question: "How many revisions are included in the design process?", answer: "We offer multiple revisions based on feedback to ensure the final design meets your expectations.", meta: "UI/UX Design", order: 18 },
+
+  // Development Services
+  { question: "What technologies do you use for development?", answer: "We use modern technologies like React, Next.js, Node.js, and other scalable frameworks based on project requirements.", meta: "Development Services", order: 19 },
+  { question: "Do you build both websites and mobile applications?", answer: "Yes, we develop responsive websites and high-performance mobile applications for Android and iOS platforms.", meta: "Development Services", order: 20 },
+  { question: "Can you integrate third-party APIs and tools?", answer: "Absolutely. We can integrate payment gateways, CRMs, analytics tools, and other third-party services.", meta: "Development Services", order: 21 },
+  { question: "Do you offer scalable and secure solutions?", answer: "Yes, we build scalable architectures with strong security practices to ensure long-term performance and safety.", meta: "Development Services", order: 22 },
+  { question: "Will I own the source code after completion?", answer: "Yes, once the project is completed and paid for, full ownership of the source code is transferred to you.", meta: "Development Services", order: 23 },
+  { question: "Do you provide backend and frontend both?", answer: "Yes, we offer complete full-stack development services including both frontend and backend solutions.", meta: "Development Services", order: 24 },
+
+  // Pricing & Payments
+  { question: "How much does a typical project cost?", answer: "Project costs depend on scope, features, and complexity. We provide a customized quote after understanding your requirements.", meta: "Pricing & Payments", order: 25 },
+  { question: "Do you offer fixed pricing or hourly rates?", answer: "We offer both fixed-price and hourly models based on the project type and client preference.", meta: "Pricing & Payments", order: 26 },
+  { question: "Are there any hidden charges?", answer: "No, we maintain full transparency. All costs are discussed and agreed upon before starting the project.", meta: "Pricing & Payments", order: 27 },
+  { question: "What is your payment structure?", answer: "We usually follow a milestone-based payment structure to ensure flexibility and trust.", meta: "Pricing & Payments", order: 28 },
+  { question: "Do you offer flexible payment plans?", answer: "Yes, we can customize payment plans based on project size and client requirements.", meta: "Pricing & Payments", order: 29 },
+  { question: "Can I get a custom quote for my project?", answer: "Absolutely. Share your requirements, and we will provide a tailored quote.", meta: "Pricing & Payments", order: 30 },
+
+  // Support & Maintenance
+  { question: "Do you provide support after project launch?", answer: "Yes, we offer ongoing support after project delivery to ensure everything runs smoothly.", meta: "Support & Maintenance", order: 31 },
+  { question: "What kind of maintenance services do you offer?", answer: "We provide updates, bug fixes, performance optimization, and feature enhancements.", meta: "Support & Maintenance", order: 32 },
+  { question: "How quickly do you handle critical issues?", answer: "We aim to resolve issues as quickly as possible, usually within 24-48 hours depending on severity.", meta: "Support & Maintenance", order: 33 },
+  { question: "Do you offer website/app updates?", answer: "Yes, we can update your product regularly to keep it secure and up-to-date.", meta: "Support & Maintenance", order: 34 },
+  { question: "Is technical support included in the package?", answer: "Basic support is included, with extended support plans available if needed.", meta: "Support & Maintenance", order: 35 },
+  { question: "Can I request new features after launch?", answer: "Yes, we can add new features and improvements even after the project is live.", meta: "Support & Maintenance", order: 36 },
+
+  // Security & Confidentiality
+  { question: "How do you ensure data security?", answer: "We follow best practices including secure coding, encryption, and regular security checks.", meta: "Security & Confidentiality", order: 37 },
+  { question: "Will my project idea remain confidential?", answer: "Yes, we respect your privacy and ensure your ideas remain protected.", meta: "Security & Confidentiality", order: 38 },
+  { question: "Do you sign NDA agreements?", answer: "Yes, we are happy to sign NDA agreements before starting any project.", meta: "Security & Confidentiality", order: 39 },
+  { question: "How do you handle sensitive user data?", answer: "We follow strict data protection practices and comply with relevant security standards.", meta: "Security & Confidentiality", order: 40 },
+  { question: "Do you follow industry security standards?", answer: "Yes, we adhere to modern security protocols and industry best practices.", meta: "Security & Confidentiality", order: 41 },
+  { question: "What measures do you take to prevent cyber threats?", answer: "We implement firewalls, secure authentication, and regular monitoring to protect against threats.", meta: "Security & Confidentiality", order: 42 },
+
+  // SEO & Digital Growth
+  { question: "Do you offer SEO services?", answer: "Yes, we provide basic SEO optimization to improve your website visibility.", meta: "SEO & Digital Growth", order: 43 },
+  { question: "Will my website be optimized for search engines?", answer: "Yes, we follow SEO-friendly practices including proper structure, speed optimization, and meta setup.", meta: "SEO & Digital Growth", order: 44 },
+  { question: "Do you help with website performance optimization?", answer: "Yes, we optimize loading speed and performance for better user experience and rankings.", meta: "SEO & Digital Growth", order: 45 },
+  { question: "Can you improve my website speed?", answer: "Absolutely. We optimize images, code, and server performance to ensure fast loading times.", meta: "SEO & Digital Growth", order: 46 },
+  { question: "Do you provide analytics and tracking setup?", answer: "Yes, we integrate tools like Google Analytics to track performance and user behavior.", meta: "SEO & Digital Growth", order: 47 },
+  { question: "Will my website be mobile and SEO friendly?", answer: "Yes, all our websites are responsive and built with SEO best practices.", meta: "SEO & Digital Growth", order: 48 },
 ];
 
 const blogPosts = [
@@ -717,6 +747,223 @@ const jobOpenings = [
   },
 ];
 
+const privacyPolicyTopics = [
+  {
+    title: "Information We Collect",
+    paragraphs: ["We may collect the following types of information:"],
+    bullets: [
+      "Personal Information: Name, email address, phone number, and other details you provide through contact forms.",
+      "Project Information: Details related to your business, requirements, and project discussions.",
+      "Technical Data: IP address, browser type, device information, and website usage data.",
+    ],
+    order: 1,
+  },
+  {
+    title: "How We Use Your Information",
+    paragraphs: ["We use your information to:"],
+    bullets: [
+      "Understand your requirements and provide relevant services",
+      "Communicate with you regarding inquiries or projects",
+      "Improve our website and user experience",
+      "Send important updates or service-related information",
+    ],
+    order: 2,
+  },
+  {
+    title: "Data Sharing & Disclosure",
+    paragraphs: [
+      "We do not sell, trade, or rent your personal information.",
+      "Your data may only be shared with:",
+    ],
+    bullets: [
+      "Trusted team members or partners involved in your project",
+      "Legal authorities, if required by law",
+    ],
+    order: 3,
+  },
+  {
+    title: "Data Security",
+    paragraphs: [
+      "We implement appropriate security measures to protect your data from unauthorized access, misuse, or disclosure.",
+      "However, no online system is 100% secure, and we encourage users to share information responsibly.",
+    ],
+    bullets: [],
+    order: 4,
+  },
+  {
+    title: "Cookies & Tracking Technologies",
+    paragraphs: ["Our website may use cookies to:"],
+    bullets: [
+      "Enhance user experience",
+      "Analyze website traffic and performance",
+      "You can choose to disable cookies through your browser settings.",
+    ],
+    order: 5,
+  },
+  {
+    title: "Third-Party Services",
+    paragraphs: [
+      "We may use third-party tools (such as analytics or integrations) that may collect limited data. These services operate under their own privacy policies.",
+    ],
+    bullets: [],
+    order: 6,
+  },
+  {
+    title: "Your Rights",
+    paragraphs: ["You have the right to:"],
+    bullets: [
+      "Access the personal data we hold about you",
+      "Request correction or deletion of your data",
+      "Withdraw consent for data usage",
+      "To exercise these rights, please contact us.",
+    ],
+    order: 7,
+  },
+  {
+    title: "Data Retention",
+    paragraphs: [
+      "We retain your information only as long as necessary for business, legal, or operational purposes.",
+    ],
+    bullets: [],
+    order: 8,
+  },
+  {
+    title: "Updates to This Policy",
+    paragraphs: [
+      "We may update this Privacy Policy from time to time. Changes will be reflected on this page with an updated date.",
+    ],
+    bullets: [],
+    order: 9,
+  },
+  {
+    title: "Contact Us",
+    paragraphs: ["If you have any questions about this Privacy Policy, you can contact us at:"],
+    bullets: ["Email: info@technogetic.com", "Phone: +91-XXXXXXXXXX"],
+    order: 10,
+  },
+];
+
+const termsAndConditionsTopics = [
+  {
+    title: "Acceptance of Terms",
+    paragraphs: [
+      "By accessing or using any services provided by Technogetic, you confirm that you have read, understood, and agree to be bound by these Terms & Conditions.",
+      "If you do not agree with any part of these terms, please do not use our services.",
+    ],
+    bullets: [],
+    order: 1,
+  },
+  {
+    title: "Services Provided",
+    paragraphs: [
+      "Technogetic offers a range of digital services including, but not limited to:",
+    ],
+    bullets: [
+      "Custom software development",
+      "Web and mobile application development",
+      "UI/UX design",
+      "Cloud architecture and DevOps",
+      "Digital marketing and SEO",
+      "IT consulting and strategy",
+    ],
+    order: 2,
+  },
+  {
+    title: "Client Responsibilities",
+    paragraphs: ["As a client, you agree to:"],
+    bullets: [
+      "Provide accurate and complete information required for project delivery",
+      "Respond to communications in a timely manner to avoid project delays",
+      "Review and approve deliverables within agreed timelines",
+      "Ensure you have the legal rights to any content, assets, or materials you provide to us",
+    ],
+    order: 3,
+  },
+  {
+    title: "Intellectual Property",
+    paragraphs: [
+      "Upon full payment of all agreed fees, ownership of the final deliverables (source code, designs, and related assets) is transferred to the client.",
+      "Technogetic retains the right to showcase completed work in its portfolio unless a confidentiality agreement is in place.",
+      "Any pre-existing tools, frameworks, or proprietary methodologies used during development remain the property of Technogetic.",
+    ],
+    bullets: [],
+    order: 4,
+  },
+  {
+    title: "Payment Terms",
+    paragraphs: [
+      "All projects are subject to a mutually agreed payment schedule outlined in the project proposal or contract.",
+    ],
+    bullets: [
+      "A deposit may be required before work commences",
+      "Milestone-based payments are due upon completion of each agreed phase",
+      "Final delivery will be made only after full payment is received",
+      "Late payments may result in project delays or suspension of services",
+    ],
+    order: 5,
+  },
+  {
+    title: "Confidentiality",
+    paragraphs: [
+      "Both parties agree to keep confidential any proprietary or sensitive information shared during the course of the engagement.",
+      "We are happy to sign a Non-Disclosure Agreement (NDA) upon request before project discussions begin.",
+    ],
+    bullets: [],
+    order: 6,
+  },
+  {
+    title: "Limitation of Liability",
+    paragraphs: [
+      "Technogetic shall not be held liable for any indirect, incidental, or consequential damages arising from the use of our services.",
+      "Our total liability in any matter related to the services provided shall not exceed the total fees paid by the client for the specific project in question.",
+    ],
+    bullets: [],
+    order: 7,
+  },
+  {
+    title: "Revisions & Change Requests",
+    paragraphs: [
+      "Revisions within the agreed project scope are included as specified in the project proposal.",
+      "Any changes that fall outside the original scope will be treated as new work and may be subject to additional charges and revised timelines.",
+    ],
+    bullets: [],
+    order: 8,
+  },
+  {
+    title: "Termination",
+    paragraphs: [
+      "Either party may terminate the engagement with written notice if the other party materially breaches these terms and fails to remedy the breach within 14 days.",
+      "In the event of termination, the client is responsible for payment of all work completed up to the termination date.",
+    ],
+    bullets: [],
+    order: 9,
+  },
+  {
+    title: "Governing Law",
+    paragraphs: [
+      "These Terms & Conditions are governed by and construed in accordance with applicable laws. Any disputes arising from these terms shall be resolved through mutual negotiation or, if necessary, through appropriate legal channels.",
+    ],
+    bullets: [],
+    order: 10,
+  },
+  {
+    title: "Updates to These Terms",
+    paragraphs: [
+      "Technogetic reserves the right to update these Terms & Conditions at any time. Changes will be reflected on this page with an updated date. Continued use of our services after changes constitutes acceptance of the revised terms.",
+    ],
+    bullets: [],
+    order: 11,
+  },
+  {
+    title: "Contact Us",
+    paragraphs: [
+      "If you have any questions or concerns about these Terms & Conditions, please reach out to us:",
+    ],
+    bullets: ["Email: info@technogetic.com", "Phone: +91-XXXXXXXXXX"],
+    order: 12,
+  },
+];
+
 const growthItems = [
   {
     title: "Learning & Certification Support",
@@ -787,6 +1034,8 @@ async function seed() {
     WhatWeDoModel.deleteMany({}),
     JobOpeningModel.deleteMany({}),
     GrowthItemModel.deleteMany({}),
+    PrivacyPolicyModel.deleteMany({}),
+    TermsAndConditionsModel.deleteMany({}),
   ]);
   console.log(" Cleared existing collections");
 
@@ -803,6 +1052,8 @@ async function seed() {
     WhatWeDoModel.insertMany(whatWeDoCards),
     JobOpeningModel.insertMany(jobOpenings),
     GrowthItemModel.insertMany(growthItems),
+    PrivacyPolicyModel.insertMany(privacyPolicyTopics),
+    TermsAndConditionsModel.insertMany(termsAndConditionsTopics),
   ]);
 
   console.log("🌱 Seeded:");
@@ -818,6 +1069,8 @@ async function seed() {
   console.log(`• ${whatWeDoCards.length} what-we-do cards`);
   console.log(`• ${jobOpenings.length} job openings`);
   console.log(`• ${growthItems.length} growth items`);
+  console.log(`• ${privacyPolicyTopics.length} privacy policy topics`);
+  console.log(`• ${termsAndConditionsTopics.length} terms & conditions topics`);
 
   await mongoose.disconnect();
   console.log("✅ Done — disconnected from MongoDB");

@@ -1,11 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { useReducedMotion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { fadeInUp } from '@/app/lib/animations';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
+import type { Swiper as SwiperType } from 'swiper';
 import TechCard from './TechCard';
 import { getTechnologies } from '@/app/services';
 import type { Technology } from '@/app/services';
@@ -27,7 +27,14 @@ export default function Technologies() {
   // Duplicate for seamless loop
   const row1Extended = [...row1, ...row1];
   const row2Extended = [...row2, ...row2];
-   
+
+  // Force Swiper to recalculate layout after slides are rendered
+  const handleSwiper = (swiper: SwiperType) => {
+    setTimeout(() => {
+      swiper.update();
+    }, 0);
+  };
+
   return (
     <section className="lg:py-24 md:py-15 py-10 bg-[#000000] overflow-hidden">
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-6 md:mb-16 mb-5">
@@ -50,6 +57,7 @@ export default function Technologies() {
         {row1Extended.length > 0 && (
           <div className="w-full">
             <Swiper
+              key={`row1-${row1.length}`}
               modules={[Autoplay]}
               spaceBetween={14}
               slidesPerView="auto"
@@ -57,6 +65,8 @@ export default function Technologies() {
               speed={4500}
               observer={true}
               observeParents={true}
+              updateOnWindowResize={true}
+              onSwiper={handleSwiper}
               autoplay={shouldReduceMotion ? false : {
                 delay: 0,
                 disableOnInteraction: false,
@@ -78,11 +88,16 @@ export default function Technologies() {
         {row2Extended.length > 0 && (
           <div className="w-full">
             <Swiper
+              key={`row2-${row2.length}`}
               modules={[Autoplay]}
               spaceBetween={14}
               slidesPerView="auto"
               loop={true}
               speed={4500}
+              observer={true}
+              observeParents={true}
+              updateOnWindowResize={true}
+              onSwiper={handleSwiper}
               autoplay={shouldReduceMotion ? false : {
                 delay: 0,
                 disableOnInteraction: false,

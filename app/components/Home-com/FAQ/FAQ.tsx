@@ -3,7 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import { getFAQs } from '@/app/services';
 import type { FAQ as FAQItem } from '@/app/services';
-
+import type { FC, SVGProps } from 'react';
+import ChevronRightIconImport from '@/app/lib/icon/chevron-right-icon';
 const INTRO_STYLE_ID = 'faq1-animations';
 
 const palette = {
@@ -22,7 +23,8 @@ const palette = {
   overlay:
     'linear-gradient(130deg, rgba(255,255,255,0.04) 0%, transparent 65%)',
 } as const;
-
+type IconProps = SVGProps<SVGSVGElement> & { width?: number; height?: number; color?: string };
+const ChevronRightIcon = ChevronRightIconImport as FC<IconProps>;
 export default function FAQ() {
   const [faqs, setFaqs] = useState<FAQItem[]>([]);
   const [introReady, setIntroReady] = useState(false);
@@ -195,7 +197,7 @@ export default function FAQ() {
       />
 
       <section
-        className={`relative z-10 mx-auto flex max-w-4xl flex-col gap-12 px-6 py-24 lg:max-w-5xl lg:px-12 ${
+        className={`relative z-10 mx-auto flex max-w-4xl flex-col gap-8 px-6 py-24 lg:max-w-5xl lg:px-12 ${
           hasEntered ? 'faq1-fade--ready' : 'faq1-fade'
         }`}
       >
@@ -282,6 +284,16 @@ export default function FAQ() {
             );
           })}
         </ul>
+            {/* Button */}
+            <div className="mt-2 mx-auto">
+                  <a
+                    href="/faq"
+                    className="group shrink-0 text-[20px] inline-flex items-center justify-center gap-2 sm:px-8 sm:py-2  px-4 py-2 font-semibold text-[#ffffff] bg-[linear-gradient(206.67deg,_#45B3F1_-0.38%,_#0088FF_81.83%)] rounded-lg  transition-all duration-200 shadow-lg  leading-8 mt-0 tracking-[1%] "
+                  >
+                 Read More
+                    <ChevronRightIcon width={7} height={11} color="#ffffff" className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-0.5" />
+                  </a>
+                </div>
       </section>
     </div>
   );

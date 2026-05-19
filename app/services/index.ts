@@ -33,3 +33,6 @@ export type { JobOpening } from "./jobOpeningService";
 
 export { getGrowthItems } from "./growthItemService";
 export type { GrowthItem } from "./growthItemService";
+
+export { getPrivacyPolicy } from "./privacyPolicyService";
+export type { PrivacyPolicyTopic } from "./privacyPolicyService";
