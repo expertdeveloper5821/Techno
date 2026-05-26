@@ -221,7 +221,7 @@ export default function FAQ() {
         </header>
 
         <ul className="space-y-4">
-          {faqs.map((item, index) => {
+          { faqs.slice(0, 5).map((item, index) => {
             const open = activeIndex === index;
             const panelId = `faq-panel-${index}`;
             const buttonId = `faq-trigger-${index}`;
