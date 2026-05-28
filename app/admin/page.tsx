@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 const SECTIONS = [
+  { name: "Contacts", path: "/admin/contacts", icon: "📬", desc: "View & manage contact form submissions" },
   { name: "Products", path: "/admin/products", icon: "📦", desc: "Manage product listings" },
   { name: "Services", path: "/admin/services", icon: "⚙️", desc: "Manage service offerings" },
   { name: "Partners", path: "/admin/partners", icon: "🤝", desc: "Manage partner logos" },

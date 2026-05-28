@@ -2,30 +2,22 @@
 
 import { useRef, useState } from 'react';
 import { sendContactForm } from '@/app/lib/contact-api';
-import {
-  FORM_SUBMIT_THROTTLE_MS,
-  validateContactForm,
-} from '@/app/lib/form-validation';
+import { FORM_SUBMIT_THROTTLE_MS, validateContactForm } from '@/app/lib/form-validation';
 import ContactFormCard from './ContactFormCard';
+import { useToast, ToastContainer } from '@/app/components/Toast';
 
 export default function Contact() {
+  const { toasts, show, dismiss } = useToast();
+
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    message: '',
-    agreePrivacy: false,
+    firstName: '', lastName: '', email: '', phone: '', message: '', agreePrivacy: false,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-  const [formErrorMessage, setFormErrorMessage] = useState<string | undefined>(undefined);
   const lastSubmitAtRef = useRef(0);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
-    setFormErrorMessage(undefined);
     const name = e.target.name;
     const value = e.target.type === 'checkbox' ? (e.target as HTMLInputElement).checked : e.target.value;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -36,65 +28,51 @@ export default function Contact() {
 
     const validation = validateContactForm(formData);
     if (!validation.ok) {
-      setSubmitStatus('error');
-      setFormErrorMessage(validation.message);
+      show({ message: validation.message, type: 'error' });
       return;
     }
 
     const now = Date.now();
     if (now - lastSubmitAtRef.current < FORM_SUBMIT_THROTTLE_MS) {
-      setSubmitStatus('error');
-      setFormErrorMessage('Please wait a moment before submitting again.');
+      show({ message: 'Please wait a moment before submitting again.', type: 'info' });
       return;
     }
     lastSubmitAtRef.current = now;
 
     setIsSubmitting(true);
-    setSubmitStatus('idle');
-    setFormErrorMessage(undefined);
-
     try {
       const result = await sendContactForm(formData);
       if (result.ok) {
-        setSubmitStatus('success');
-        setFormData({
-          firstName: '',
-          lastName: '',
-          email: '',
-          phone: '',
-          message: '',
-          agreePrivacy: false,
-        });
+        show({ message: "🎉 Message sent! We'll get back to you soon.", type: 'success', duration: 5000 });
+        setFormData({ firstName: '', lastName: '', email: '', phone: '', message: '', agreePrivacy: false });
       } else {
-        setSubmitStatus('error');
-        setFormErrorMessage(
-          result.error ?? 'Something went wrong. Please try again.'
-        );
+        show({ message: result.error ?? 'Something went wrong. Please try again.', type: 'error' });
       }
     } catch {
-      setSubmitStatus('error');
-      setFormErrorMessage('Something went wrong. Please try again.');
+      show({ message: 'Something went wrong. Please try again.', type: 'error' });
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <section id="contact" className="py-6 sm:pb-20  pt-5 bg-[#161616] relative z-10 ">
-      <div className="bg-[#000000] h-30 w-full absolute top-0 left-0 right-0 z-[-1]" />
-      <div className="container mx-auto px-4 sm:px-6 lg:px-4 max-w-[1268px]">
-        <div className="static -top-24 z-10">
-          <ContactFormCard
-            formData={formData}
-            handleChange={handleChange}
-            handleSubmit={handleSubmit}
-            isSubmitting={isSubmitting}
-            submitStatus={submitStatus}
-            formErrorMessage={formErrorMessage}
-            idPrefix="contact"
-          />
+    <>
+      <ToastContainer toasts={toasts} onDismiss={dismiss} />
+      <section id="contact" className="py-6 sm:pb-20 pt-5 bg-[#161616] relative z-10">
+        <div className="bg-[#000000] h-30 w-full absolute top-0 left-0 right-0 z-[-1]" />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-4 max-w-[1268px]">
+          <div className="static -top-24 z-10">
+            <ContactFormCard
+              formData={formData}
+              handleChange={handleChange}
+              handleSubmit={handleSubmit}
+              isSubmitting={isSubmitting}
+              submitStatus="idle"
+              idPrefix="contact"
+            />
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

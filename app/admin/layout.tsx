@@ -5,6 +5,7 @@ import { useState } from "react";
 
 const CMS_SECTIONS = [
   { name: "Dashboard", path: "/admin", icon: "🏠", exact: true },
+  { name: "Contacts", path: "/admin/contacts", icon: "📬" },
   { name: "Products", path: "/admin/products", icon: "📦" },
   { name: "Services", path: "/admin/services", icon: "⚙️" },
   { name: "Partners", path: "/admin/partners", icon: "🤝" },
