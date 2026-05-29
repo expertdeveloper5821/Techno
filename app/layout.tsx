@@ -1,13 +1,12 @@
+ 
+import React from "react";
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import Header from "./components/Header/Header";
-import ContactPopupLoader from "./components/Home-com/Contact/ContactPopupLoader";
+import ConditionalShell from "./components/ConditionalShell";
 import SmoothScrollProvider from "./components/SmoothScrollProvider";
-
-import Footer from "./components/Home-com/Footer/Footer";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -76,20 +75,21 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  
+      
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased`}
       >
         <SmoothScrollProvider>
-          <div className="sm:relative  ">
-            <Header />
-          </div>
-          <ContactPopupLoader />
-          {children}
+          <ConditionalShell>
+            {children}
+          </ConditionalShell>
           <Analytics />
           <SpeedInsights />
-          <Footer />
         </SmoothScrollProvider>
 
       </body>

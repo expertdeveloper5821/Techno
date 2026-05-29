@@ -1,8 +1,10 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { faqs } from '@/app/lib/data/faqs';
-
+import { getFAQs } from '@/app/services';
+import type { FAQ as FAQItem } from '@/app/services';
+import type { FC, SVGProps } from 'react';
+import ChevronRightIconImport from '@/app/lib/icon/chevron-right-icon';
 const INTRO_STYLE_ID = 'faq1-animations';
 
 const palette = {
@@ -21,11 +23,19 @@ const palette = {
   overlay:
     'linear-gradient(130deg, rgba(255,255,255,0.04) 0%, transparent 65%)',
 } as const;
-
+type IconProps = SVGProps<SVGSVGElement> & { width?: number; height?: number; color?: string };
+const ChevronRightIcon = ChevronRightIconImport as FC<IconProps>;
 export default function FAQ() {
+  const [faqs, setFaqs] = useState<FAQItem[]>([]);
   const [introReady, setIntroReady] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [hasEntered, setHasEntered] = useState(false);
+
+  useEffect(() => {
+    getFAQs()
+      .then(setFaqs)
+      .catch(console.error);
+  }, []);
 
   useEffect(() => {
     if (typeof document === 'undefined') return;
@@ -81,12 +91,6 @@ export default function FAQ() {
         transition: opacity 720ms ease, transform 720ms ease, filter 720ms ease;
         isolation: isolate;
       }
-      .faq1-intro--light {
-        border-color: rgba(17, 17, 17, 0.12);
-        background: rgba(248, 250, 252, 0.88);
-        color: rgba(15, 23, 42, 0.78);
-        mix-blend-mode: multiply;
-      }
       .faq1-intro--active {
         opacity: 1;
         transform: translate3d(0, 0, 0);
@@ -103,9 +107,6 @@ export default function FAQ() {
         background: conic-gradient(from 160deg, rgba(226, 232, 240, 0.25), transparent 32%, rgba(148, 163, 184, 0.22) 58%, transparent 78%, rgba(148, 163, 184, 0.18));
         animation: faq1-beam-spin 18s linear infinite;
         opacity: 0.55;
-      }
-      .faq1-intro--light .faq1-intro__beam {
-        background: conic-gradient(from 180deg, rgba(15, 23, 42, 0.18), transparent 30%, rgba(71, 85, 105, 0.18) 58%, transparent 80%, rgba(15, 23, 42, 0.14));
       }
       .faq1-intro__pulse {
         border: 1px solid currentColor;
@@ -139,9 +140,6 @@ export default function FAQ() {
         box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);
         animation: faq1-tick 3.2s ease-in-out infinite;
       }
-      .faq1-intro--light .faq1-intro__tick {
-        box-shadow: 0 0 0 4px rgba(15, 15, 15, 0.08);
-      }
       .faq1-fade {
         opacity: 0;
         transform: translate3d(0, 24px, 0);
@@ -152,48 +150,27 @@ export default function FAQ() {
         animation: faq1-fade-up 860ms cubic-bezier(0.22, 0.68, 0, 1) forwards;
       }
     `;
-
     document.head.appendChild(style);
-
-    return () => {
-      if (style.parentNode) style.remove();
-    };
+    return () => { if (style.parentNode) style.remove(); };
   }, []);
 
   useEffect(() => {
-    if (typeof window === 'undefined') {
-      setIntroReady(true);
-      return;
-    }
+    if (typeof window === 'undefined') { setIntroReady(true); return; }
     const frame = window.requestAnimationFrame(() => setIntroReady(true));
     return () => window.cancelAnimationFrame(frame);
   }, []);
 
+  useEffect(() => {
+    if (typeof window === 'undefined') { setHasEntered(true); return; }
+    let timeout: ReturnType<typeof setTimeout>;
+    const onLoad = () => { timeout = setTimeout(() => setHasEntered(true), 120); };
+    if (document.readyState === 'complete') { onLoad(); }
+    else { window.addEventListener('load', onLoad, { once: true }); }
+    return () => { window.removeEventListener('load', onLoad); clearTimeout(timeout); };
+  }, []);
+
   const toggleQuestion = (index: number) =>
     setActiveIndex((prev) => (prev === index ? -1 : index));
-
-  useEffect(() => {
-    if (typeof window === 'undefined') {
-      setHasEntered(true);
-      return;
-    }
-
-    let timeout: ReturnType<typeof setTimeout>;
-    const onLoad = () => {
-      timeout = setTimeout(() => setHasEntered(true), 120);
-    };
-
-    if (document.readyState === 'complete') {
-      onLoad();
-    } else {
-      window.addEventListener('load', onLoad, { once: true });
-    }
-
-    return () => {
-      window.removeEventListener('load', onLoad);
-      clearTimeout(timeout);
-    };
-  }, []);
 
   const setCardGlow = (event: React.MouseEvent<HTMLLIElement>) => {
     const target = event.currentTarget;
@@ -213,62 +190,51 @@ export default function FAQ() {
       id="faq"
       className={`relative w-full overflow-hidden transition-colors duration-700 ${palette.surface}`}
     >
-      <div
-        className="absolute inset-0 z-0"
-        style={{ background: palette.aurora }}
-      />
+      <div className="absolute inset-0 z-0" style={{ background: palette.aurora }} />
       <div
         className="pointer-events-none absolute inset-0 z-0 opacity-80"
-        style={{
-          background: palette.overlay,
-          mixBlendMode: 'screen',
-        }}
+        style={{ background: palette.overlay, mixBlendMode: 'screen' }}
       />
 
       <section
-        className={`relative z-10 mx-auto flex max-w-4xl flex-col gap-12 px-6 py-24 lg:max-w-5xl lg:px-12 ${
+        className={`relative z-10 mx-auto flex max-w-4xl flex-col gap-8 px-6 py-24 lg:max-w-5xl lg:px-12 ${
           hasEntered ? 'faq1-fade--ready' : 'faq1-fade'
         }`}
       >
         <div className={`faq1-intro faq1-intro--dark ${introReady ? 'faq1-intro--active' : ''}`}>
           <span className="faq1-intro__beam" aria-hidden="true" />
           <span className="faq1-intro__pulse" aria-hidden="true" />
-          <span className="faq1-intro__label text-base sm:text-xl">FAQ's</span>
+          <span className="faq1-intro__label text-base sm:text-xl">FAQ&apos;s</span>
           <span className="faq1-intro__meter" aria-hidden="true" />
           <span className="faq1-intro__tick" aria-hidden="true" />
         </div>
 
         <header className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <div className="space-y-4">
-          
-            <h1
-              className={`text-4xl font-semibold leading-tight md:text-5xl ${palette.heading}`}
-            >
+            <h1 className={`text-4xl font-semibold leading-tight md:text-5xl ${palette.heading}`}>
               Common questions from CTOs and founders
             </h1>
-
-            <p className='max-w-xl text-base text-neutral-400'>Everything you’d ask before making a tech decision.</p>
-           
+            <p className="max-w-xl text-base text-neutral-400">
+              Everything you&apos;d ask before making a tech decision.
+            </p>
           </div>
         </header>
 
         <ul className="space-y-4">
-          {faqs.map((item, index) => {
+          { faqs.slice(0, 5).map((item, index) => {
             const open = activeIndex === index;
             const panelId = `faq-panel-${index}`;
             const buttonId = `faq-trigger-${index}`;
 
             return (
               <li
-                key={item.id}
-                className={`group relative overflow-hidden rounded-3xl border backdrop-blur-xl transition-all duration-500 hover:-translate-y-0.5 focus-within:-translate-y-0.5 ${palette.border} ${palette.panel} ${palette.shadow} ${open ? 'border border-[#0183C1]! ' : ''}`}
+                key={item._id}
+                className={`group relative overflow-hidden rounded-3xl border backdrop-blur-xl transition-all duration-500 hover:-translate-y-0.5 focus-within:-translate-y-0.5 ${palette.border} ${palette.panel} ${palette.shadow} ${open ? 'border border-[#0183C1]!' : ''}`}
                 onMouseMove={setCardGlow}
                 onMouseLeave={clearCardGlow}
               >
                 <div
-                  className={`pointer-events-none absolute inset-0 transition-opacity duration-500 ${
-                    open ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
-                  }`}
+                  className={`pointer-events-none absolute inset-0 transition-opacity duration-500 ${open ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}
                   style={{
                     background: `radial-gradient(240px circle at var(--faq-x, 50%) var(--faq-y, 50%), ${palette.glow}, transparent 70%)`,
                   }}
@@ -284,59 +250,31 @@ export default function FAQ() {
                   className="relative flex w-full items-start gap-6 px-8 py-7 text-left transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--faq-outline)"
                 >
                   <span
-                    className={`relative flex h-12 w-12 shrink-0 items-center justify-center rounded-full border transition-all duration-500 group-hover:scale-105 ${palette.iconRing} ${palette.iconSurface} `}
+                    className={`relative flex h-12 w-12 shrink-0 items-center justify-center rounded-full border transition-all duration-500 group-hover:scale-105 ${palette.iconRing} ${palette.iconSurface}`}
                   >
-                    <span
-                      className={`pointer-events-none absolute inset-0 rounded-full border opacity-30 ${
-                        palette.iconRing
-                      }`}
-                    />
+                    <span className={`pointer-events-none absolute inset-0 rounded-full border opacity-30 ${palette.iconRing}`} />
                     <svg
-                      className={`relative h-5 w-5 transition-transform duration-500 ${palette.icon} ${
-                        open ? 'rotate-45 text-[#0183C1]!  ' : ''
-                      }`}
+                      className={`relative h-5 w-5 transition-transform duration-500 ${palette.icon} ${open ? 'rotate-45 text-[#0183C1]!' : ''}`}
                       viewBox="0 0 24 24"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
                     >
-                      <path
-                        d="M12 5v14"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                      />
-                      <path
-                        d="M5 12h14"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                      />
+                      <path d="M12 5v14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                      <path d="M5 12h14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                     </svg>
                   </span>
 
                   <div className="flex flex-1 flex-col gap-4">
                     <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
-                      <h2
-                        className={`text-lg font-medium leading-tight sm:text-xl ${palette.heading}`}
-                      >
+                      <h2 className={`text-lg font-medium leading-tight sm:text-xl ${palette.heading}`}>
                         {item.question}
                       </h2>
-                      {/* {item.meta && (
-                        <span
-                          className={`inline-flex w-fit items-center rounded-full border px-3 py-1 text-[10px] uppercase tracking-[0.35em] transition-opacity duration-300 sm:ml-auto ${palette.border} ${palette.muted}`}
-                        >
-                          {item.meta}
-                        </span>
-                      )} */}
                     </div>
-
                     <div
                       id={panelId}
                       role="region"
                       aria-labelledby={buttonId}
-                      className={`overflow-hidden text-sm leading-relaxed transition-[max-height] duration-500 ease-out ${
-                        open ? 'max-h-64' : 'max-h-0'
-                      } ${palette.muted}`}
+                      className={`overflow-hidden text-sm leading-relaxed transition-[max-height] duration-500 ease-out ${open ? 'max-h-64' : 'max-h-0'} ${palette.muted}`}
                     >
                       <p className="pr-2">{item.answer}</p>
                     </div>
@@ -346,6 +284,16 @@ export default function FAQ() {
             );
           })}
         </ul>
+            {/* Button */}
+            <div className="mt-2 mx-auto">
+                  <a
+                    href="/faq"
+                    className="group shrink-0 text-[20px] inline-flex items-center justify-center gap-2 sm:px-8 sm:py-2  px-4 py-2 font-semibold text-[#ffffff] bg-[linear-gradient(206.67deg,_#45B3F1_-0.38%,_#0088FF_81.83%)] rounded-lg  transition-all duration-200 shadow-lg  leading-8 mt-0 tracking-[1%] "
+                  >
+                 Read More
+                    <ChevronRightIcon width={7} height={11} color="#ffffff" className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-0.5" />
+                  </a>
+                </div>
       </section>
     </div>
   );

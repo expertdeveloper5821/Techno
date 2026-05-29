@@ -1,5 +1,14 @@
-import type { PortfolioCategory } from "@/app/lib/data/portfolio-work";
-import { PORTFOLIO_FILTER_LABELS } from "@/app/lib/data/portfolio-work";
+import type { PortfolioCategory } from "./Work";
+
+const PORTFOLIO_FILTER_LABELS: PortfolioCategory[] = [
+  "All",
+  "Consulting",
+  "Mobile Apps",
+  "Web Development",
+  "Cloud & DevOps",
+  "AI Solutions",
+  "E-Commerce",
+];
 
 interface FilterBarProps {
   active: PortfolioCategory;

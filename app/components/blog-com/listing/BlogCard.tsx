@@ -1,5 +1,5 @@
 import Image from "next/image";
-import type { BlogPost } from "@/app/lib/data/blog-posts";
+import type { BlogPost } from "./BlogListing";
 
 interface BlogCardProps {
   post: BlogPost;
@@ -22,7 +22,7 @@ export default function BlogCard({ post }: BlogCardProps) {
         </span>
       </div>
       <div className="flex flex-1 flex-col gap-3 p-5">
-        <h2 className="text-lg font-semibol tracking-[1%]  leading-snug text-white sm:text-xl">
+        <h2 className="text-lg font-semibol tracking-[1%] leading-snug text-white sm:text-xl">
           {post.title}
         </h2>
         <p className="line-clamp-3 flex-1 text-sm tracking-[1%] leading-relaxed text-[#FFFFFF] sm:text-[14px]">

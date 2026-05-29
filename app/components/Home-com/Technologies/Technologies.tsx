@@ -1,19 +1,39 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { useReducedMotion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 import { fadeInUp } from '@/app/lib/animations';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
+import type { Swiper as SwiperType } from 'swiper';
 import TechCard from './TechCard';
-import { technologiesRow1, technologiesRow2 } from '@/app/lib/data/technologies';
-// import 'swiper/css';
-// Duplicate data twice for smooth looping without excess DOM nodes.
-const row1Extended = [...technologiesRow1, ...technologiesRow1];
-const row2Extended = [...technologiesRow2, ...technologiesRow2];
+import { getTechnologies } from '@/app/services';
+import type { Technology } from '@/app/services';
 
 export default function Technologies() {
   const shouldReduceMotion = useReducedMotion();
+  const [row1, setRow1] = useState<Technology[]>([]);
+  const [row2, setRow2] = useState<Technology[]>([]);
+
+  useEffect(() => {
+    getTechnologies()
+      .then((data) => {
+        setRow1(data.filter((t) => t.row === 1));
+        setRow2(data.filter((t) => t.row === 2));
+      })
+      .catch(console.error);
+  }, []);
+
+  // Duplicate for seamless loop
+  const row1Extended = [...row1, ...row1];
+  const row2Extended = [...row2, ...row2];
+
+  // Force Swiper to recalculate layout after slides are rendered
+  const handleSwiper = (swiper: SwiperType) => {
+    setTimeout(() => {
+      swiper.update();
+    }, 0);
+  };
 
   return (
     <section className="lg:py-24 md:py-15 py-10 bg-[#000000] overflow-hidden">
@@ -25,68 +45,77 @@ export default function Technologies() {
           variants={fadeInUp}
           className="text-center"
         >
-          <p className="text-gray-400  text-sm font-inter sm:text-[22px]  tracking-wider mb-3">Our Technologies</p>
-          <h2 className=" font-inter text-[25px] sm:text-xl md:text-4xl lg:text-[44px] font-semibold text-white sm:leading-tight lg:leading-[60px] md:leading-[50px] leading-[32px] tracking-tight ">
-          Technology we use and integrate </h2>
+          <p className="text-gray-400 text-sm font-inter sm:text-[22px] tracking-wider mb-3">Our Technologies</p>
+          <h2 className="font-inter text-[25px] sm:text-xl md:text-4xl lg:text-[44px] font-semibold text-white sm:leading-tight lg:leading-[60px] md:leading-[50px] leading-[32px] tracking-tight">
+            Technology we use and integrate
+          </h2>
         </motion.div>
       </div>
 
-      <div className="flex flex-col gap-3  w-full mx-auto px-4 sm:px-6 lg:px-6">
-        {/* --- Row 1 Slider (Left Scroll) --- */}
-        <div className="w-full">
-          <Swiper
-            modules={[Autoplay]}
-            spaceBetween={14}
-            slidesPerView="auto"
-            loop={true}
-            speed={4500}
-            observer={true}
-observeParents={true}
-            autoplay={shouldReduceMotion ? false : {
-              delay: 0,
-              disableOnInteraction: false,
-              pauseOnMouseEnter: true,
-            }}
-            allowTouchMove={true}
-            className="tech-swiper"
-          >
-            {/* id + index: same tech appears twice for seamless loop; index keeps keys unique */}
-            {row1Extended.map((tech, index) => (
-              <SwiperSlide key={`${tech.id}-${index}`} className="w-[280px]! md:w-[320px]!">
-                <TechCard tech={tech} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
+      <div className="flex flex-col gap-3 w-full mx-auto px-4 sm:px-6 lg:px-6">
+        {/* Row 1 — scrolls left */}
+        {row1Extended.length > 0 && (
+          <div className="w-full">
+            <Swiper
+              key={`row1-${row1.length}`}
+              modules={[Autoplay]}
+              spaceBetween={14}
+              slidesPerView="auto"
+              loop={true}
+              speed={4500}
+              observer={true}
+              observeParents={true}
+              updateOnWindowResize={true}
+              onSwiper={handleSwiper}
+              autoplay={shouldReduceMotion ? false : {
+                delay: 0,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              }}
+              allowTouchMove={true}
+              className="tech-swiper"
+            >
+              {row1Extended.map((tech, index) => (
+                <SwiperSlide key={`${tech._id}-${index}`} className="w-[280px]! md:w-[320px]!">
+                  <TechCard tech={tech} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        )}
 
-        {/* --- Row 2 Slider (Right Scroll) --- */}
-        <div className="w-full">
-          <Swiper
-            modules={[Autoplay]}
-            spaceBetween={14}
-            slidesPerView="auto"
-            loop={true}
-            speed={4500}
-            autoplay={shouldReduceMotion ? false : {
-              delay: 0,
-              disableOnInteraction: false,
-              reverseDirection: true,
-              pauseOnMouseEnter: true,
-            }}
-            allowTouchMove={true}
-            className="tech-swiper"
-          >
-            {/* id + index: same tech appears twice for seamless loop; index keeps keys unique */}
-            {row2Extended.map((tech, index) => (
-              <SwiperSlide key={`${tech.id}-${index}`} className="w-[280px]! md:w-[320px]!">
-                <TechCard tech={tech} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
+        {/* Row 2 — scrolls right */}
+        {row2Extended.length > 0 && (
+          <div className="w-full">
+            <Swiper
+              key={`row2-${row2.length}`}
+              modules={[Autoplay]}
+              spaceBetween={14}
+              slidesPerView="auto"
+              loop={true}
+              speed={4500}
+              observer={true}
+              observeParents={true}
+              updateOnWindowResize={true}
+              onSwiper={handleSwiper}
+              autoplay={shouldReduceMotion ? false : {
+                delay: 0,
+                disableOnInteraction: false,
+                reverseDirection: true,
+                pauseOnMouseEnter: true,
+              }}
+              allowTouchMove={true}
+              className="tech-swiper"
+            >
+              {row2Extended.map((tech, index) => (
+                <SwiperSlide key={`${tech._id}-${index}`} className="w-[280px]! md:w-[320px]!">
+                  <TechCard tech={tech} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        )}
       </div>
     </section>
   );
 }
-
-// Reusable Card Component for consistency

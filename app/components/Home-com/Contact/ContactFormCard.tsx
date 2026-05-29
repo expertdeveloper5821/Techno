@@ -222,12 +222,11 @@ export default function ContactFormCard({
             </label>
 
             {submitStatus === 'success' && (
-              <p className="text-green-200 text-sm font-medium">Message sent successfully!</p>
+              <p className="text-green-200 text-sm font-medium sr-only" aria-live="polite">Message sent successfully!</p>
             )}
             {submitStatus === 'error' && (
-              <p className="text-red-200 text-sm font-medium" role="alert">
-                {formErrorMessage ??
-                  'Please fill in all required fields and accept the privacy policy.'}
+              <p className="text-red-200 text-sm font-medium sr-only" role="alert">
+                {formErrorMessage ?? 'Please fill in all required fields and accept the privacy policy.'}
               </p>
             )}
 

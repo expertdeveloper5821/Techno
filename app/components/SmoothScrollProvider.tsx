@@ -13,7 +13,14 @@ export default function SmoothScrollProvider({ children }: SmoothScrollProviderP
   const pathname = usePathname();
   const lenisRef = useRef<Lenis | null>(null);
 
+  const isAdmin = pathname.startsWith('/admin');
+
   useEffect(() => {
+    // Admin panel uses its own div-based scroll (overflow-y-auto on <main>).
+    // Lenis hijacks wheel events at the window level, which prevents the
+    // inner container from scrolling. Skip Lenis entirely on admin routes.
+    if (isAdmin) return;
+
     if (typeof window === 'undefined') return;
 
     const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
@@ -44,9 +51,12 @@ export default function SmoothScrollProvider({ children }: SmoothScrollProviderP
       lenis.destroy();
       lenisRef.current = null;
     };
-  }, []);
+  }, [isAdmin]);
 
   useEffect(() => {
+    // Don't interfere with scroll restoration on admin pages
+    if (isAdmin) return;
+
     if ('scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'manual';
     }
@@ -62,8 +72,7 @@ export default function SmoothScrollProvider({ children }: SmoothScrollProviderP
     scrollTop();
     const rafId = window.requestAnimationFrame(scrollTop);
     return () => window.cancelAnimationFrame(rafId);
-  }, [pathname]);
+  }, [pathname, isAdmin]);
 
   return children;
 }
-

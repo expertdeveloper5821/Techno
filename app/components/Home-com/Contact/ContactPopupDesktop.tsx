@@ -2,46 +2,32 @@
 
 import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { sendContactForm } from '@/app/lib/contact-api';
-import {
-  FORM_SUBMIT_THROTTLE_MS,
-  validateContactForm,
-} from '@/app/lib/form-validation';
+import { FORM_SUBMIT_THROTTLE_MS, validateContactForm } from '@/app/lib/form-validation';
 import ContactFormCard from './ContactFormCard';
+import { useToast, ToastContainer } from '@/app/components/Toast';
 
 const STORAGE_KEY = 'technogetic_contact_popup_shown';
 
 export default function ContactPopupDesktop() {
+  const { toasts, show, dismiss } = useToast();
+
   const [isOpen, setIsOpen] = useState(true);
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    message: '',
-    agreePrivacy: false,
+    firstName: '', lastName: '', email: '', phone: '', message: '', agreePrivacy: false,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-  const [formErrorMessage, setFormErrorMessage] = useState<string | undefined>(undefined);
   const lastSubmitAtRef = useRef(0);
 
-  const closePopup = useCallback(() => {
-    setIsOpen(false);
-  }, []);
+  const closePopup = useCallback(() => setIsOpen(false), []);
 
   useEffect(() => {
     if (typeof window === 'undefined' || !isOpen) return;
-    try {
-      sessionStorage.setItem(STORAGE_KEY, 'true');
-    } catch {
-      // ignore
-    }
+    try { sessionStorage.setItem(STORAGE_KEY, 'true'); } catch { /* ignore */ }
   }, [isOpen]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
-    setFormErrorMessage(undefined);
     const name = e.target.name;
     const value = e.target.type === 'checkbox' ? (e.target as HTMLInputElement).checked : e.target.value;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -52,45 +38,29 @@ export default function ContactPopupDesktop() {
 
     const validation = validateContactForm(formData);
     if (!validation.ok) {
-      setSubmitStatus('error');
-      setFormErrorMessage(validation.message);
+      show({ message: validation.message, type: 'error' });
       return;
     }
 
     const now = Date.now();
     if (now - lastSubmitAtRef.current < FORM_SUBMIT_THROTTLE_MS) {
-      setSubmitStatus('error');
-      setFormErrorMessage('Please wait a moment before submitting again.');
+      show({ message: 'Please wait a moment before submitting again.', type: 'info' });
       return;
     }
     lastSubmitAtRef.current = now;
 
     setIsSubmitting(true);
-    setSubmitStatus('idle');
-    setFormErrorMessage(undefined);
-
     try {
       const result = await sendContactForm(formData);
       if (result.ok) {
-        setSubmitStatus('success');
-        setFormData({
-          firstName: '',
-          lastName: '',
-          email: '',
-          phone: '',
-          message: '',
-          agreePrivacy: false,
-        });
-        setTimeout(closePopup, 1500);
+        show({ message: "🎉 Message sent! We'll get back to you soon.", type: 'success', duration: 5000 });
+        setFormData({ firstName: '', lastName: '', email: '', phone: '', message: '', agreePrivacy: false });
+        setTimeout(closePopup, 1800);
       } else {
-        setSubmitStatus('error');
-        setFormErrorMessage(
-          result.error ?? 'Something went wrong. Please try again.'
-        );
+        show({ message: result.error ?? 'Something went wrong. Please try again.', type: 'error' });
       }
     } catch {
-      setSubmitStatus('error');
-      setFormErrorMessage('Something went wrong. Please try again.');
+      show({ message: 'Something went wrong. Please try again.', type: 'error' });
     } finally {
       setIsSubmitting(false);
     }
@@ -99,30 +69,33 @@ export default function ContactPopupDesktop() {
   if (!isOpen) return null;
 
   return (
-    <div
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="contact-desktop-popup-title"
-    >
-      <button
-        type="button"
-        onClick={closePopup}
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
-        aria-label="Close"
-      />
-      <div className="relative w-full max-w-6xl min-h-[90vh] ">
-        <ContactFormCard
-          formData={formData}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-          isSubmitting={isSubmitting}
-          submitStatus={submitStatus}
-          formErrorMessage={formErrorMessage}
-          onClose={closePopup}
-          idPrefix="desktop-popup"
+    <>
+      <ToastContainer toasts={toasts} onDismiss={dismiss} />
+
+      <div
+        className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="contact-desktop-popup-title"
+      >
+        <button
+          type="button"
+          onClick={closePopup}
+          className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
+          aria-label="Close"
         />
+        <div className="relative w-full max-w-6xl min-h-[90vh]">
+          <ContactFormCard
+            formData={formData}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            isSubmitting={isSubmitting}
+            submitStatus="idle"
+            onClose={closePopup}
+            idPrefix="desktop-popup"
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 }

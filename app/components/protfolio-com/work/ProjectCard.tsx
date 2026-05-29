@@ -1,8 +1,8 @@
 import Image from "next/image";
-import type { PortfolioWorkItem } from "@/app/lib/data/portfolio-work";
+import type { PortfolioItem } from "./Work";
 
 interface ProjectCardProps {
-  item: PortfolioWorkItem;
+  item: PortfolioItem;
 }
 
 export default function ProjectCard({ item }: ProjectCardProps) {
@@ -22,11 +22,11 @@ export default function ProjectCard({ item }: ProjectCardProps) {
           <h3 className="text-base font-semibold leading-snug text-white sm:text-xl">
             {item.title}
           </h3>
-          <span className="shrink-0 rounded-full border border-white/15 bg-[#141414] px-3 py-1 text-xs tracking-[1%] leading-[16px] font-medium text-[#FFFFFF">
+          <span className="shrink-0 rounded-full border border-white/15 bg-[#141414] px-3 py-1 text-xs tracking-[1%] leading-[16px] font-medium text-[#FFFFFF]">
             {item.tag}
           </span>
         </div>
-        <p className="text-sm leading-relaxed  tracking-[1%] text-white/80 sm:text-[14px]">
+        <p className="text-sm leading-relaxed tracking-[1%] text-white/80 sm:text-[14px]">
           {item.description}
         </p>
       </div>
