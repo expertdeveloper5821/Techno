@@ -1,23 +1,41 @@
 import { NextResponse } from "next/server";
+import { compare } from "bcryptjs";
+import { connectDB } from "@/app/lib/db";
+import AdminUser from "@/app/lib/models/AdminUser";
 import { createSessionCookie } from "@/app/lib/session";
 
 export async function POST(request: Request) {
   try {
-    const { username, password } = await request.json();
+    const { email, password } = await request.json();
 
-    const validUser = process.env.ADMIN_USERNAME ?? "admin";
-    const validPass = process.env.ADMIN_PASSWORD ?? "admin123";
+    if (!email || !password) {
+      return NextResponse.json(
+        { success: false, message: "Email and password are required" },
+        { status: 400 }
+      );
+    }
 
-    if (username !== validUser || password !== validPass) {
+    await connectDB();
+    const admin = await AdminUser.findOne({ email: email.toLowerCase().trim() });
+
+    if (!admin) {
       return NextResponse.json(
         { success: false, message: "Invalid credentials" },
         { status: 401 }
       );
     }
 
-    const cookie = await createSessionCookie();
+    const valid = await compare(password, admin.passwordHash);
+    if (!valid) {
+      return NextResponse.json(
+        { success: false, message: "Invalid credentials" },
+        { status: 401 }
+      );
+    }
+
+    const cookie = await createSessionCookie(admin.email);
     return NextResponse.json(
-      { success: true },
+      { success: true, name: admin.name },
       { headers: { "Set-Cookie": cookie } }
     );
   } catch {
