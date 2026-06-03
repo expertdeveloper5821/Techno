@@ -182,9 +182,7 @@ function Vision() {
             <span className="absolute right-2 bottom-30 md:right-20 md:text-6xl text-4xl text-[#00A3E0]"><SVGComponentright /></span>
 
             <p className="mb-4 text-[18px] leading-[28px] text-white/90 md:text-[20px]">
-              Founded with a mission to simplify technology for businesses,
-              Technogetic was created to help companies turn complex ideas into
-              scalable digital solutions.
+             A vision of developing technology-based solutions that make a difference. As an organization, we aim at providing scalable web and software solutions to enable organizations to grow, operate efficiently, and work smarter. 
             </p>
 
             <p className="mb-6 text-base leading-[28px] text-white/80 md:text-[20px]">

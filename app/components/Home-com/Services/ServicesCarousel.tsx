@@ -137,10 +137,10 @@ export default function ServicesCarousel() {
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
           <div className="flex flex-col lg:flex-col justify-between items-start gap-5 lg:gap-2">
             <h2 className="text-[25px] sm:text-xl md:text-4xl lg:text-[44px] font-semibold font-inter text-white lg:leading-[60px] md:leading-[50px] leading-[32px] max-w-4xl">
-              Full-stack Development From Discovery To Deployment
+             Full Stack Development From Starting till completion 
             </h2>
             <p className="text-base md:text-lg font-inter font-normal text-white/90 md:leading-relaxed leading-[25px] flex-1">
-              At Technogetic, we are at the forefront of technological innovation, dedicated to delivering cutting-edge IT solutions that drive business success. Founded in 2018, our mission is to redefine the digital landscape by providing reliable and scalable technology solutions.
+              Technogetic is a full-service company that is committed to bringing innovative technological solutions to its clients to ensure their success. Established in 2018, our objective is to revolutionize the technological sector by offering robust and scalable technology solutions.
             </p>
           </div>
         </motion.div>

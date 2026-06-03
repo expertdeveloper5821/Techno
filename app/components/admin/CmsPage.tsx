@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef, useId } from "react";
 import ImageUploadField from "./ImageUploadField";
 
 // ── View Modal ────────────────────────────────────────────────────────────────
@@ -183,10 +183,11 @@ function ViewModal({
 // ── Types ────────────────────────────────────────────────────────────────────
 
 export type FieldDef =
-  | { key: string; label: string; type: "text" | "number" | "url" }
-  | { key: string; label: string; type: "textarea" }
-  | { key: string; label: string; type: "select"; options: string[] }
-  | { key: string; label: string; type: "tags"; placeholder?: string };
+  | { key: string; label: string; type: "text" | "number" | "url"; required?: boolean }
+  | { key: string; label: string; type: "textarea"; required?: boolean }
+  | { key: string; label: string; type: "select"; options: string[]; required?: boolean }
+  | { key: string; label: string; type: "select-creatable"; options: string[]; required?: boolean }
+  | { key: string; label: string; type: "tags"; placeholder?: string; required?: boolean };
 
 interface CmsPageProps {
   title: string;
@@ -194,6 +195,8 @@ interface CmsPageProps {
   fields: FieldDef[];
   primaryField: string;
   tableColumns?: { key: string; label: string }[];
+  /** Dynamically override options for select-creatable fields. key = field.key */
+  dynamicOptions?: Record<string, string[]>;
 }
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
@@ -228,6 +231,105 @@ function setFieldValue(
   return { ...form, [field.key]: raw };
 }
 
+// ── Select-Creatable sub-component ───────────────────────────────────────────
+
+function SelectCreatable({
+  label,
+  value,
+  options,
+  required,
+  onChange,
+}: {
+  label: string;
+  value: string;
+  options: string[];
+  required?: boolean;
+  onChange: (v: string) => void;
+}) {
+  const uid = useId();
+  const [showNew, setShowNew] = useState(false);
+  const [newValue, setNewValue] = useState("");
+
+  // If the current value isn't in the options list and isn't empty, show the text input
+  const isCustom = value !== "" && !options.includes(value);
+
+  useEffect(() => {
+    if (isCustom) {
+      setShowNew(true);
+      setNewValue(value);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const selectValue = showNew ? "__new__" : value;
+
+  const handleSelectChange = (v: string) => {
+    if (v === "__new__") {
+      setShowNew(true);
+      setNewValue("");
+      onChange("");
+    } else {
+      setShowNew(false);
+      setNewValue("");
+      onChange(v);
+    }
+  };
+
+  const handleNewInput = (v: string) => {
+    setNewValue(v);
+    onChange(v);
+  };
+
+  const handleCancelNew = () => {
+    setShowNew(false);
+    setNewValue("");
+    onChange("");
+  };
+
+  return (
+    <div>
+      <label htmlFor={uid} className="block text-sm font-medium text-gray-700 mb-1">
+        {label}
+        {required && <span className="text-red-500 ml-1">*</span>}
+      </label>
+      <select
+        id={uid}
+        value={selectValue}
+        onChange={(e) => handleSelectChange(e.target.value)}
+        required={required && !showNew}
+        className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+      >
+        <option value="">— Select a category —</option>
+        {options.map((opt) => (
+          <option key={opt} value={opt}>{opt}</option>
+        ))}
+        <option value="__new__">➕ Add new category…</option>
+      </select>
+
+      {showNew && (
+        <div className="mt-2 flex items-center gap-2">
+          <input
+            type="text"
+            value={newValue}
+            onChange={(e) => handleNewInput(e.target.value)}
+            placeholder="Enter new category name"
+            required={required}
+            autoFocus
+            className="flex-1 border border-blue-400 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <button
+            type="button"
+            onClick={handleCancelNew}
+            className="text-xs text-gray-500 hover:text-gray-700 px-2 py-1.5 rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors"
+          >
+            Cancel
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ── Form Fields renderer (shared between Add panel and Edit drawer) ───────────
 
 function FormFields({
@@ -245,17 +347,20 @@ function FormFields({
         const value = getFieldValue(form, field.key);
         const onChange = (raw: string) =>
           setForm(setFieldValue(form, field, raw));
+        const isRequired = "required" in field ? field.required : false;
 
         if (field.type === "textarea") {
           return (
             <div key={field.key} className="md:col-span-2">
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 {field.label}
+                {isRequired && <span className="text-red-500 ml-1">*</span>}
               </label>
               <textarea
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
                 rows={4}
+                required={isRequired}
                 className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-y"
               />
             </div>
@@ -267,10 +372,12 @@ function FormFields({
             <div key={field.key}>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 {field.label}
+                {isRequired && <span className="text-red-500 ml-1">*</span>}
               </label>
               <select
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
+                required={isRequired}
                 className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
               >
                 <option value="">Select…</option>
@@ -278,6 +385,20 @@ function FormFields({
                   <option key={opt} value={opt}>{opt}</option>
                 ))}
               </select>
+            </div>
+          );
+        }
+
+        if (field.type === "select-creatable") {
+          return (
+            <div key={field.key}>
+              <SelectCreatable
+                label={field.label}
+                value={value}
+                options={(field as { options: string[] }).options}
+                required={isRequired}
+                onChange={onChange}
+              />
             </div>
           );
         }
@@ -317,11 +438,13 @@ function FormFields({
           <div key={field.key}>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               {field.label}
+              {isRequired && <span className="text-red-500 ml-1">*</span>}
             </label>
             <input
               type={field.type}
               value={value}
               onChange={(e) => onChange(e.target.value)}
+              required={isRequired}
               className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
@@ -461,6 +584,7 @@ export default function CmsPage({
   fields,
   primaryField,
   tableColumns = [],
+  dynamicOptions = {},
 }: CmsPageProps) {
   const [items, setItems] = useState<Record<string, unknown>[]>([]);
   const [addForm, setAddForm] = useState<Record<string, unknown>>(buildEmpty(fields));
@@ -474,6 +598,14 @@ export default function CmsPage({
   const [success, setSuccess] = useState("");
   const [search, setSearch] = useState("");
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
+
+  // Merge dynamicOptions into fields (for select-creatable)
+  const mergedFields: FieldDef[] = fields.map((f) => {
+    if ((f.type === "select" || f.type === "select-creatable") && dynamicOptions[f.key]) {
+      return { ...f, options: dynamicOptions[f.key] } as FieldDef;
+    }
+    return f;
+  });
 
   const fetchItems = useCallback(async () => {
     setLoading(true);
@@ -611,7 +743,7 @@ export default function CmsPage({
           <h2 className="font-semibold text-gray-800">Add New Record</h2>
         </div>
         <form onSubmit={handleAdd} className="p-6">
-          <FormFields fields={fields} form={addForm} setForm={setAddForm} />
+          <FormFields fields={mergedFields} form={addForm} setForm={setAddForm} />
           <div className="mt-5">
             <button
               type="submit"
@@ -757,7 +889,7 @@ export default function CmsPage({
       {/* ── Edit Drawer ── */}
       <EditDrawer
         open={drawerOpen}
-        fields={fields}
+        fields={mergedFields}
         form={editForm}
         setForm={setEditForm}
         saving={saving}
@@ -769,7 +901,7 @@ export default function CmsPage({
       <ViewModal
         open={viewItem !== null}
         item={viewItem}
-        fields={fields}
+        fields={mergedFields}
         onClose={() => setViewItem(null)}
         onEdit={() => {
           if (viewItem) {
