@@ -30,7 +30,7 @@ function ViewModal({
 
   if (!item) return null;
 
-  const renderValue = (field: FieldDef) => {
+  const renderValue = (field: FieldDef): React.ReactNode => {
     const raw = item[field.key];
     if (raw === undefined || raw === null || raw === "") {
       return <span className="text-gray-400 italic">—</span>;
@@ -130,22 +130,27 @@ function ViewModal({
             ))}
 
             {/* System fields */}
-            {(item.createdAt || item.updatedAt) && (
-              <div className="pt-2 border-t border-gray-100 grid grid-cols-2 gap-4">
-                {item.createdAt && (
-                  <div>
-                    <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">Created</p>
-                    <p className="text-sm text-gray-500">{new Date(item.createdAt as string).toLocaleString()}</p>
-                  </div>
-                )}
-                {item.updatedAt && (
-                  <div>
-                    <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">Last Updated</p>
-                    <p className="text-sm text-gray-500">{new Date(item.updatedAt as string).toLocaleString()}</p>
-                  </div>
-                )}
-              </div>
-            )}
+            {(() => {
+              const createdAt = item.createdAt as string | undefined;
+              const updatedAt = item.updatedAt as string | undefined;
+              if (!createdAt && !updatedAt) return null;
+              return (
+                <div className="pt-2 border-t border-gray-100 grid grid-cols-2 gap-4">
+                  {createdAt && (
+                    <div>
+                      <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">Created</p>
+                      <p className="text-sm text-gray-500">{new Date(createdAt).toLocaleString()}</p>
+                    </div>
+                  )}
+                  {updatedAt && (
+                    <div>
+                      <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">Last Updated</p>
+                      <p className="text-sm text-gray-500">{new Date(updatedAt).toLocaleString()}</p>
+                    </div>
+                  )}
+                </div>
+              );
+            })()}
           </div>
 
           {/* Modal footer */}

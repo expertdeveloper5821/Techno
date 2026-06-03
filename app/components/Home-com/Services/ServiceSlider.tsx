@@ -1,27 +1,40 @@
 'use client';
 
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import type { Swiper as SwiperType } from 'swiper';
 import { Autoplay, EffectCoverflow } from 'swiper/modules';
-import { services } from '@/app/lib/data/services';
 import ReadMoreIcon from '@/app/lib/icon/readmore-icon';
 import arrowl from '@/app/lib/icon/arrow.svg';
+
+interface ServiceSlide {
+  _id: string;
+  title: string;
+  image: string;
+  description: string;
+  order: number;
+}
+
 interface ServiceSliderProps {
   theme?: 'dark' | 'light';
 }
-
- 
-const DETAIL_TRANSITION_MS = 2000;
-const EASE_SLIDE = 'linear';
 
 export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
   const isDark = theme === 'dark';
   const [isLoaded, setIsLoaded] = useState(false);
   const swiperRef = useRef<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  const pagination = [1, 2, 3];
+  const [slides, setSlides] = useState<ServiceSlide[]>([]);
+
+  useEffect(() => {
+    fetch('/api/service-slides')
+      .then((res) => res.json())
+      .then((json) => { if (json.success) setSlides(json.data); })
+      .catch(console.error);
+  }, []);
+
+  const pagination = slides;
   /** Slide to the clicked slide so it moves to center */
   const handleSlideClick = useCallback((index: number) => {
     swiperRef.current?.slideToLoop(index, 500);
@@ -79,7 +92,7 @@ export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
       )}
 
       {/* ---------------- SWIPER WITH COVERFLOW ---------------- */}
-      <Swiper
+      {slides.length > 0 && <Swiper
         effect={'coverflow'}
         grabCursor={true}
         centeredSlides={true}
@@ -106,8 +119,8 @@ export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
         onInit={() => setIsLoaded(true)}
         className={`w-full  py-12 pb-20 transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
       >
-        {services.map((service, index) => (
-          <SwiperSlide key={`${service.title}-${index}`} className="w-[260px]! md:w-[320px]! lg:w-[300px]! " style={{
+        {slides.map((service, index) => (
+          <SwiperSlide key={`${service._id}-${index}`} className="w-[260px]! md:w-[320px]! lg:w-[300px]! " style={{
             border: '2px solid #7A7A7A',
             borderRadius: '34px',
           }}>
@@ -213,7 +226,7 @@ export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
                 type="button"
                 aria-label={`Go to slide ${i + 1}`}
                 onClick={() => swiperRef.current?.slideToLoop(i, 500)}
-                className={`rounded-full transition-all duration-300 ${activeIndex % 3 === i
+                className={`rounded-full transition-all duration-300 ${activeIndex % slides.length === i
                     ? 'w-6 h-2.5 bg-[#2177C7]'
                     : 'w-2.5 h-2.5 bg-white/50 hover:bg-white/80'
                   }`}
@@ -231,7 +244,7 @@ export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
           </button>
         </div>
 
-      </Swiper>
+      </Swiper>}
 
 
 

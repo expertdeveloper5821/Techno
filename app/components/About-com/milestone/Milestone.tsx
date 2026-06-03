@@ -21,7 +21,8 @@ export default function MilestoneCelebration() {
         {/* Heading */}
         <div className="mb-10 text-center text-white px-4">
           <h2 className="mb-3 text-[25px] mx-auto sm:text-xl md:text-4xl lg:text-[44px] font-semibold font-inter text-white lg:leading-[60px] md:leading-[50px] leading-[32px]  max-w-4xl">
-            Every Milestone Is a Celebration
+       We create outstanding value with our unique solutions.
+
           </h2>
           <p className="mx-auto max-w-2xl text-base font-medium text-white md:text-[22px] md:leading-[40px] leading-[25px] tracking-wider">
             Technogetic celebrates four years of building impactful products

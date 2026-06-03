@@ -8,6 +8,7 @@ const CMS_SECTIONS = [
   { name: "Contacts", path: "/admin/contacts", icon: "📬" },
   { name: "Products", path: "/admin/products", icon: "📦" },
   { name: "Services", path: "/admin/services", icon: "⚙️" },
+  { name: "Service Slides", path: "/admin/service-slides", icon: "🎠" },
   { name: "Partners", path: "/admin/partners", icon: "🤝" },
   { name: "Technologies", path: "/admin/technologies", icon: "💻" },
   { name: "FAQs", path: "/admin/faqs", icon: "❓" },
@@ -18,6 +19,7 @@ const CMS_SECTIONS = [
   { name: "Growth Items", path: "/admin/growth-items", icon: "📈" },
   { name: "Features", path: "/admin/features", icon: "✨" },
   { name: "What We Do", path: "/admin/what-we-do", icon: "🎯" },
+  { name: "Milestones", path: "/admin/milestones", icon: "🏆" },
   { name: "Privacy Policy", path: "/admin/privacy-policy", icon: "🔒" },
   { name: "Terms & Conditions", path: "/admin/terms", icon: "📋" },
 ];

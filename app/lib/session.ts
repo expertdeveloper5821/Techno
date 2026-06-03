@@ -12,7 +12,8 @@ const MAX_AGE = 60 * 60 * 8; // 8 hours
 // ── HMAC helpers ────────────────────────────────────────────────────────────
 
 async function getKey(): Promise<CryptoKey> {
-  const secret = process.env.SESSION_SECRET ?? "fallback-dev-secret";
+  // Trim to remove any accidental whitespace from the .env value
+  const secret = (process.env.SESSION_SECRET ?? "fallback-dev-secret").trim();
   const enc = new TextEncoder();
   return crypto.subtle.importKey(
     "raw",
