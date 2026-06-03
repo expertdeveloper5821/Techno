@@ -35,6 +35,10 @@ const nextConfig: NextConfig = {
   compress: true,
   poweredByHeader: false,
   reactStrictMode: true,
+  // Expose server-only env vars to both Edge and Node.js runtimes
+  env: {
+    SESSION_SECRET: process.env.SESSION_SECRET ?? "fallback-dev-secret",
+  },
   async headers() {
     return [
       {
@@ -59,6 +63,15 @@ const nextConfig: NextConfig = {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 60 * 10, // 10 minutes cache
+    remotePatterns: [
+      {
+        // Allow any S3 bucket in any region
+        // e.g. https://my-bucket.s3.ap-south-1.amazonaws.com/techno/...
+        protocol: 'https',
+        hostname: '**.amazonaws.com',
+        pathname: '/**',
+      },
+    ],
   },
 };
 

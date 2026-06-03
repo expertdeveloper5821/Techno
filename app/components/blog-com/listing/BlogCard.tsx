@@ -1,5 +1,5 @@
 import Image from "next/image";
-import type { BlogPost } from "./BlogListing";
+import type { BlogPost } from "@/app/services";
 
 interface BlogCardProps {
   post: BlogPost;

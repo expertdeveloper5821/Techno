@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 const COOKIE_NAME = "admin_session";
-const SESSION_SECRET = process.env.SESSION_SECRET ?? "fallback-dev-secret";
+const SESSION_SECRET = (process.env.SESSION_SECRET ?? "fallback-dev-secret").trim();
 const MAX_AGE_MS = 60 * 60 * 8 * 1000; // 8 hours
 
 // ── Inline HMAC verify (Edge-compatible, no imports from app/lib) ────────────

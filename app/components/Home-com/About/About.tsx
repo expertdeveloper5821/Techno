@@ -5,9 +5,9 @@ import { fadeInUp, scaleIn } from '@/app/lib/animations';
 import Image from 'next/image';
 import SplitTextReveal from '../../SmoothScrollProvider'
 const features = [
-  'Tailored IT Solutions.',
-  'Future-Ready Infrastructure.',
-  'Industry Expertise.',
+  'IT Solutions Tailored to Your Needs.',
+  'Infrastructure Built for the Future.',
+  'Expert Industry Knowledge.',
 ];
 
 const stats = [
@@ -40,7 +40,7 @@ export default function About() {
             // variants={fadeInUp}
             className="font-inter text-[25px] sm:text-xl md:text-4xl font-semibold   lg:leading-[60px] md:leading-[50px] leading-[32px] "
           >
-            We deliver exceptional value through innovative, tailored solutions.
+           We create outstanding value with our unique solutions. 
           </motion.h2>
           </SplitTextReveal>
 
@@ -54,8 +54,8 @@ export default function About() {
             className="space-y-10 mt-2"
           >
             <p className="text-[#FFFFFF] text-lg  leading-[28.8px] font-inters tracking-[1%] mb-0! sm:mb-2 ">
-            Since 2018, we've helped startups and enterprises build software that actually works. No buzzwords, no vendor lock-in—just senior engineers who deliver working code on predictable timelines.            </p>
-            <p className=''>We don't treat you like a ticket number. Our teams embed directly into yours—same Slack channels, same sprint cycles, same goals.</p>
+           We’ve been helping startups and established companies build their software since 2018. We don’t talk in jargon or sell buzzwords; our experienced engineers produce code that works. </p>
+            <p className=''>Our team doesn't operate on a ticket basis; they integrate right into yours—working from the same Slack channel, sprint cycle, and KPIs. </p>
             <div className="space-y-4">
               {features.map((feature, index) => (
                 <div key={index} className="flex items-center space-x-3">

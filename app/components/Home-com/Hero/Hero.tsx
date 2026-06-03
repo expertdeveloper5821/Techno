@@ -26,7 +26,7 @@ export default function Hero() {
             }}
           >
             <SplitTextReveal>
-          Solutions Built To Scale Your Business, Not Slow It Down
+          Business Solutions That Scale With Your Needs, Not Against Them 
           </SplitTextReveal>
           </motion.h1>
 
@@ -38,7 +38,7 @@ export default function Hero() {
             className="text-white font-normal font-inter  text-base sm:text-xl max-w-4xl mx-auto mb-10 leading-relaxed  md:pt-10 tracking-[0.03em] "
           >
             <SplitTextReveal>
-We build custom applications and provide dedicated development teams that work as your team—no vendor games, just reliable engineering.      
+We design and develop custom apps and teams to work for you without any game playing from vendors; just solid engineering. 
 </SplitTextReveal>    </motion.p>
 
           <motion.div

@@ -4,6 +4,9 @@ export type { Product } from "./productService";
 export { getServices } from "./serviceService";
 export type { Service } from "./serviceService";
 
+export { getServiceSlides } from "./serviceSlideService";
+export type { ServiceSlide } from "./serviceSlideService";
+
 export { getPartners } from "./partnerService";
 export type { Partner } from "./partnerService";
 

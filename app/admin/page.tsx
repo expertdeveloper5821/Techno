@@ -4,6 +4,7 @@ const SECTIONS = [
   { name: "Contacts", path: "/admin/contacts", icon: "📬", desc: "View & manage contact form submissions" },
   { name: "Products", path: "/admin/products", icon: "📦", desc: "Manage product listings" },
   { name: "Services", path: "/admin/services", icon: "⚙️", desc: "Manage service offerings" },
+  { name: "Service Slides", path: "/admin/service-slides", icon: "🎠", desc: "Manage the coverflow service slider" },
   { name: "Partners", path: "/admin/partners", icon: "🤝", desc: "Manage partner logos" },
   { name: "Technologies", path: "/admin/technologies", icon: "💻", desc: "Manage tech stack display" },
   { name: "FAQs", path: "/admin/faqs", icon: "❓", desc: "Manage frequently asked questions" },
@@ -14,6 +15,7 @@ const SECTIONS = [
   { name: "Growth Items", path: "/admin/growth-items", icon: "📈", desc: "Manage career growth items" },
   { name: "Features", path: "/admin/features", icon: "✨", desc: "Manage feature highlights" },
   { name: "What We Do", path: "/admin/what-we-do", icon: "🎯", desc: "Manage service detail sections" },
+  { name: "Milestones", path: "/admin/milestones", icon: "🏆", desc: "Manage About page milestone photos" },
   { name: "Privacy Policy", path: "/admin/privacy-policy", icon: "🔒", desc: "Manage privacy policy sections" },
   { name: "Terms & Conditions", path: "/admin/terms", icon: "📋", desc: "Manage terms sections" },
 ];

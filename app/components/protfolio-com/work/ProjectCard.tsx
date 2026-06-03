@@ -1,5 +1,5 @@
 import Image from "next/image";
-import type { PortfolioItem } from "./Work";
+import type { PortfolioItem } from "@/app/services";
 
 interface ProjectCardProps {
   item: PortfolioItem;
