@@ -41,10 +41,10 @@ export default function Products() {
             >
               <p className='text-[22px] font-semibold mb-2 leading-[36px] '>Why Choose Technogetic</p>
               <h2 className=" font-inter text-[25px] sm:text-xl md:text-4xl lg:text-[44px] font-semibold lg:leading-tight md:leading-[50px] leading-[32px] tracking-tight mb-0 sm:mb-6">
-                Scalable Solutions for Modern Businesses
+              Reliable Digital Solutions for Growing Businesses
               </h2>
-              <p className='text-lg font-normal leading-[28px]'>Technogetic partners with businesses to deliver reliable, scalable digital solutions through innovation,
-                clear communication, modern technology, and a strong focus on long-term growth.
+              <p className='text-lg font-normal leading-[28px]'>Working hand-in-hand with businesses, Technogetic ensures that clients receive reliable digital solutions through innovations, communication, modern technology, and sustainable business growth. 
+
               </p>
             </motion.div>
           </div>

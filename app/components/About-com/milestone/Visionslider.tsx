@@ -50,7 +50,7 @@ export default function VisionSlider() {
           <img
             src={item.image}
             alt={`Milestone ${item.order}`}
-            className="w-full sm:h-auto"
+            className="w-100 h-80 object-cover"
           />
         </SwiperSlide>
       ))}
