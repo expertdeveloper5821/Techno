@@ -35,10 +35,6 @@ const nextConfig: NextConfig = {
   compress: true,
   poweredByHeader: false,
   reactStrictMode: true,
-  // Expose server-only env vars to both Edge and Node.js runtimes
-  env: {
-    SESSION_SECRET: process.env.SESSION_SECRET ?? "fallback-dev-secret",
-  },
   async headers() {
     return [
       {

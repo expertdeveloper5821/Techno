@@ -19,9 +19,9 @@ const topOffsetMap: Record<number, string> = {
 
 export default function WhatWeDo() {
   const [cards, setCards] = useState<WhatWeDoCard[]>([]);
-  const [heading] = useState('What We Do');
+  const [heading] = useState('Our Services');
   const [description] = useState(
-    'We provide end-to-end consulting, marketing, and technology services that help businesses plan smarter, grow faster, and build scalable digital solutions.'
+    'Our consulting, marketing, and technology services deliver comprehensive support for better planning, accelerated growth, and creating scalable digital solutions. Through our combined efforts, all strategies, campaigns, and products are optimized to deliver results that directly benefit your business.'
   );
   const [loading, setLoading] = useState(true);
 
