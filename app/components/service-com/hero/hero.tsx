@@ -37,7 +37,7 @@ export default function Hero() {
               
             }}
           >
-        Digital Solutions That Drive Real Business Impact
+        Digital Solutions for Real Business Value 
           </motion.h1>
 
           <motion.p
@@ -47,7 +47,7 @@ export default function Hero() {
             transition={{ delay: 0.2 }}
             className="text-white font-normal font-inter  text-base sm:text-xl max-w-5xl   mb-10 leading-relaxed  md:pt-6 tracking-[0.03em] "
           >
-We combine strategic consulting, result-driven marketing, and advanced technology to help businesses innovate, scale efficiently, and stay competitive.</motion.p>
+Strategic consulting, outcome-focused marketing, and cutting-edge technology are how we enable businesses to innovate, operate more efficiently, and compete effectively.</motion.p>
 
           <motion.div
             initial="hidden"

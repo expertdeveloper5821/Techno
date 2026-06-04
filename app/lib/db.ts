@@ -1,15 +1,5 @@
 import mongoose from "mongoose";
 
-const MONGODB_URI = process.env.MONGODB_URI as string;
-
-if (!MONGODB_URI) {
-  throw new Error("Please define MONGODB_URI in your .env file");
-}
-
-/**
- * Cached connection — prevents creating a new connection on every
- * hot-reload in Next.js development mode.
- */
 declare global {
   // eslint-disable-next-line no-var
   var _mongooseCache: { conn: typeof mongoose | null; promise: Promise<typeof mongoose> | null };
@@ -19,6 +9,11 @@ const cached = global._mongooseCache ?? { conn: null, promise: null };
 global._mongooseCache = cached;
 
 export async function connectDB() {
+  const MONGODB_URI = process.env.MONGODB_URI;
+  if (!MONGODB_URI) {
+    throw new Error("MONGODB_URI is not defined. Add it to your Vercel environment variables.");
+  }
+
   if (cached.conn) return cached.conn;
 
   if (!cached.promise) {

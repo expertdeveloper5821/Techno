@@ -2,17 +2,37 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { industries } from "@/app/lib/data/about-data/industries";
+
+interface Industry {
+  _id: string;
+  title: string;
+  icon: string;
+  description: string;
+  order: number;
+}
 
 export default function Industries() {
     const sectionRef = useRef<HTMLDivElement>(null);
     const trackRef = useRef<HTMLDivElement>(null);
     const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
-    const [stickyStates, setStickyStates] = useState<number[]>(
-        Array(industries.length).fill(-1)
-    );
+    const [industries, setIndustries] = useState<Industry[]>([]);
+    const [stickyStates, setStickyStates] = useState<number[]>([]);
 
     useEffect(() => {
+        fetch("/api/industries")
+            .then((res) => res.json())
+            .then((json) => {
+                if (json.success) {
+                    setIndustries(json.data);
+                    setStickyStates(Array(json.data.length).fill(-1));
+                }
+            })
+            .catch(console.error);
+    }, []);
+
+    useEffect(() => {
+        if (industries.length === 0) return; // wait for data before setting up scroll
+
         const section = sectionRef.current!;
         const track = trackRef.current!;
 
@@ -87,7 +107,7 @@ export default function Industries() {
             window.removeEventListener("scroll", onScroll);
             window.removeEventListener("resize", calculate);
         };
-    }, []);
+    }, [industries.length]);
 
     return (
         <section
@@ -131,7 +151,7 @@ export default function Industries() {
                         >
                             {industries.map((item, index) => (
                                 <div
-                                    key={index}
+                                    key={item._id}
                                     ref={(el) => {
                                         cardsRef.current[index] = el;
                                     }}
@@ -165,7 +185,7 @@ export default function Industries() {
                                             height={40}
                                         />
                                         <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/50 text-sm">
-                                            {item.id}
+                                            {item.order}
                                         </span>
                                     </div>
 
