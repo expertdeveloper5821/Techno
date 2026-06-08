@@ -1,11 +1,12 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
-import type { Product } from '@/app/services/productService';
-import type { Service } from '@/app/services/serviceService';
-import type { ServiceSlide } from '@/app/services/serviceSlideService';
-import type { Technology } from '@/app/services/technologyService';
-import type { Partner } from '@/app/services/partnerService';
-import type { FAQ } from '@/app/services/faqService';
+import { connectDB } from '@/app/lib/db';
+import ProductModel from '@/app/lib/models/Product';
+import ServiceModel from '@/app/lib/models/Service';
+import ServiceSlideModel from '@/app/lib/models/ServiceSlide';
+import TechnologyModel from '@/app/lib/models/Technology';
+import PartnerModel from '@/app/lib/models/Partner';
+import FAQModel from '@/app/lib/models/FAQ';
 
 import Hero from '../components/Home-com/Hero/Hero';
 
@@ -35,42 +36,33 @@ const Contact = dynamic(() => import('../components/Home-com/Contact/Contact'), 
   loading: () => <div className="h-[600px] bg-[#e5e5e5]" />,
 });
 
-interface HomeApiResponse {
-  success: boolean;
-  data: {
-    heroServices: ServiceSlide[];
-    services: Service[];
-    products: Product[];
-    technologies: Technology[];
-    partners: Partner[];
-    faqs: FAQ[];
-  };
-}
+async function getHomePageData() {
+  await connectDB();
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? 'http://localhost:3000';
+  const [heroServices, services, products, technologies, partners, faqs] =
+    await Promise.all([
+      ServiceSlideModel.find({}).sort({ order: 1 }).lean(),
+      ServiceModel.find({}).sort({ order: 1 }).lean(),
+      ProductModel.find({}).sort({ order: 1 }).lean(),
+      TechnologyModel.find({}).sort({ row: 1, order: 1 }).lean(),
+      PartnerModel.find({}).sort({ order: 1 }).lean(),
+      FAQModel.find({}).sort({ order: 1 }).lean(),
+    ]);
 
-async function fetchHomeData() {
-  const res = await fetch(`${BASE_URL}/api/home`, {
-    next: { revalidate: 86400 }, // 24 hours cache
-  });
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch home page data');
-  }
-
-  const json: HomeApiResponse = await res.json();
-
-  if (!json.success) {
-    throw new Error('Home API returned unsuccessful response');
-  }
-  console.log(json.data, "reshome")
-
-  return json.data;
+  // Serialize ObjectIds to plain JSON-safe objects
+  return JSON.parse(JSON.stringify({
+    heroServices,
+    services,
+    products,
+    technologies,
+    partners,
+    faqs,
+  }));
 }
 
 export default async function Homeland() {
   const { heroServices, services, products, technologies, partners, faqs } =
-    await fetchHomeData();
+    await getHomePageData();
 
   return (
     <>
