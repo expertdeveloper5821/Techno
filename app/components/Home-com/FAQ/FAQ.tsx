@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { getFAQs } from '@/app/services';
 import type { FAQ as FAQItem } from '@/app/services';
 import type { FC, SVGProps } from 'react';
 import ChevronRightIconImport from '@/app/lib/icon/chevron-right-icon';
@@ -25,17 +24,15 @@ const palette = {
 } as const;
 type IconProps = SVGProps<SVGSVGElement> & { width?: number; height?: number; color?: string };
 const ChevronRightIcon = ChevronRightIconImport as FC<IconProps>;
-export default function FAQ() {
-  const [faqs, setFaqs] = useState<FAQItem[]>([]);
+
+interface FAQProps {
+  faqs: FAQItem[];
+}
+
+export default function FAQ({ faqs }: FAQProps) {
   const [introReady, setIntroReady] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [hasEntered, setHasEntered] = useState(false);
-
-  useEffect(() => {
-    getFAQs()
-      .then(setFaqs)
-      .catch(console.error);
-  }, []);
 
   useEffect(() => {
     if (typeof document === 'undefined') return;

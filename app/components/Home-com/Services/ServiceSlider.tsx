@@ -18,23 +18,20 @@ interface ServiceSlide {
 
 interface ServiceSliderProps {
   theme?: 'dark' | 'light';
+  propSlides?: ServiceSlide[];
 }
 
-export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
+export default function ServiceSlider({ theme = 'light', propSlides }: ServiceSliderProps) {
+
+  // console.log(propSlides , " slides")
   const isDark = theme === 'dark';
   const [isLoaded, setIsLoaded] = useState(false);
   const swiperRef = useRef<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [slides, setSlides] = useState<ServiceSlide[]>([]);
 
-  useEffect(() => {
-    fetch('/api/service-slides')
-      .then((res) => res.json())
-      .then((json) => { if (json.success) setSlides(json.data); })
-      .catch(console.error);
-  }, []);
-
-  const pagination = slides;
+  
+  
+  const pagination = propSlides;
   /** Slide to the clicked slide so it moves to center */
   const handleSlideClick = useCallback((index: number) => {
     swiperRef.current?.slideToLoop(index, 500);
@@ -92,7 +89,7 @@ export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
       )}
 
       {/* ---------------- SWIPER WITH COVERFLOW ---------------- */}
-      {slides.length > 0 && <Swiper
+      {(propSlides?.length ?? 0) > 0 && <Swiper
         effect={'coverflow'}
         grabCursor={true}
         centeredSlides={true}
@@ -119,7 +116,7 @@ export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
         onInit={() => setIsLoaded(true)}
         className={`w-full  py-12 pb-20 transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
       >
-        {slides.map((service, index) => (
+        {propSlides?.map((service, index) => (
           <SwiperSlide key={`${service._id}-${index}`} className="w-[260px]! md:w-[320px]! lg:w-[300px]! " style={{
             border: '2px solid #7A7A7A',
             borderRadius: '34px',
@@ -226,7 +223,7 @@ export default function ServiceSlider({ theme = 'light' }: ServiceSliderProps) {
                 type="button"
                 aria-label={`Go to slide ${i + 1}`}
                 onClick={() => swiperRef.current?.slideToLoop(i, 500)}
-                className={`rounded-full transition-all duration-300 ${activeIndex % slides.length === i
+                className={`rounded-full transition-all duration-300 ${activeIndex % (propSlides?.length || 1) === i
                     ? 'w-6 h-2.5 bg-[#2177C7]'
                     : 'w-2.5 h-2.5 bg-white/50 hover:bg-white/80'
                   }`}

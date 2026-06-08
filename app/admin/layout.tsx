@@ -15,6 +15,7 @@ const CMS_SECTIONS = [
   { name: "Blog Posts", path: "/admin/blogposts", icon: "📝" },
   { name: "Portfolio", path: "/admin/portfolio", icon: "🖼️" },
   { name: "Industries", path: "/admin/industries", icon: "🏭" },
+  { name: "Industrie Serve", path: "/admin/industrie-serve", icon: "🛒" },
   { name: "Job Openings", path: "/admin/jobs", icon: "💼" },
   { name: "Growth Items", path: "/admin/growth-items", icon: "📈" },
   { name: "Features", path: "/admin/features", icon: "✨" },
