@@ -2,7 +2,12 @@
 
 import React from 'react';
 import ServicesCarousel from './ServicesCarousel';
+import type { Service } from '@/app/services';
 
-export default function Services() {
-  return <ServicesCarousel />;
+interface ServicesProps {
+  services?: Service[];
+}
+
+export default function Services({ services }: ServicesProps) {
+  return <ServicesCarousel services={services} />;
 }

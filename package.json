@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "seed": "ts-node --project scripts/tsconfig.json -r tsconfig-paths/register scripts/seed.ts",
+    "seed:industrie-serve": "ts-node --project scripts/tsconfig.json -r tsconfig-paths/register scripts/seed-industrie-serve.ts",
     "migrate:images": "ts-node --project scripts/tsconfig.json -r tsconfig-paths/register scripts/migrate-images-to-s3.ts",
     "check:images": "ts-node --project scripts/tsconfig.json -r tsconfig-paths/register scripts/check-remaining-local-images.ts"
   },

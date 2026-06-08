@@ -20,9 +20,13 @@ import type { Service } from '@/app/services';
 
 const EASE_SMOOTH = 'cubic-bezier(0.25, 0.46, 0.45, 0.94)';
 
-export default function ServicesCarousel() {
+interface ServicesCarouselProps {
+  services?: Service[];
+}
+
+export default function ServicesCarousel({ services }: ServicesCarouselProps) {
   const swiperRef = useRef<SwiperType | null>(null);
-  const [services, setServices] = useState<Service[]>([]);
+  // const [services, setServices] = useState<Service[]>(propServices ?? []);
   const [hoveredIndex, setHoveredIndex] = useState<number>(0);
   const [firstVisibleIndex, setFirstVisibleIndex] = useState<number>(0);
   const [isUserHovering, setIsUserHovering] = useState(false);
@@ -33,13 +37,18 @@ export default function ServicesCarousel() {
   const leaveTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const enterTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  useEffect(() => {
-    getServices()
-      .then(setServices)
-      .catch(console.error);
-  }, []);
+  // useEffect(() => {
+  //   // If services are passed as props (SSG), skip fetching
+  //   if (propServices && propServices.length > 0) {
+  //     setServices(propServices);
+  //     return;
+  //   }
+  //   getServices()
+  //     .then(setServices)
+  //     .catch(console.error);
+  // }, [propServices]);
 
-  const loopSlides = [...services, ...services];
+  const loopSlides = services ? [...services, ...services] : [];
 
   const getCardHeight = (): number => {
     if (windowSize === 'mobile') return 320;
@@ -195,8 +204,8 @@ export default function ServicesCarousel() {
             }}
             className="overflow-hidden! pb-4"
           >
-            {loopSlides.map((service, index) => {
-              const realIndex = index % services.length;
+            {loopSlides?.map((service, index) => {
+              const realIndex = index % (services?.length || 1);
               const isHovered = isBelow640 ? mobileActiveIndex === realIndex : hoveredIndex === realIndex;
               const cardWidth = isBelow640 ? (isHovered ? 280 : 140) : (isHovered ? 420 : 193);
               const cardHeight = getCardHeight();

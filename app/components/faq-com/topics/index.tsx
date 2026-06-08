@@ -284,10 +284,18 @@ export default function TopicsAccordion() {
                                 role="region"
                                 aria-labelledby={buttonId}
                                 className={`overflow-clip text-sm leading-relaxed transition-[max-height] duration-500 ease-out ${palette.muted} ${
-                                  open ? 'max-h-40' : 'max-h-0'
+                                  open ? 'max-h-96' : 'max-h-0'
                                 }`}
                               >
-                                <p className="pr-1 pb-1">{item.answer}</p>
+                                <div className="pr-1 pb-1 space-y-2">
+                                  {item.answer.split(/\r?\n/).map((line, i) =>
+                                    line.trim() === '' ? (
+                                      <br key={i} />
+                                    ) : (
+                                      <p key={i}>{line}</p>
+                                    )
+                                  )}
+                                </div>
                               </div>
                             </div>
                           </button>

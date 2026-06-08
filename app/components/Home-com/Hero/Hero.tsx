@@ -9,7 +9,19 @@ import SplitTextReveal from '../../SmoothScrollProvider'
 type IconProps = React.SVGProps<SVGSVGElement> & { width?: number; height?: number; color?: string };
 const ChevronRightIcon = ChevronRightIconImport as React.FC<IconProps>;
 
-export default function Hero() {
+interface ServiceSlide {
+  _id: string;
+  title: string;
+  image: string;
+  description: string;
+  order: number;
+}
+
+interface HeroProps {
+  serviceSlides?: ServiceSlide[];
+}
+
+export default function Hero({ serviceSlides }: HeroProps) {
   return (
     // Removed background styles, just padding for spacing
     <section className="relative pt-40 pb-10 sm:pt-48 sm:pb-16 flex flex-col items-center justify-center overflow-hidden z-10 bg-[linear-gradient(to_bottom,#0094DB_0%,#0094DB_85%,#003a5c_95%,#000000_100%)]">
@@ -62,7 +74,7 @@ We design and develop custom apps and teams to work for you without any game pla
 
       {/* Service slider: hidden on mobile, visible from md up */}
       <div className="w-full mt-4 ">
-        <ServiceSlider theme="dark" />
+        <ServiceSlider theme="dark" propSlides={serviceSlides} />
       </div>
 
     </section>

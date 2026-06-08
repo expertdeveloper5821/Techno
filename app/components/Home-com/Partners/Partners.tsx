@@ -1,20 +1,15 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { fadeInUp, staggerContainer } from '@/app/lib/animations';
 import Image from 'next/image';
-import { getPartners } from '@/app/services';
 import type { Partner } from '@/app/services';
 
-export default function Partners() {
-  const [partners, setPartners] = useState<Partner[]>([]);
+interface PartnersProps {
+  partners: Partner[];
+}
 
-  useEffect(() => {
-    getPartners()
-      .then(setPartners)
-      .catch(console.error);
-  }, []);
+export default function Partners({ partners }: PartnersProps) {
 
   return (
     <section className="lg:py-24 md:py-15 py-10 bg-[#0094DB] relative">

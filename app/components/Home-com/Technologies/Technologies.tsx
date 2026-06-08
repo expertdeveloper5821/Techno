@@ -1,28 +1,22 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useMemo } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { fadeInUp } from '@/app/lib/animations';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
 import TechCard from './TechCard';
-import { getTechnologies } from '@/app/services';
 import type { Technology } from '@/app/services';
 
-export default function Technologies() {
-  const shouldReduceMotion = useReducedMotion();
-  const [row1, setRow1] = useState<Technology[]>([]);
-  const [row2, setRow2] = useState<Technology[]>([]);
+interface TechnologiesProps {
+  technologies: Technology[];
+}
 
-  useEffect(() => {
-    getTechnologies()
-      .then((data) => {
-        setRow1(data.filter((t) => t.row === 1));
-        setRow2(data.filter((t) => t.row === 2));
-      })
-      .catch(console.error);
-  }, []);
+export default function Technologies({ technologies }: TechnologiesProps) {
+  const shouldReduceMotion = useReducedMotion();
+  const row1 = useMemo(() => technologies.filter((t) => t.row === 1), [technologies]);
+  const row2 = useMemo(() => technologies.filter((t) => t.row === 2), [technologies]);
 
   // Duplicate for seamless loop
   const row1Extended = [...row1, ...row1];
