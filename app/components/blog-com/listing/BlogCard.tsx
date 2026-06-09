@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { BlogPost } from "@/app/services";
 
 interface BlogCardProps {
@@ -7,7 +8,8 @@ interface BlogCardProps {
 
 export default function BlogCard({ post }: BlogCardProps) {
   return (
-    <article className="flex flex-col overflow-hidden rounded-2xl border border-[#FFFFFF33] bg-[#141414]">
+    <Link href={`/blogdetail/${post._id}`} className="block">
+      <article className="flex flex-col overflow-hidden rounded-2xl border border-[#FFFFFF33] bg-[#141414] transition-all duration-300 hover:border-[#0094DB]/50 hover:shadow-[0_0_30px_rgba(0,148,219,0.1)]">
       <div className="relative aspect-16/10 w-full bg-[#0a1628]">
         <Image
           src={post.image}
@@ -34,5 +36,6 @@ export default function BlogCard({ post }: BlogCardProps) {
         </p>
       </div>
     </article>
+    </Link>
   );
 }
