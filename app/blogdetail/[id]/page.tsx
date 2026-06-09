@@ -3,6 +3,7 @@ import { connectDB } from "@/app/lib/db";
 import BlogPostModel from "@/app/lib/models/BlogPost";
 import BlogDetailHero from "@/app/components/blog-detail/hero";
 import BlogDetailContent from "@/app/components/blog-detail/blogs";
+import RelatedBlogs from "@/app/components/blog-detail/related";
 
 export const revalidate = 86400;
 
@@ -54,6 +55,7 @@ export default async function BlogDetailPage({
         date={post.date}
         category={post.category}
       />
+      <RelatedBlogs currentPostId={post._id} />
     </>
   );
 }

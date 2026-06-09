@@ -76,17 +76,7 @@ export default function BlogDetailContent({
         />
 
         {/* Back to blog */}
-        <div className="mt-16 pt-8 border-t border-white/10">
-          <a
-            href="/blog"
-            className="inline-flex items-center gap-2 text-[#0094DB] hover:text-white transition-colors font-medium"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-            Back to all articles
-          </a>
-        </div>
+        <div className="mt-16 pt-8 border-t border-white/10" />
       </div>
     </section>
   );
