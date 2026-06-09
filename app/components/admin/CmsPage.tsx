@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useCallback, useRef, useId } from "react";
 import ImageUploadField from "./ImageUploadField";
+import RichTextEditor from "./RichTextEditor";
 
 // ── View Modal ────────────────────────────────────────────────────────────────
 
@@ -65,6 +66,14 @@ function ViewModal({
         <p className="text-gray-700 text-sm whitespace-pre-wrap leading-relaxed mt-1">
           {String(raw)}
         </p>
+      );
+    }
+    if (field.type === "richtext") {
+      return (
+        <div
+          className="text-gray-700 text-sm leading-relaxed mt-1 prose prose-sm max-w-none"
+          dangerouslySetInnerHTML={{ __html: String(raw) }}
+        />
       );
     }
     return <span className="text-gray-800 text-sm">{String(raw)}</span>;
@@ -183,8 +192,9 @@ function ViewModal({
 // ── Types ────────────────────────────────────────────────────────────────────
 
 export type FieldDef =
-  | { key: string; label: string; type: "text" | "number" | "url"; required?: boolean }
+  | { key: string; label: string; type: "text" | "number" | "url" | "date"; required?: boolean }
   | { key: string; label: string; type: "textarea"; required?: boolean }
+  | { key: string; label: string; type: "richtext"; required?: boolean }
   | { key: string; label: string; type: "select"; options: string[]; required?: boolean }
   | { key: string; label: string; type: "select-creatable"; options: string[]; required?: boolean }
   | { key: string; label: string; type: "tags"; placeholder?: string; required?: boolean };
@@ -367,6 +377,19 @@ function FormFields({
           );
         }
 
+        if (field.type === "richtext") {
+          return (
+            <div key={field.key} className="md:col-span-2">
+              <RichTextEditor
+                label={field.label}
+                value={value}
+                onChange={onChange}
+                required={isRequired}
+              />
+            </div>
+          );
+        }
+
         if (field.type === "select") {
           return (
             <div key={field.key}>
@@ -429,6 +452,25 @@ function FormFields({
                 label={field.label}
                 value={value}
                 onChange={onChange}
+              />
+            </div>
+          );
+        }
+
+        // Date fields → native date picker
+        if (field.type === "date") {
+          return (
+            <div key={field.key}>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                {field.label}
+                {isRequired && <span className="text-red-500 ml-1">*</span>}
+              </label>
+              <input
+                type="date"
+                value={value}
+                onChange={(e) => onChange(e.target.value)}
+                required={isRequired}
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
           );

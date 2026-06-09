@@ -55,8 +55,8 @@ export default function IndustriesSection() {
         x: () => -getMaxTranslate(),
         ease: "none",
         scrollTrigger: {
-          trigger: heading,
-          start: "top 20px",
+          trigger: section,
+          start: "top top",
           end: () => `+=${getMaxTranslate()}`,
           pin: stickyWrap,
           anticipatePin: 1,
@@ -84,7 +84,7 @@ export default function IndustriesSection() {
   return (
     <section
       ref={sectionRef}
-      className="bg-[#000000] text-white w-full mx-auto lg:pt-24 lg:pb-24 md:pt-15 md:pb-15 pt-10 pb-10"
+      className="bg-[#000000] text-white w-full mx-auto lg:pt-24 lg:pb-24 md:pt-15 md:pb-15 pt-10 pb-10 overflow-hidden"
     >
       <div ref={stickyWrapRef} className="flex flex-col justify-center px-4 sm:px-6 lg:px-6">
         {/* Header */}
@@ -100,7 +100,7 @@ export default function IndustriesSection() {
         </div>
 
         {/* Cards track */}
-        <div ref={headingRef} className="overflow-clip w-full">
+        <div ref={headingRef} className="overflow-hidden w-full">
           {industries.length === 0 ? (
             <div className="flex justify-center py-16">
               <div className="w-10 h-10 border-4 border-white/20 border-t-white rounded-full animate-spin" />

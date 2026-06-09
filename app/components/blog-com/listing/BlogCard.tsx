@@ -25,9 +25,10 @@ export default function BlogCard({ post }: BlogCardProps) {
         <h2 className="text-lg font-semibol tracking-[1%] leading-snug text-white sm:text-xl">
           {post.title}
         </h2>
-        <p className="line-clamp-3 flex-1 text-sm tracking-[1%] leading-relaxed text-[#FFFFFF] sm:text-[14px]">
-          {post.excerpt}
-        </p>
+        <div
+          className="line-clamp-3 flex-1 text-sm tracking-[1%] leading-relaxed text-[#FFFFFF] sm:text-[14px] [&>p]:mb-1 [&>ul]:list-disc [&>ul]:pl-4 [&>ol]:list-decimal [&>ol]:pl-4"
+          dangerouslySetInnerHTML={{ __html: post.excerpt }}
+        />
         <p className="text-xs text-[#8B8B8B] tracking-[1%] leading-[20px] sm:text-sm">
           {post.author} <span className="text-white/40">|</span> {post.date}
         </p>
