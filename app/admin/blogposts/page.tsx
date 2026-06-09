@@ -14,7 +14,7 @@ export default function BlogPostsAdmin() {
       fields={[
         { key: "title", label: "Title", type: "text" },
         { key: "author", label: "Author", type: "text" },
-        { key: "date", label: "Date (e.g. Jan 15, 2025)", type: "text" },
+        { key: "date", label: "Date", type: "date" },
         {
           key: "category",
           label: "Category",
@@ -30,7 +30,7 @@ export default function BlogPostsAdmin() {
         },
         { key: "image", label: "Image URL", type: "url" },
         { key: "order", label: "Display Order", type: "number" },
-        { key: "excerpt", label: "Excerpt / Summary", type: "textarea" },
+        { key: "excerpt", label: "Excerpt / Summary", type: "richtext" },
       ]}
     />
   );
