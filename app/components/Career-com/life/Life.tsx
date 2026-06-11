@@ -11,10 +11,17 @@ import { FaLinkedinIn, FaInstagram, FaFacebookF } from "react-icons/fa";
 import "swiper/css";
 import VisionSlider from "../../About-com/milestone/Visionslider";
 
+interface Milestone {
+  _id: string;
+  image: string;
+  order: number;
+}
 
+interface LifeProps {
+  milestones?: Milestone[];
+}
 
-
-export default function MilestoneCelebration() {
+export default function MilestoneCelebration({ milestones = [] }: LifeProps) {
     return (
         <section className="bg-black py-16 md:pb-28">
             <div className="mx-auto max-w-full ">
@@ -59,7 +66,7 @@ export default function MilestoneCelebration() {
 
 
 
-                <VisionSlider />
+                <VisionSlider milestones={milestones} />
 
 
             </div>

@@ -1,6 +1,5 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { fadeInUp, scaleIn } from '@/app/lib/animations';
 
@@ -32,23 +31,12 @@ interface LandscapeData {
   image: string;
 }
 
-export default function Landscape() {
-  const [items, setItems] = useState<LandscapeData[]>([]);
+interface LandscapeProps {
+  items?: LandscapeData[];
+}
 
-  useEffect(() => {
-    fetch('/api/industrie-serve')
-      .then((res) => res.json())
-      .then((json) => {
-        if (json.success && json.data?.length > 0) {
-          setItems(json.data);
-        } else {
-          setItems(FALLBACK_DATA);
-        }
-      })
-      .catch(() => setItems(FALLBACK_DATA));
-  }, []);
-
-  const displayItems = items.length > 0 ? items : FALLBACK_DATA;
+export default function Landscape({ items: propItems }: LandscapeProps) {
+  const displayItems = propItems && propItems.length > 0 ? propItems : FALLBACK_DATA;
 
   return (
     <section

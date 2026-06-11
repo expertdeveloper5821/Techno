@@ -1,29 +1,15 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { fadeInUp, fadeInRight } from '@/app/lib/animations';
-import { getFeatures } from '@/app/services';
 import type { Feature } from '@/app/services';
 
-export default function Forward() {
-  const [features, setFeatures] = useState<Feature[]>([]);
-  const [loading, setLoading] = useState(true);
+interface ForwardProps {
+  features?: Feature[];
+}
 
-  useEffect(() => {
-    getFeatures()
-      .then(setFeatures)
-      .catch(console.error)
-      .finally(() => setLoading(false));
-  }, []);
-
-  if (loading) {
-    return (
-      <section className="lg:py-24 md:py-15 py-10 bg-[#010101] text-white flex items-center justify-center min-h-[300px]">
-        <div className="w-10 h-10 border-4 border-white/20 border-t-white rounded-full animate-spin" />
-      </section>
-    );
-  }
+export default function Forward({ features = [] }: ForwardProps) {
+  if (features.length === 0) return null;
 
   return (
     <section id="products" className="lg:py-24 md:py-15 py-10 bg-[#010101] text-white " style={{ overflow:'clip'}}>
@@ -56,8 +42,6 @@ export default function Forward() {
             variants={fadeInRight}
             className=" pb-10 space-y-20"
             style={{
-              // ✅ THIS IS THE KEY: container must be tall enough
-              // so the last card has scroll room before the section ends
               minHeight: `${features.length * 280}px`,
               position: 'relative',
             }}

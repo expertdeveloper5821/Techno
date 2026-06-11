@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 
@@ -11,18 +10,11 @@ interface Milestone {
   order: number;
 }
 
-export default function VisionSlider() {
-  const [milestones, setMilestones] = useState<Milestone[]>([]);
+interface VisionSliderProps {
+  milestones: Milestone[];
+}
 
-  useEffect(() => {
-    fetch("/api/milestones")
-      .then((res) => res.json())
-      .then((json) => {
-        if (json.success) setMilestones(json.data);
-      })
-      .catch(console.error);
-  }, []);
-
+export default function VisionSlider({ milestones = [] }: VisionSliderProps) {
   if (milestones.length === 0) return null;
 
   return (

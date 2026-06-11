@@ -2,6 +2,7 @@ import React from 'react';
 import { connectDB } from '@/app/lib/db';
 import JobOpeningModel from '@/app/lib/models/JobOpening';
 import GrowthItemModel from '@/app/lib/models/GrowthItem';
+import MilestoneModel from '@/app/lib/models/Milestone';
 
 import Hero from '../components/Career-com/Hero/Hero';
 import WhyChoose from '../components/Career-com/WhyChoose/WhyChoose';
@@ -15,23 +16,27 @@ export const revalidate = 86400;
 async function getCareerData() {
   await connectDB();
 
-  const [jobOpenings, growthItems] = await Promise.all([
+  const [jobOpenings, growthItems, milestones] = await Promise.all([
     JobOpeningModel.find({}).sort({ order: 1 }).lean(),
     GrowthItemModel.find({}).sort({ order: 1 }).lean(),
+    MilestoneModel.find({}).sort({ order: 1 }).lean(),
   ]);
 
-  return JSON.parse(JSON.stringify({ jobOpenings, growthItems }));
+  return JSON.parse(JSON.stringify({ jobOpenings, growthItems, milestones }));
 }
 
 export default async function CareerPage() {
-  const { jobOpenings, growthItems } = await getCareerData();
+  const data = await getCareerData();
+  const jobOpenings = data?.jobOpenings ?? [];
+  const growthItems = data?.growthItems ?? [];
+  const milestones = data?.milestones ?? [];
 
   return (
     <>
       <Hero />
       <WhyChoose />
       <Opportunities openings={jobOpenings} />
-      <Life />
+      <Life milestones={milestones} />
       <Growth items={growthItems} />
       <Contact />
     </>
