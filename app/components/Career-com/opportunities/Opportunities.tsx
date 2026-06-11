@@ -1,9 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ChevronRightIcon from "@/app/lib/icon/chevron-right-icon";
-import { getJobOpenings } from "@/app/services";
-import type { JobOpening } from "@/app/services";
+
+interface JobOpening {
+  _id: string;
+  title: string;
+  experience: string;
+  type: string;
+  location: string;
+  description: string;
+  order: number;
+}
 
 const stickyTopMap: Record<number, number> = {
   0: 24,
@@ -12,21 +20,16 @@ const stickyTopMap: Record<number, number> = {
   3: 50,
 };
 
-export default function Opportunities() {
-  const [openings, setOpenings] = useState<JobOpening[]>([]);
-  const [loading, setLoading] = useState(true);
+interface OpportunitiesProps {
+  openings: JobOpening[];
+}
 
-  useEffect(() => {
-    getJobOpenings()
-      .then(setOpenings)
-      .catch(console.error)
-      .finally(() => setLoading(false));
-  }, []);
+export default function Opportunities({ openings }: OpportunitiesProps) {
 
-  if (loading) {
+  if (openings.length === 0) {
     return (
       <section className="lg:pt-24 lg:pb-24 md:pt-15 md:pb-15 pt-10 pb-10 bg-[#000000] text-white flex items-center justify-center min-h-[400px]">
-        <div className="w-10 h-10 border-4 border-white/20 border-t-white rounded-full animate-spin" />
+        <p className="text-white/70">No openings at this time.</p>
       </section>
     );
   }

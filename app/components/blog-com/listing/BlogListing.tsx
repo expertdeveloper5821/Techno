@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useTransition } from "react";
 import { HiOutlineMagnifyingGlass } from "react-icons/hi2";
 import BlogCard from "./BlogCard";
 import BlogFilterBar from "./BlogFilterBar";
 import ChevronRightIcon from "@/app/lib/icon/chevron-right-icon";
 import ChevronLeftIcon from "@/app/lib/icon/chevron-left-icon";
-import { getBlogPosts } from "@/app/services";
-import type { BlogPost } from "@/app/services";
+import { fetchBlogPosts } from "@/app/blog/actions";
+import type { BlogPostData } from "@/app/blog/actions";
 
 export type BlogFilterCategory =
   | "All"
@@ -20,39 +20,46 @@ export type BlogFilterCategory =
 
 const ITEMS_PER_PAGE = 6;
 
-export default function BlogListing() {
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [total, setTotal] = useState(0);
-  const [totalPages, setTotalPages] = useState(1);
+interface BlogListingProps {
+  initialPosts?: BlogPostData[];
+  initialTotal?: number;
+  initialTotalPages?: number;
+}
+
+export default function BlogListing({ initialPosts, initialTotal, initialTotalPages }: BlogListingProps) {
+  const [posts, setPosts] = useState<BlogPostData[]>(initialPosts ?? []);
+  const [totalPages, setTotalPages] = useState(initialTotalPages ?? 1);
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<BlogFilterCategory>("All");
   const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(true);
+  const [isPending, startTransition] = useTransition();
+  const [loading, setLoading] = useState(false);
 
   const fetchPosts = useCallback(() => {
     setLoading(true);
-    getBlogPosts({ page, limit: ITEMS_PER_PAGE, category })
-      .then(({ posts: fetched, pagination }) => {
-        // Client-side search filter (search is local since API doesn't support it)
-        const q = query.trim().toLowerCase();
-        const filtered = q
-          ? fetched.filter((p) =>
-              `${p.title} ${p.excerpt} ${p.category} ${p.author}`
-                .toLowerCase()
-                .includes(q)
-            )
-          : fetched;
-        setPosts(filtered);
-        setTotal(pagination.total);
-        setTotalPages(pagination.totalPages);
-      })
-      .catch(console.error)
-      .finally(() => setLoading(false));
+    startTransition(async () => {
+      try {
+        const result = await fetchBlogPosts({
+          page,
+          limit: ITEMS_PER_PAGE,
+          category,
+          query,
+        });
+        setPosts(result.posts);
+        setTotalPages(result.totalPages);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    });
   }, [page, category, query]);
 
+  // Only fetch on user interactions (not on initial render if we have server data)
   useEffect(() => {
+    if (initialPosts && page === 1 && category === "All" && query === "") return;
     fetchPosts();
-  }, [fetchPosts]);
+  }, [fetchPosts, initialPosts, page, category, query]);
 
   const handleCategory = (next: BlogFilterCategory) => {
     setCategory(next);

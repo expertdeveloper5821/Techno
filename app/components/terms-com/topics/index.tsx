@@ -1,8 +1,14 @@
 'use client';
 
 import { useState, useEffect, useRef, type MouseEvent } from 'react';
-import { getTermsAndConditions } from '@/app/services/termsAndConditionsService';
-import type { TermsTopic } from '@/app/services/termsAndConditionsService';
+
+interface TermsTopic {
+  _id: string;
+  title: string;
+  paragraphs: string[];
+  bullets: string[];
+  order: number;
+}
 
 const palette = {
   surface: 'bg-[#010101] text-neutral-100',
@@ -17,23 +23,16 @@ function toSlug(title: string) {
   return title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
 }
 
-export default function Topics() {
-  const [topics, setTopics] = useState<TermsTopic[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [activeTopicId, setActiveTopicId] = useState('');
+interface TopicsProps {
+  topics?: TermsTopic[];
+}
+
+export default function Topics({ topics: propTopics }: TopicsProps) {
+  const topics = propTopics ?? [];
+  const [activeTopicId, setActiveTopicId] = useState(topics.length > 0 ? toSlug(topics[0].title) : '');
 
   const isClickScrolling = useRef(false);
   const clickScrollTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  useEffect(() => {
-    getTermsAndConditions()
-      .then((data) => {
-        setTopics(data);
-        if (data.length > 0) setActiveTopicId(toSlug(data[0].title));
-      })
-      .catch(console.error)
-      .finally(() => setLoading(false));
-  }, []);
 
   // Scroll spy
   useEffect(() => {
@@ -103,26 +102,6 @@ export default function Topics() {
     target.style.removeProperty('--faq-x');
     target.style.removeProperty('--faq-y');
   };
-
-  if (loading) {
-    return (
-      <section
-        className={`relative w-full overflow-clip lg:py-20 md:py-15 py-10 ${palette.surface}`}
-      >
-        <div className="mx-auto w-full px-4 sm:px-6 lg:px-10">
-          <div className="h-8 w-48 bg-white/10 rounded animate-pulse mb-6" />
-          <div className="grid gap-6 lg:grid-cols-[1fr_3fr] lg:gap-7">
-            <div className="h-96 bg-white/5 rounded-[10px] animate-pulse" />
-            <div className="space-y-4">
-              {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="h-32 bg-white/5 rounded-[10px] animate-pulse" />
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-    );
-  }
 
   if (topics.length === 0) return null;
 

@@ -1,9 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { fadeInUp, fadeInRight } from '@/app/lib/animations';
-import { getFeatures } from '@/app/services';
 import type { Feature } from '@/app/services';
 
 const stickyTopByIndex: Record<number, number> = {
@@ -13,18 +11,14 @@ const stickyTopByIndex: Record<number, number> = {
   3: 58,
 };
 
-export default function Solution() {
-  const [features, setFeatures] = useState<Feature[]>([]);
-  const [loading, setLoading] = useState(true);
+interface SolutionProps {
+  features?: Feature[];
+}
 
-  useEffect(() => {
-    getFeatures()
-      .then(setFeatures)
-      .catch(console.error)
-      .finally(() => setLoading(false));
-  }, []);
+export default function Solution({ features: propFeatures }: SolutionProps) {
+  const features = propFeatures ?? [];
 
-  if (loading) {
+  if (features.length === 0) {
     return (
       <section className="lg:py-24 md:py-15 py-10 bg-[#010101] text-white flex items-center justify-center min-h-[300px]">
         <div className="w-10 h-10 border-4 border-white/20 border-t-white rounded-full animate-spin" />

@@ -1,30 +1,21 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { fadeInUp, fadeInRight } from '@/app/lib/animations';
-import { getFeatures } from '@/app/services';
-import type { Feature } from '@/app/services';
 
-export default function Products() {
-  const [features, setFeatures] = useState<Feature[]>([]);
-  const [loading, setLoading] = useState(true);
+interface Feature {
+  _id: string;
+  title: string;
+  description: string;
+  image: string;
+  order: number;
+}
 
-  useEffect(() => {
-    getFeatures()
-      .then(setFeatures)
-      .catch(console.error)
-      .finally(() => setLoading(false));
-  }, []);
+interface ProductsProps {
+  features: Feature[];
+}
 
-  if (loading) {
-    return (
-      <section className="lg:py-24 md:py-15 py-10 bg-[#010101] text-white flex items-center justify-center min-h-[300px]">
-        <div className="w-10 h-10 border-4 border-white/20 border-t-white rounded-full animate-spin" />
-      </section>
-    );
-  }
-
+export default function Products({ features }: ProductsProps) {
   return (
     <section id="products" className="lg:py-24 md:py-15 py-10 bg-[#010101] text-white" style={{ overflow: 'clip' }}>
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-6">

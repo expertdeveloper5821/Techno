@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useRef, type CSSProperties, type MouseEvent } from 'react';
-import { getFAQs } from '@/app/services/faqService';
 import type { FAQ } from '@/app/services/faqService';
 
 const palette = {
@@ -37,34 +36,26 @@ function groupByMeta(faqs: FAQ[]): FAQTopic[] {
   }));
 }
 
-export default function TopicsAccordion() {
-  const [topics, setTopics] = useState<FAQTopic[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [activeTopicId, setActiveTopicId] = useState('');
-  const [openIndexesByTopic, setOpenIndexesByTopic] = useState<Record<string, number>>({});
+interface TopicsAccordionProps {
+  faqs?: FAQ[];
+}
+
+export default function TopicsAccordion({ faqs: propFaqs }: TopicsAccordionProps) {
+  const faqData = propFaqs ?? [];
+  const initialTopics = groupByMeta(faqData);
+
+  const [topics] = useState<FAQTopic[]>(initialTopics);
+  const [activeTopicId, setActiveTopicId] = useState(initialTopics.length > 0 ? initialTopics[0].id : '');
+  const [openIndexesByTopic, setOpenIndexesByTopic] = useState<Record<string, number>>(
+    initialTopics.reduce<Record<string, number>>((acc, topic) => {
+      acc[topic.id] = 0;
+      return acc;
+    }, {})
+  );
 
   // Track whether the user clicked a nav button so we don't fight the observer
   const isClickScrolling = useRef(false);
   const clickScrollTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  useEffect(() => {
-    getFAQs()
-      .then((data) => {
-        const grouped = groupByMeta(data);
-        setTopics(grouped);
-        if (grouped.length > 0) {
-          setActiveTopicId(grouped[0].id);
-          setOpenIndexesByTopic(
-            grouped.reduce<Record<string, number>>((acc, topic) => {
-              acc[topic.id] = 0;
-              return acc;
-            }, {})
-          );
-        }
-      })
-      .catch(console.error)
-      .finally(() => setLoading(false));
-  }, []);
 
   // ── Scroll spy via IntersectionObserver ──────────────────────────────────
   useEffect(() => {
@@ -142,24 +133,6 @@ export default function TopicsAccordion() {
     target.style.removeProperty('--faq-x');
     target.style.removeProperty('--faq-y');
   };
-
-  if (loading) {
-    return (
-      <section className={`relative w-full overflow-clip lg:py-20 md:py-15 py-10 ${palette.surface}`}>
-        <div className="mx-auto w-full px-4 sm:px-6 lg:px-10">
-          <div className="h-8 w-32 bg-white/10 rounded animate-pulse mb-6" />
-          <div className="grid gap-6 lg:grid-cols-[1fr_3fr] lg:gap-7">
-            <div className="h-64 bg-white/5 rounded-[10px] animate-pulse" />
-            <div className="space-y-4">
-              {[1, 2, 3].map((i) => (
-                <div key={i} className="h-24 bg-white/5 rounded-[10px] animate-pulse" />
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-    );
-  }
 
   if (topics.length === 0) return null;
 

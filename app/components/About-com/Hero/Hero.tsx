@@ -69,10 +69,7 @@ We design and develop websites, apps, and digital experiences that help business
         </div>
       </div>
 
-      {/* Service slider: hidden on mobile, visible from md up */}
-      {/* <div className="w-full mt-4 ">
-        <ServiceSlider theme="dark" />
-      </div> */}
+    
 
     </section>
   );
