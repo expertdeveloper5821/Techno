@@ -1,28 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { getGrowthItems } from "@/app/services";
 import type { GrowthItem } from "@/app/services";
 
-export default function Growth() {
-  const [items, setItems] = useState<GrowthItem[]>([]);
-  const [loading, setLoading] = useState(true);
+interface GrowthProps {
+  items: GrowthItem[];
+}
 
-  useEffect(() => {
-    getGrowthItems()
-      .then(setItems)
-      .catch(console.error)
-      .finally(() => setLoading(false));
-  }, []);
-
-  if (loading) {
-    return (
-      <section className="bg-[#000000] text-white w-full mx-auto lg:pt-24 lg:pb-24 md:pt-15 md:pb-15 pt-10 pb-10 flex items-center justify-center min-h-[300px]">
-        <div className="w-10 h-10 border-4 border-white/20 border-t-white rounded-full animate-spin" />
-      </section>
-    );
-  }
-
+export default function Growth({ items }: GrowthProps) {
   return (
     <section className="bg-[#000000] text-white w-full mx-auto lg:pt-24 lg:pb-24 md:pt-15 md:pb-15 pt-10 pb-10">
       <div className="flex flex-col justify-center px-4 sm:px-6 lg:px-6">

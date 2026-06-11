@@ -1,10 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import type { FC, SVGProps } from 'react';
 import Image from 'next/image';
 import ChevronRightIconImport from '@/app/lib/icon/chevron-right-icon';
-import { getWhatWeDo } from '@/app/services';
 import type { WhatWeDoCard } from '@/app/services';
 
 type IconProps = SVGProps<SVGSVGElement> & { width?: number; height?: number; color?: string };
@@ -17,22 +16,18 @@ const topOffsetMap: Record<number, string> = {
   3: '!top-32',
 };
 
-export default function WhatWeDo() {
-  const [cards, setCards] = useState<WhatWeDoCard[]>([]);
+interface WhatWeDoProps {
+  cards?: WhatWeDoCard[];
+}
+
+export default function WhatWeDo({ cards: propCards }: WhatWeDoProps) {
+  const cards = propCards ?? [];
   const [heading] = useState('Our Services');
   const [description] = useState(
     'Our consulting, marketing, and technology services deliver comprehensive support for better planning, accelerated growth, and creating scalable digital solutions. Through our combined efforts, all strategies, campaigns, and products are optimized to deliver results that directly benefit your business.'
   );
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    getWhatWeDo()
-      .then(setCards)
-      .catch(console.error)
-      .finally(() => setLoading(false));
-  }, []);
-
-  if (loading) {
+  if (cards.length === 0) {
     return (
       <section className="lg:pt-20 lg:pb-24 md:pt-15 md:pb-15 pt-10 pb-10 bg-[#000000] text-white flex items-center justify-center min-h-[400px]">
         <div className="w-10 h-10 border-4 border-white/20 border-t-white rounded-full animate-spin" />

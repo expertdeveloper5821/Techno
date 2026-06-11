@@ -9,5 +9,6 @@ interface ServicesProps {
 }
 
 export default function Services({ services }: ServicesProps) {
+  
   return <ServicesCarousel services={services} />;
 }

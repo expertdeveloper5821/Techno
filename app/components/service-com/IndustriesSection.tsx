@@ -1,27 +1,30 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { getIndustries } from "@/app/services";
-import type { Industry } from "@/app/services";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function IndustriesSection() {
-  const [industries, setIndustries] = useState<Industry[]>([]);
+interface Industry {
+  _id: string;
+  title: string;
+  icon: string;
+  blackIcon?: string;
+  description: string;
+  order: number;
+}
+
+interface IndustriesSectionProps {
+  industries: Industry[];
+}
+
+export default function IndustriesSection({ industries }: IndustriesSectionProps) {
 
   const sectionRef = useRef<HTMLElement>(null);
   const stickyWrapRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLParagraphElement>(null);
-
-  // Fetch industries from the database
-  useEffect(() => {
-    getIndustries()
-      .then(setIndustries)
-      .catch(console.error);
-  }, []);
 
   // Set up GSAP horizontal scroll — re-runs whenever industries load
   useEffect(() => {
