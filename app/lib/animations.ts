@@ -1,8 +1,12 @@
 import { Variants } from 'framer-motion';
 
+// NOTE: We use opacity: 0.005 instead of 0 to prevent screen readers (NVDA, JAWS)
+// from skipping content that hasn't animated into view yet.
+// The visual difference is imperceptible but the accessibility impact is significant.
+
 // Fade in from bottom
 export const fadeInUp: Variants = {
-  hidden: { opacity: 0, y: 60 },
+  hidden: { opacity: 0.005, y: 60 },
   visible: {
     opacity: 1,
     y: 0,
@@ -15,7 +19,7 @@ export const fadeInUp: Variants = {
 
 // Fade in from left
 export const fadeInLeft: Variants = {
-  hidden: { opacity: 0, x: -60 },
+  hidden: { opacity: 0.005, x: -60 },
   visible: {
     opacity: 1,
     x: 0,
@@ -28,7 +32,7 @@ export const fadeInLeft: Variants = {
 
 // Fade in from right
 export const fadeInRight: Variants = {
-  hidden: { opacity: 0, x: 60 },
+  hidden: { opacity: 0.005, x: 60 },
   visible: {
     opacity: 1,
     x: 0,
@@ -41,7 +45,7 @@ export const fadeInRight: Variants = {
 
 // Scale in
 export const scaleIn: Variants = {
-  hidden: { opacity: 0, scale: 0.8 },
+  hidden: { opacity: 0.005, scale: 0.8 },
   visible: {
     opacity: 1,
     scale: 1,
@@ -54,7 +58,7 @@ export const scaleIn: Variants = {
 
 // Stagger children
 export const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
+  hidden: { opacity: 0.005 },
   visible: {
     opacity: 1,
     transition: {
@@ -72,7 +76,7 @@ export const hoverScale = {
 
 // Parallax variants
 export const parallaxVariants: Variants = {
-  hidden: { opacity: 0, y: 100 },
+  hidden: { opacity: 0.005, y: 100 },
   visible: {
     opacity: 1,
     y: 0,

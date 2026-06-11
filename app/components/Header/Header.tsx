@@ -169,6 +169,8 @@ export default function Header() {
       {/* Fixed wrapper: no blue strip, transparent so page (e.g. blue gradient) shows through */}
       <header
         className=" fixed left-0 right-0 z-50 will-change-transform flex justify-center px-4 sm:px-6"
+        role="banner"
+        aria-label="Site header"
         style={{
           paddingTop: compact ? 12 : 20,
           paddingBottom: compact ? 12 : 20,
@@ -200,10 +202,10 @@ export default function Header() {
         >
           {/* the normal deskto view header and navbar */}
           <div className='flex w-full justify-between ' >
-            <a href="/" className="flex items-center">
+            <a href="/" className="flex items-center" aria-label="Technogetic - Go to homepage">
               <Image
                 src="/tg-logo.webp"
-                alt="Technogetic Logo"
+                alt="Technogetic"
                 width={140}
                 height={40}
                 className="h-8 md:h-10 w-auto "
@@ -224,7 +226,7 @@ export default function Header() {
                 transition: `max-width ${TRANSITION_MS}ms ${TRANSITION_EASE}, visibility 0s linear ${compact ? 0 : TRANSITION_MS}ms`,
               }}
             >
-              <nav className="flex items-center gap-6 lg:gap-8 shrink-0">
+              <nav className="flex items-center gap-6 lg:gap-8 shrink-0" aria-label="Main navigation">
 
                 <AnimatePresence initial={false}>
                   {!compact && (
@@ -253,7 +255,8 @@ export default function Header() {
                     onClick={openContactPopup}
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.98 }}
-                    className="group inline-flex items-center justify-center gap-1.5 bg-[#0099DD] text-white px-8 py-3.5 rounded-full font-semibold text-base hover:bg-[#0088c4] transition-colors shadow-md"
+                    className="group inline-flex items-center justify-center gap-1.5 bg-[#0099DD] text-white px-8 py-3.5 rounded-full font-semibold text-base hover:bg-[#0088c4] transition-colors shadow-md focus:outline-2 focus:outline-offset-2 focus:outline-[#0094DB]"
+                    aria-label="Open contact form"
                   >
                     Contact us{' '}
                     <ChevronRightIcon
@@ -261,6 +264,7 @@ export default function Header() {
                       height={11}
                       color="#fff"
                       className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-0.5"
+                      aria-hidden="true"
                     />
                   </motion.button>
                 </motion.div>

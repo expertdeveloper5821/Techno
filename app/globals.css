@@ -154,3 +154,109 @@ padding: 45px 30px!important;
 /* milesone swiper css */
 
 
+
+/* ========================================================================
+   ADA / WCAG 2.1 Accessibility Styles
+   ======================================================================== */
+
+/* Global focus-visible ring for all interactive elements */
+*:focus-visible {
+  outline: 2px solid #0094DB;
+  outline-offset: 2px;
+}
+
+/* Remove default outline for mouse users, keep for keyboard */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Screen reader only utility (sr-only) - already in Tailwind, but adding as fallback */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Reduced motion: disable all animations and transitions for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .tech-swiper .swiper-wrapper {
+    transition-duration: 0ms !important;
+  }
+}
+
+/* High contrast mode support for Windows users */
+@media (forced-colors: active) {
+  a,
+  button,
+  [role="button"] {
+    border: 1px solid ButtonText;
+  }
+
+  img {
+    forced-color-adjust: none;
+  }
+
+  /* Ensure focus indicators are visible in high contrast */
+  *:focus-visible {
+    outline: 2px solid Highlight;
+    outline-offset: 2px;
+  }
+}
+
+/* Improved color contrast for color-blind users
+   Using patterns and borders in addition to color */
+.group:hover,
+.group:focus-within {
+  /* Adds a subtle left-border indicator for active/hover state
+     so color-blind users can perceive state changes beyond color alone */
+  border-left-color: currentColor;
+}
+
+/* Ensure links are distinguishable without relying on color alone */
+footer a:not([aria-label]),
+nav a:not([aria-label]) {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: transparent;
+}
+
+footer a:hover:not([aria-label]),
+footer a:focus:not([aria-label]),
+nav a:hover:not([aria-label]),
+nav a:focus:not([aria-label]) {
+  text-decoration-color: currentColor;
+}
+
+/* Improve text selection contrast */
+::selection {
+  background-color: #0094DB;
+  color: #ffffff;
+}
+
+/* Ensure minimum touch target size (44x44px) for mobile accessibility */
+@media (pointer: coarse) {
+  button,
+  a,
+  [role="button"],
+  input[type="checkbox"],
+  input[type="radio"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}

@@ -114,7 +114,7 @@ export default function ServiceSlider({ theme = 'light', propSlides }: ServiceSl
         onSwiper={(swiper) => { swiperRef.current = swiper; }}
         onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
         onInit={() => setIsLoaded(true)}
-        className={`w-full  py-12 pb-20 transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+        className={`w-full  py-12 pb-20 transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-[0.005]'}`}
       >
         {propSlides?.map((service, index) => (
           <SwiperSlide key={`${service._id}-${index}`} className="w-[260px]! md:w-[320px]! lg:w-[300px]! " style={{

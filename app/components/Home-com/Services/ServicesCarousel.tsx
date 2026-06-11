@@ -140,12 +140,12 @@ export default function ServicesCarousel({ services }: ServicesCarouselProps) {
   }, [isUserHovering]);
 
   return (
-    <section className="relative overflow-hidden min-h-screen flex flex-col justify-start lg:pt-24 lg:pb-24 md:pt-15 md:pb-15 pt-10 pb-10 bg-[linear-gradient(to_bottom,#0094DB_0%,#0094DB_85%,#003a5c_95%,#000000_100%)]">
+    <section aria-labelledby="services-heading" className="relative overflow-hidden min-h-screen flex flex-col justify-start lg:pt-24 lg:pb-24 md:pt-15 md:pb-15 pt-10 pb-10 bg-[linear-gradient(to_bottom,#0094DB_0%,#0094DB_85%,#003a5c_95%,#000000_100%)]">
 
       <div className="w-full flex lg:flex-row flex-col gap-8 lg:gap-0 mx-auto px-4 sm:px-6 lg:px-6 mb-8">
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
           <div className="flex flex-col lg:flex-col justify-between items-start gap-5 lg:gap-2">
-            <h2 className="text-[25px] sm:text-xl md:text-4xl lg:text-[44px] font-semibold font-inter text-white lg:leading-[60px] md:leading-[50px] leading-[32px] max-w-4xl">
+            <h2 id="services-heading" className="text-[25px] sm:text-xl md:text-4xl lg:text-[44px] font-semibold font-inter text-white lg:leading-[60px] md:leading-[50px] leading-[32px] max-w-4xl">
              Full Stack Development From Starting till completion 
             </h2>
             <p className="text-base md:text-lg font-inter font-normal text-white/90 md:leading-relaxed leading-[25px] flex-1">
@@ -157,16 +157,16 @@ export default function ServicesCarousel({ services }: ServicesCarouselProps) {
         <div className="flex lg:justify-center sm:justify-between sm:gap-20 justify-between sm:items-end items-center flex-row lg:flex-col">
           <a
             href="#services"
-            className="group shrink-0 inline-flex items-center justify-center gap-2 sm:px-8 sm:py-3.5 px-4 py-2 text-base font-semibold text-[#000000] bg-white rounded-full hover:bg-white/95 transition-all duration-200 shadow-lg whitespace-nowrap mt-0"
+            className="group shrink-0 inline-flex items-center justify-center gap-2 sm:px-8 sm:py-3.5 px-4 py-2 text-base font-semibold text-[#000000] bg-white rounded-full hover:bg-white/95 transition-all duration-200 shadow-lg whitespace-nowrap mt-0 focus:outline-2 focus:outline-offset-2 focus:outline-white"
           >
-            Explore Services <ChevronRightIcon width={7} height={11} color="#000000" className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-0.5" />
+            Explore Services <ChevronRightIcon width={7} height={11} color="#000000" className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-0.5" aria-hidden="true" />
           </a>
-          <div className={`flex items-center gap-2 shrink-0 ${isBelow640 ? 'hidden' : ''}`}>
-            <button type="button" aria-label="Previous slide" onClick={() => swiperRef.current?.slidePrev()} className="sm:w-12 sm:h-12 w-6 h-6 rounded-full text-white flex items-center justify-center hover:bg-white/10 hover:border-white transition-colors">
-              <Image src={arrowl} alt="arrow" width={20} height={20} className="sm:w-10 sm:h-10 w-6 h-6" />
+          <div className={`flex items-center gap-2 shrink-0 ${isBelow640 ? 'hidden' : ''}`} role="group" aria-label="Carousel navigation">
+            <button type="button" aria-label="Previous service slide" onClick={() => swiperRef.current?.slidePrev()} className="sm:w-12 sm:h-12 w-6 h-6 rounded-full text-white flex items-center justify-center hover:bg-white/10 hover:border-white transition-colors focus:outline-2 focus:outline-offset-2 focus:outline-white">
+              <Image src={arrowl} alt="" width={20} height={20} className="sm:w-10 sm:h-10 w-6 h-6" aria-hidden="true" />
             </button>
-            <button type="button" aria-label="Next slide" onClick={() => swiperRef.current?.slideNext()} className="sm:w-12 sm:h-12 w-6 h-6 rounded-full text-white flex items-center justify-center hover:bg-white/10 hover:border-white transition-colors">
-              <Image src={arrowl} alt="arrow" width={20} height={20} className="w-10 h-10 sm:w-10 sm:h-10 w-6 h-6 [transform:rotateY(180deg)]" />
+            <button type="button" aria-label="Next service slide" onClick={() => swiperRef.current?.slideNext()} className="sm:w-12 sm:h-12 w-6 h-6 rounded-full text-white flex items-center justify-center hover:bg-white/10 hover:border-white transition-colors focus:outline-2 focus:outline-offset-2 focus:outline-white">
+              <Image src={arrowl} alt="" width={20} height={20} className="w-10 h-10 sm:w-10 sm:h-10 w-6 h-6 [transform:rotateY(180deg)]" aria-hidden="true" />
             </button>
           </div>
         </div>
@@ -222,6 +222,7 @@ export default function ServicesCarousel({ services }: ServicesCarouselProps) {
                   <article
                     className="relative rounded-[30px] overflow-hidden group shrink-0 origin-left cursor-pointer w-full"
                     style={{ height: `${cardHeight}px`, transition: `all 400ms ${EASE_SMOOTH}` }}
+                    aria-label={service.title}
                   >
                     <div
                       className="absolute inset-0 rounded-[30px] ring-2 ring-white/20 ring-inset z-10 pointer-events-none"
@@ -247,7 +248,7 @@ export default function ServicesCarousel({ services }: ServicesCarouselProps) {
                     <div
                       className="absolute top-0 left-0 right-0 z-2 bg-linear-to-b from-black/85 via-black/50 to-transparent pointer-events-none rounded-t-[30px]"
                       style={{ height: '50%' }}
-                      aria-hidden
+                      aria-hidden="true"
                     />
                     <div className="absolute top-0 left-0 right-0 z-3" style={{ padding: isBelow640 ? '15px' : '24px' }}>
                       <h2

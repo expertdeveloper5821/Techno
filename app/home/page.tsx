@@ -65,7 +65,7 @@ export default async function Homeland() {
     await getHomePageData();
 
   return (
-    <>
+    <main id="main-content" role="main" aria-label="Home page">
       <Hero serviceSlides={heroServices} />
       <About />
       <Services services={services} />
@@ -74,6 +74,6 @@ export default async function Homeland() {
       <Partners partners={partners} />
       <FAQ faqs={faqs} />
       <Contact />
-    </>
+    </main>
   );
 }

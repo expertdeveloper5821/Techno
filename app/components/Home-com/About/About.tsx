@@ -25,7 +25,7 @@ const stats = [
 
 export default function About() {
   return (
-    <section id="about" className="lg:pt-24 lg:pb-24 md:pt-15 md:pb-15  pt-10 pb-10 bg-[#000000] text-white w-full mx-auto px-4 sm:px-6 lg:px-6">
+    <section id="about" aria-labelledby="about-heading" className="lg:pt-24 lg:pb-24 md:pt-15 md:pb-15 pt-10 pb-10 bg-[#000000] text-white w-full mx-auto px-4 sm:px-6 lg:px-6">
       <div className=" ">
         
         {/* --- Top Row: Heading & Description --- */}
@@ -33,11 +33,8 @@ export default function About() {
           <SplitTextReveal>
           {/* Left: Main Heading */}
 
-          <motion.h2 
-            // initial="hidden"
-            // whileInView="visible"
-            // viewport={{ once: true }}
-            // variants={fadeInUp}
+          <motion.h2
+            id="about-heading"
             className="font-inter text-[25px] sm:text-xl md:text-4xl font-semibold   lg:leading-[60px] md:leading-[50px] leading-[32px] "
           >
            We create outstanding value with our unique solutions. 
@@ -60,8 +57,8 @@ export default function About() {
               {features.map((feature, index) => (
                 <div key={index} className="flex items-center space-x-3">
                   {/* Blue Check Icon */}
-                  <div className="shrink-0 w-6 h-6 rounded-full bg-[#008AC9] flex items-center justify-center">
-                    <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3">
+                  <div className="shrink-0 w-6 h-6 rounded-full bg-[#008AC9] flex items-center justify-center" aria-hidden="true">
+                    <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
@@ -91,7 +88,7 @@ export default function About() {
              */}
              <Image
               src="/Home/about/client4.webp" 
-              alt="Team working together"
+              alt="Technogetic team collaborating in a modern workspace"
               width={800}
               height={600}
               className="w-full h-auto rounded-2xl object-contain"
