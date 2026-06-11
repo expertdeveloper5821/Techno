@@ -1,34 +1,19 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { fadeInUp, fadeInRight } from '@/app/lib/animations';
 import Image from 'next/image';
-import { getProducts } from '@/app/services';
 import type { Product } from '@/app/services';
 
-export default function Idea() {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [activeProduct, setActiveProduct] = useState<Product | null>(null);
-  const [loading, setLoading] = useState(true);
+interface IdeaProps {
+  products?: Product[];
+}
 
-  useEffect(() => {
-    getProducts()
-      .then((data) => {
-        setProducts(data);
-        if (data.length > 0) setActiveProduct(data[0]);
-      })
-      .catch(console.error)
-      .finally(() => setLoading(false));
-  }, []);
-
-  if (loading) {
-    return (
-      <section className="lg:py-24 md:py-15 py-10 bg-[#000000] text-white flex items-center justify-center min-h-[400px]">
-        <div className="w-10 h-10 border-4 border-white/20 border-t-white rounded-full animate-spin" />
-      </section>
-    );
-  }
+export default function Idea({ products = [] }: IdeaProps) {
+  const [activeProduct, setActiveProduct] = useState<Product | null>(
+    products.length > 0 ? products[0] : null
+  );
 
   if (!activeProduct) return null;
 

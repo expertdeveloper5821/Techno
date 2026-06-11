@@ -6,7 +6,7 @@ interface GrowthProps {
   items: GrowthItem[];
 }
 
-export default function Growth({ items }: GrowthProps) {
+export default function Growth({ items = [] }: GrowthProps) {
   return (
     <section className="bg-[#000000] text-white w-full mx-auto lg:pt-24 lg:pb-24 md:pt-15 md:pb-15 pt-10 pb-10">
       <div className="flex flex-col justify-center px-4 sm:px-6 lg:px-6">

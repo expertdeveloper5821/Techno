@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useTransition } from "react";
 import FilterBar from "./FilterBar";
 import ProjectCard from "./ProjectCard";
 import Link from "next/link";
 import ChevronLeftIcon from "@/app/lib/icon/chevron-left-icon";
 import ChevronRightIcon from "@/app/lib/icon/chevron-right-icon";
-import { getPortfolioItems } from "@/app/services";
-import type { PortfolioItem } from "@/app/services";
+import { fetchPortfolioItems } from "@/app/portfolio/actions";
+import type { PortfolioItemData } from "@/app/portfolio/actions";
 
 export type PortfolioCategory =
   | "All"
@@ -20,27 +20,38 @@ export type PortfolioCategory =
 
 const ITEMS_PER_PAGE = 9;
 
-export default function Work() {
-  const [items, setItems] = useState<PortfolioItem[]>([]);
-  const [totalPages, setTotalPages] = useState(1);
+interface WorkProps {
+  initialItems?: PortfolioItemData[];
+  initialTotalPages?: number;
+}
+
+export default function Work({ initialItems, initialTotalPages }: WorkProps) {
+  const [items, setItems] = useState<PortfolioItemData[]>(initialItems ?? []);
+  const [totalPages, setTotalPages] = useState(initialTotalPages ?? 1);
   const [category, setCategory] = useState<PortfolioCategory>("All");
   const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [isPending, startTransition] = useTransition();
 
   const fetchItems = useCallback(() => {
     setLoading(true);
-    getPortfolioItems({ page, limit: ITEMS_PER_PAGE, category })
-      .then(({ items: fetched, pagination }) => {
-        setItems(fetched);
-        setTotalPages(pagination.totalPages);
-      })
-      .catch(console.error)
-      .finally(() => setLoading(false));
+    startTransition(async () => {
+      try {
+        const result = await fetchPortfolioItems({ page, limit: ITEMS_PER_PAGE, category });
+        setItems(result.items);
+        setTotalPages(result.totalPages);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    });
   }, [page, category]);
 
   useEffect(() => {
+    if (initialItems && page === 1 && category === "All") return;
     fetchItems();
-  }, [fetchItems]);
+  }, [fetchItems, initialItems, page, category]);
 
   const handleCategory = (next: PortfolioCategory) => {
     setCategory(next);

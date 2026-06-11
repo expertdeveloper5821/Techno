@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import ChevronRightIcon from "@/app/lib/icon/chevron-right-icon";
 
 interface JobOpening {
@@ -24,7 +23,7 @@ interface OpportunitiesProps {
   openings: JobOpening[];
 }
 
-export default function Opportunities({ openings }: OpportunitiesProps) {
+export default function Opportunities({ openings = [] }: OpportunitiesProps) {
 
   if (openings.length === 0) {
     return (

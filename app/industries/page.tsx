@@ -1,6 +1,7 @@
 import { connectDB } from '@/app/lib/db';
 import IndustryModel from '@/app/lib/models/Industry';
 import FeatureModel from '@/app/lib/models/Feature';
+import IndustriesServeModel from '@/app/lib/models/IndustriesServe';
 
 import Hero from '../components/industries-com/hero/Hero';
 import Landscape from '../components/industries-com/landscape/Landscape';
@@ -14,20 +15,21 @@ export const revalidate = 86400;
 
 async function getIndustriesPageData() {
   await connectDB();
-  const [industries, features] = await Promise.all([
+  const [industries, features, landscapeItems] = await Promise.all([
     IndustryModel.find({}).sort({ order: 1 }).lean(),
     FeatureModel.find({}).sort({ order: 1 }).lean(),
+    IndustriesServeModel.find({}).sort({ order: 1 }).lean(),
   ]);
-  return JSON.parse(JSON.stringify({ industries, features }));
+  return JSON.parse(JSON.stringify({ industries, features, landscapeItems }));
 }
 
 export default async function IndustriesPage() {
-  const { industries, features } = await getIndustriesPageData();
+  const { industries, features, landscapeItems } = await getIndustriesPageData();
 
   return (
     <>
       <Hero />
-      <Landscape />
+      <Landscape items={landscapeItems} />
       <Ecommerce />
       <EdtechServices />
       <Solution features={features} />

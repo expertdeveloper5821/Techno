@@ -1,19 +1,22 @@
 "use client";
 
-import Image from "next/image";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCoverflow, Autoplay } from "swiper/modules";
 import './vision.css'
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 
-import "swiper/css";
 import VisionSlider from "./Visionslider";
 
+interface Milestone {
+  _id: string;
+  image: string;
+  order: number;
+}
 
+interface MilestoneCelebrationProps {
+  milestones?: Milestone[];
+}
 
-
-export default function MilestoneCelebration() {
+export default function MilestoneCelebration({ milestones = [] }: MilestoneCelebrationProps) {
   return (
     <section className="bg-black py-16 md:pb-28">
       <div className="mx-auto max-w-full ">
@@ -32,7 +35,7 @@ export default function MilestoneCelebration() {
 
        
 
-        <VisionSlider/>
+        <VisionSlider milestones={milestones} />
        
 
       </div>
