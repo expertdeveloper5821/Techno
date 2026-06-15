@@ -4,7 +4,7 @@ import { useState, useRef, useCallback, useEffect } from 'react';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import type { Swiper as SwiperType } from 'swiper';
-import { Autoplay, EffectCoverflow } from 'swiper/modules';
+import { Autoplay, EffectCoverflow, A11y } from 'swiper/modules';
 import ReadMoreIcon from '@/app/lib/icon/readmore-icon';
 import arrowl from '@/app/lib/icon/arrow.svg';
 
@@ -63,7 +63,7 @@ export default function ServiceSlider({ theme = 'light', propSlides }: ServiceSl
   );
 
   return (
-    <div className="w-full relative mx-auto overflow-hidden px-4 sm:px-6 lg:px-6">
+    <div className="w-full relative mx-auto overflow-hidden px-4 sm:px-6 lg:px-6" role="region" aria-label="Services showcase">
 
       {/* ---------------- SKELETON LOADER ---------------- */}
       {!isLoaded && (
@@ -110,10 +110,16 @@ export default function ServiceSlider({ theme = 'light', propSlides }: ServiceSl
           pauseOnMouseEnter: true,
         }}
         pagination={false}
-        modules={[EffectCoverflow, Autoplay]}
+        modules={[EffectCoverflow, Autoplay, A11y]}
         onSwiper={(swiper) => { swiperRef.current = swiper; }}
         onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
         onInit={() => setIsLoaded(true)}
+        a11y={{
+          enabled: true,
+          containerMessage: 'Our services slider',
+          slideRole: 'group',
+          slideLabelMessage: 'Service {{index}} of {{slidesLength}}',
+        }}
         className={`w-full  py-12 pb-20 transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-[0.005]'}`}
       >
         {propSlides?.map((service, index) => (
@@ -127,17 +133,25 @@ export default function ServiceSlider({ theme = 'light', propSlides }: ServiceSl
                   role="button"
                   tabIndex={0}
                   onClick={() => handleSlideClick(index)}
-                  onFocus={() => handleSlideClick(index)}
+                  onFocus={() => {
+                    handleSlideClick(index);
+                    swiperRef.current?.autoplay?.stop();
+                  }}
+                  onBlur={() => {
+                    swiperRef.current?.autoplay?.start();
+                  }}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                       e.preventDefault();
                       handleSlideClick(index);
                     }
                   }}
+                  aria-label={`${service.title}: ${service.description || ''}`}
                   className={`
                     group relative h-[400px] md:h-[470px] w-full 
                     rounded-[32px] overflow-hidden cursor-pointer
                     transition-all duration-500 ease-out
+                    focus:outline-2 focus:outline-offset-4 focus:outline-white
                     ${isActive
                       ? `${activeShadow} opacity-100 z-10`
                       : `opacity-100 hover:opacity-80 z-0`
@@ -156,6 +170,7 @@ export default function ServiceSlider({ theme = 'light', propSlides }: ServiceSl
                     />
                     <div
                       className="absolute inset-0 transition-opacity duration-300 overflow-hidden rounded-[32px] bg-[linear-gradient(to_top,rgba(0,0,0,0.85)_0%,rgba(0,0,0,0.2)_50%,transparent_100%)] opacity-70 group-hover:opacity-50 group-focus-visible:opacity-50"
+                      aria-hidden="true"
                     />
                   </div>
 
@@ -217,7 +232,7 @@ export default function ServiceSlider({ theme = 'light', propSlides }: ServiceSl
           </button>
 
           <div className="flex items-center gap-1.5">
-            {pagination.map((_, i) => (
+            {pagination?.map((_, i) => (
               <button
                 key={i}
                 type="button"

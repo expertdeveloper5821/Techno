@@ -12,7 +12,7 @@ interface PartnersProps {
 export default function Partners({ partners }: PartnersProps) {
 
   return (
-    <section aria-labelledby="partners-heading" className="lg:py-24 md:py-15 py-10 bg-[#0094DB] relative">
+    <section aria-labelledby="partners-heading" tabIndex={0} className="lg:py-24 md:py-15 py-10 bg-[#0094DB] relative focus:outline-2 focus:outline-offset-[-4px] focus:outline-white focus:rounded-lg">
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-6">
 
         <motion.div

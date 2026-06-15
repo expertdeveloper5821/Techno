@@ -3,7 +3,7 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Autoplay } from 'swiper/modules';
+import { Navigation, Autoplay, A11y } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
 import ServiceSlider from './ServiceSlider';
 import ChevronRightIconImport from '@/app/lib/icon/chevron-right-icon';
@@ -176,7 +176,7 @@ export default function ServicesCarousel({ services }: ServicesCarouselProps) {
         <div className="w-full overflow-hidden" onMouseLeave={handleCarouselLeave}>
           <Swiper
             onSwiper={(swiper) => { swiperRef.current = swiper; }}
-            modules={[Navigation, Autoplay]}
+            modules={[Navigation, Autoplay, A11y]}
             spaceBetween={24}
             centeredSlides={false}
             loop={true}
@@ -187,6 +187,11 @@ export default function ServicesCarousel({ services }: ServicesCarouselProps) {
             speed={1500}
             autoplay={{ delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true }}
             slidesPerView="auto"
+            a11y={{
+              enabled: true,
+              containerMessage: 'Services carousel',
+              slideRole: 'group',
+            }}
             breakpoints={{
               320: { spaceBetween: 16 },
               640: { spaceBetween: 18 },
@@ -220,9 +225,19 @@ export default function ServicesCarousel({ services }: ServicesCarouselProps) {
                   onClick={() => handleSlideClick(realIndex)}
                 >
                   <article
-                    className="relative rounded-[30px] overflow-hidden group shrink-0 origin-left cursor-pointer w-full"
+                    className="relative rounded-[30px] overflow-hidden group shrink-0 origin-left cursor-pointer w-full focus:outline-2 focus:outline-offset-2 focus:outline-white"
                     style={{ height: `${cardHeight}px`, transition: `all 400ms ${EASE_SMOOTH}` }}
                     aria-label={service.title}
+                    tabIndex={0}
+                    role="group"
+                    onFocus={() => {
+                      handleSlideEnter(realIndex);
+                      swiperRef.current?.autoplay?.stop();
+                    }}
+                    onBlur={() => {
+                      handleSlideLeave();
+                      swiperRef.current?.autoplay?.start();
+                    }}
                   >
                     <div
                       className="absolute inset-0 rounded-[30px] ring-2 ring-white/20 ring-inset z-10 pointer-events-none"

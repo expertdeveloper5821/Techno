@@ -272,7 +272,7 @@ export default function FAQ({ faqs }: FAQProps) {
                       role="region"
                       aria-labelledby={buttonId}
                       aria-hidden={!open}
-                      className={`overflow-hidden text-sm leading-relaxed transition-[max-height] duration-500 ease-out ${open ? 'max-h-64' : 'max-h-0'} ${palette.muted}`}
+                      className={`overflow-hidden text-sm leading-relaxed transition-[max-height] duration-500 ease-out ${open ? 'max-h-[500px]' : 'max-h-0'} ${palette.muted}`}
                     >
                       <p className="pr-2">{item.answer}</p>
                     </div>

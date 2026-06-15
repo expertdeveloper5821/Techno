@@ -4,7 +4,7 @@ import Homeland from "./home/page";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#0a0a0a] ">
+    <main id="main-content" className="min-h-screen bg-[#0a0a0a] ">
       <Homeland />
     </main>
   );

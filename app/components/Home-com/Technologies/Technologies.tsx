@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { fadeInUp } from '@/app/lib/animations';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay } from 'swiper/modules';
+import { Autoplay, A11y } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
 import TechCard from './TechCard';
 import type { Technology } from '@/app/services';
@@ -56,12 +56,12 @@ export default function Technologies({ technologies }: TechnologiesProps) {
           ))}
         </div>
 
-        {/* Row 1 — scrolls left (visual carousel, hidden from screen readers) */}
+        {/* Row 1 — scrolls left */}
         {row1Extended.length > 0 && (
-          <div className="w-full" aria-hidden="true">
+          <div className="w-full">
             <Swiper
               key={`row1-${row1.length}`}
-              modules={[Autoplay]}
+              modules={[Autoplay, A11y]}
               spaceBetween={14}
               slidesPerView="auto"
               loop={true}
@@ -77,6 +77,11 @@ export default function Technologies({ technologies }: TechnologiesProps) {
               }}
               allowTouchMove={true}
               className="tech-swiper"
+              a11y={{
+                enabled: true,
+                containerMessage: 'Technologies row 1',
+                slideRole: 'group',
+              }}
             >
               {row1Extended.map((tech, index) => (
                 <SwiperSlide key={`${tech._id}-${index}`} className="w-[280px]! md:w-[320px]!">
@@ -87,12 +92,12 @@ export default function Technologies({ technologies }: TechnologiesProps) {
           </div>
         )}
 
-        {/* Row 2 — scrolls right (visual carousel, hidden from screen readers) */}
+        {/* Row 2 — scrolls right */}
         {row2Extended.length > 0 && (
-          <div className="w-full" aria-hidden="true">
+          <div className="w-full">
             <Swiper
               key={`row2-${row2.length}`}
-              modules={[Autoplay]}
+              modules={[Autoplay, A11y]}
               spaceBetween={14}
               slidesPerView="auto"
               loop={true}
@@ -109,6 +114,11 @@ export default function Technologies({ technologies }: TechnologiesProps) {
               }}
               allowTouchMove={true}
               className="tech-swiper"
+              a11y={{
+                enabled: true,
+                containerMessage: 'Technologies row 2',
+                slideRole: 'group',
+              }}
             >
               {row2Extended.map((tech, index) => (
                 <SwiperSlide key={`${tech._id}-${index}`} className="w-[280px]! md:w-[320px]!">
