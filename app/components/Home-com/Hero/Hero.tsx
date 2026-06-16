@@ -23,19 +23,19 @@ interface HeroProps {
 
 export default function Hero({ serviceSlides }: HeroProps) {
   return (
-    // Removed background styles, just padding for spacing
-    <section className="relative pt-40 pb-10 sm:pt-48 sm:pb-16 flex flex-col items-center justify-center overflow-hidden z-10 bg-[linear-gradient(to_bottom,#0094DB_0%,#0094DB_85%,#003a5c_95%,#000000_100%)]">
+    <section
+      aria-labelledby="hero-heading"
+      className="relative pt-40 pb-10 sm:pt-48 sm:pb-16 flex flex-col items-center justify-center overflow-hidden z-10 bg-[linear-gradient(to_bottom,#0094DB_0%,#0094DB_85%,#003a5c_95%,#000000_100%)]"
+    >
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mb-10">
         <div className="max-w-5xl mx-auto text-center">
           <motion.h1
+            id="hero-heading"
             initial="hidden"
             animate="visible"
             variants={fadeInUp}
-            // Adjusted sizing: starts at 4xl, grows to 5xl/6xl/7xl on larger screens
-            className="font-inter mb-[20px] sm:mb-0 font-bold text-[24px] md:text-[40px] lg:text-[58px] leading-[30px] lg:leading-[70px] md:leading-[50px] tracking-[0.01em] text-white " style={{
-              
-            }}
+            className="font-inter mb-[20px] sm:mb-0 font-bold text-[24px] md:text-[40px] lg:text-[58px] leading-[30px] lg:leading-[70px] md:leading-[50px] tracking-[0.01em] text-white"
           >
             <SplitTextReveal>
           Business Solutions That Scale With Your Needs, Not Against Them 
@@ -63,10 +63,11 @@ We design and develop custom apps and teams to work for you without any game pla
               href="#contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="group inline-flex gap-2 items-center bg-white text-[#028cd1] px-3 md:px-7  py-2  md:py-4  rounded-full text-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg"
+              className="group inline-flex gap-2 items-center bg-white text-[#028cd1] px-3 md:px-7 py-2 md:py-4 rounded-full text-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg focus:outline-2 focus:outline-offset-2 focus:outline-white"
+              aria-label="Start your project - jump to contact form"
             >
               Start Your Project
-              <ChevronRightIcon width={7} height={11} color="#028cd1" className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-0.5" />
+              <ChevronRightIcon width={7} height={11} color="#028cd1" className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-0.5" aria-hidden="true" />
             </motion.a>
           </motion.div>
         </div>

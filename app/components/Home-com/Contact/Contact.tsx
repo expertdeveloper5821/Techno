@@ -58,7 +58,7 @@ export default function Contact() {
   return (
     <>
       <ToastContainer toasts={toasts} onDismiss={dismiss} />
-      <section id="contact" className="py-6 sm:pb-20 pt-5 bg-[#161616] relative z-10">
+      <section id="contact" aria-labelledby="contact-heading" className="py-6 sm:pb-20 pt-5 bg-[#161616] relative z-10">
         <div className="bg-[#000000] h-30 w-full absolute top-0 left-0 right-0 z-[-1]" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-4 max-w-[1268px]">
           <div className="static -top-24 z-10">

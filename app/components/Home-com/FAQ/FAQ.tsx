@@ -82,7 +82,7 @@ export default function FAQ({ faqs }: FAQProps) {
         max-width: 24rem;
         margin: 0 auto;
         mix-blend-mode: screen;
-        opacity: 0;
+        opacity: 0.005;
         transform: translate3d(0, 12px, 0);
         filter: blur(8px);
         transition: opacity 720ms ease, transform 720ms ease, filter 720ms ease;
@@ -138,7 +138,7 @@ export default function FAQ({ faqs }: FAQProps) {
         animation: faq1-tick 3.2s ease-in-out infinite;
       }
       .faq1-fade {
-        opacity: 0;
+        opacity: 0.005;
         transform: translate3d(0, 24px, 0);
         filter: blur(12px);
         transition: opacity 700ms ease, transform 700ms ease, filter 700ms ease;
@@ -208,16 +208,16 @@ export default function FAQ({ faqs }: FAQProps) {
 
         <header className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <div className="space-y-4">
-            <h1 className={`text-4xl font-semibold leading-tight md:text-5xl ${palette.heading}`}>
+            <h2 className={`text-4xl font-semibold leading-tight md:text-5xl ${palette.heading}`}>
               Common questions from CTOs and founders
-            </h1>
+            </h2>
             <p className="max-w-xl text-base text-neutral-400">
               Everything you&apos;d ask before making a tech decision.
             </p>
           </div>
         </header>
 
-        <ul className="space-y-4">
+        <ul className="space-y-4" role="list" aria-label="Frequently asked questions">
           { faqs.slice(0, 5).map((item, index) => {
             const open = activeIndex === index;
             const panelId = `faq-panel-${index}`;
@@ -271,7 +271,8 @@ export default function FAQ({ faqs }: FAQProps) {
                       id={panelId}
                       role="region"
                       aria-labelledby={buttonId}
-                      className={`overflow-hidden text-sm leading-relaxed transition-[max-height] duration-500 ease-out ${open ? 'max-h-64' : 'max-h-0'} ${palette.muted}`}
+                      aria-hidden={!open}
+                      className={`overflow-hidden text-sm leading-relaxed transition-[max-height] duration-500 ease-out ${open ? 'max-h-[500px]' : 'max-h-0'} ${palette.muted}`}
                     >
                       <p className="pr-2">{item.answer}</p>
                     </div>
@@ -285,10 +286,11 @@ export default function FAQ({ faqs }: FAQProps) {
             <div className="mt-2 mx-auto">
                   <a
                     href="/faq"
-                    className="group shrink-0 text-[20px] inline-flex items-center justify-center gap-2 sm:px-8 sm:py-2  px-4 py-2 font-semibold text-[#ffffff] bg-[linear-gradient(206.67deg,_#45B3F1_-0.38%,_#0088FF_81.83%)] rounded-lg  transition-all duration-200 shadow-lg  leading-8 mt-0 tracking-[1%] "
+                    aria-label="Read more frequently asked questions"
+                    className="group shrink-0 text-[20px] inline-flex items-center justify-center gap-2 sm:px-8 sm:py-2  px-4 py-2 font-semibold text-[#ffffff] bg-[linear-gradient(206.67deg,_#45B3F1_-0.38%,_#0088FF_81.83%)] rounded-lg  transition-all duration-200 shadow-lg  leading-8 mt-0 tracking-[1%] focus:outline-2 focus:outline-offset-2 focus:outline-white"
                   >
                  Read More
-                    <ChevronRightIcon width={7} height={11} color="#ffffff" className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-0.5" />
+                    <ChevronRightIcon width={7} height={11} color="#ffffff" className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-0.5" aria-hidden="true" />
                   </a>
                 </div>
       </section>

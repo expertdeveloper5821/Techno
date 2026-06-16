@@ -25,7 +25,7 @@ const stats = [
 
 export default function About() {
   return (
-    <section id="about" className="lg:pt-24 lg:pb-24 md:pt-15 md:pb-15  pt-10 pb-10 bg-[#000000] text-white w-full mx-auto px-4 sm:px-6 lg:px-6">
+    <section id="about" aria-labelledby="about-heading" tabIndex={0} className="lg:pt-24 lg:pb-24 md:pt-15 md:pb-15 pt-10 pb-10 bg-[#000000] text-white w-full mx-auto px-4 sm:px-6 lg:px-6 focus:outline-2 focus:outline-offset-[-4px] focus:outline-[#0094DB] focus:rounded-lg">
       <div className=" ">
         
         {/* --- Top Row: Heading & Description --- */}
@@ -33,12 +33,9 @@ export default function About() {
           <SplitTextReveal>
           {/* Left: Main Heading */}
 
-          <motion.h2 
-            // initial="hidden"
-            // whileInView="visible"
-            // viewport={{ once: true }}
-            // variants={fadeInUp}
-            className="font-inter text-[25px] sm:text-xl md:text-4xl font-semibold   lg:leading-[60px] md:leading-[50px] leading-[32px] "
+          <motion.h2
+            id="about-heading"
+            className="font-inter text-[25px] sm:text-xl md:text-4xl font-semibold lg:leading-[60px] md:leading-[50px] leading-[32px]"
           >
            We create outstanding value with our unique solutions. 
           </motion.h2>
@@ -58,10 +55,10 @@ export default function About() {
             <p className=''>Our team doesn't operate on a ticket basis; they integrate right into yours—working from the same Slack channel, sprint cycle, and KPIs. </p>
             <div className="space-y-4">
               {features.map((feature, index) => (
-                <div key={index} className="flex items-center space-x-3">
+                <div key={index} className="flex items-center space-x-3" tabIndex={0} role="listitem" aria-label={feature}>
                   {/* Blue Check Icon */}
-                  <div className="shrink-0 w-6 h-6 rounded-full bg-[#008AC9] flex items-center justify-center">
-                    <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3">
+                  <div className="shrink-0 w-6 h-6 rounded-full bg-[#008AC9] flex items-center justify-center" aria-hidden="true">
+                    <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
@@ -91,7 +88,7 @@ export default function About() {
              */}
              <Image
               src="/Home/about/client4.webp" 
-              alt="Team working together"
+              alt="Technogetic team collaborating in a modern workspace"
               width={800}
               height={600}
               className="w-full h-auto rounded-2xl object-contain"
@@ -110,10 +107,12 @@ export default function About() {
                 viewport={{ once: true }}
                 variants={fadeInUp}
                 transition={{ delay: 0.2 + (index * 0.1) }}
+                tabIndex={0}
+                aria-label={`${stat.number} ${stat.label}: ${stat.description}`}
                 className="
                   bg-transparent border border-white/20 rounded-2xl p-6 
                   flex flex-col  justify-between font-inter
-                  hover:bg-white/5 transition-colors duration-300   h-full  xl:h-[80%] 
+                  hover:bg-white/5 focus:bg-white/5 focus:outline-2 focus:outline-[#0094DB] focus:outline-offset-2 transition-colors duration-300   h-full  xl:h-[80%] 
                 "
               >
                 <div className="   font-medium text-[32px]  text-white leading-[40px]  tracking-[1%] ">

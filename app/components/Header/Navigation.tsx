@@ -103,6 +103,8 @@ export default function Navigation({ mobile = false, onNavigate }: NavigationPro
 
               <div
                 id="mobile-industries-dropdown"
+                role="region"
+                aria-label="Industries submenu"
                 className={`overflow-hidden transition-all duration-300 ease-out ${
                   mobileIndustriesOpen
                     ? 'max-h-[560px] opacity-100'
@@ -162,9 +164,10 @@ export default function Navigation({ mobile = false, onNavigate }: NavigationPro
             <Link
               href={item.href}
               className="text-dark-bg hover:text-primary-blue transition-colors font-normal inline-flex items-center gap-1"
+              aria-haspopup="true"
             >
               Industries
-              <span className="text-[16px] leading-none translate-y-px"><IoIosArrowDown /></span>
+              <span className="text-[16px] leading-none translate-y-px" aria-hidden="true"><IoIosArrowDown /></span>
             </Link>
             <div className="absolute left-1/2 top-full -translate-x-1/2 pt-5 z-70 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
               <div className="w-[888px] rounded-2xl bg-[#FFFFFF]  shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-[#e8eef5]">

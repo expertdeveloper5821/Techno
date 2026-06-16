@@ -8,15 +8,22 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
 export default function SplitTextReveal({ children  } : {children : React.ReactNode}) {
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    let split:any;
+    // Skip animation entirely if user prefers reduced motion
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
+
+    let split: any;
 
     const run = async () => {
+      // Only split the aria-hidden visual copy, not the sr-only accessible text
+      const visualEl = ref.current?.querySelector('[data-split-visual]');
+      if (!visualEl) return;
+
       await document.fonts.ready;
 
-      split = SplitText.create(ref.current, {
+      split = SplitText.create(visualEl, {
         type: "lines",
         linesClass: "line",
         mask: "lines",
@@ -44,7 +51,10 @@ export default function SplitTextReveal({ children  } : {children : React.ReactN
 
   return (
     <div ref={ref} className="split">
-      {children}
+      {/* Screen reader reads this full unbroken text */}
+      <span className="sr-only">{children}</span>
+      {/* GSAP splits this visual copy into masked lines - hidden from screen readers */}
+      <span aria-hidden="true" data-split-visual="">{children}</span>
     </div>
   );
 }

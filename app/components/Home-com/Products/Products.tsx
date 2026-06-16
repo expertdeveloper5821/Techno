@@ -18,7 +18,7 @@ export default function Products({ products }: ProductsProps) {
   if (!activeProduct) return null;
 
   return (
-    <section id="products" className="lg:py-24 md:py-15 py-10 bg-[#000000] text-white" style={{ overflow: 'clip' }}>
+    <section id="products" aria-labelledby="products-heading" className="lg:py-24 md:py-15 py-10 bg-[#000000] text-white" style={{ overflow: 'clip' }}>
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-6">
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-12 lg:gap-20 items-start">
@@ -32,7 +32,7 @@ export default function Products({ products }: ProductsProps) {
               variants={fadeInUp}
               className="lg:mb-10 md:mb-5 mb-5"
             >
-              <h2 className="font-inter text-[25px] sm:text-xl md:text-4xl lg:text-[44px] font-semibold lg:leading-tight md:leading-[50px] leading-[32px] tracking-tight mb-0 sm:mb-6">
+              <h2 id="products-heading" className="font-inter text-[25px] sm:text-xl md:text-4xl lg:text-[44px] font-semibold lg:leading-tight md:leading-[50px] leading-[32px] tracking-tight mb-0 sm:mb-6">
                 Discover How We Transform Ideas Into Impactful digital Products
               </h2>
             </motion.div>
@@ -44,11 +44,13 @@ export default function Products({ products }: ProductsProps) {
               variants={fadeInUp}
               transition={{ delay: 0 }}
               className="relative w-full rounded-2xl border border-white/10 shadow-2xl bg-white hidden lg:block"
+              aria-live="polite"
+              aria-atomic="true"
             >
               <Image
                 key={activeProduct._id}
                 src={activeProduct.image}
-                alt={activeProduct.title}
+                alt={`Screenshot of ${activeProduct.title} product`}
                 width={800}
                 height={600}
                 className="w-full h-auto object-cover object-top transition-opacity duration-300 rounded-2xl"
@@ -65,20 +67,25 @@ export default function Products({ products }: ProductsProps) {
             viewport={{ once: true }}
             variants={fadeInRight}
             className="pb-10"
+            role="list"
+            aria-label="Our products"
           >
             {products.map((product) => (
               <div
                 key={product._id}
+                role="listitem"
                 onMouseEnter={() => setActiveProduct(product)}
-                className="group p-6 bg-[#0F0F0F] border-b border-white/50 hover:bg-[#0094DB] transition-all duration-300 cursor-pointer"
+                onFocus={() => setActiveProduct(product)}
+                tabIndex={0}
+                className="group p-6 bg-[#0F0F0F] border-b border-white/50 hover:bg-[#0094DB] focus-within:bg-[#0094DB] transition-all duration-300 cursor-pointer focus:outline-2 focus:outline-offset-[-2px] focus:outline-white"
               >
                 <div className="flex justify-between items-start mb-4">
                   <h3 className="text-xl font-inter font-semibold text-white group-hover:text-white transition-colors">
                     {product.title}
                   </h3>
-                  <a href="/projects">
+                  <a href="/projects" aria-label={`View ${product.title} project details`}>
                     <span className="text-gray-500 group-hover:text-white transition-colors transform group-hover:translate-x-1 duration-300">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                       </svg>
                     </span>

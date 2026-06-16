@@ -116,11 +116,11 @@ export default function ContactFormCard({
         
         {/* Left – Contact form */}
         <div>
-          <h2 className=" font-inter text-2xl sm:text-4xl font-medium text-[#ffffff] mb-4">Get in touch</h2>
+          <h2 id={`${idPrefix}-heading`} className=" font-inter text-2xl sm:text-4xl font-medium text-[#ffffff] mb-4">Get in touch</h2>
 
          
 
-          <form onSubmit={handleSubmit} className="space-y-4 z-100 ">
+          <form onSubmit={handleSubmit} className="space-y-4 z-100" aria-label="Contact form" noValidate>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label htmlFor={id('firstName')} className="block text-white text-sm font-medium mb-1.5">
@@ -214,7 +214,8 @@ export default function ContactFormCard({
                 name="agreePrivacy"
                 checked={formData.agreePrivacy}
                 onChange={handleChange}
-                className="mt-1 w-4 h-4 rounded border-white/40 bg-[#0ea5e9]/20 text-[#008AC9] focus:ring-white/50"
+                aria-required="true"
+                className="mt-1 w-4 h-4 rounded border-white/40 bg-[#0ea5e9]/20 text-[#008AC9] focus:ring-white/50 focus:ring-2"
               />
               <span className="text-white/90 text-sm">
                 You agree to our friendly privacy policy.
@@ -233,7 +234,8 @@ export default function ContactFormCard({
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full py-3.5 px-6 rounded-lg bg-linear-to-r from-[#1a1a1a] to-[#0a0a0a] text-white font-semibold hover:opacity-95 transition-opacity disabled:opacity-70 disabled:cursor-not-allowed"
+              aria-busy={isSubmitting}
+              className="w-full py-3.5 px-6 rounded-lg bg-linear-to-r from-[#1a1a1a] to-[#0a0a0a] text-white font-semibold hover:opacity-95 transition-opacity disabled:opacity-70 disabled:cursor-not-allowed focus:outline-2 focus:outline-offset-2 focus:outline-white"
             >
               {isSubmitting ? 'Sending...' : 'Submit'}
             </button>

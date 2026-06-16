@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { fadeInUp } from '@/app/lib/animations';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay } from 'swiper/modules';
+import { Autoplay, A11y } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
 import TechCard from './TechCard';
 import type { Technology } from '@/app/services';
@@ -30,7 +30,7 @@ export default function Technologies({ technologies }: TechnologiesProps) {
   };
 
   return (
-    <section className="lg:py-24 md:py-15 py-10 bg-[#000000] overflow-hidden">
+    <section aria-labelledby="technologies-heading" className="lg:py-24 md:py-15 py-10 bg-[#000000] overflow-hidden">
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-6 md:mb-16 mb-5">
         <motion.div
           initial="hidden"
@@ -40,19 +40,28 @@ export default function Technologies({ technologies }: TechnologiesProps) {
           className="text-center"
         >
           <p className="text-gray-400 text-sm font-inter sm:text-[22px] tracking-wider mb-3">Our Technologies</p>
-          <h2 className="font-inter text-[25px] sm:text-xl md:text-4xl lg:text-[44px] font-semibold text-white sm:leading-tight lg:leading-[60px] md:leading-[50px] leading-[32px] tracking-tight">
+          <h2 id="technologies-heading" className="font-inter text-[25px] sm:text-xl md:text-4xl lg:text-[44px] font-semibold text-white sm:leading-tight lg:leading-[60px] md:leading-[50px] leading-[32px] tracking-tight">
             Technology we use and integrate
           </h2>
         </motion.div>
       </div>
 
       <div className="flex flex-col gap-3 w-full mx-auto px-4 sm:px-6 lg:px-6">
+        {/* Accessible list for screen readers - contains each technology once */}
+        <div className="sr-only" role="list" aria-label="Technologies we use">
+          {technologies.map((tech) => (
+            <div key={tech._id} role="listitem">
+              <strong>{tech.name}</strong>: {tech.description}
+            </div>
+          ))}
+        </div>
+
         {/* Row 1 — scrolls left */}
         {row1Extended.length > 0 && (
           <div className="w-full">
             <Swiper
               key={`row1-${row1.length}`}
-              modules={[Autoplay]}
+              modules={[Autoplay, A11y]}
               spaceBetween={14}
               slidesPerView="auto"
               loop={true}
@@ -68,6 +77,11 @@ export default function Technologies({ technologies }: TechnologiesProps) {
               }}
               allowTouchMove={true}
               className="tech-swiper"
+              a11y={{
+                enabled: true,
+                containerMessage: 'Technologies row 1',
+                slideRole: 'group',
+              }}
             >
               {row1Extended.map((tech, index) => (
                 <SwiperSlide key={`${tech._id}-${index}`} className="w-[280px]! md:w-[320px]!">
@@ -83,7 +97,7 @@ export default function Technologies({ technologies }: TechnologiesProps) {
           <div className="w-full">
             <Swiper
               key={`row2-${row2.length}`}
-              modules={[Autoplay]}
+              modules={[Autoplay, A11y]}
               spaceBetween={14}
               slidesPerView="auto"
               loop={true}
@@ -100,6 +114,11 @@ export default function Technologies({ technologies }: TechnologiesProps) {
               }}
               allowTouchMove={true}
               className="tech-swiper"
+              a11y={{
+                enabled: true,
+                containerMessage: 'Technologies row 2',
+                slideRole: 'group',
+              }}
             >
               {row2Extended.map((tech, index) => (
                 <SwiperSlide key={`${tech._id}-${index}`} className="w-[280px]! md:w-[320px]!">
